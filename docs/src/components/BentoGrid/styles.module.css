@@ -1,0 +1,108 @@
+/* Bento Grid Layout System */
+
+.bentoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    width: 100%;
+    padding: var(--space-xl) 0;
+}
+
+.bentoItem {
+    min-height: 200px;
+    opacity: 0;
+    animation: fade-in-up 0.6s var(--ease-smooth) forwards;
+}
+
+/* Size variants */
+.itemSmall {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.itemMedium {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.itemLarge {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.itemWide {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.itemTall {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+/* Stagger animation for items */
+.bentoItem:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.bentoItem:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.bentoItem:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.bentoItem:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.bentoItem:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.bentoItem:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Tablet */
+@media screen and (min-width: 768px) {
+    .bentoGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop */
+@media screen and (min-width: 1024px) {
+    .bentoGrid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-xl);
+    }
+}
+
+/* Large desktop */
+@media screen and (min-width: 1440px) {
+    .bentoGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Mobile - force all items to be medium size */
+@media screen and (max-width: 767px) {
+    .bentoGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .itemSmall,
+    .itemMedium,
+    .itemLarge,
+    .itemWide,
+    .itemTall {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}

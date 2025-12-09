@@ -1,23 +1,362 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
+/* Professional Homepage Styles - Light Theme */
 
+/* ============================================
+   HERO SECTION
+   ============================================ */
 .heroBanner {
-  padding: 4rem 0;
-  text-align: center;
   position: relative;
-  overflow: hidden;
-}
-
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
-}
-
-.buttons {
+  min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--gradient-subtle);
+  overflow: hidden;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  padding: var(--space-2xl) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heroGlass {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-4xl);
+  box-shadow: var(--shadow-2xl);
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--accent-primary-lighter);
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-xl);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--accent-primary);
+}
+
+.heroBadge svg {
+  width: 20px;
+  height: 20px;
+}
+
+.heroTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0 0 var(--space-lg);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-2xl);
+  max-width: 700px;
+  line-height: 1.6;
+}
+
+/* ============================================
+   HERO BUTTONS
+   ============================================ */
+.heroButtons {
+  display: flex;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.primaryButton,
+.secondaryButton {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  padding: 1rem 2.5rem;
+  font-size: var(--font-size-lg);
+  transition: all var(--duration-base) var(--ease-smooth);
+  border: none;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.primaryButton svg,
+.secondaryButton svg {
+  width: 24px;
+  height: 24px;
+}
+
+.primaryButton {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.primaryButton:hover {
+  box-shadow: var(--shadow-primary);
+  transform: translateY(-3px);
+}
+
+.secondaryButton {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+}
+
+.secondaryButton:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent-primary);
+  transform: translateY(-3px);
+}
+
+.buttonGlow {
+  display: none;
+}
+
+/* ============================================
+   HERO FEATURES PILLS
+   ============================================ */
+.heroFeatures {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--border-color);
+}
+
+.heroFeature {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  transition: all var(--duration-base) var(--ease-smooth);
+}
+
+.heroFeature:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: translateY(-2px);
+}
+
+.heroFeature svg {
+  color: var(--accent-primary);
+}
+
+/* ============================================
+   SCROLL INDICATOR
+   ============================================ */
+.scrollIndicator {
+  position: absolute;
+  bottom: var(--space-2xl);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  opacity: 0.6;
+  animation: bounce-subtle 2s var(--ease-in-out) infinite;
+}
+
+.scrollArrow {
+  width: 24px;
+  height: 24px;
+  border-left: 2px solid var(--accent-primary);
+  border-bottom: 2px solid var(--accent-primary);
+  transform: rotate(-45deg);
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+.mainContent {
+  position: relative;
+  background: var(--bg-primary);
+}
+
+/* ============================================
+   STATS SECTION
+   ============================================ */
+.statsSection {
+  padding: var(--space-4xl) var(--space-xl);
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   SHOWCASE SECTION
+   ============================================ */
+.showcaseSection {
+  padding: var(--space-4xl) var(--space-xl);
+  background: var(--bg-primary);
+}
+
+/* ============================================
+   TESTIMONIALS SECTION
+   ============================================ */
+.testimonialsSection {
+  padding: var(--space-4xl) var(--space-xl);
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 var(--space-md);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sectionSubtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0 0 var(--space-3xl);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.testimonialCarousel {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.testimonialCard {
+  padding: var(--space-2xl);
+  text-align: center;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.testimonialAvatar {
+  font-size: 4rem;
+  margin-bottom: var(--space-lg);
+}
+
+.testimonialQuote {
+  font-size: var(--font-size-xl);
+  line-height: 1.8;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-xl);
+  font-style: italic;
+}
+
+.testimonialAuthor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.testimonialAuthor strong {
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
+}
+
+.testimonialAuthor span {
+  color: var(--text-tertiary);
+  font-size: var(--font-size-sm);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    min-height: 80vh;
+  }
+
+  .heroContent {
+    padding: var(--space-xl);
+  }
+
+  .heroGlass {
+    padding: var(--space-2xl);
+  }
+
+  .heroButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .heroGlass {
+    padding: var(--space-xl);
+  }
+
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+
+  .scrollIndicator {
+    bottom: var(--space-lg);
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonialQuote {
+    font-size: var(--font-size-lg);
+  }
 }

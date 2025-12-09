@@ -1,0 +1,189 @@
+/* Professional Interactive Card Styles - Light Theme */
+
+.card {
+    position: relative;
+    padding: var(--space-xl);
+    border-radius: var(--radius-xl);
+    transition: all var(--duration-base) var(--ease-smooth);
+    cursor: pointer;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================
+   VARIANT: Glass (Light)
+   ============================================ */
+.cardGlass {
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.cardGlass:hover {
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-primary);
+    transform: translateY(-6px);
+}
+
+/* ============================================
+   VARIANT: 3D
+   ============================================ */
+.card3d {
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    transform-style: preserve-3d;
+    box-shadow: var(--shadow-md);
+}
+
+.card3d:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(2deg) translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--accent-secondary);
+}
+
+/* ============================================
+   VARIANT: Gradient Border
+   ============================================ */
+.cardGradient {
+    background: var(--bg-card);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+}
+
+.cardGradient::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: var(--gradient-primary);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0.3;
+    transition: opacity var(--duration-base) var(--ease-smooth);
+}
+
+.cardGradient:hover::before {
+    opacity: 1;
+}
+
+.cardGradient:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-primary);
+}
+
+/* ============================================
+   VARIANT: Magnetic
+   ============================================ */
+.cardMagnetic {
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--duration-fast) var(--ease-out);
+}
+
+.cardMagnetic:hover {
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ============================================
+   VARIANT: Neon (Subtle for Light Theme)
+   ============================================ */
+.cardNeon {
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+}
+
+.cardNeon::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: var(--gradient-primary);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity var(--duration-base) var(--ease-smooth);
+}
+
+.cardNeon:hover::after {
+    opacity: 1;
+}
+
+.cardNeon:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-primary);
+}
+
+/* ============================================
+   ACCENT COLORS
+   ============================================ */
+.accentCyan:hover {
+    border-color: var(--accent-primary);
+}
+
+.accentPurple:hover {
+    border-color: var(--accent-secondary);
+}
+
+.accentPink:hover {
+    border-color: var(--color-error);
+}
+
+/* ============================================
+   CARD CONTENT
+   ============================================ */
+.cardIcon {
+    font-size: 3rem;
+    margin-bottom: var(--space-lg);
+    color: var(--accent-primary);
+    transition: transform var(--duration-base) var(--ease-spring);
+}
+
+.card:hover .cardIcon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.cardTitle {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    margin: 0 0 var(--space-md);
+    color: var(--text-primary);
+}
+
+.cardDescription {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+    flex: 1;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media screen and (max-width: 768px) {
+    .card {
+        padding: var(--space-lg);
+    }
+
+    .cardIcon {
+        font-size: 2.5rem;
+    }
+
+    .cardTitle {
+        font-size: var(--font-size-lg);
+    }
+}

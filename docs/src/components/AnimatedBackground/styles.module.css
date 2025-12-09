@@ -1,0 +1,255 @@
+/* Animated Background Component Styles */
+
+.background {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ============================================
+   VARIANT: Gradient Mesh
+   ============================================ */
+.bgMesh {
+    background: var(--bg-primary);
+}
+
+.gradientOrb1,
+.gradientOrb2,
+.gradientOrb3 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    animation: float-orb 20s ease-in-out infinite;
+}
+
+.gradientOrb1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+    top: -10%;
+    left: -10%;
+    animation-delay: 0s;
+}
+
+.gradientOrb2 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--accent-purple) 0%, transparent 70%);
+    top: 20%;
+    right: -15%;
+    animation-delay: 5s;
+}
+
+.gradientOrb3 {
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, var(--accent-pink) 0%, transparent 70%);
+    bottom: -10%;
+    left: 30%;
+    animation-delay: 10s;
+}
+
+@keyframes float-orb {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(50px, -50px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-30px, 30px) scale(0.9);
+    }
+}
+
+/* ============================================
+   VARIANT: Geometric Shapes
+   ============================================ */
+.bgGeometric {
+    background: var(--bg-primary);
+}
+
+.geometricShape1,
+.geometricShape2,
+.geometricShape3 {
+    position: absolute;
+    opacity: 0.1;
+    border: 2px solid var(--glass-border);
+}
+
+.geometricShape1 {
+    width: 300px;
+    height: 300px;
+    border-radius: var(--radius-xl);
+    top: 10%;
+    right: 10%;
+    animation: rotate-shape 30s linear infinite;
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, transparent 100%);
+}
+
+.geometricShape2 {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    bottom: 20%;
+    left: 15%;
+    animation: rotate-shape 25s linear infinite reverse;
+    background: linear-gradient(135deg, var(--accent-purple) 0%, transparent 100%);
+}
+
+.geometricShape3 {
+    width: 250px;
+    height: 250px;
+    border-radius: var(--radius-lg);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse-shape 20s ease-in-out infinite;
+    background: linear-gradient(135deg, var(--accent-pink) 0%, transparent 100%);
+}
+
+@keyframes rotate-shape {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse-shape {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.1;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.2;
+    }
+}
+
+/* ============================================
+   VARIANT: Particles
+   ============================================ */
+.bgParticles {
+    background: var(--bg-primary);
+}
+
+.particleContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--accent-cyan);
+    border-radius: 50%;
+    left: var(--x);
+    top: var(--y);
+    opacity: 0;
+    animation: particle-float var(--duration) ease-in-out infinite;
+    animation-delay: var(--delay);
+    box-shadow: 0 0 10px currentColor;
+}
+
+.particle:nth-child(3n) {
+    background: var(--accent-purple);
+}
+
+.particle:nth-child(3n + 1) {
+    background: var(--accent-pink);
+}
+
+@keyframes particle-float {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.6;
+    }
+
+    90% {
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translate(calc(var(--x) * 0.5 - 50px),
+                calc(var(--y) * 0.5 - 50px));
+    }
+}
+
+/* ============================================
+   INTENSITY VARIANTS
+   ============================================ */
+.intensityLow .gradientOrb1,
+.intensityLow .gradientOrb2,
+.intensityLow .gradientOrb3 {
+    opacity: 0.15;
+}
+
+.intensityMedium .gradientOrb1,
+.intensityMedium .gradientOrb2,
+.intensityMedium .gradientOrb3 {
+    opacity: 0.3;
+}
+
+.intensityHigh .gradientOrb1,
+.intensityHigh .gradientOrb2,
+.intensityHigh .gradientOrb3 {
+    opacity: 0.5;
+}
+
+.intensityLow .geometricShape1,
+.intensityLow .geometricShape2,
+.intensityLow .geometricShape3 {
+    opacity: 0.05;
+}
+
+.intensityMedium .geometricShape1,
+.intensityMedium .geometricShape2,
+.intensityMedium .geometricShape3 {
+    opacity: 0.1;
+}
+
+.intensityHigh .geometricShape1,
+.intensityHigh .geometricShape2,
+.intensityHigh .geometricShape3 {
+    opacity: 0.2;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media screen and (max-width: 768px) {
+
+    .gradientOrb1,
+    .gradientOrb2,
+    .gradientOrb3 {
+        width: 300px;
+        height: 300px;
+    }
+
+    .geometricShape1,
+    .geometricShape2,
+    .geometricShape3 {
+        width: 150px;
+        height: 150px;
+    }
+}
