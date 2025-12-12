@@ -28,6 +28,18 @@ const sidebars: SidebarsConfig = {
     },
   ],
    */
+
+  // Custom sidebar for MCP Integration documentation
+  mcpIntegrationSidebar: [
+    {
+      type: 'category',
+      label: 'MCP Integration',
+      items: [
+        'mcp-integration/index',
+        'mcp-integration/implementation-guide',
+      ],
+    },
+  ],
 };
 
 export default sidebars;
