@@ -124,6 +124,29 @@
     border-top: 2px solid var(--glass-border);
 }
 
+/* Unlisted badge */
+.unlisted {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--space-lg);
+}
+
+.unlistedBadge {
+    background-color: var(--ifm-color-danger-lightest);
+    color: var(--ifm-color-danger-darkest);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+html[data-theme='dark'] .unlistedBadge {
+    background-color: var(--ifm-color-danger-dark);
+    color: var(--ifm-color-white);
+}
+
 /* Responsive */
 @media screen and (max-width: 996px) {
     .blogPostContainer {

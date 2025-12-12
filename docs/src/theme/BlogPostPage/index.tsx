@@ -8,7 +8,7 @@ import BlogPostPaginator from '@theme/BlogPostPaginator';
 import BlogPostPageMetadata from '@theme/BlogPostPage/Metadata';
 import TOC from '@theme/TOC';
 import type { Props } from '@theme/BlogPostPage';
-import Unlisted from '@theme/Unlisted';
+import Unlisted from '../Unlisted';
 import styles from './styles.module.css';
 
 function BlogPostPageContent({ children }: { children: React.ReactNode }): JSX.Element {
