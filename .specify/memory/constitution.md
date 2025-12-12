@@ -1,55 +1,35 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Enhanced AI Robotics Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. AI-First Architecture
+Every feature starts with AI integration in mind; Systems must support AI-assisted development and operation; Clear AI interaction patterns required - no features without AI considerations.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. MCP Integration Standard
+Every service exposes functionality via Model Context Protocol; Standardized MCP tools: stdin/args → stdout for AI agents, errors → stderr; Support both JSON and human-readable formats for AI and human consumption.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Documentation-First (NON-NEGOTIABLE)
+TDD mandatory for all AI integrations: Test documentation access → User approves → Tests fail → Then implement; Documentation-first cycle (Context7) enforced.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Multi-Modal Tool Access
+Focus areas requiring multi-modal tool access: MCP server integrations, Context7 documentation retrieval, Inter-agent communication, Shared context schemas.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Context-Driven Decision Making
+Systems must be observable with AI-assist in mind; Structured logging required for AI analysis; Context7 integration ensures debuggability; MAJOR.MINOR.BUILD versioning format with semantic AI integration markers.
 
-### [PRINCIPLE_6_NAME]
+### VI. Human-AI Collaboration
+Start simple with AI assistance; YAGNI principles apply to AI features; Gradual enhancement of AI capabilities based on context and need.
 
+## Additional Constraints
 
-[PRINCIPLE__DESCRIPTION]
+Technology stack requirements: Node.js runtime with MCP support, Context7 integration capability, AI agent compatibility; Compliance standards: MCP v1.0 protocol compliance, Context7 documentation standards; Deployment policy: MCP servers must be separately deployable and independently scalable.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Development Workflow
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Code review requirements: All AI integration code must include MCP tool definitions; Testing gates: AI-assisted tests must pass before human review; Deployment approval process: MCP endpoint validation required; AI interaction patterns must be documented in Context7 format.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+Constitution supersedes all other practices; Amendments require documentation, approval, and migration plan; All PRs/reviews must verify MCP compliance; Complexity must be justified with AI-usage scenarios; Use Context7 documentation for runtime development guidance.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-12-12 | **Last Amended**: 2025-12-12
