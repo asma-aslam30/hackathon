@@ -47,7 +47,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/asma-aslam30/hackathon/tree/main/docs/',
         },
         blog: {
           showReadingTime: true,
@@ -90,9 +90,15 @@ const config: Config = {
           position: 'left',
           label: 'Documentation',
         },
+        {
+          type: 'docSidebar',
+          sidebarId: 'physicalAIRoboticsSidebar',
+          position: 'left',
+          label: 'Physical AI & Robotics',
+        },
         { to: '/blog', label: 'Blog', position: 'left' },
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/asma-aslam30/hackathon',
           label: 'GitHub',
           position: 'right',
         },
@@ -136,7 +142,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/asma-aslam30/hackathon',
             },
           ],
         },

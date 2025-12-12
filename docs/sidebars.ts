@@ -40,6 +40,22 @@ const sidebars: SidebarsConfig = {
       ],
     },
   ],
+
+  // Sidebar for Physical AI Robotics documentation
+  physicalAIRoboticsSidebar: [
+    {
+      type: 'category',
+      label: 'Physical AI & Humanoid Robotics',
+      items: [
+        'physical-ai-robotics/introduction',
+        'physical-ai-robotics/ros2-robotic-nervous-system',
+        'physical-ai-robotics/digital-twin-simulation',
+        'physical-ai-robotics/ai-robot-brain-isaac',
+        'physical-ai-robotics/vision-language-action',
+        'physical-ai-robotics/capstone-autonomous-humanoid',
+      ],
+    },
+  ],
 };
 
 export default sidebars;

@@ -1,47 +1,103 @@
 ---
-sidebar_position: 1
+title: Physical AI & Humanoid Robotics
+hide_table_of_contents: false
+description: Comprehensive textbook on Physical AI, Robotics, and Autonomous Humanoid Development
 ---
 
-# Tutorial Intro
+# Physical AI & Humanoid Robotics Textbook
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Welcome to the comprehensive "Physical AI & Humanoid Robotics" textbook - a complete curriculum designed to guide you from foundational concepts to building an autonomous humanoid robot system.
+
+## About This Textbook
+
+This textbook provides a complete learning path for developing intelligent physical systems that can perceive, reason, and act in the real world. It covers the full stack of technologies needed to create autonomous humanoid robots, with special focus on the integration of AI systems with physical embodiment.
+
+## Course Modules
+
+### [1. Introduction to Physical AI](./physical-ai-robotics/introduction.md)
+- Understanding embodied intelligence and the AI-robot gap
+- Physics understanding and real-time operation requirements
+- The role of simulation and real-world deployment
+- Introduction to MCP and Context7 integration
+
+### [2. The Robotic Nervous System (ROS 2)](./physical-ai-robotics/ros2-robotic-nervous-system.md)
+- ROS 2 architecture and communication patterns
+- Nodes, topics, services, and actions
+- TF2 coordinate system management
+- MCP integration for documentation access
+
+### [3. The Digital Twin (Gazebo & Unity)](./physical-ai-robotics/digital-twin-simulation.md)
+- Gazebo simulation environment setup
+- Unity robotics integration
+- SDF robot modeling
+- Sensor simulation and perception
+
+### [4. The AI-Robot Brain (NVIDIA Isaac)](./physical-ai-robotics/ai-robot-brain-isaac.md)
+- Isaac Sim advanced robotics simulation
+- Synthetic data generation and domain randomization
+- Isaac Gym for reinforcement learning
+- Perception and control systems
+
+### [5. Vision-Language-Action (VLA)](./physical-ai-robotics/vision-language-action.md)
+- Vision-Language Models for robotic control
+- Natural language command interpretation
+- Multimodal perception and action
+- Conversational robotics interfaces
+
+### [6. Capstone: The Autonomous Humanoid](./physical-ai-robotics/capstone-autonomous-humanoid.md)
+- Complete system integration project
+- Voice command processing and cognitive planning
+- Navigation with Nav2 and VSLAM
+- Object manipulation and task completion
+- MCP-enhanced system capabilities
+
+## Learning Path
+
+This textbook is designed to be approached sequentially for maximum benefit:
+
+**Weeks 1-3**: Foundational concepts and ROS 2 basics
+**Weeks 4-6**: Simulation environments and digital twins
+**Weeks 7-9**: Advanced AI and Isaac Sim
+**Weeks 10-12**: Vision-Language-Action integration
+**Week 13**: Capstone project integration
+
+## Key Technologies Covered
+
+- **ROS 2 (Humble Hawksbill)**: Robotic middleware and communication
+- **Gazebo / Unity**: Physics-based simulation environments
+- **NVIDIA Isaac Sim**: Advanced AI-robotics simulation platform
+- **Vision-Language Models**: Multimodal AI for robotics
+- **Model Context Protocol (MCP)**: Tool access and documentation integration
+- **Context7**: Real-time documentation access for AI systems
+- **Navigation2 (Nav2)**: Path planning and navigation
+- **OpenCV & YOLO**: Computer vision and object detection
+
+## MCP and Context7 Integration
+
+Throughout this textbook, you'll find examples of how to integrate Model Context Protocol (MCP) and Context7 documentation servers with your robotic systems. This enables:
+
+- Real-time access to current API documentation
+- Best practices and guidelines for robotics development
+- Dynamic knowledge integration for AI-powered robots
+- Enhanced decision-making with current information
+
+## Target Audience
+
+This textbook is designed for:
+- Students beginning their journey in robotics and AI
+- Engineers looking to integrate AI with physical systems
+- Researchers exploring embodied intelligence
+- Developers building autonomous robotic systems
+
+## Prerequisites
+
+- Basic Python programming skills
+- Understanding of fundamental AI concepts
+- Familiarity with Linux command line
+- Interest in robotics and physical AI applications
 
 ## Getting Started
 
-Get started by **creating a new site**.
+Begin with the [Introduction to Physical AI](./physical-ai-robotics/introduction.md) module to understand the foundational concepts, then progress through each module sequentially. Each module includes code examples, practical exercises, and integration examples that build upon previous modules.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
-
-### What you'll need
-
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+The capstone project at the end integrates all concepts learned throughout the textbook, creating a comprehensive autonomous humanoid system that demonstrates the full potential of Physical AI.
