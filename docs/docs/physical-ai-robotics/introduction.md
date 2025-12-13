@@ -13,9 +13,9 @@ description: Comprehensive introduction to Physical AI, its importance, and the 
 ## 🌟 Welcome to the Future of AI
 <div class="pulse" style="display: inline-block; padding: 0.5rem 1rem; background: linear-gradient(135deg, #4a6cf7, #6a11cb); color: white; border-radius: 30px; font-size: 0.9rem;">
   Revolutionary Intelligence
+  <br /><br />
+  Physical AI represents the next evolutionary step in artificial intelligence, bridging the gap between digital algorithms and the physical world. This is where AI stops being just "smart software" and becomes truly embodied intelligence.
 </div>
-<br /><br />
-Physical AI represents the next evolutionary step in artificial intelligence, bridging the gap between digital algorithms and the physical world. This is where AI stops being just "smart software" and becomes truly embodied intelligence.
 
 ## 🚀 Overview
 
