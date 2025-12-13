@@ -12,10 +12,8 @@ description: Comprehensive guide to developing autonomous humanoid robots with i
 
 <div class="pulse" style="display: inline-block; padding: 0.5rem 1rem; background: linear-gradient(135deg, #e67e22, #d35400); color: white; border-radius: 30px; font-size: 0.9rem;">
   Humanoid Robotics Synthesis
-</div>
-<br /><br />
-The development of autonomous humanoid robots represents the ultimate integration of Physical AI technologies. This capstone project combines all the modules learned throughout the curriculum into a unified, intelligent, human-like robotic system capable of complex interaction and task execution in human environments.
-
+  <br /><br />
+  The development of autonomous humanoid robots represents the ultimate integration of Physical AI technologies. This capstone project combines all the modules learned throughout the curriculum into a unified, intelligent, human-like robotic system capable of complex interaction and task execution in human environments.
 </div>
 
 ## 🚀 Overview of Autonomous Humanoid Development

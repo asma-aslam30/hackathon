@@ -12,10 +12,8 @@ description: Comprehensive guide to NVIDIA Isaac for AI-powered robot control an
 
 <div class="pulse" style="display: inline-block; padding: 0.5rem 1rem; background: linear-gradient(135deg, #27ae60, #219653); color: white; border-radius: 30px; font-size: 0.9rem;">
   AI-Powered Intelligence
-</div>
-<br /><br />
-NVIDIA Isaac represents a comprehensive platform for developing AI-powered robots, combining simulation, perception, planning, and control capabilities with specialized AI tools and frameworks designed for robotic applications.
-
+  <br /><br />
+  NVIDIA Isaac represents a comprehensive platform for developing AI-powered robots, combining simulation, perception, planning, and control capabilities with specialized AI tools and frameworks designed for robotic applications.
 </div>
 
 ## 🚀 Overview of Isaac Platform

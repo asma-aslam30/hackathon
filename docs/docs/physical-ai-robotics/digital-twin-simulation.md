@@ -12,10 +12,8 @@ description: Comprehensive guide to creating and utilizing digital twins for Phy
 
 <div class="pulse" style="display: inline-block; padding: 0.5rem 1rem; background: linear-gradient(135deg, #3498db, #2980b9); color: white; border-radius: 30px; font-size: 0.9rem;">
   Virtual Reality Integration
-</div>
-<br /><br />
-Digital twin technology creates a precise virtual replica of physical systems, enabling comprehensive testing, validation, and optimization before deployment in real-world environments. This technology is fundamental to Physical AI development.
-
+  <br /><br />
+  Digital twin technology creates a precise virtual replica of physical systems, enabling comprehensive testing, validation, and optimization before deployment in real-world environments. This technology is fundamental to Physical AI development.
 </div>
 
 ## 🚀 Overview of Digital Twin Simulation

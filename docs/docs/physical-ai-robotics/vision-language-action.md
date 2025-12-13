@@ -12,10 +12,8 @@ description: Comprehensive guide to Vision-Language-Action models for robotic co
 
 <div class="pulse" style="display: inline-block; padding: 0.5rem 1rem; background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; border-radius: 30px; font-size: 0.9rem;">
   Multimodal Intelligence
-</div>
-<br /><br />
-Vision-Language-Action (VLA) represents the frontier of embodied AI, seamlessly integrating visual perception, natural language understanding, and physical action to create truly intelligent robotic systems that can interpret human commands and perform complex tasks in real-world environments.
-
+  <br /><br />
+  Vision-Language-Action (VLA) represents the frontier of embodied AI, seamlessly integrating visual perception, natural language understanding, and physical action to create truly intelligent robotic systems that can interpret human commands and perform complex tasks in real-world environments.
 </div>
 
 ## 🚀 Overview of Vision-Language-Action Systems
