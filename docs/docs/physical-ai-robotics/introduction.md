@@ -45,15 +45,15 @@ Physical AI represents the next evolutionary step in artificial intelligence, br
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
 <div style="background: rgba(255,255,255,0.7); padding: 1rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  🧠 <strong>Cognitive Benefits</strong><br>
+  🧠 <strong>Cognitive Benefits</strong><br />
   Better learning through physical interaction
 </div>
 <div style="background: rgba(255,255,255,0.7); padding: 1rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  🏗️ <strong>Real-World Skills</strong><br>
+  🏗️ <strong>Real-World Skills</strong><br />
   Practical problem-solving capabilities
 </div>
 <div style="background: rgba(255,255,255,0.7); padding: 1rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  ⚡ <strong>Adaptability</strong><br>
+  ⚡ <strong>Adaptability</strong><br />
   Learning from physical consequences
 </div>
 </div>
