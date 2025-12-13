@@ -13,7 +13,7 @@ description: Comprehensive guide to ROS 2 as the middleware foundation for physi
 <div class="pulse" style="display: inline-block; padding: 0.5rem 1rem; background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; border-radius: 30px; font-size: 0.9rem;">
   Core Middleware Architecture
 </div>
-<br><br>
+<br /><br />
 ROS 2 (Robot Operating System 2) serves as the fundamental middleware that connects every component of your robot, from sensors and actuators to high-level AI algorithms. It's the nervous system that enables your robot to perceive, think, and act as a unified intelligent system.
 
 </div>
