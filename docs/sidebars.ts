@@ -41,7 +41,7 @@ const sidebars: SidebarsConfig = {
     },
   ],
 
-  // Corrected sidebar for Physical AI Robotics documentation
+  // Simplified sidebar for Physical AI Robotics documentation
   physicalAIRoboticsSidebar: [
     {
       type: 'category',
@@ -49,208 +49,17 @@ const sidebars: SidebarsConfig = {
       items: [
         'physical-ai-robotics/introduction',
         'physical-ai-robotics/introduction-to-physical-ai',
-        {
-          type: 'category',
-          label: 'Module 1: ROS 2 - The Robotic Nervous System',
-          items: [
-            'physical-ai-robotics/module-1-ros2/overview',
-            {
-              type: 'category',
-              label: 'ROS 2 Fundamentals',
-              items: [
-                'physical-ai-robotics/module-1-ros2/ros2-fundamentals/installation',
-                'physical-ai-robotics/module-1-ros2/ros2-fundamentals/workspace-setup',
-                'physical-ai-robotics/module-1-ros2/ros2-fundamentals/creating-nodes',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'ROS 2 Communication Patterns',
-              items: [
-                'physical-ai-robotics/module-1-ros2/ros2-communication-patterns/topics-pub-sub',
-                'physical-ai-robotics/module-1-ros2/ros2-communication-patterns/services-actions',
-                'physical-ai-robotics/module-1-ros2/ros2-communication-patterns/parameters-config',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'ROS 2 Tools and Debugging',
-              items: [
-                'physical-ai-robotics/module-1-ros2/ros2-tools-debugging/rclpy-cli-tools',
-                'physical-ai-robotics/module-1-ros2/ros2-tools-debugging/ros2-bag-logging',
-                'physical-ai-robotics/module-1-ros2/ros2-tools-debugging/rviz2-visualization',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'ROS 2 Best Practices',
-              items: [
-                'physical-ai-robotics/module-1-ros2/ros2-best-practices/launch-file-automation',
-                'physical-ai-robotics/module-1-ros2/ros2-best-practices/package-design',
-                'physical-ai-robotics/module-1-ros2/ros2-best-practices/realtime-considerations',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'ROS 2 Robot Control',
-              items: [
-                'physical-ai-robotics/module-1-ros2/ros2-robot-control/ros2-control-intro',
-                'physical-ai-robotics/module-1-ros2/ros2-robot-control/nav2-stack-overview',
-                'physical-ai-robotics/module-1-ros2/ros2-robot-control/tf2-coordinates',
-              ],
-            },
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Module 2: Digital Twin Simulation',
-          items: [
-            'physical-ai-robotics/module-2-digital-twin/overview',
-            {
-              type: 'category',
-              label: 'Simulation Basics',
-              items: [
-                'physical-ai-robotics/module-2-digital-twin/simulation-basics/why-simulate',
-                'physical-ai-robotics/module-2-digital-twin/simulation-basics/digital-twin-concept',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Gazebo Fundamentals',
-              items: [
-                'physical-ai-robotics/module-2-digital-twin/gazebo-fundamentals/install-launch-gazebo',
-                'physical-ai-robotics/module-2-digital-twin/gazebo-fundamentals/sdf-models',
-                'physical-ai-robotics/module-2-digital-twin/gazebo-fundamentals/ros-gz-bridge',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Unity Robotics',
-              items: [
-                'physical-ai-robotics/module-2-digital-twin/unity-robotics/unity-editor-setup',
-                'physical-ai-robotics/module-2-digital-twin/unity-robotics/urdf-importer',
-                'physical-ai-robotics/module-2-digital-twin/unity-robotics/ros-tcp-connector',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Simulation Sensors and Actuators',
-              items: [
-                'physical-ai-robotics/module-2-digital-twin/simulation-sensors-actuators/camera-lidar-imu-sim',
-                'physical-ai-robotics/module-2-digital-twin/simulation-sensors-actuators/joint-motor-control',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Advanced Simulation Techniques',
-              items: [
-                'physical-ai-robotics/module-2-digital-twin/advanced-simulation-techniques/high-fidelity-rendering',
-                'physical-ai-robotics/module-2-digital-twin/advanced-simulation-techniques/multi-robot-sim',
-              ],
-            },
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Module 3: AI Robot Brain (Isaac)',
-          items: [
-            'physical-ai-robotics/module-3-isaac-brain/overview',
-            {
-              type: 'category',
-              label: 'Isaac Sim Overview',
-              items: [
-                'physical-ai-robotics/module-3-isaac-brain/isaac-sim-overview/isaac-install-launch',
-                'physical-ai-robotics/module-3-isaac-brain/isaac-sim-overview/python-api-basics',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'USD and Omniverse Kit',
-              items: [
-                'physical-ai-robotics/module-3-isaac-brain/usd-omniverse-kit/universal-scene-description',
-                'physical-ai-robotics/module-3-isaac-brain/usd-omniverse-kit/omniverse-ecosystem',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Robot Manipulation in Isaac',
-              items: [
-                'physical-ai-robotics/module-3-isaac-brain/robot-manipulation-isaac/urdf-import-control',
-                'physical-ai-robotics/module-3-isaac-brain/robot-manipulation-isaac/ik-fk-isaac',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Reinforcement Learning in Isaac Gym',
-              items: [
-                'physical-ai-robotics/module-3-isaac-brain/reinforcement-learning-isaac-gym/rl-fundamentals-isaac',
-                'physical-ai-robotics/module-3-isaac-brain/reinforcement-learning-isaac-gym/massively-parallel-rl',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Synthetic Data Generation',
-              items: [
-                'physical-ai-robotics/module-3-isaac-brain/synthetic-data-generation/domain-randomization',
-                'physical-ai-robotics/module-3-isaac-brain/synthetic-data-generation/isaac-replicator',
-              ],
-            },
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Module 4: Vision-Language-Action (VLA)',
-          items: [
-            'physical-ai-robotics/module-4-vla/overview',
-            {
-              type: 'category',
-              label: 'VLA Introduction',
-              items: [
-                'physical-ai-robotics/module-4-vla/vla-introduction/what-is-vla',
-                'physical-ai-robotics/module-4-vla/vla-introduction/embodied-ai-llms',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Vision for Action',
-              items: [
-                'physical-ai-robotics/module-4-vla/vision-for-action/3d-scene-understanding',
-                'physical-ai-robotics/module-4-vla/vision-for-action/object-detection-segmentation',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Language Grounding',
-              items: [
-                'physical-ai-robotics/module-4-vla/language-grounding/visual-grounding',
-                'physical-ai-robotics/module-4-vla/language-grounding/mapping-language-to-actions',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Action Generation and Planning',
-              items: [
-                'physical-ai-robotics/module-4-vla/action-generation-planning/action-primitive-generation',
-                'physical-ai-robotics/module-4-vla/action-generation-planning/task-planning-reasoning',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Conversational Robotics',
-              items: [
-                'physical-ai-robotics/module-4-vla/conversational-robotics/disambiguation-clarification',
-                'physical-ai-robotics/module-4-vla/conversational-robotics/human-robot-interaction',
-              ],
-            },
-          ],
-        },
         'physical-ai-robotics/ros2-robotic-nervous-system',
+        'physical-ai-robotics/module-1-ros2/overview',
         'physical-ai-robotics/digital-twin-simulation',
+        'physical-ai-robotics/module-2-digital-twin/overview',
         'physical-ai-robotics/ai-robot-brain-isaac',
+        'physical-ai-robotics/module-3-isaac-brain/overview',
         'physical-ai-robotics/vision-language-action',
+        'physical-ai-robotics/module-4-vla/overview',
         {
           type: 'category',
-          label: 'Capstone: Autonomous Humanoid Development',
+          label: 'Capstone Projects',
           items: [
             'physical-ai-robotics/capstone-autonomous-humanoid',
             'physical-ai-robotics/capstone-the-autonomous-humanoid',
@@ -258,7 +67,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Additional Resources',
+          label: 'Resources',
           items: [
             'physical-ai-robotics/hardware-requirements',
             'physical-ai-robotics/cloud-vs-on-premise-lab-setup',
