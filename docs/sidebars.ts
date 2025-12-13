@@ -41,13 +41,14 @@ const sidebars: SidebarsConfig = {
     },
   ],
 
-  // Sidebar for Physical AI Robotics documentation
+  // Corrected sidebar for Physical AI Robotics documentation
   physicalAIRoboticsSidebar: [
     {
       type: 'category',
       label: 'Physical AI & Humanoid Robotics',
       items: [
         'physical-ai-robotics/introduction',
+        'physical-ai-robotics/introduction-to-physical-ai',
         {
           type: 'category',
           label: 'Module 1: ROS 2 - The Robotic Nervous System',
@@ -259,7 +260,6 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Additional Resources',
           items: [
-            'physical-ai-robotics/introduction-to-physical-ai',
             'physical-ai-robotics/hardware-requirements',
             'physical-ai-robotics/cloud-vs-on-premise-lab-setup',
             'physical-ai-robotics/lab-architecture',
