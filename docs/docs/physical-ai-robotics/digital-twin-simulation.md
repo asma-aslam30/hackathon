@@ -1554,4 +1554,5 @@ As we look toward the future, digital twin technology will continue to evolve, i
 
 The investment in digital twin simulation technology today pays dividends in the form of safer, more capable, and more reliable physical AI systems tomorrow. Whether in manufacturing, healthcare, transportation, or exploration, digital twin simulation provides the essential foundation for developing the next generation of intelligent robotic systems.
 
-Digital twin technology is not just a tool for simulation—it is the virtual laboratory where the future of Physical AI is being developed and refined. The systems built today with these technologies will define how robots interact with the physical world in the decades to come.</div>
+Digital twin technology is not just a tool for simulation—it is the virtual laboratory where the future of Physical AI is being developed and refined. The systems built today with these technologies will define how robots interact with the physical world in the decades to come.
+</div>

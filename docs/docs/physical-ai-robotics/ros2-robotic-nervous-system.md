@@ -1752,4 +1752,5 @@ As we look toward the future, ROS 2 will continue to evolve, incorporating new t
 
 ROS 2 is truly the nervous system of the robotic future—connecting, coordinating, and enabling the sophisticated Physical AI systems that will increasingly become part of our daily lives. Whether it's in manufacturing, healthcare, transportation, or service applications, ROS 2 provides the foundational infrastructure that makes it possible to build truly intelligent, autonomous robots.
 
-The journey with ROS 2 is ongoing, and as the field of Physical AI continues to advance, the platform will continue to grow and evolve, supporting new applications and use cases that we can barely imagine today. The investment in learning and mastering ROS 2 today will pay dividends as the field continues to expand and mature.</div>
+The journey with ROS 2 is ongoing, and as the field of Physical AI continues to advance, the platform will continue to grow and evolve, supporting new applications and use cases that we can barely imagine today. The investment in learning and mastering ROS 2 today will pay dividends as the field continues to expand and mature.
+</div>
