@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Robot body -->
+  <rect x="35" y="30" width="30" height="30" rx="5" fill="#4a6cf7" stroke="#2a5298" stroke-width="2"/>
+  
+  <!-- Robot head -->
+  <circle cx="50" cy="20" r="12" fill="#557beb" stroke="#2a5298" stroke-width="2"/>
+  
+  <!-- Robot eyes -->
+  <circle cx="45" cy="18" r="2" fill="white"/>
+  <circle cx="55" cy="18" r="2" fill="white"/>
+  <circle cx="45" cy="18" r="1" fill="black"/>
+  <circle cx="55" cy="18" r="1" fill="black"/>
+  
+  <!-- Robot antenna -->
+  <line x1="50" y1="8" x2="50" y2="4" stroke="#e0e0e0" stroke-width="2"/>
+  <circle cx="50" cy="3" r="1.5" fill="#ffcc00"/>
+  
+  <!-- Robot arms -->
+  <line x1="30" y1="40" x2="35" y2="40" stroke="#2a5298" stroke-width="4" stroke-linecap="round"/>
+  <line x1="65" y1="40" x2="70" y2="40" stroke="#2a5298" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Robot legs -->
+  <line x1="42" y1="60" x2="42" y2="70" stroke="#2a5298" stroke-width="4" stroke-linecap="round"/>
+  <line x1="58" y1="60" x2="58" y2="70" stroke="#2a5298" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- MCP/Context7 integration indicator -->
+  <g transform="translate(35, 75) scale(0.5)">
+    <circle cx="0" cy="0" r="8" fill="#00c853" opacity="0.7"/>
+    <text x="0" y="3" font-family="Arial" font-size="12" text-anchor="middle" fill="white" font-weight="bold">MCP</text>
+  </g>
+</svg>

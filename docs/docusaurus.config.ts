@@ -81,14 +81,14 @@ const config: Config = {
       title: 'Physical AI & Robotics',
       logo: {
         alt: 'Physical AI & Robotics Logo',
-        src: 'img/docusaurus.png',
+        src: 'img/robot-icon.svg', // We'll create this
       },
       items: [
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Documentation',
+          label: 'MCP Guide',
         },
         {
           type: 'docSidebar',
@@ -111,7 +111,11 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
+              label: 'MCP Guide',
+              to: '/docs/mcp-integration',
+            },
+            {
+              label: 'Physical AI & Robotics',
               to: '/docs/intro',
             },
           ],
@@ -147,11 +151,19 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics. All rights reserved.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+    },
+    // Add custom styling
+    announcementBar: {
+      id: 'announcement-bar',
+      content: '🏗️ <b>Under active development</b>: We\'re continuously adding new content about Physical AI & MCP integration',
+      backgroundColor: '#2962ff',
+      textColor: '#ffffff',
+      isCloseable: false,
     },
   } satisfies Preset.ThemeConfig,
 };
