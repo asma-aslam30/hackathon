@@ -1,7 +1,5 @@
 import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 /**
  * Creating a sidebar enables you to:
  - create an ordered group of docs
@@ -28,18 +26,6 @@ const sidebars: SidebarsConfig = {
     },
   ],
    */
-
-  // Custom sidebar for MCP Integration documentation
-  mcpIntegrationSidebar: [
-    {
-      type: 'category',
-      label: 'MCP Integration',
-      items: [
-        'mcp-integration/index',
-        'mcp-integration/implementation-guide',
-      ],
-    },
-  ],
 
   // Simplified sidebar for Physical AI Robotics documentation
   physicalAIRoboticsSidebar: [
