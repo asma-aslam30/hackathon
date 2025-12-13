@@ -1651,4 +1651,4 @@ The key advantages of Isaac include:
 
 As robotics continues to advance, Isaac will remain at the forefront, providing the necessary tools and capabilities to develop the next generation of intelligent robotic systems that will transform industries and improve human life.
 
-The future of robotics is intelligent, autonomous, and collaborative—and Isaac provides the foundation for realizing this future. Whether developing industrial automation systems, service robots, or research platforms, Isaac offers the comprehensive tools and capabilities needed to push the boundaries of what's possible in robotics and artificial intelligence.
+The future of robotics is intelligent, autonomous, and collaborative—and Isaac provides the foundation for realizing this future. Whether developing industrial automation systems, service robots, or research platforms, Isaac offers the comprehensive tools and capabilities needed to push the boundaries of what's possible in robotics and artificial intelligence.</div>

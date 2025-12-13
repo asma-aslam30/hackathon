@@ -1189,4 +1189,4 @@ As we continue to develop Physical AI systems, we must balance technological cap
 
 The journey from traditional AI to Physical AI is not just a technical evolution, but a fundamental shift in our understanding of what intelligence is and how it emerges from the interaction of mind, body, and environment. This shift promises to revolutionize not only robotics but our broader understanding of intelligence, both artificial and natural.
 
-The path forward is exciting and challenging, requiring continued innovation in hardware, software, and our theoretical understanding of embodied intelligence. The students and researchers who master these concepts today will be the architects of the intelligent physical systems that will shape our tomorrow.
+The path forward is exciting and challenging, requiring continued innovation in hardware, software, and our theoretical understanding of embodied intelligence. The students and researchers who master these concepts today will be the architects of the intelligent physical systems that will shape our tomorrow.</div>
