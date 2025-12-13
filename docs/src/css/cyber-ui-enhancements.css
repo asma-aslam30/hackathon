@@ -1,0 +1,376 @@
+/**
+ * Enhanced Cybernetic UI Elements for Physical AI & Robotics Documentation
+ * Additional interactive styles and animations
+ */
+
+/* Cyberpunk-inspired loading animation for code blocks */
+.loading-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading-animation::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(41, 98, 255, 0.2), transparent);
+  animation: loading-shine 2s infinite;
+}
+
+@keyframes loading-shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Holographic effect for important elements */
+.holographic {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, #f0f8ff, #e6f3ff);
+  border: 1px solid rgba(41, 98, 255, 0.2);
+  box-shadow: 0 0 20px rgba(41, 98, 255, 0.1);
+}
+
+.holographic::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(41, 98, 255, 0.1) 25%,
+    transparent 50%,
+    rgba(170, 0, 255, 0.1) 75%,
+    transparent 100%
+  );
+  animation: holographic-move 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes holographic-move {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Matrix-style code rain effect for background */
+.matrix-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.05;
+  pointer-events: none;
+  font-family: monospace;
+  font-size: 12px;
+  line-height: 1;
+  overflow: hidden;
+}
+
+/* Robotic pathway visualization */
+.robot-path {
+  stroke-dasharray: 10;
+  stroke-dashoffset: 0;
+  animation: path-draw 3s linear infinite;
+}
+
+@keyframes path-draw {
+  to {
+    stroke-dashoffset: -30;
+  }
+}
+
+/* Interactive sensor visualization */
+.sensor-dot {
+  animation: pulse-glow 2s infinite alternate;
+}
+
+@keyframes pulse-glow {
+  0% { 
+    box-shadow: 0 0 5px #2962ff, 0 0 10px #2962ff; 
+    transform: scale(1);
+  }
+  100% { 
+    box-shadow: 0 0 15px #2962ff, 0 0 25px #2962ff; 
+    transform: scale(1.05);
+  }
+}
+
+/* Cyber-grid background pattern */
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(41, 98, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(41, 98, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Glowing borders for important sections */
+.glowing-border {
+  position: relative;
+}
+
+.glowing-border::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #2962ff, #aa00ff, #2962ff, #aa00ff);
+  border-radius: inherit;
+  z-index: -1;
+  animation: border-rotate 4s linear infinite;
+}
+
+@keyframes border-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Hover-triggered animations */
+.trigger-hover-grow:hover {
+  transform: scale(1.03);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.trigger-hover-lift:hover {
+  transform: translateY(-8px);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.trigger-hover-shadow:hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.4s ease;
+}
+
+/* 3D effect toggle */
+.toggle-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.toggle-3d:hover {
+  transform: translateZ(20px);
+}
+
+/* Neural network visualization */
+.neural-node {
+  fill: #2962ff;
+  animation: neural-pulse 2s infinite;
+}
+
+@keyframes neural-pulse {
+  0%, 100% { fill: #2962ff; r: 5; }
+  50% { fill: #aa00ff; r: 7; }
+}
+
+/* Robotic arm joint visualization */
+.joint-rotation {
+  animation: joint-rotate 4s ease-in-out infinite alternate;
+}
+
+@keyframes joint-rotate {
+  0% { transform: rotate(-10deg); }
+  100% { transform: rotate(10deg); }
+}
+
+/* Cybernetic progress bar */
+.progress-cyber {
+  height: 8px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  margin: 1rem 0;
+}
+
+.progress-cyber-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2962ff, #aa00ff);
+  border-radius: 4px;
+  animation: progress-flow 1.5s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-cyber-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shine-flow 1.5s infinite;
+}
+
+@keyframes progress-flow {
+  0% { width: 0%; }
+  100% { width: var(--progress-value, 50%); }
+}
+
+@keyframes shine-flow {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Holographic text effect */
+.holographic-text {
+  position: relative;
+  background: linear-gradient(45deg, #2962ff, #aa00ff, #2962ff);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: holographic-text-anime 4s ease infinite;
+}
+
+@keyframes holographic-text-anime {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Robotic button interaction */
+.robotic-btn {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2962ff, #1a237e);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.robotic-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.robotic-btn:hover::before {
+  left: 100%;
+}
+
+.robotic-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(41, 98, 255, 0.3);
+}
+
+/* Data flow visualization */
+.data-flow {
+  animation: data-flow-move 3s linear infinite;
+}
+
+@keyframes data-flow-move {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Terminal-style code blocks */
+.terminal-block {
+  position: relative;
+  border-radius: 8px;
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  font-family: 'Courier New', monospace;
+  overflow: hidden;
+}
+
+.terminal-block::before {
+  content: ' ';
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff5f56;
+  box-shadow: 
+    20px 0 #ffbd2e,
+    40px 0 #27c93f;
+}
+
+.terminal-content {
+  padding: 30px 15px 15px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.terminal-prompt {
+  color: #27c93f;
+}
+
+/* Cyber security lock icon */
+.lock-icon {
+  display: inline-block;
+  position: relative;
+}
+
+.lock-icon::before {
+  content: '🔒';
+  animation: lock-pulse 2s infinite;
+}
+
+@keyframes lock-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* Smooth scroll behavior enhancement */
+html {
+  scroll-behavior: smooth;
+}
+
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced focus states for accessibility */
+.focus-ring:focus-visible {
+  outline: 2px solid #2962ff;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Animated background for hero sections */
+.animated-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.animated-bg::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(41, 98, 255, 0.1) 0%, transparent 70%);
+  animation: rotate-bg 20s linear infinite;
+}
+
+@keyframes rotate-bg {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

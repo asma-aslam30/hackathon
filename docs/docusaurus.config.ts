@@ -38,6 +38,13 @@ const config: Config = {
   plugins: [
     require.resolve('@easyops-cn/docusaurus-search-local'),
   ],
+  scripts: [
+    {
+      src: '/js/interactive-ui.js',
+      async: true,
+      defer: true,
+    },
+  ],
   presets: [
     [
       'classic',
