@@ -73,46 +73,46 @@ Isaac is critical for Physical AI because it provides:
 
 ### 🏗️ Isaac Architecture
 
-<div style="display: flex; gap: 3rem; margin: 2rem 0; flex-wrap: wrap;">
+<div style={{display: 'flex', gap: '3rem', margin: '2rem 0', flexWrap: 'wrap'}}>
 
-<div class="card fade-in-up" style="flex: 1; min-width: 300px; padding: 2rem; background: linear-gradient(135deg, #fff, #f8f9fa); border: 1px solid #e0e0e0; box-shadow: 0 15px 30px rgba(0,0,0,0.1);">
+<div className="card fade-in-up" style={{flex: '1', minWidth: '300px', padding: '2rem', background: 'linear-gradient(135deg, #fff, #f8f9fa)', border: '1px solid #e0e0e0', boxShadow: '0 15px 30px rgba(0,0,0,0.1)'}}>
 <h3>Isaac Sim</h3>
 <p>High-fidelity simulation environment for robotics:</p>
-<ul style="margin-top: 1rem; padding-left: 1rem;">
+<ul style={{marginTop: '1rem', paddingLeft: '1rem'}}>
 <li>Realistic physics simulation with PhysX</li>
 <li>Photorealistic rendering capabilities</li>
 <li>Synthetic data generation for AI training</li>
 <li>Domain randomization for robust learning</li>
 </ul>
-<div style="margin-top: 1.5rem; padding: 0.5rem 1rem; background: #e8f5e9; color: #2e7d32; border-radius: 20px; display: inline-block;">
+<div style={{marginTop: '1.5rem', padding: '0.5rem 1rem', background: '#e8f5e9', color: '#2e7d32', borderRadius: '20px', display: 'inline-block'}}>
   GPU-accelerated for realistic environments
 </div>
 </div>
 
-<div class="card fade-in-up" style="flex: 1; min-width: 300px; padding: 2rem; background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; border-radius: 20px;" data-aos="fade-left">
+<div className="card fade-in-up" style={{flex: '1', minWidth: '300px', padding: '2rem', background: 'linear-gradient(135deg, #27ae60, #2ecc71)', color: 'white', borderRadius: '20px'}} data-aos="fade-left">
 <h3>Isaac Apps</h3>
 <p>Reference applications and algorithms for robotics:</p>
-<ul style="margin-top: 1rem; padding-left: 1rem;">
+<ul style={{marginTop: '1rem', paddingLeft: '1rem'}}>
 <li>Perception algorithms (vision, object detection)</li>
 <li>Planning algorithms (navigation, manipulation)</li>
 <li>Control algorithms for robot behaviors</li>
 <li>Sample applications for different use cases</li>
 </ul>
-<div style="margin-top: 1.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border-radius: 20px; display: inline-block;">
+<div style={{marginTop: '1.5rem', padding: '0.5rem 1rem', background: 'rgba(255,255,255,0.2)', borderRadius: '20px', display: 'inline-block'}}>
   Production-ready algorithms and applications
 </div>
 </div>
 
-<div class="card fade-in-up" style="flex: 1; min-width: 300px; padding: 2rem; background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; border-radius: 20px;" data-aos="fade-left">
+<div className="card fade-in-up" style={{flex: '1', minWidth: '300px', padding: '2rem', background: 'linear-gradient(135deg, #e74c3c, #c0392b)', color: 'white', borderRadius: '20px'}} data-aos="fade-left">
 <h3>Isaac SDK</h3>
 <p>Software development kit for AI robotics:</p>
-<ul style="margin-top: 1rem; padding-left: 1rem;">
+<ul style={{marginTop: '1rem', paddingLeft: '1rem'}}>
 <li>Deep learning framework integration</li>
 <li>ROS/ROS2 compatibility</li>
 <li>Computer vision libraries</li>
 <li>AI model deployment tools</li>
 </ul>
-<div style="margin-top: 1.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border-radius: 20px; display: inline-block;">
+<div style={{marginTop: '1.5rem', padding: '0.5rem 1rem', background: 'rgba(255,255,255,0.2)', borderRadius: '20px', display: 'inline-block'}}>
   Comprehensive development framework
 </div>
 </div>
@@ -121,28 +121,28 @@ Isaac is critical for Physical AI because it provides:
 
 ### 🧭 Advanced Isaac Components
 
-<div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0;">
+<div className="grid-container" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', margin: '2rem 0'}}>
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #f0f7ff, #e6f3ff); border: 2px solid #4a6cf7; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">1. 🎮 Isaac Sim (Simulation)</h3>
+<div className="card fade-in-up tilt-card" data-aos="zoom-in" style={{padding: '2rem', background: 'linear-gradient(135deg, #f0f7ff, #e6f3ff)', border: '2px solid #4a6cf7', borderRadius: '16px'}}>
+  <h3 style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>1. 🎮 Isaac Sim (Simulation)</h3>
   <p>Advanced simulation environment with photorealistic rendering</p>
-  <div class="hover-effect" style="margin-top: 1rem; padding: 0.5rem; background: rgba(74, 108, 247, 0.1); border-radius: 8px; font-size: 0.9rem;">
+  <div className="hover-effect" style={{marginTop: '1rem', padding: '0.5rem', background: 'rgba(74, 108, 247, 0.1)', borderRadius: '8px', fontSize: '0.9rem'}}>
     PhysX physics engine with real-time ray tracing
   </div>
 </div>
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #f0fff0, #e6ffe6); border: 2px solid #4caf50; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">2. ⚙️ Isaac Apps (Algorithms)</h3>
+<div className="card fade-in-up tilt-card" data-aos="zoom-in" style={{padding: '2rem', background: 'linear-gradient(135deg, #f0fff0, #e6ffe6)', border: '2px solid #4caf50', borderRadius: '16px'}}>
+  <h3 style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>2. ⚙️ Isaac Apps (Algorithms)</h3>
   <p>Reference implementations of robotics algorithms</p>
-  <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Perception</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Planning</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Control</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Learning</span>
+  <div style={{marginTop: '1rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap'}}>
+    <span style={{background: '#e8f5e9', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Perception</span>
+    <span style={{background: '#e8f5e9', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Planning</span>
+    <span style={{background: '#e8f5e9', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Control</span>
+    <span style={{background: '#e8f5e9', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Learning</span>
   </div>
 </div>
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #fff0f0, #ffe6e6); border: 2px solid #f44336; border-radius: 16px;">
+<div className="card fade-in-up tilt-card" data-aos="zoom-in" style={{padding: '2rem', background: 'linear-gradient(135deg, #fff0f0, #ffe6e6)', border: '2px solid #f44336', borderRadius: '16px'}}>
   <h3 style="display: flex; align-items: center; gap: 0.5rem;">3. 🧠 Isaac SDK (Development)</h3>
   <p>Software development kit for building robot applications</p>
   <div class="progress-bar" style="margin-top: 1rem; height: 8px; width: 100%;">
