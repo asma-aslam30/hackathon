@@ -6,11 +6,11 @@ description: Comprehensive guide to NVIDIA Isaac for AI-powered robot control an
 
 # 🧠 Isaac Brain - AI Robot Brain
 
-<div className="module-highlight fade-in-up tilt-card" style={{padding: '2.5rem', margin: '2.5rem 0', borderRadius: '20px', background: 'linear-gradient(135deg, #f5f7fa, #e4edf9)', borderLeft: '6px solid #27ae60', boxShadow: '0 20px 40px rgba(0,0,0,0.1)'}}>
+<div class="module-highlight fade-in-up tilt-card">
 
 ## 🤖 NVIDIA's AI-Powered Robotics Platform
 
-<div className="pulse" style={{display: 'inline-block', padding: '0.5rem 1rem', background: 'linear-gradient(135deg, #27ae60, #219653)', color: 'white', borderRadius: '30px', fontSize: '0.9rem'}}>
+<div class="pulse">
   AI-Powered Intelligence
   <br /><br />
   NVIDIA Isaac represents a comprehensive platform for developing AI-powered robots, combining simulation, perception, planning, and control capabilities with specialized AI tools and frameworks designed for robotic applications.
@@ -18,15 +18,15 @@ description: Comprehensive guide to NVIDIA Isaac for AI-powered robot control an
 
 ## 🚀 Overview of Isaac Platform
 
-<div className="grid-container" style={{display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem', margin: '2rem 0'}}>
+<div class="grid-container-2col">
 
-<div className="hover-effect">
+<div class="hover-effect">
 The NVIDIA Isaac platform encompasses a complete ecosystem for developing, training, and deploying AI-powered robots. It combines high-fidelity simulation environments with advanced AI frameworks, perception and planning algorithms, and real-world deployment capabilities. Isaac is specifically designed to accelerate the development of intelligent robots by providing tools for simulation, training, testing, and deployment across various domains from industrial automation to service robotics.
 </div>
 
-<div className="card fade-in-up" style={{padding: '1.5rem', borderRadius: '16px', background: 'linear-gradient(135deg, #ffffff, #f8f9ff)', border: '1px solid #e0e0ff'}}>
+<div class="card fade-in-up">
 ### 🎯 Key Takeaway
-<div className="interactive-element">
+<div class="interactive-element">
 > *"Isaac provides the complete pipeline for AI-driven robotics development, from simulation and training to real-world deployment, with specialized tools optimized for autonomous robot systems."*
 </div>
 </div>
