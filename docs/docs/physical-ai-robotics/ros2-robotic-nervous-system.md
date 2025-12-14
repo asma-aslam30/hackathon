@@ -80,16 +80,16 @@ ROS 2 is critical for Physical AI systems because it provides the infrastructure
 
 <div style="display: flex; gap: 3rem; margin: 2rem 0; flex-wrap: wrap;">
 
-<div class="card fade-in-up" style="flex: 1; min-width: 300px; padding: 2rem; background: linear-gradient(135deg, #fff, #f8f9fa); border: 1px solid #e0e0e0; box-shadow: 0 15px 30px rgba(0,0,0,0.1);">
+<div className="card fade-in-up" style={{flex: '1', minWidth: '300px', padding: '2rem', background: 'linear-gradient(135deg, #fff, #f8f9fa)', border: '1px solid #e0e0e0', boxShadow: '0 15px 30px rgba(0,0,0,0.1)'}}>
 <h3>ROS 2 Nodes</h3>
 <p>Independent processes that perform specific functions:</p>
-<ul style="margin-top: 1rem; padding-left: 1rem;">
+<ul style={{marginTop: '1rem', paddingLeft: '1rem'}}>
 <li>Sensor drivers (camera, LIDAR, IMU)</li>
 <li>Control algorithms (path planning, motion control)</li>
 <li>AI processing nodes (perception, decision making)</li>
 <li>Communication interfaces (networking, cloud)</li>
 </ul>
-<div style="margin-top: 1.5rem; padding: 0.5rem 1rem; background: #e8f5e9; color: #2e7d32; border-radius: 20px; display: inline-block;">
+<div style={{marginTop: '1.5rem', padding: '0.5rem 1rem', background: '#e8f5e9', color: '#2e7d32', borderRadius: '20px', display: 'inline-block'}}>
   Each node can run on different machines
 </div>
 </div>
