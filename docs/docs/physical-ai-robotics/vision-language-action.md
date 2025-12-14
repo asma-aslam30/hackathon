@@ -6,11 +6,11 @@ description: Comprehensive guide to Vision-Language-Action models for robotic co
 
 # 🎯 Vision-Language-Action (VLA) for Physical AI
 
-<div className="module-highlight fade-in-up tilt-card" style={{padding: '2.5rem', margin: '2.5rem 0', borderRadius: '20px', background: 'linear-gradient(135deg, #f5f7fa, #e4edf9)', borderLeft: '6px solid #9b59b6', boxShadow: '0 20px 40px rgba(0,0,0,0.1)'}}>
+<div class="module-highlight fade-in-up tilt-card" style={{padding: '2.5rem', margin: '2.5rem 0', borderRadius: '20px', background: 'linear-gradient(135deg, #f5f7fa, #e4edf9)', borderLeft: '6px solid #9b59b6', boxShadow: '0 20px 40px rgba(0,0,0,0.1)'}}>
 
 ## 🧠 The Next Generation of Embodied AI
 
-<div className="pulse" style={{display: 'inline-block', padding: '0.5rem 1rem', background: 'linear-gradient(135deg, #9b59b6, #8e44ad)', color: 'white', borderRadius: '30px', fontSize: '0.9rem'}}>
+<div class="pulse" style={{display: 'inline-block', padding: '0.5rem 1rem', background: 'linear-gradient(135deg, #9b59b6, #8e44ad)', color: 'white', borderRadius: '30px', fontSize: '0.9rem'}}>
   Multimodal Intelligence
   <br /><br />
   Vision-Language-Action (VLA) represents the frontier of embodied AI, seamlessly integrating visual perception, natural language understanding, and physical action to create truly intelligent robotic systems that can interpret human commands and perform complex tasks in real-world environments.
@@ -18,15 +18,15 @@ description: Comprehensive guide to Vision-Language-Action models for robotic co
 
 ## 🚀 Overview of Vision-Language-Action Systems
 
-<div className="grid-container" style={{display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem', margin: '2rem 0'}}>
+<div class="grid-container" style={{display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem', margin: '2rem 0'}}>
 
-<div className="hover-effect">
+<div class="hover-effect">
 Vision-Language-Action (VLA) systems represent a revolutionary approach to embodied artificial intelligence, where perception (vision), cognition (language), and action are seamlessly integrated. These systems enable robots to understand natural language commands and execute complex tasks in unstructured environments, bridging the gap between human communication and physical execution.
 
 The core concept involves three interconnected components working in harmony: visual perception systems that interpret the environment, language understanding modules that process natural language instructions, and action generation systems that convert high-level commands into precise physical movements.
 </div>
 
-<div className="card fade-in-up" style={{padding: '1.5rem', borderRadius: '16px', background: 'linear-gradient(135deg, #ffffff, #f8f9ff)', border: '1px solid #e0e0ff'}}>
+<div class="card fade-in-up" style={{padding: '1.5rem', borderRadius: '16px', background: 'linear-gradient(135deg, #ffffff, #f8f9ff)', border: '1px solid #e0e0ff'}}>
 ### 🎯 Key Takeaway
 <div class="interactive-element">
 > *"VLA systems transform robots from simple programmed machines into intelligent agents that can understand and respond to human commands in complex, real-world environments. This represents the ultimate fusion of perception, cognition, and action in artificial intelligence."*
@@ -35,34 +35,34 @@ The core concept involves three interconnected components working in harmony: vi
 
 </div>
 
-<div class="interactive-element fade-in-down" style="background: linear-gradient(135deg, #e8f4fd, #e3f2fd); padding: 2rem; border-radius: 20px; margin: 2rem 0; border-left: 6px solid #2196f3;">
+<div class="interactive-element fade-in-down" >
 
 ### 🛠️ Why VLA Systems Matter for Physical AI
 
 Vision-Language-Action systems are critical for Physical AI because they provide:
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+<div >
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🎨</div>
+<div >
+  <div >🎨</div>
   <strong>Natural Interaction</strong>
   <p>Enabling intuitive human-robot communication</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">👁️</div>
+<div >
+  <div >👁️</div>
   <strong>Multimodal Perception</strong>
   <p>Combining vision and language for better understanding</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⚙️</div>
+<div >
+  <div >⚙️</div>
   <strong>Action Grounding</strong>
   <p>Converting abstract commands to specific actions</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🌍</div>
+<div >
+  <div >🌍</div>
   <strong>Real-World Application</strong>
   <p>Operating in unstructured, dynamic environments</p>
 </div>
@@ -75,46 +75,46 @@ Vision-Language-Action systems are critical for Physical AI because they provide
 
 ### 🏗️ The VLA Trifecta Architecture
 
-<div style="display: flex; gap: 3rem; margin: 2rem 0; flex-wrap: wrap;">
+<div >
 
-<div class="card fade-in-up" style="flex: 1; min-width: 300px; padding: 2rem; background: linear-gradient(135deg, #fff, #f8f9fa); border: 1px solid #e0e0e0; box-shadow: 0 15px 30px rgba(0,0,0,0.1);">
+<div class="card fade-in-up" >
 <h3>Visual Perception</h3>
 <p>Understanding the environment through camera feeds and sensors:</p>
-<ul style="margin-top: 1rem; padding-left: 1rem;">
+<ul >
 <li>Object detection and recognition</li>
 <li>Scene understanding and segmentation</li>
 <li>Pose estimation and tracking</li>
 <li>3D reconstruction and mapping</li>
 </ul>
-<div style="margin-top: 1.5rem; padding: 0.5rem 1rem; background: #e8f5e9; color: #2e7d32; border-radius: 20px; display: inline-block;">
+<div >
   Grounded in real-world context
 </div>
 </div>
 
-<div class="card fade-in-up" style="flex: 1; min-width: 300px; padding: 2rem; background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; border-radius: 20px;" data-aos="fade-left">
+<div class="card fade-in-up"  data-aos="fade-left">
 <h3>Language Understanding</h3>
 <p>Processing natural language instructions and commands:</p>
-<ul style="margin-top: 1rem; padding-left: 1rem;">
+<ul >
 <li>Natural language parsing</li>
 <li>Intent recognition</li>
 <li>Reference resolution</li>
 <li>Temporal and spatial reasoning</li>
 </ul>
-<div style="margin-top: 1.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border-radius: 20px; display: inline-block;">
+<div >
   Bridging human and machine communication
 </div>
 </div>
 
-<div class="card fade-in-up" style="flex: 1; min-width: 300px; padding: 2rem; background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; border-radius: 20px;" data-aos="fade-left">
+<div class="card fade-in-up"  data-aos="fade-left">
 <h3>Action Generation</h3>
 <p>Converting high-level commands to low-level actions:</p>
-<ul style="margin-top: 1rem; padding-left: 1rem;">
+<ul >
 <li>Task planning and decomposition</li>
 <li>Motion planning and control</li>
 <li>Manipulation strategy selection</li>
 <li>Execution monitoring and adaptation</li>
 </ul>
-<div style="margin-top: 1.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border-radius: 20px; display: inline-block;">
+<div >
   Physical execution of intentions
 </div>
 </div>
@@ -123,41 +123,41 @@ Vision-Language-Action systems are critical for Physical AI because they provide
 
 ### 🧭 Advanced VLA Architecture Components
 
-<div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0;">
+<div class="grid-container" >
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #f0f7ff, #e6f3ff); border: 2px solid #4a6cf7; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">1. 🧠 Multimodal Encoder</h3>
+<div class="card fade-in-up tilt-card" data-aos="zoom-in" >
+  <h3 >1. 🧠 Multimodal Encoder</h3>
   <p>Processes vision and language inputs simultaneously</p>
-  <div class="hover-effect" style="margin-top: 1rem; padding: 0.5rem; background: rgba(74, 108, 247, 0.1); border-radius: 8px; font-size: 0.9rem;">
+  <div class="hover-effect" >
     Cross-modal attention mechanisms for grounding
   </div>
 </div>
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #f0fff0, #e6ffe6); border: 2px solid #4caf50; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">2. 🧩 Task Planner</h3>
+<div class="card fade-in-up tilt-card" data-aos="zoom-in" >
+  <h3 >2. 🧩 Task Planner</h3>
   <p>Decomposes complex commands into executable steps</p>
-  <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Sequence</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Dependencies</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Goals</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Constraints</span>
+  <div >
+    <span >Sequence</span>
+    <span >Dependencies</span>
+    <span >Goals</span>
+    <span >Constraints</span>
   </div>
 </div>
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #fff0f0, #ffe6e6); border: 2px solid #f44336; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">3. 🎯 Action Grounding</h3>
+<div class="card fade-in-up tilt-card" data-aos="zoom-in" >
+  <h3 >3. 🎯 Action Grounding</h3>
   <p>Maps abstract plans to specific robot actions</p>
-  <div class="progress-bar" style="margin-top: 1rem; height: 8px; width: 100%;">
-    <div class="progress" style="width: 95%; height: 100%;"></div>
+  <div class="progress-bar" >
+    <div class="progress" ></div>
   </div>
-  <small style="display: block; text-align: right; margin-top: 0.5rem;">95% grounding accuracy</small>
+  <small >95% grounding accuracy</small>
 </div>
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #f0f0ff, #e6e6ff); border: 2px solid #9c27b0; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">4. 🔄 Feedback Loop</h3>
+<div class="card fade-in-up tilt-card" data-aos="zoom-in" >
+  <h3 >4. 🔄 Feedback Loop</h3>
   <p>Monitors execution and adapts to environmental changes</p>
-  <div style="display: flex; justify-content: center; margin-top: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #9c27b0, #e91e63); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+  <div >
+    <div >
       🔄
     </div>
   </div>
@@ -167,101 +167,101 @@ Vision-Language-Action systems are critical for Physical AI because they provide
 
 ## 🌍 Real-World Applications of VLA Systems
 
-<div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin: 2rem 0;">
+<div class="grid-container" >
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #ff9800, #ff5722); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div class="card fade-in-up hover-effect" >
+  <div >
+    <div >
       🏠
     </div>
-    <h3 style="margin: 0;">Domestic Robotics</h3>
+    <h3 >Domestic Robotics</h3>
   </div>
   <p>Understanding and executing household tasks through natural language</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Clean</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Cook</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Organize</span>
-    <span style="background: #f3e5f5; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Assist</span>
+  <div >
+    <span >Clean</span>
+    <span >Cook</span>
+    <span >Organize</span>
+    <span >Assist</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255,152,0,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+  <div >
+    <div >
       <span>Task Success</span>
       <span>89%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 89%; height: 100%; background: linear-gradient(90deg, #ff9800, #ff5722);"></div>
+    <div class="progress-bar" >
+      <div class="progress" ></div>
     </div>
   </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #4caf50, #2e7d32); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div class="card fade-in-up hover-effect" >
+  <div >
+    <div >
       🏥
     </div>
-    <h3 style="margin: 0;">Healthcare Assistance</h3>
+    <h3 >Healthcare Assistance</h3>
   </div>
   <p>Following medical instructions and assisting with patient care</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Medication</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Monitoring</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Support</span>
+  <div >
+    <span >Medication</span>
+    <span >Monitoring</span>
+    <span >Support</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(76,175,80,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+  <div >
+    <div >
       <span>Patient Safety</span>
       <span>99.7%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 100%; height: 100%; background: linear-gradient(90deg, #4caf50, #2e7d32);"></div>
+    <div class="progress-bar" >
+      <div class="progress" ></div>
     </div>
   </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #2196f3, #0d47a1); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div class="card fade-in-up hover-effect" >
+  <div >
+    <div >
       🏭
     </div>
-    <h3 style="margin: 0;">Industrial Automation</h3>
+    <h3 >Industrial Automation</h3>
   </div>
   <p>Understanding complex assembly instructions and quality control commands</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Assembly</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Inspection</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Packaging</span>
+  <div >
+    <span >Assembly</span>
+    <span >Inspection</span>
+    <span >Packaging</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(33,150,243,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+  <div >
+    <div >
       <span>Production Quality</span>
       <span>98.5%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 100%; height: 100%; background: linear-gradient(90deg, #2196f3, #0d47a1);"></div>
+    <div class="progress-bar" >
+      <div class="progress" ></div>
     </div>
   </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #9c27b0, #7b1fa2); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div class="card fade-in-up hover-effect" >
+  <div >
+    <div >
       🚚
     </div>
-    <h3 style="margin: 0;">Warehouse Logistics</h3>
+    <h3 >Warehouse Logistics</h3>
   </div>
   <p>Processing picking, packing, and shipping instructions in real-time</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Picking</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Sorting</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Transport</span>
+  <div >
+    <span >Picking</span>
+    <span >Sorting</span>
+    <span >Transport</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(156,39,176,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+  <div >
+    <div >
       <span>Order Accuracy</span>
       <span>99.2%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 99.2%; height: 100%; background: linear-gradient(90deg, #9c27b0, #7b1fa2);"></div>
+    <div class="progress-bar" >
+      <div class="progress" ></div>
     </div>
   </div>
 </div>
@@ -270,9 +270,9 @@ Vision-Language-Action systems are critical for Physical AI because they provide
 
 ## 🏗️ Technical Architecture of VLA Systems
 
-<div style="background: linear-gradient(135deg, #2c3e50, #4a6cf7); padding: 2.5rem; border-radius: 20px; color: white; margin: 2.5rem 0; box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative; overflow: hidden;">
+<div >
 
-<div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #ff416c, #ff4b2b);"></div>
+<div ></div>
 
 ### 🧠 Advanced VLA Architecture Deep Dive
 

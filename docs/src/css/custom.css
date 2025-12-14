@@ -184,6 +184,109 @@
   margin: 1.5rem 0;
 }
 
+.grid-autofit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+/* Specialized callouts */
+.callout-blue {
+  background: linear-gradient(135deg, #e8f4fd, #e3f2fd);
+  padding: 2rem;
+  border-radius: 20px;
+  margin: 2rem 0;
+  border-left: 6px solid #2196f3;
+}
+
+.callout-orange {
+  background: rgba(255,152,0,0.1);
+}
+
+.callout-green {
+  background: rgba(76,175,80,0.1);
+}
+
+.callout-purple {
+  background: rgba(156,39,176,0.1);
+}
+
+.callout-red {
+  background: rgba(244,67,54,0.1);
+}
+
+.callout-gray {
+  background: rgba(158,158,158,0.1);
+}
+
+/* Icon headers */
+.icon-header {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Badge styles */
+.badge-blue {
+  background: #e3f2fd;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.badge-green {
+  background: #e8f5e9;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.badge-yellow {
+  background: #fff3e0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.badge-pink {
+  background: #f3e5f5;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.badge-teal {
+  background: #e0f2f1;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.badge-purple {
+  background: #e8eaf6;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+/* Flex layouts */
+.flex-row {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+/* Progress bar variations */
+.progress-purple {
+  background: linear-gradient(90deg, #9c27b0, #7b1fa2);
+}
+
 /* Text alignment */
 .text-center {
   text-align: center;
@@ -226,4 +329,25 @@
     padding: 1.5rem;
     margin: 1.5rem 0;
   }
+}
+
+.progress-orange {
+    background: linear-gradient(90deg, #ff9800, #ff5722);
+}
+
+.progress-green {
+    background: linear-gradient(90deg, #4caf50, #2e7d32);
+}
+
+.progress-blue {
+    background: linear-gradient(90deg, #2196f3, #0d47a1);
+}
+
+.badge-orange {
+    color: #fff;
+    background-color: #ff9800;
+}
+
+.badge-light-blue {
+    background: #e3f2fd;
 }

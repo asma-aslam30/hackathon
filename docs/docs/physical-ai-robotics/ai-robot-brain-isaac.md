@@ -33,34 +33,34 @@ The NVIDIA Isaac platform encompasses a complete ecosystem for developing, train
 
 </div>
 
-<div class="interactive-element fade-in-down" style="background: linear-gradient(135deg, #e8f4fd, #e3f2fd); padding: 2rem; border-radius: 20px; margin: 2rem 0; border-left: 6px solid #2196f3;">
+<div class="interactive-element fade-in-down callout-blue">
 
 ### 🛠️ Why Isaac Matters for Physical AI
 
 Isaac is critical for Physical AI because it provides:
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+<div class="grid-3col">
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🎮</div>
+<div >
+  <div >🎮</div>
   <strong>High-Fidelity Simulation</strong>
   <p>Realistic physics and sensor simulation for training</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⚡</div>
+<div >
+  <div >⚡</div>
   <strong>GPU Acceleration</strong>
   <p>Leveraging NVIDIA hardware for AI processing</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🤖</div>
+<div >
+  <div >🤖</div>
   <strong>Perception & Planning</strong>
   <p>AI-powered algorithms for sensing and navigation</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🌐</div>
+<div >
+  <div >🌐</div>
   <strong>Deployment Ready</strong>
   <p>Tools for moving from simulation to real robots</p>
 </div>
@@ -73,46 +73,46 @@ Isaac is critical for Physical AI because it provides:
 
 ### 🏗️ Isaac Architecture
 
-<div style={{display: 'flex', gap: '3rem', margin: '2rem 0', flexWrap: 'wrap'}}>
+<div class="">
 
-<div className="card fade-in-up" style={{flex: '1', minWidth: '300px', padding: '2rem', background: 'linear-gradient(135deg, #fff, #f8f9fa)', border: '1px solid #e0e0e0', boxShadow: '0 15px 30px rgba(0,0,0,0.1)'}}>
-<h3>Isaac Sim</h3>
+<div class="card fade-in-up" class="">
+<h3Isaac Sim</h3>
 <p>High-fidelity simulation environment for robotics:</p>
-<ul style={{marginTop: '1rem', paddingLeft: '1rem'}}>
+<ul class="">
 <li>Realistic physics simulation with PhysX</li>
 <li>Photorealistic rendering capabilities</li>
 <li>Synthetic data generation for AI training</li>
 <li>Domain randomization for robust learning</li>
 </ul>
-<div style={{marginTop: '1.5rem', padding: '0.5rem 1rem', background: '#e8f5e9', color: '#2e7d32', borderRadius: '20px', display: 'inline-block'}}>
+<div class="">
   GPU-accelerated for realistic environments
 </div>
 </div>
 
-<div className="card fade-in-up" style={{flex: '1', minWidth: '300px', padding: '2rem', background: 'linear-gradient(135deg, #27ae60, #2ecc71)', color: 'white', borderRadius: '20px'}} data-aos="fade-left">
-<h3>Isaac Apps</h3>
+<div class="card fade-in-up" class="" data-aos="fade-left">
+<h3Isaac Apps</h3>
 <p>Reference applications and algorithms for robotics:</p>
-<ul style={{marginTop: '1rem', paddingLeft: '1rem'}}>
+<ul class="">
 <li>Perception algorithms (vision, object detection)</li>
 <li>Planning algorithms (navigation, manipulation)</li>
 <li>Control algorithms for robot behaviors</li>
 <li>Sample applications for different use cases</li>
 </ul>
-<div style={{marginTop: '1.5rem', padding: '0.5rem 1rem', background: 'rgba(255,255,255,0.2)', borderRadius: '20px', display: 'inline-block'}}>
+<div class="">
   Production-ready algorithms and applications
 </div>
 </div>
 
-<div className="card fade-in-up" style={{flex: '1', minWidth: '300px', padding: '2rem', background: 'linear-gradient(135deg, #e74c3c, #c0392b)', color: 'white', borderRadius: '20px'}} data-aos="fade-left">
-<h3>Isaac SDK</h3>
+<div class="card fade-in-up" class="" data-aos="fade-left">
+<h3Isaac SDK</h3>
 <p>Software development kit for AI robotics:</p>
-<ul style={{marginTop: '1rem', paddingLeft: '1rem'}}>
+<ul class="">
 <li>Deep learning framework integration</li>
 <li>ROS/ROS2 compatibility</li>
 <li>Computer vision libraries</li>
 <li>AI model deployment tools</li>
 </ul>
-<div style={{marginTop: '1.5rem', padding: '0.5rem 1rem', background: 'rgba(255,255,255,0.2)', borderRadius: '20px', display: 'inline-block'}}>
+<div class="">
   Comprehensive development framework
 </div>
 </div>
@@ -121,41 +121,41 @@ Isaac is critical for Physical AI because it provides:
 
 ### 🧭 Advanced Isaac Components
 
-<div className="grid-container" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', margin: '2rem 0'}}>
+<div class="grid-container" class="">
 
-<div className="card fade-in-up tilt-card" data-aos="zoom-in" style={{padding: '2rem', background: 'linear-gradient(135deg, #f0f7ff, #e6f3ff)', border: '2px solid #4a6cf7', borderRadius: '16px'}}>
-  <h3 style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>1. 🎮 Isaac Sim (Simulation)</h3>
+<div class="card fade-in-up tilt-card" data-aos="zoom-in" class="">
+  <h3 class="">1. 🎮 Isaac Sim (Simulation)</h3>
   <p>Advanced simulation environment with photorealistic rendering</p>
-  <div className="hover-effect" style={{marginTop: '1rem', padding: '0.5rem', background: 'rgba(74, 108, 247, 0.1)', borderRadius: '8px', fontSize: '0.9rem'}}>
+  <div class="hover-effect" class="">
     PhysX physics engine with real-time ray tracing
   </div>
 </div>
 
-<div className="card fade-in-up tilt-card" data-aos="zoom-in" style={{padding: '2rem', background: 'linear-gradient(135deg, #f0fff0, #e6ffe6)', border: '2px solid #4caf50', borderRadius: '16px'}}>
-  <h3 style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>2. ⚙️ Isaac Apps (Algorithms)</h3>
+<div class="card fade-in-up tilt-card" data-aos="zoom-in" class="">
+  <h3 class="">2. ⚙️ Isaac Apps (Algorithms)</h3>
   <p>Reference implementations of robotics algorithms</p>
-  <div style={{marginTop: '1rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap'}}>
-    <span style={{background: '#e8f5e9', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Perception</span>
-    <span style={{background: '#e8f5e9', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Planning</span>
-    <span style={{background: '#e8f5e9', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Control</span>
-    <span style={{background: '#e8f5e9', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Learning</span>
+  <div class="">
+    <span class="">Perception</span>
+    <span class="">Planning</span>
+    <span class="">Control</span>
+    <span class="">Learning</span>
   </div>
 </div>
 
-<div className="card fade-in-up tilt-card" data-aos="zoom-in" style={{padding: '2rem', background: 'linear-gradient(135deg, #fff0f0, #ffe6e6)', border: '2px solid #f44336', borderRadius: '16px'}}>
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">3. 🧠 Isaac SDK (Development)</h3>
+<div class="card fade-in-up tilt-card" data-aos="zoom-in" class="">
+  <h3 >3. 🧠 Isaac SDK (Development)</h3>
   <p>Software development kit for building robot applications</p>
-  <div class="progress-bar" style="margin-top: 1rem; height: 8px; width: 100%;">
-    <div class="progress" style="width: 95%; height: 100%;"></div>
+  <div class="progress-bar" >
+    <div class="progress" ></div>
   </div>
-  <small style="display: block; text-align: right; margin-top: 0.5rem;">95% development efficiency</small>
+  <small >95% development efficiency</small>
 </div>
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #f0f0ff, #e6e6ff); border: 2px solid #9c27b0; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">4. 📦 Isaac Extensions</h3>
+<div class="card fade-in-up tilt-card" data-aos="zoom-in" >
+  <h3 >4. 📦 Isaac Extensions</h3>
   <p>Additional capabilities and integrations</p>
-  <div style="display: flex; justify-content: center; margin-top: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #9c27b0, #e91e63); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+  <div >
+    <div >
       📦
     </div>
   </div>
@@ -165,101 +165,100 @@ Isaac is critical for Physical AI because it provides:
 
 ## 🌍 Real-World Applications of Isaac Platform
 
-<div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin: 2rem 0;">
+<div class="grid-container-2col">
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #ff9800, #ff5722); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div class="card fade-in-up hover-effect" >
+  <div >
+    <div >
       🏭
     </div>
-    <h3 style="margin: 0;">Industrial Automation</h3>
+    <h3 >Industrial Automation</h3>
   </div>
   <p>AI-powered robots for manufacturing, inspection, and logistics</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Assembly</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Quality</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Logistics</span>
-    <span style="background: #f3e5f5; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Inspection</span>
+  <div >
+    <span >Assembly</span>
+    <span >Quality</span>
+    <span >Logistics</span>
+    <span >Inspection</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255,152,0,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-      <span>Efficiency Gain</span>
-      <span>40%</span>
+  <div class="callout-row">
+      <spanEfficiency Gain</span>
+      <span40%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 100%; height: 100%; background: linear-gradient(90deg, #ff9800, #ff5722);"></div>
+    <div class="progress-bar">
+      <div class="progress progress-orange"></div>
     </div>
   </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #4caf50, #2e7d32); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div class="card fade-in-up hover-effect" >
+  <div >
+    <div >
       🚚
     </div>
-    <h3 style="margin: 0;">Warehouse & Logistics</h3>
+    <h3 >Warehouse & Logistics</h3>
   </div>
   <p>Autonomous mobile robots for material handling and order fulfillment</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Picking</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Sorting</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Transport</span>
+  <div >
+    <span >Picking</span>
+    <span >Sorting</span>
+    <span >Transport</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(76,175,80,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-      <span>Throughput</span>
-      <span>3x</span>
+  <div >
+    <div >
+      <spanThroughput</span>
+      <span3x</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 100%; height: 100%; background: linear-gradient(90deg, #4caf50, #2e7d32);"></div>
+    <div class="progress-bar">
+      <div class="progress progress-green"></div>
     </div>
   </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #2196f3, #0d47a1); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div class="card fade-in-up hover-effect" >
+  <div >
+    <div >
       🏥
     </div>
-    <h3 style="margin: 0;">Healthcare Robotics</h3>
+    <h3 >Healthcare Robotics</h3>
   </div>
   <p>Robots for medical assistance, disinfection, and patient care</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Disinfection</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Assistance</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Logistics</span>
+  <div >
+    <span >Disinfection</span>
+    <span >Assistance</span>
+    <span >Logistics</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(33,150,243,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-      <span>Accuracy</span>
-      <span>99.5%</span>
+  <div >
+    <div >
+      <spanAccuracy</span>
+      <span99.5%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 100%; height: 100%; background: linear-gradient(90deg, #2196f3, #0d47a1);"></div>
+    <div class="progress-bar">
+      <div class="progress progress-blue"></div>
     </div>
   </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #9c27b0, #7b1fa2); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div class="card fade-in-up hover-effect" >
+  <div >
+    <div >
       🏠
     </div>
-    <h3 style="margin: 0;">Service Robotics</h3>
+    <h3 >Service Robotics</h3>
   </div>
   <p>Robots for customer service, cleaning, and personal assistance</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Navigation</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Interaction</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Task Execution</span>
+  <div >
+    <span >Navigation</span>
+    <span >Interaction</span>
+    <span >Task Execution</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(156,39,176,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-      <span>User Satisfaction</span>
-      <span>93.7%</span>
+  <div >
+    <div >
+      <spanUser Satisfaction</span>
+      <span93.7%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 93.7%; height: 100%; background: linear-gradient(90deg, #9c27b0, #7b1fa2);"></div>
+    <div class="progress-bar">
+      <div class="progress progress-purple" ></div>
     </div>
   </div>
 </div>
@@ -268,9 +267,9 @@ Isaac is critical for Physical AI because it provides:
 
 ## 🏗️ Technical Architecture of Isaac Platform
 
-<div style="background: linear-gradient(135deg, #2c3e50, #4a6cf7); padding: 2.5rem; border-radius: 20px; color: white; margin: 2.5rem 0; box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative; overflow: hidden;">
+<div >
 
-<div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #ff416c, #ff4b2b);"></div>
+<div ></div>
 
 ### 🧠 Advanced Isaac Architecture Deep Dive
 

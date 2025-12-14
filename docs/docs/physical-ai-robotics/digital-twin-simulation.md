@@ -6,11 +6,11 @@ description: Comprehensive guide to creating and utilizing digital twins for Phy
 
 # 🏗️ Digital Twin Simulation in Physical AI
 
-<div className="module-highlight fade-in-up tilt-card" style={{padding: '2.5rem', margin: '2.5rem 0', borderRadius: '20px', background: 'linear-gradient(135deg, #f5f7fa, #e4edf9)', borderLeft: '6px solid #3498db', boxShadow: '0 20px 40px rgba(0,0,0,0.1)'}}>
+<div class="module-highlight fade-in-up tilt-card" style={{padding: '2.5rem', margin: '2.5rem 0', borderRadius: '20px', background: 'linear-gradient(135deg, #f5f7fa, #e4edf9)', borderLeft: '6px solid #3498db', boxShadow: '0 20px 40px rgba(0,0,0,0.1)'}}>
 
 ## 🌐 The Digital Mirror of Reality
 
-<div className="pulse" style={{display: 'inline-block', padding: '0.5rem 1rem', background: 'linear-gradient(135deg, #3498db, #2980b9)', color: 'white', borderRadius: '30px', fontSize: '0.9rem'}}>
+<div class="pulse" style={{display: 'inline-block', padding: '0.5rem 1rem', background: 'linear-gradient(135deg, #3498db, #2980b9)', color: 'white', borderRadius: '30px', fontSize: '0.9rem'}}>
   Virtual Reality Integration
   <br /><br />
   Digital twin technology creates a precise virtual replica of physical systems, enabling comprehensive testing, validation, and optimization before deployment in real-world environments. This technology is fundamental to Physical AI development.
@@ -18,49 +18,49 @@ description: Comprehensive guide to creating and utilizing digital twins for Phy
 
 ## 🚀 Overview of Digital Twin Simulation
 
-<div className="grid-container" style={{display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem', margin: '2rem 0'}}>
+<div class="grid-container" style={{display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem', margin: '2rem 0'}}>
 
-<div className="hover-effect">
+<div class="hover-effect">
 Digital twin simulation encompasses the complete virtual representation of physical systems, from individual components to entire robotic platforms. This approach allows for extensive testing, validation, and optimization in a risk-free virtual environment before real-world deployment. The technology bridges the gap between digital intelligence and physical reality.
 </div>
 
-<div className="card fade-in-up" style={{padding: '1.5rem', borderRadius: '16px', background: 'linear-gradient(135deg, #ffffff, #f8f9ff)', border: '1px solid #e0e0ff'}}>
+<div class="card fade-in-up" style={{padding: '1.5rem', borderRadius: '16px', background: 'linear-gradient(135deg, #ffffff, #f8f9ff)', border: '1px solid #e0e0ff'}}>
 ### 🎯 Key Takeaway
-<div className="interactive-element">
+<div class="interactive-element">
 > *"Digital twins are the virtual laboratories where Physical AI systems learn and evolve before engaging with the real world. They represent the crucial link between simulation and reality, ensuring safe, efficient, and effective robot deployment."*
 </div>
 </div>
 
 </div>
 
-<div class="interactive-element fade-in-down" style="background: linear-gradient(135deg, #e8f4fd, #e3f2fd); padding: 2rem; border-radius: 20px; margin: 2rem 0; border-left: 6px solid #2196f3;">
+<div class="interactive-element fade-in-down" >
 
 ### 🛠️ Why Digital Twins Matter for Physical AI
 
 Digital twin simulation is critical for Physical AI systems because it provides the infrastructure needed to:
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+<div >
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🧪</div>
+<div >
+  <div >🧪</div>
   <strong>Risk-Free Testing</strong>
   <p>Validate behaviors without physical consequences</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⚡</div>
+<div >
+  <div >⚡</div>
   <strong>Accelerated Learning</strong>
   <p>Train systems at accelerated rates in simulation</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔧</div>
+<div >
+  <div >🔧</div>
   <strong>Design Validation</strong>
   <p>Test mechanical and control system designs</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📊</div>
+<div >
+  <div >📊</div>
   <strong>Data Analysis</strong>
   <p>Collect and analyze performance data</p>
 </div>
@@ -73,32 +73,32 @@ Digital twin simulation is critical for Physical AI systems because it provides 
 
 ### 🏗️ Digital Twin Architecture
 
-<div style="display: flex; gap: 3rem; margin: 2rem 0; flex-wrap: wrap;">
+<div >
 
-<div class="card fade-in-up" style="flex: 1; min-width: 300px; padding: 2rem; background: linear-gradient(135deg, #fff, #f8f9fa); border: 1px solid #e0e0e0; box-shadow: 0 15px 30px rgba(0,0,0,0.1);">
+<div class="card fade-in-up" >
 <h3>Physical System</h3>
 <p>The actual robot or system being modeled:</p>
-<ul style="margin-top: 1rem; padding-left: 1rem;">
+<ul >
 <li>Hardware components (motors, sensors, actuators)</li>
 <li>Environmental interactions</li>
 <li>Real-world physics constraints</li>
 <li>Operational data and feedback</li>
 </ul>
-<div style="margin-top: 1.5rem; padding: 0.5rem 1rem; background: #e8f5e9; color: #2e7d32; border-radius: 20px; display: inline-block;">
+<div >
   Continuous feedback loop
 </div>
 </div>
 
-<div class="card fade-in-up" style="flex: 1; min-width: 300px; padding: 2rem; background: linear-gradient(135deg, #4ecdc4, #44a08d); color: white; border-radius: 20px;" data-aos="fade-left">
+<div class="card fade-in-up"  data-aos="fade-left">
 <h3>Virtual System</h3>
 <p>The digital replica with real-time synchronization:</p>
-<ul style="margin-top: 1rem; padding-left: 1rem;">
+<ul >
 <li>3D models and physics simulation</li>
 <li>Behavioral algorithms and AI models</li>
 <li>Real-time data processing</li>
 <li>Performance analysis capabilities</li>
 </ul>
-<div style="margin-top: 1.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border-radius: 20px; display: inline-block;">
+<div >
   Perfect virtual environment
 </div>
 </div>
@@ -107,41 +107,41 @@ Digital twin simulation is critical for Physical AI systems because it provides 
 
 ### 🧭 Key Architecture Components
 
-<div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0;">
+<div class="grid-container" >
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #f0f7ff, #e6f3ff); border: 2px solid #4a6cf7; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">1. 📊 Geometry Engine</h3>
+<div class="card fade-in-up tilt-card" data-aos="zoom-in" >
+  <h3 >1. 📊 Geometry Engine</h3>
   <p>Accurate 3D modeling of physical components</p>
-  <div class="hover-effect" style="margin-top: 1rem; padding: 0.5rem; background: rgba(74, 108, 247, 0.1); border-radius: 8px; font-size: 0.9rem;">
+  <div class="hover-effect" >
     Precise geometric representation of all components
   </div>
 </div>
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #f0fff0, #e6ffe6); border: 2px solid #4caf50; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">2. ⚙️ Physics Engine</h3>
+<div class="card fade-in-up tilt-card" data-aos="zoom-in" >
+  <h3 >2. ⚙️ Physics Engine</h3>
   <p>Realistic simulation of physical behaviors</p>
-  <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Gravity</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Friction</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Collision</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Dynamics</span>
+  <div >
+    <span >Gravity</span>
+    <span >Friction</span>
+    <span >Collision</span>
+    <span >Dynamics</span>
   </div>
 </div>
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #fff0f0, #ffe6e6); border: 2px solid #f44336; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">3. 🧠 AI Integration</h3>
+<div class="card fade-in-up tilt-card" data-aos="zoom-in" >
+  <h3 >3. 🧠 AI Integration</h3>
   <p>Machine learning and intelligence simulation</p>
-  <div class="progress-bar" style="margin-top: 1rem; height: 8px; width: 100%;">
-    <div class="progress" style="width: 95%; height: 100%;"></div>
+  <div class="progress-bar" >
+    <div class="progress" ></div>
   </div>
-  <small style="display: block; text-align: right; margin-top: 0.5rem;">95% training efficiency</small>
+  <small >95% training efficiency</small>
 </div>
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #f0f0ff, #e6e6ff); border: 2px solid #9c27b0; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">4. 🔄 Data Sync</h3>
+<div class="card fade-in-up tilt-card" data-aos="zoom-in" >
+  <h3 >4. 🔄 Data Sync</h3>
   <p>Real-time synchronization between systems</p>
-  <div style="display: flex; justify-content: center; margin-top: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #9c27b0, #e91e63); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+  <div >
+    <div >
       🔄
     </div>
   </div>
@@ -151,101 +151,101 @@ Digital twin simulation is critical for Physical AI systems because it provides 
 
 ## 🌍 Real-World Applications in Physical AI
 
-<div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin: 2rem 0;">
+<div class="grid-container" >
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #ff9800, #ff5722); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div class="card fade-in-up hover-effect" >
+  <div >
+    <div >
       🚗
     </div>
-    <h3 style="margin: 0;">Autonomous Vehicles</h3>
+    <h3 >Autonomous Vehicles</h3>
   </div>
   <p>Digital twins enable comprehensive testing of self-driving algorithms in complex scenarios</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Traffic</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Weather</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Roads</span>
-    <span style="background: #f3e5f5; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Scenarios</span>
+  <div >
+    <span >Traffic</span>
+    <span >Weather</span>
+    <span >Roads</span>
+    <span >Scenarios</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255,152,0,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+  <div >
+    <div >
       <span>Test Scenarios</span>
       <span>10M+</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 100%; height: 100%; background: linear-gradient(90deg, #ff9800, #ff5722);"></div>
+    <div class="progress-bar" >
+      <div class="progress" ></div>
     </div>
   </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #4caf50, #2e7d32); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div class="card fade-in-up hover-effect" >
+  <div >
+    <div >
       🏭
     </div>
-    <h3 style="margin: 0;">Industrial Robotics</h3>
+    <h3 >Industrial Robotics</h3>
   </div>
   <p>Simulating complex manufacturing processes and robot behaviors</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Assembly</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Quality</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Optimization</span>
+  <div >
+    <span >Assembly</span>
+    <span >Quality</span>
+    <span >Optimization</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(76,175,80,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+  <div >
+    <div >
       <span>Efficiency Gain</span>
       <span>35%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 100%; height: 100%; background: linear-gradient(90deg, #4caf50, #2e7d32);"></div>
+    <div class="progress-bar" >
+      <div class="progress" ></div>
     </div>
   </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #2196f3, #0d47a1); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div class="card fade-in-up hover-effect" >
+  <div >
+    <div >
       🏥
     </div>
-    <h3 style="margin: 0;">Surgical Robotics</h3>
+    <h3 >Surgical Robotics</h3>
   </div>
   <p>High-fidelity simulation for training and procedure planning</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Precision</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Safety</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Training</span>
+  <div >
+    <span >Precision</span>
+    <span >Safety</span>
+    <span >Training</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(33,150,243,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+  <div >
+    <div >
       <span>Accuracy</span>
       <span>99.9%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 100%; height: 100%; background: linear-gradient(90deg, #2196f3, #0d47a1);"></div>
+    <div class="progress-bar" >
+      <div class="progress" ></div>
     </div>
   </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #9c27b0, #7b1fa2); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div class="card fade-in-up hover-effect" >
+  <div >
+    <div >
       🏠
     </div>
-    <h3 style="margin: 0;">Service Robotics</h3>
+    <h3 >Service Robotics</h3>
   </div>
   <p>Simulating human-robot interactions in domestic and service environments</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Navigation</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Interaction</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Adaptation</span>
+  <div >
+    <span >Navigation</span>
+    <span >Interaction</span>
+    <span >Adaptation</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(156,39,176,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+  <div >
+    <div >
       <span>User Satisfaction</span>
       <span>94.2%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 94.2%; height: 100%; background: linear-gradient(90deg, #9c27b0, #7b1fa2);"></div>
+    <div class="progress-bar" >
+      <div class="progress" ></div>
     </div>
   </div>
 </div>
@@ -254,9 +254,9 @@ Digital twin simulation is critical for Physical AI systems because it provides 
 
 ## 🏗️ Technical Architecture of Digital Twin Simulation
 
-<div style="background: linear-gradient(135deg, #2c3e50, #4a6cf7); padding: 2.5rem; border-radius: 20px; color: white; margin: 2.5rem 0; box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative; overflow: hidden;">
+<div >
 
-<div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #ff416c, #ff4b2b);"></div>
+<div ></div>
 
 ### 🧠 Advanced Digital Twin Architecture
 

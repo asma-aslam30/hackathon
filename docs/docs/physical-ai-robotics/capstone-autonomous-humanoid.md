@@ -6,11 +6,11 @@ description: Comprehensive guide to developing autonomous humanoid robots with i
 
 # 🦾 Capstone - Autonomous Humanoid Development
 
-<div className="module-highlight fade-in-up tilt-card" style={{padding: '2.5rem', margin: '2.5rem 0', borderRadius: '20px', background: 'linear-gradient(135deg, #f5f7fa, #e4edf9)', borderLeft: '6px solid #e67e22', boxShadow: '0 20px 40px rgba(0,0,0,0.1)'}}>
+<div class="module-highlight fade-in-up tilt-card" style={{padding: '2.5rem', margin: '2.5rem 0', borderRadius: '20px', background: 'linear-gradient(135deg, #f5f7fa, #e4edf9)', borderLeft: '6px solid #e67e22', boxShadow: '0 20px 40px rgba(0,0,0,0.1)'}}>
 
 ## 🤖 The Apex of Physical AI Integration
 
-<div className="pulse" style={{display: 'inline-block', padding: '0.5rem 1rem', background: 'linear-gradient(135deg, #e67e22, #d35400)', color: 'white', borderRadius: '30px', fontSize: '0.9rem'}}>
+<div class="pulse" style={{display: 'inline-block', padding: '0.5rem 1rem', background: 'linear-gradient(135deg, #e67e22, #d35400)', color: 'white', borderRadius: '30px', fontSize: '0.9rem'}}>
   Humanoid Robotics Synthesis
   <br /><br />
   The development of autonomous humanoid robots represents the ultimate integration of Physical AI technologies. This capstone project combines all the modules learned throughout the curriculum into a unified, intelligent, human-like robotic system capable of complex interaction and task execution in human environments.
@@ -18,15 +18,15 @@ description: Comprehensive guide to developing autonomous humanoid robots with i
 
 ## 🚀 Overview of Autonomous Humanoid Development
 
-<div className="grid-container" style={{display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem', margin: '2rem 0'}}>
+<div class="grid-container" style={{display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem', margin: '2rem 0'}}>
 
-<div className="hover-effect">
+<div class="hover-effect">
 Autonomous humanoid development is the most ambitious application of Physical AI, requiring the integration of multiple complex systems: advanced locomotion control, sophisticated perception systems, natural human interaction capabilities, and robust autonomy algorithms. These robots must navigate human environments, understand human communication, and perform tasks with the dexterity and intelligence of human beings.
 
 Humanoid robots present unique challenges and opportunities: they must be anthropomorphic enough to operate in human-designed environments while possessing the intelligence to understand and respond to human needs and commands. This capstone project synthesizes knowledge from computer vision, natural language processing, control systems, mechanics, and robotics into a single, coherent physical AI system.
 </div>
 
-<div className="card fade-in-up" style={{padding: '1.5rem', borderRadius: '16px', background: 'linear-gradient(135deg, #ffffff, #f8f9ff)', border: '1px solid #e0e0ff'}}>
+<div class="card fade-in-up" style={{padding: '1.5rem', borderRadius: '16px', background: 'linear-gradient(135deg, #ffffff, #f8f9ff)', border: '1px solid #e0e0ff'}}>
 ### 🎯 Key Takeaway
 <div class="interactive-element">
 > *"Humanoid robotics represents the ultimate challenge in Physical AI: creating machines that can navigate, interact, and operate in human environments with human-like intelligence and capabilities. Successfully developing autonomous humanoid robots requires mastering every aspect of Physical AI."*
@@ -35,34 +35,34 @@ Humanoid robots present unique challenges and opportunities: they must be anthro
 
 </div>
 
-<div class="interactive-element fade-in-down" style="background: linear-gradient(135deg, #e8f4fd, #e3f2fd); padding: 2rem; border-radius: 20px; margin: 2rem 0; border-left: 6px solid #2196f3;">
+<div class="interactive-element fade-in-down" >
 
 ### 🛠️ Why Humanoid Robotics Matters for Physical AI
 
 Autonomous humanoid development is critical for Physical AI because it represents the ultimate test of integrated AI technologies:
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+<div >
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🧍</div>
+<div >
+  <div >🧍</div>
   <strong>Human Environments</strong>
   <p>Operating in spaces designed for humans</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">💬</div>
+<div >
+  <div >💬</div>
   <strong>Natural Interaction</strong>
   <p>Communicating with humans naturally</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⚙️</div>
+<div >
+  <div >⚙️</div>
   <strong>System Integration</strong>
   <p>Combining all Physical AI modules</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🧠</div>
+<div >
+  <div >🧠</div>
   <strong>Embodied Intelligence</strong>
   <p>Intelligence with physical embodiment</p>
 </div>
@@ -75,46 +75,46 @@ Autonomous humanoid development is critical for Physical AI because it represent
 
 ### 🏗️ The Humanoid Architecture Framework
 
-<div style="display: flex; gap: 3rem; margin: 2rem 0; flex-wrap: wrap;">
+<div >
 
-<div class="card fade-in-up" style="flex: 1; min-width: 300px; padding: 2rem; background: linear-gradient(135deg, #fff, #f8f9fa); border: 1px solid #e0e0e0; box-shadow: 0 15px 30px rgba(0,0,0,0.1);">
+<div class="card fade-in-up" >
 <h3>Locomotion System</h3>
 <p>Advanced bipedal and multi-modal movement capabilities:</p>
-<ul style="margin-top: 1rem; padding-left: 1rem;">
+<ul >
 <li>Bipedal walking and balance control</li>
 <li>Multi-modal locomotion (walking, crawling, climbing)</li>
 <li>Dynamic balance and recovery</li>
 <li>Adaptive gait for different terrains</li>
 </ul>
-<div style="margin-top: 1.5rem; padding: 0.5rem 1rem; background: #e8f5e9; color: #2e7d32; border-radius: 20px; display: inline-block;">
+<div >
   Human-like movement patterns
 </div>
 </div>
 
-<div class="card fade-in-up" style="flex: 1; min-width: 300px; padding: 2rem; background: linear-gradient(135deg, #e67e22, #d35400); color: white; border-radius: 20px;" data-aos="fade-left">
+<div class="card fade-in-up"  data-aos="fade-left">
 <h3>Manipulation System</h3>
 <p>Sophisticated dexterous manipulation capabilities:</p>
-<ul style="margin-top: 1rem; padding-left: 1rem;">
+<ul >
 <li>Anthropomorphic hands and arms</li>
 <li>Precision grasping and manipulation</li>
 <li>Force and tactile sensing</li>
 <li>Coordinated multi-limb actions</li>
 </ul>
-<div style="margin-top: 1.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border-radius: 20px; display: inline-block;">
+<div >
   Human-level dexterity and control
 </div>
 </div>
 
-<div class="card fade-in-up" style="flex: 1; min-width: 300px; padding: 2rem; background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; border-radius: 20px;" data-aos="fade-left">
+<div class="card fade-in-up"  data-aos="fade-left">
 <h3>Cognitive System</h3>
 <p>Advanced perception and decision-making:</p>
-<ul style="margin-top: 1rem; padding-left: 1rem;">
+<ul >
 <li>Multimodal perception fusion</li>
 <li>Natural language understanding</li>
 <li>Context-aware decision making</li>
 <li>Learning and adaptation</li>
 </ul>
-<div style="margin-top: 1.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border-radius: 20px; display: inline-block;">
+<div >
   Human-level intelligence and understanding
 </div>
 </div>
@@ -123,41 +123,41 @@ Autonomous humanoid development is critical for Physical AI because it represent
 
 ### 🧭 Advanced Humanoid System Architecture
 
-<div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0;">
+<div class="grid-container" >
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #f0f7ff, #e6f3ff); border: 2px solid #4a6cf7; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">1. 🏃‍♂️ Dynamic Balance Control</h3>
+<div class="card fade-in-up tilt-card" data-aos="zoom-in" >
+  <h3 >1. 🏃‍♂️ Dynamic Balance Control</h3>
   <p>Real-time balance maintenance with perturbation recovery</p>
-  <div class="hover-effect" style="margin-top: 1rem; padding: 0.5rem; background: rgba(74, 108, 247, 0.1); border-radius: 8px; font-size: 0.9rem;">
+  <div class="hover-effect" >
     Zero-Moment Point (ZMP) and Capture Point control
   </div>
 </div>
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #f0fff0, #e6ffe6); border: 2px solid #4caf50; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">2. 👁️ Multimodal Perception</h3>
+<div class="card fade-in-up tilt-card" data-aos="zoom-in" >
+  <h3 >2. 👁️ Multimodal Perception</h3>
   <p>Integration of vision, audio, touch, and proprioception</p>
-  <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Vision</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Audio</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Tactile</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Proprioceptive</span>
+  <div >
+    <span >Vision</span>
+    <span >Audio</span>
+    <span >Tactile</span>
+    <span >Proprioceptive</span>
   </div>
 </div>
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #fff0f0, #ffe6e6); border: 2px solid #f44336; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">3. 💬 Natural Interaction</h3>
+<div class="card fade-in-up tilt-card" data-aos="zoom-in" >
+  <h3 >3. 💬 Natural Interaction</h3>
   <p>Speech, gesture, and emotional recognition and response</p>
-  <div class="progress-bar" style="margin-top: 1rem; height: 8px; width: 100%;">
-    <div class="progress" style="width: 95%; height: 100%;"></div>
+  <div class="progress-bar" >
+    <div class="progress" ></div>
   </div>
-  <small style="display: block; text-align: right; margin-top: 0.5rem;">95% interaction success</small>
+  <small >95% interaction success</small>
 </div>
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #f0f0ff, #e6e6ff); border: 2px solid #9c27b0; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">4. 🧠 Cognitive Architecture</h3>
+<div class="card fade-in-up tilt-card" data-aos="zoom-in" >
+  <h3 >4. 🧠 Cognitive Architecture</h3>
   <p>High-level reasoning and planning capabilities</p>
-  <div style="display: flex; justify-content: center; margin-top: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #9c27b0, #e91e63); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+  <div >
+    <div >
       🧠
     </div>
   </div>
@@ -167,101 +167,101 @@ Autonomous humanoid development is critical for Physical AI because it represent
 
 ## 🌍 Real-World Applications of Autonomous Humanoids
 
-<div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin: 2rem 0;">
+<div class="grid-container" >
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #ff9800, #ff5722); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div class="card fade-in-up hover-effect" >
+  <div >
+    <div >
       🏠
     </div>
-    <h3 style="margin: 0;">Domestic Assistance</h3>
+    <h3 >Domestic Assistance</h3>
   </div>
   <p>Humanoid robots providing companionship and household support in domestic environments</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Companionship</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Chores</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Care</span>
-    <span style="background: #f3e5f5; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Entertainment</span>
+  <div >
+    <span class="badge badge-light-blue">Companionship</span>
+    <span >Chores</span>
+    <span >Care</span>
+    <span >Entertainment</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255,152,0,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+  <div >
+    <div >
       <span>User Satisfaction</span>
       <span>91%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 91%; height: 100%; background: linear-gradient(90deg, #ff9800, #ff5722);"></div>
+    <div class="progress-bar">
+      <div class="progress progress-orange" ></div>
     </div>
   </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #4caf50, #2e7d32); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div class="card fade-in-up hover-effect" >
+  <div >
+    <div >
       🏥
     </div>
-    <h3 style="margin: 0;">Healthcare Support</h3>
+    <h3 >Healthcare Support</h3>
   </div>
   <p>Assisting medical professionals and providing care to patients in healthcare facilities</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Monitoring</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Assistance</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Companionship</span>
+  <div >
+    <span class="badge badge-light-blue">Monitoring</span>
+    <span >Assistance</span>
+    <span >Companionship</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(76,175,80,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+  <div >
+    <div >
       <span>Patient Care Quality</span>
       <span>96%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 100%; height: 100%; background: linear-gradient(90deg, #4caf50, #2e7d32);"></div>
+    <div class="progress-bar">
+      <div class="progress progress-green"></div>
     </div>
   </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #2196f3, #0d47a1); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div class="card fade-in-up hover-effect" >
+  <div >
+    <div >
       🏢
     </div>
-    <h3 style="margin: 0;">Customer Service</h3>
+    <h3 >Customer Service</h3>
   </div>
   <p>Providing interactive customer service in retail, hospitality, and service industries</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Interaction</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Guidance</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Assistance</span>
+  <div >
+    <span class="badge badge-light-blue">Interaction</span>
+    <span >Guidance</span>
+    <span >Assistance</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(33,150,243,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+  <div >
+    <div >
       <span>Customer Satisfaction</span>
       <span>94%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 100%; height: 100%; background: linear-gradient(90deg, #2196f3, #0d47a1);"></div>
+    <div class="progress-bar">
+      <div class="progress progress-blue"></div>
     </div>
   </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #9c27b0, #7b1fa2); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div class="card fade-in-up hover-effect" >
+  <div >
+    <div >
       🏫
     </div>
-    <h3 style="margin: 0;">Educational Support</h3>
+    <h3 >Educational Support</h3>
   </div>
   <p>Engaging students and providing educational support in learning environments</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Teaching</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Engagement</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Support</span>
+  <div >
+    <span class="badge badge-light-blue">Teaching</span>
+    <span >Engagement</span>
+    <span >Support</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(156,39,176,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+  <div >
+    <div >
       <span>Learning Engagement</span>
       <span>97%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 97%; height: 100%; background: linear-gradient(90deg, #9c27b0, #7b1fa2);"></div>
+    <div class="progress-bar">
+      <div class="progress progress-purple" ></div>
     </div>
   </div>
 </div>
@@ -270,9 +270,9 @@ Autonomous humanoid development is critical for Physical AI because it represent
 
 ## 🏗️ Technical Architecture of Autonomous Humanoid Systems
 
-<div style="background: linear-gradient(135deg, #2c3e50, #4a6cf7); padding: 2.5rem; border-radius: 20px; color: white; margin: 2.5rem 0; box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative; overflow: hidden;">
+<div >
 
-<div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #ff416c, #ff4b2b);"></div>
+<div ></div>
 
 ### 🧠 Advanced Humanoid Architecture Deep Dive
 
