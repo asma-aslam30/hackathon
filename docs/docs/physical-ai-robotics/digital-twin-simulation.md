@@ -6,11 +6,11 @@ description: Comprehensive guide to creating and utilizing digital twins for Phy
 
 # 🏗️ Digital Twin Simulation in Physical AI
 
-<div class="module-highlight fade-in-up tilt-card" style="padding: 2.5rem; margin: 2.5rem 0; border-radius: 20px; background: linear-gradient(135deg, #f5f7fa, #e4edf9); border-left: 6px solid #3498db; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+<div className="module-highlight fade-in-up tilt-card" style={{padding: '2.5rem', margin: '2.5rem 0', borderRadius: '20px', background: 'linear-gradient(135deg, #f5f7fa, #e4edf9)', borderLeft: '6px solid #3498db', boxShadow: '0 20px 40px rgba(0,0,0,0.1)'}}>
 
 ## 🌐 The Digital Mirror of Reality
 
-<div class="pulse" style="display: inline-block; padding: 0.5rem 1rem; background: linear-gradient(135deg, #3498db, #2980b9); color: white; border-radius: 30px; font-size: 0.9rem;">
+<div className="pulse" style={{display: 'inline-block', padding: '0.5rem 1rem', background: 'linear-gradient(135deg, #3498db, #2980b9)', color: 'white', borderRadius: '30px', fontSize: '0.9rem'}}>
   Virtual Reality Integration
   <br /><br />
   Digital twin technology creates a precise virtual replica of physical systems, enabling comprehensive testing, validation, and optimization before deployment in real-world environments. This technology is fundamental to Physical AI development.
@@ -18,15 +18,15 @@ description: Comprehensive guide to creating and utilizing digital twins for Phy
 
 ## 🚀 Overview of Digital Twin Simulation
 
-<div class="grid-container" style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; margin: 2rem 0;">
+<div className="grid-container" style={{display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem', margin: '2rem 0'}}>
 
-<div class="hover-effect">
+<div className="hover-effect">
 Digital twin simulation encompasses the complete virtual representation of physical systems, from individual components to entire robotic platforms. This approach allows for extensive testing, validation, and optimization in a risk-free virtual environment before real-world deployment. The technology bridges the gap between digital intelligence and physical reality.
 </div>
 
-<div class="card fade-in-up" style="padding: 1.5rem; border-radius: 16px; background: linear-gradient(135deg, #ffffff, #f8f9ff); border: 1px solid #e0e0ff;">
+<div className="card fade-in-up" style={{padding: '1.5rem', borderRadius: '16px', background: 'linear-gradient(135deg, #ffffff, #f8f9ff)', border: '1px solid #e0e0ff'}}>
 ### 🎯 Key Takeaway
-<div class="interactive-element">
+<div className="interactive-element">
 > *"Digital twins are the virtual laboratories where Physical AI systems learn and evolve before engaging with the real world. They represent the crucial link between simulation and reality, ensuring safe, efficient, and effective robot deployment."*
 </div>
 </div>

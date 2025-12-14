@@ -6,11 +6,11 @@ description: Comprehensive guide to ROS 2 as the middleware foundation for physi
 
 # 🤖 ROS 2 - The Robotic Nervous System
 
-<div class="module-highlight fade-in-up tilt-card" style="padding: 2.5rem; margin: 2.5rem 0; border-radius: 20px; background: linear-gradient(135deg, #f5f7fa, #e4edf9); border-left: 6px solid #e74c3c; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+<div className="module-highlight fade-in-up tilt-card" style={{padding: '2.5rem', margin: '2.5rem 0', borderRadius: '20px', background: 'linear-gradient(135deg, #f5f7fa, #e4edf9)', borderLeft: '6px solid #e74c3c', boxShadow: '0 20px 40px rgba(0,0,0,0.1)'}}>
 
 ## 🧠 The Nervous System of Robotics
 
-<div class="pulse" style="display: inline-block; padding: 0.5rem 1rem; background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; border-radius: 30px; font-size: 0.9rem;">
+<div className="pulse" style={{display: 'inline-block', padding: '0.5rem 1rem', background: 'linear-gradient(135deg, #e74c3c, #c0392b)', color: 'white', borderRadius: '30px', fontSize: '0.9rem'}}>
   Core Middleware Architecture
   <br /><br />
   ROS 2 (Robot Operating System 2) serves as the fundamental middleware that connects every component of your robot, from sensors and actuators to high-level AI algorithms. It's the nervous system that enables your robot to perceive, think, and act as a unified intelligent system.
@@ -18,48 +18,48 @@ description: Comprehensive guide to ROS 2 as the middleware foundation for physi
 
 ## 🚀 Overview of ROS 2
 
-<div class="grid-container" style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; margin: 2rem 0;">
+<div className="grid-container" style={{display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem', margin: '2rem 0'}}>
 
-<div class="hover-effect">
+<div className="hover-effect">
 ROS 2 is not an operating system in the traditional sense, but rather a collection of libraries, tools, and conventions that provide essential services for robotic applications. It offers a standardized framework for:
 
 - **Communication**: Message passing between processes and nodes
-- **Hardware Interface**: Abstraction layers for diverse hardware components  
+- **Hardware Interface**: Abstraction layers for diverse hardware components
 - **Development Tools**: Visualization, debugging, and simulation environments
 - **Package Management**: Organized code distribution and dependency management
 </div>
 
-<div class="card fade-in-up" style="padding: 1.5rem; border-radius: 16px; background: linear-gradient(135deg, #ffffff, #f8f9ff); border: 1px solid #e0e0ff;">
+<div className="card fade-in-up" style={{padding: '1.5rem', borderRadius: '16px', background: 'linear-gradient(135deg, #ffffff, #f8f9ff)', border: '1px solid #e0e0ff'}}>
 ### 🎯 Key Takeaway
-<div class="interactive-element">
+<div className="interactive-element">
 > *"ROS 2 is the connective tissue that transforms individual robot components into a cohesive intelligent system. Without it, your robot is just a collection of hardware and software - with it, you have a unified agent capable of complex behaviors."*
 </div>
 </div>
 
 </div>
 
-<div class="interactive-element fade-in-down" style="background: linear-gradient(135deg, #e8f4fd, #e3f2fd); padding: 2rem; border-radius: 20px; margin: 2rem 0; border-left: 6px solid #2196f3;">
+<div className="interactive-element fade-in-down" style={{background: 'linear-gradient(135deg, #e8f4fd, #e3f2fd)', padding: '2rem', borderRadius: '20px', margin: '2rem 0', borderLeft: '6px solid #2196f3'}}>
 
 ### 🛠️ Why ROS 2 Matters for Physical AI
 
 ROS 2 is critical for Physical AI systems because it provides the infrastructure needed to:
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', margin: '1.5rem 0'}}>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔗</div>
+<div style={{background: 'rgba(255,255,255,0.7)', padding: '1.5rem', borderRadius: '12px', border: '1px solid #bbdefb'}}>
+  <div style={{fontSize: '1.5rem', marginBottom: '0.5rem'}}>🔗</div>
   <strong>Component Integration</strong>
   <p>Connecting diverse hardware and software components seamlessly</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⚡</div>
+<div style={{background: 'rgba(255,255,255,0.7)', padding: '1.5rem', borderRadius: '12px', border: '1px solid #bbdefb'}}>
+  <div style={{fontSize: '1.5rem', marginBottom: '0.5rem'}}>⚡</div>
   <strong>Real-time Communication</strong>
   <p>Low-latency message passing for responsive systems</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔧</div>
+<div style={{background: 'rgba(255,255,255,0.7)', padding: '1.5rem', borderRadius: '12px', border: '1px solid #bbdefb'}}>
+  <div style={{fontSize: '1.5rem', marginBottom: '0.5rem'}}>🔧</div>
   <strong>Standardized Interfaces</strong>
   <p>Consistent APIs across different hardware and algorithms</p>
 </div>

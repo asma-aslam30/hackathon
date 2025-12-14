@@ -6,12 +6,12 @@ description: Comprehensive introduction to Physical AI, its importance, and the 
 
 # 🧠 Introduction to Physical AI & Humanoid Robotics
 
-<div class="parallax-bg"></div>
+<div className="parallax-bg"></div>
 
-<div class="module-highlight fade-in-up tilt-card" style="padding: 2.5rem; margin: 2.5rem 0; border-radius: 20px; background: linear-gradient(135deg, #f5f7fa, #e4edf9); border-left: 6px solid #4a6cf7; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+<div className="module-highlight fade-in-up tilt-card" style={{padding: '2.5rem', margin: '2.5rem 0', borderRadius: '20px', background: 'linear-gradient(135deg, #f5f7fa, #e4edf9)', borderLeft: '6px solid #4a6cf7', boxShadow: '0 20px 40px rgba(0,0,0,0.1)'}}>
 
 ## 🌟 Welcome to the Future of AI
-<div class="pulse" style="display: inline-block; padding: 0.5rem 1rem; background: linear-gradient(135deg, #4a6cf7, #6a11cb); color: white; border-radius: 30px; font-size: 0.9rem;">
+<div className="pulse" style={{display: 'inline-block', padding: '0.5rem 1rem', background: 'linear-gradient(135deg, #4a6cf7, #6a11cb)', color: 'white', borderRadius: '30px', fontSize: '0.9rem'}}>
   Revolutionary Intelligence
   <br /><br />
   Physical AI represents the next evolutionary step in artificial intelligence, bridging the gap between digital algorithms and the physical world. This is where AI stops being just "smart software" and becomes truly embodied intelligence.
@@ -19,38 +19,38 @@ description: Comprehensive introduction to Physical AI, its importance, and the 
 
 ## 🚀 Overview
 
-<div class="grid-container" style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; margin: 2rem 0;">
+<div className="grid-container" style={{display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem', margin: '2rem 0'}}>
 
-<div class="hover-effect">
+<div className="hover-effect">
 **Physical AI** represents a significant evolution in artificial intelligence, moving beyond purely software-based systems to incorporate **physical embodiment** and interaction with the real world. This approach recognizes that intelligence is not merely computational but emerges from the interaction between an agent, its body, and the environment.
 </div>
 
-<div class="card fade-in-up" style="padding: 1.5rem; border-radius: 16px; background: linear-gradient(135deg, #ffffff, #f8f9ff); border: 1px solid #e0e0ff;">
+<div className="card fade-in-up" style={{padding: '1.5rem', borderRadius: '16px', background: 'linear-gradient(135deg, #ffffff, #f8f9ff)', border: '1px solid #e0e0ff'}}>
 ### 🎯 Key Takeaway
-<div class="interactive-element">
+<div className="interactive-element">
 > *"True intelligence requires a body to interact with the world. A mind without embodiment is like a pilot flying blind - sophisticated but disconnected from reality."*
 </div>
 </div>
 
 </div>
 
-<div class="interactive-element fade-in-down" style="background: linear-gradient(135deg, #e8f4fd, #e3f2fd); padding: 2rem; border-radius: 20px; margin: 2rem 0; border-left: 6px solid #2196f3;">
+<div className="interactive-element fade-in-down" style={{background: 'linear-gradient(135deg, #e8f4fd, #e3f2fd)', padding: '2rem', borderRadius: '20px', margin: '2rem 0', borderLeft: '6px solid #2196f3'}}>
 
 ### 🤖 The Embodiment Revolution
-<div class="hover-effect" style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">
+<div className="hover-effect" style={{fontSize: '1.2rem', fontWeight: '600', marginBottom: '1rem'}}>
 > *"Intelligence without embodiment is like flight without wings - it can soar in the digital realm, but it's only when grounded in the physical world that it achieves true potential."*
 </div>
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
-<div style="background: rgba(255,255,255,0.7); padding: 1rem; border-radius: 12px; border: 1px solid #bbdefb;">
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginTop: '1.5rem'}}>
+<div style={{background: 'rgba(255,255,255,0.7)', padding: '1rem', borderRadius: '12px', border: '1px solid #bbdefb'}}>
   🧠 <strong>Cognitive Benefits</strong><br />
   Better learning through physical interaction
 </div>
-<div style="background: rgba(255,255,255,0.7); padding: 1rem; border-radius: 12px; border: 1px solid #bbdefb;">
+<div style={{background: 'rgba(255,255,255,0.7)', padding: '1rem', borderRadius: '12px', border: '1px solid #bbdefb'}}>
   🏗️ <strong>Real-World Skills</strong><br />
   Practical problem-solving capabilities
 </div>
-<div style="background: rgba(255,255,255,0.7); padding: 1rem; border-radius: 12px; border: 1px solid #bbdefb;">
+<div style={{background: 'rgba(255,255,255,0.7)', padding: '1rem', borderRadius: '12px', border: '1px solid #bbdefb'}}>
   ⚡ <strong>Adaptability</strong><br />
   Learning from physical consequences
 </div>
@@ -62,32 +62,32 @@ description: Comprehensive introduction to Physical AI, its importance, and the 
 
 ### 🏗️ Embodied AI
 
-<div style="display: flex; gap: 3rem; margin: 2rem 0; flex-wrap: wrap;">
+<div style={{display: 'flex', gap: '3rem', margin: '2rem 0', flexWrap: 'wrap'}}>
 
-<div class="card fade-in-up" style="flex: 1; min-width: 300px; padding: 2rem; background: linear-gradient(135deg, #fff, #f8f9fa); border: 1px solid #e0e0e0; box-shadow: 0 15px 30px rgba(0,0,0,0.1);">
+<div className="card fade-in-up" style={{flex: '1', minWidth: '300px', padding: '2rem', background: 'linear-gradient(135deg, #fff, #f8f9fa)', border: '1px solid #e0e0e0', boxShadow: '0 15px 30px rgba(0,0,0,0.1)'}}>
 <h3>❌ Traditional AI</h3>
-<ul style="margin-top: 1rem;">
+<ul style={{marginTop: '1rem'}}>
 <li>Operates in digital realm only</li>
 <li>No physical consequences</li>
 <li>Perfect virtual environments</li>
 <li>Simulated physics</li>
 <li>Abstract reasoning</li>
 </ul>
-<div style="margin-top: 1.5rem; padding: 0.5rem 1rem; background: #ffebee; color: #c62828; border-radius: 20px; display: inline-block;">
+<div style={{marginTop: '1.5rem', padding: '0.5rem 1rem', background: '#ffebee', color: '#c62828', borderRadius: '20px', display: 'inline-block'}}>
   Limited real-world transfer
 </div>
 </div>
 
-<div class="card fade-in-up" style="flex: 1; min-width: 300px; padding: 2rem; background: linear-gradient(135deg, #4a6cf7, #6a11cb); color: white; border-radius: 20px;" data-aos="fade-left">
+<div className="card fade-in-up" style={{flex: '1', minWidth: '300px', padding: '2rem', background: 'linear-gradient(135deg, #4a6cf7, #6a11cb)', color: 'white', borderRadius: '20px'}} data-aos="fade-left">
 <h3>✅ Physical AI</h3>
-<ul style="margin-top: 1rem;">
+<ul style={{marginTop: '1rem'}}>
 <li>Interacts with real world</li>
 <li>Real consequences for actions</li>
 <li>Noisy, unpredictable environments</li>
 <li>Actual physics constraints</li>
 <li>Sensory-motor learning</li>
 </ul>
-<div style="margin-top: 1.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border-radius: 20px; display: inline-block;">
+<div style={{marginTop: '1.5rem', padding: '0.5rem 1rem', background: 'rgba(255,255,255,0.2)', borderRadius: '20px', display: 'inline-block'}}>
   Proven real-world efficacy
 </div>
 </div>
@@ -95,23 +95,23 @@ description: Comprehensive introduction to Physical AI, its importance, and the 
 </div>
 
 ### 🌉 The AI-Robot Gap
-<div class="progress-bar" style="margin: 1.5rem 0;">
-  <div class="progress" style="width: 45%;"></div>
+<div className="progress-bar" style={{margin: '1.5rem 0'}}>
+  <div className="progress" style={{width: '45%'}}></div>
 </div>
 
-<div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+<div className="grid-container" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
 
-<div class="card fade-in-up hover-effect" style="padding: 1.5rem; text-align: center; background: #e3f2fd; border-radius: 16px; border: 1px solid #bbdefb;">
+<div className="card fade-in-up hover-effect" style={{padding: '1.5rem', textAlign: 'center', background: '#e3f2fd', borderRadius: '16px', border: '1px solid #bbdefb'}}>
 <h3>🔄 Adaptive Systems</h3>
 <p>Robust perception that handles real-world noise</p>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 1.5rem; text-align: center; background: #e8f5e9; border-radius: 16px; border: 1px solid #c8e6c9;">
+<div className="card fade-in-up hover-effect" style={{padding: '1.5rem', textAlign: 'center', background: '#e8f5e9', borderRadius: '16px', border: '1px solid #c8e6c9'}}>
 <h3>🛡️ Safe Operations</h3>
 <p>Reliability in dynamic and uncertain environments</p>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 1.5rem; text-align: center; background: #fff3e0; border-radius: 16px; border: 1px solid #ffe0b2;">
+<div className="card fade-in-up hover-effect" style={{padding: '1.5rem', textAlign: 'center', background: '#fff3e0', borderRadius: '16px', border: '1px solid #ffe0b2'}}>
 <h3>⚡ Instant Response</h3>
 <p>Real-time operation with minimal latency</p>
 </div>
@@ -120,40 +120,40 @@ description: Comprehensive introduction to Physical AI, its importance, and the 
 
 ### 🧭 Core Principles of Physical AI
 
-<div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0;">
+<div className="grid-container" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', margin: '2rem 0'}}>
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #f0f7ff, #e6f3ff); border: 2px solid #4a6cf7; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">1. 🏗️ Embodiment</h3>
+<div className="card fade-in-up tilt-card" data-aos="zoom-in" style={{padding: '2rem', background: 'linear-gradient(135deg, #f0f7ff, #e6f3ff)', border: '2px solid #4a6cf7', borderRadius: '16px'}}>
+  <h3 style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>1. 🏗️ Embodiment</h3>
   <p>Intelligence emerges from the interaction between agent and environment</p>
-  <div class="hover-effect" style="margin-top: 1rem; padding: 0.5rem; background: rgba(74, 108, 247, 0.1); border-radius: 8px; font-style: italic;">
+  <div className="hover-effect" style={{marginTop: '1rem', padding: '0.5rem', background: 'rgba(74, 108, 247, 0.1)', borderRadius: '8px', fontStyle: 'italic'}}>
     "The body is not just a tool for the mind, but an integral part of intelligence itself"
   </div>
 </div>
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #f0fff0, #e6ffe6); border: 2px solid #4caf50; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">2. 🌍 Physics Understanding</h3>
+<div className="card fade-in-up tilt-card" data-aos="zoom-in" style={{padding: '2rem', background: 'linear-gradient(135deg, #f0fff0, #e6ffe6)', border: '2px solid #4caf50', borderRadius: '16px'}}>
+  <h3 style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>2. 🌍 Physics Understanding</h3>
   <p>Systems must understand and predict physical phenomena</p>
-  <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Gravity</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Friction</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Collision</span>
+  <div style={{marginTop: '1rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap'}}>
+    <span style={{background: '#e8f5e9', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Gravity</span>
+    <span style={{background: '#e8f5e9', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Friction</span>
+    <span style={{background: '#e8f5e9', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Collision</span>
   </div>
 </div>
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #fff0f0, #ffe6e6); border: 2px solid #f44336; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">3. ⚡ Real-time Operation</h3>
+<div className="card fade-in-up tilt-card" data-aos="zoom-in" style={{padding: '2rem', background: 'linear-gradient(135deg, #fff0f0, #ffe6e6)', border: '2px solid #f44336', borderRadius: '16px'}}>
+  <h3 style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>3. ⚡ Real-time Operation</h3>
   <p>Systems must respond to environmental changes immediately</p>
-  <div class="progress-bar" style="margin-top: 1rem; height: 8px; width: 100%;">
-    <div class="progress" style="width: 95%; height: 100%;"></div>
+  <div className="progress-bar" style={{marginTop: '1rem', height: '8px', width: '100%'}}>
+    <div className="progress" style={{width: '95%', height: '100%'}}></div>
   </div>
-  <small style="display: block; text-align: right; margin-top: 0.5rem;">95% response time < 100ms</small>
+  <small style={{display: 'block', textAlign: 'right', marginTop: '0.5rem'}}>95% response time < 100ms</small>
 </div>
 
-<div class="card fade-in-up tilt-card" data-aos="zoom-in" style="padding: 2rem; background: linear-gradient(135deg, #f0f0ff, #e6e6ff); border: 2px solid #9c27b0; border-radius: 16px;">
-  <h3 style="display: flex; align-items: center; gap: 0.5rem;">4. 🔄 Adaptability</h3>
+<div className="card fade-in-up tilt-card" data-aos="zoom-in" style={{padding: '2rem', background: 'linear-gradient(135deg, #f0f0ff, #e6e6ff)', border: '2px solid #9c27b0', borderRadius: '16px'}}>
+  <h3 style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>4. 🔄 Adaptability</h3>
   <p>Systems must handle unexpected situations and changing environments</p>
-  <div style="display: flex; justify-content: center; margin-top: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #9c27b0, #e91e63); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+  <div style={{display: 'flex', justifyContent: 'center', marginTop: '1rem'}}>
+    <div style={{width: '50px', height: '50px', borderRadius: '50%', background: 'linear-gradient(135deg, #9c27b0, #e91e63)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold'}}>
       AI
     </div>
   </div>
@@ -163,100 +163,100 @@ description: Comprehensive introduction to Physical AI, its importance, and the 
 
 ## 🌍 Real-World Applications
 
-<div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin: 2rem 0;">
+<div className="grid-container" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2rem', margin: '2rem 0'}}>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #ff9800, #ff5722); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div className="card fade-in-up hover-effect" style={{padding: '2rem', background: '#f8f9fa', borderRadius: '20px', boxShadow: '0 10px 25px rgba(0,0,0,0.08)', transition: 'transform 0.3s ease'}}>
+  <div style={{display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem'}}>
+    <div style={{width: '50px', height: '50px', borderRadius: '12px', background: 'linear-gradient(135deg, #ff9800, #ff5722)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '1.5rem'}}>
       🚗
     </div>
-    <h3 style="margin: 0;">Autonomous Vehicles</h3>
+    <h3 style={{margin: '0'}}>Autonomous Vehicles</h3>
   </div>
   <p>Understanding traffic, physics, and navigation in dynamic environments</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Sensing</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Planning</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Control</span>
+  <div style={{display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '1rem'}}>
+    <span style={{background: '#e3f2fd', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Sensing</span>
+    <span style={{background: '#e8f5e9', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Planning</span>
+    <span style={{background: '#fff3e0', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Control</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255,152,0,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+  <div style={{marginTop: '1.5rem', padding: '1rem', background: 'rgba(255,152,0,0.1)', borderRadius: '12px'}}>
+    <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem'}}>
       <span>Performance</span>
       <span>98.5%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 98.5%; height: 100%;"></div>
+    <div className="progress-bar" style={{height: '6px'}}>
+      <div className="progress" style={{width: '98.5%', height: '100%'}}></div>
     </div>
   </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #4caf50, #2e7d32); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div className="card fade-in-up hover-effect" style={{padding: '2rem', background: '#f8f9fa', borderRadius: '20px', boxShadow: '0 10px 25px rgba(0,0,0,0.08)', transition: 'transform 0.3s ease'}}>
+  <div style={{display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem'}}>
+    <div style={{width: '50px', height: '50px', borderRadius: '12px', background: 'linear-gradient(135deg, #4caf50, #2e7d32)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '1.5rem'}}>
       🏭
     </div>
-    <h3 style="margin: 0;">Industrial Robotics</h3>
+    <h3 style={{margin: '0'}}>Industrial Robotics</h3>
   </div>
   <p>Manufacturing, assembly, and quality control systems</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Precision</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Speed</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Safety</span>
+  <div style={{display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '1rem'}}>
+    <span style={{background: '#e3f2fd', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Precision</span>
+    <span style={{background: '#e8f5e9', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Speed</span>
+    <span style={{background: '#fff3e0', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Safety</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(76,175,80,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+  <div style={{marginTop: '1.5rem', padding: '1rem', background: 'rgba(76,175,80,0.1)', borderRadius: '12px'}}>
+    <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem'}}>
       <span>Throughput</span>
       <span>400%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 100%; height: 100%; background: linear-gradient(90deg, #4caf50, #2e7d32);"></div>
+    <div className="progress-bar" style={{height: '6px'}}>
+      <div className="progress" style={{width: '100%', height: '100%', background: 'linear-gradient(90deg, #4caf50, #2e7d32)'}}></div>
     </div>
   </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #2196f3, #0d47a1); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div className="card fade-in-up hover-effect" style={{padding: '2rem', background: '#f8f9fa', borderRadius: '20px', boxShadow: '0 10px 25px rgba(0,0,0,0.08)', transition: 'transform 0.3s ease'}}>
+  <div style={{display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem'}}>
+    <div style={{width: '50px', height: '50px', borderRadius: '12px', background: 'linear-gradient(135deg, #2196f3, #0d47a1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '1.5rem'}}>
       🏥
     </div>
-    <h3 style="margin: 0;">Surgical Robotics</h3>
+    <h3 style={{margin: '0'}}>Surgical Robotics</h3>
   </div>
   <p>Precise, dexterous manipulation in constrained environments</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Accuracy</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Stability</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Tactility</span>
+  <div style={{display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '1rem'}}>
+    <span style={{background: '#e3f2fd', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Accuracy</span>
+    <span style={{background: '#e8f5e9', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Stability</span>
+    <span style={{background: '#fff3e0', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Tactility</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(33,150,243,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+  <div style={{marginTop: '1.5rem', padding: '1rem', background: 'rgba(33,150,243,0.1)', borderRadius: '12px'}}>
+    <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem'}}>
       <span>Accuracy</span>
       <span>99.9%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 100%; height: 100%; background: linear-gradient(90deg, #2196f3, #0d47a1);"></div>
+    <div className="progress-bar" style={{height: '6px'}}>
+      <div className="progress" style={{width: '100%', height: '100%', background: 'linear-gradient(90deg, #2196f3, #0d47a1)'}}></div>
     </div>
   </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #f8f9fa; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-    <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #9c27b0, #7b1fa2); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+<div className="card fade-in-up hover-effect" style={{padding: '2rem', background: '#f8f9fa', borderRadius: '20px', boxShadow: '0 10px 25px rgba(0,0,0,0.08)', transition: 'transform 0.3s ease'}}>
+  <div style={{display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem'}}>
+    <div style={{width: '50px', height: '50px', borderRadius: '12px', background: 'linear-gradient(135deg, #9c27b0, #7b1fa2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '1.5rem'}}>
       🦾
     </div>
-    <h3 style="margin: 0;">Assistive Robotics</h3>
+    <h3 style={{margin: '0'}}>Assistive Robotics</h3>
   </div>
   <p>Smart prosthetics and exoskeletons</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-    <span style="background: #e3f2fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Adaptability</span>
-    <span style="background: #e8f5e9; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Comfort</span>
-    <span style="background: #fff3e0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem;">Intuitive</span>
+  <div style={{display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '1rem'}}>
+    <span style={{background: '#e3f2fd', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Adaptability</span>
+    <span style={{background: '#e8f5e9', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Comfort</span>
+    <span style={{background: '#fff3e0', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Intuitive</span>
   </div>
-  <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(156,39,176,0.1); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+  <div style={{marginTop: '1.5rem', padding: '1rem', background: 'rgba(156,39,176,0.1)', borderRadius: '12px'}}>
+    <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem'}}>
       <span>User Satisfaction</span>
       <span>94.3%</span>
     </div>
-    <div class="progress-bar" style="height: 6px;">
-      <div class="progress" style="width: 94.3%; height: 100%; background: linear-gradient(90deg, #9c27b0, #7b1fa2);"></div>
+    <div className="progress-bar" style={{height: '6px'}}>
+      <div className="progress" style={{width: '94.3%', height: '100%', background: 'linear-gradient(90deg, #9c27b0, #7b1fa2)'}}></div>
     </div>
   </div>
 </div>
@@ -265,9 +265,9 @@ description: Comprehensive introduction to Physical AI, its importance, and the 
 
 ## 🏗️ Technical Architecture
 
-<div style="background: linear-gradient(135deg, #2c3e50, #4a6cf7); padding: 2.5rem; border-radius: 20px; color: white; margin: 2.5rem 0; box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative; overflow: hidden;">
+<div style={{background: 'linear-gradient(135deg, #2c3e50, #4a6cf7)', padding: '2.5rem', borderRadius: '20px', color: 'white', margin: '2.5rem 0', boxShadow: '0 20px 40px rgba(0,0,0,0.2)', position: 'relative', overflow: 'hidden'}}>
 
-<div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #ff416c, #ff4b2b);"></div>
+<div style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '4px', background: 'linear-gradient(90deg, #ff416c, #ff4b2b)'}}></div>
 
 ```mermaid
 graph TD
@@ -293,7 +293,7 @@ graph TD
 
 ## 🤖 The Robot Operating System (ROS)
 
-<div class="grid-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+<div className="grid-container" style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', margin: '2rem 0'}}>
 
 <div>
 The Robot Operating System (ROS) provides the foundational middleware for physical AI systems. While not a traditional operating system, ROS provides:
@@ -305,57 +305,57 @@ The Robot Operating System (ROS) provides the foundational middleware for physic
 - **👁️ Visualization**: Tools for monitoring and debugging
 </div>
 
-<div class="card" style="padding: 1.5rem; background: linear-gradient(135deg, #f8f9fa, #e8eaed); border-radius: 16px;">
-<h4 style="margin-top: 0;">ROS 2 Ecosystem</h4>
-<div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0;">
-<span style="background: #e3f2fd; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem;">Nodes</span>
-<span style="background: #e8f5e9; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem;">Topics</span>
-<span style="background: #fff3e0; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem;">Services</span>
-<span style="background: #f3e5f5; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem;">Actions</span>
-<span style="background: #e0f2f1; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem;">Parameters</span>
-<span style="background: #e8eaf6; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem;">TF</span>
+<div className="card" style={{padding: '1.5rem', background: 'linear-gradient(135deg, #f8f9fa, #e8eaed)', borderRadius: '16px'}}>
+<h4 style={{marginTop: '0'}}>ROS 2 Ecosystem</h4>
+<div style={{display: 'flex', flexWrap: 'wrap', gap: '0.5rem', margin: '1rem 0'}}>
+<span style={{background: '#e3f2fd', padding: '0.5rem 1rem', borderRadius: '20px', fontSize: '0.8rem'}}>Nodes</span>
+<span style={{background: '#e8f5e9', padding: '0.5rem 1rem', borderRadius: '20px', fontSize: '0.8rem'}}>Topics</span>
+<span style={{background: '#fff3e0', padding: '0.5rem 1rem', borderRadius: '20px', fontSize: '0.8rem'}}>Services</span>
+<span style={{background: '#f3e5f5', padding: '0.5rem 1rem', borderRadius: '20px', fontSize: '0.8rem'}}>Actions</span>
+<span style={{background: '#e0f2f1', padding: '0.5rem 1rem', borderRadius: '20px', fontSize: '0.8rem'}}>Parameters</span>
+<span style={{background: '#e8eaf6', padding: '0.5rem 1rem', borderRadius: '20px', fontSize: '0.8rem'}}>TF</span>
 </div>
-<div class="progress-bar" style="margin-top: 1rem;">
-  <div class="progress" style="width: 100%;"></div>
+<div className="progress-bar" style={{marginTop: '1rem'}}>
+  <div className="progress" style={{width: '100%'}}></div>
 </div>
-</div>
-
 </div>
 
-<div class="progress-bar" style="height: 12px; background-color: #e0e0e0; border-radius: 6px; margin: 2.5rem 0; overflow: hidden; box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);">
-  <div class="progress" style="height: 100%; background: linear-gradient(90deg, #1a2a6c, #b21f1f); border-radius: 6px; width: 100%;"></div>
+</div>
+
+<div className="progress-bar" style={{height: '12px', backgroundColor: '#e0e0e0', borderRadius: '6px', margin: '2.5rem 0', overflow: 'hidden', boxShadow: 'inset 0 2px 5px rgba(0,0,0,0.1)'}}>
+  <div className="progress" style={{height: '100%', background: 'linear-gradient(90deg, #1a2a6c, #b21f1f)', borderRadius: '6px', width: '100%'}}></div>
 </div>
 
 ## 🤖 MCP and Context7 Integration
 
-<div class="interactive-element fade-in-up" style="margin: 2.5rem 0; padding: 2.5rem; border-radius: 20px; background: linear-gradient(135deg, #e8f4fd, #e3f2fd); border-left: 8px solid #2962ff; box-shadow: 0 15px 35px rgba(41, 98, 255, 0.1);">
+<div className="interactive-element fade-in-up" style={{margin: '2.5rem 0', padding: '2.5rem', borderRadius: '20px', background: 'linear-gradient(135deg, #e8f4fd, #e3f2fd)', borderLeft: '8px solid #2962ff', boxShadow: '0 15px 35px rgba(41, 98, 255, 0.1)'}}>
 
 ### 🛠️ MCP Integration in Physical AI
 
 Model Context Protocol (MCP) enables Physical AI systems to access external tools and knowledge sources. This is critical for physical AI systems that need to:
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', margin: '1.5rem 0'}}>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📚</div>
+<div style={{background: 'rgba(255,255,255,0.7)', padding: '1.5rem', borderRadius: '12px', border: '1px solid #bbdefb'}}>
+  <div style={{fontSize: '1.5rem', marginBottom: '0.5rem'}}>📚</div>
   <strong>Access Documentation</strong>
   <p>Current specifications for hardware components</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📋</div>
+<div style={{background: 'rgba(255,255,255,0.7)', padding: '1.5rem', borderRadius: '12px', border: '1px solid #bbdefb'}}>
+  <div style={{fontSize: '1.5rem', marginBottom: '0.5rem'}}>📋</div>
   <strong>Best Practices</strong>
   <p>Proven methods for robotics algorithms</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔗</div>
+<div style={{background: 'rgba(255,255,255,0.7)', padding: '1.5rem', borderRadius: '12px', border: '1px solid #bbdefb'}}>
+  <div style={{fontSize: '1.5rem', marginBottom: '0.5rem'}}>🔗</div>
   <strong>External APIs</strong>
   <p>Enhanced capabilities from cloud services</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.7); padding: 1.5rem; border-radius: 12px; border: 1px solid #bbdefb;">
-  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">☁️</div>
+<div style={{background: 'rgba(255,255,255,0.7)', padding: '1.5rem', borderRadius: '12px', border: '1px solid #bbdefb'}}>
+  <div style={{fontSize: '1.5rem', marginBottom: '0.5rem'}}>☁️</div>
   <strong>Cloud Integration</strong>
   <p>Seamless connection to distributed systems</p>
 </div>
@@ -364,7 +364,7 @@ Model Context Protocol (MCP) enables Physical AI systems to access external tool
 
 **Context7** documentation servers provide up-to-date information about robotics libraries, APIs, and best practices, ensuring AI systems have access to current, accurate information when making decisions.
 
-<div class="code-block-interactive" style="margin: 2rem 0; border-radius: 12px; overflow: hidden;">
+<div className="code-block-interactive" style={{margin: '2rem 0', borderRadius: '12px', overflow: 'hidden'}}>
 
 ```javascript
 // Example: MCP integration for documentation lookup
@@ -383,7 +383,7 @@ const apiInfo = await getRobotAPIInfo('rclpy.init');
 console.log('Current ROS2 API documentation:', apiInfo);
 ```
 
-<button class="copy-button">Copy Code</button>
+<button className="copy-button">Copy Code</button>
 </div>
 
 This approach allows Physical AI systems to access the most current information about robotic APIs, hardware specifications, and best practices, which is crucial for systems operating in complex physical environments where outdated information could lead to failures or safety issues.
@@ -392,51 +392,51 @@ This approach allows Physical AI systems to access the most current information 
 
 ## 📚 Learning Outcomes
 
-<div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2.5rem 0;">
+<div className="grid-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(autoFit, minmax(300px, 1fr))', gap: '2rem', margin: '2.5rem 0' }}>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #e8f4fd; border: 3px solid #2196f3; border-radius: 20px; position: relative; overflow: hidden;">
-<div style="position: absolute; top: 0; right: 0; background: #2196f3; color: white; padding: 0.25rem 1rem; border-radius: 0 0 0 20px; font-size: 0.8rem;">Essential</div>
-<h3 style="display: flex; align-items: center; gap: 0.75rem;">🎯 Outcome 1</h3>
+<div className="card fade-in-up hover-effect" style={{ padding: '2rem', background: '#e8f4fd', border: '3px solid #2196f3', borderRadius: '20px', position: 'relative', overflow: 'hidden' }}>
+<div style={{ position: 'absolute', top: '0', right: '0', background: '#2196f3', color: 'white', padding: '0.25rem 1rem', borderRadius: '0 0 0 20px', fontSize: '0.8rem' }}>Essential</div>
+<h3 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>🎯 Outcome 1</h3>
 <p>Define Physical AI and explain its core tenets (physics, embodiment, reality)</p>
-<div style="margin-top: 1rem; padding: 0.75rem; background: rgba(33, 150, 243, 0.1); border-radius: 12px;">
-  <div style="display: flex; align-items: center; gap: 0.5rem;">
-    <div style="width: 20px; height: 20px; border-radius: 50%; background: #2196f3; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem;">1</div>
+<div style={{ marginTop: '1rem', padding: '0.75rem', background: 'rgba(33, 150, 243, 0.1)', borderRadius: '12px' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+    <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: '#2196f3', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '0.75rem' }}>1</div>
     <span>Master the fundamentals</span>
   </div>
 </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #e8f4fd; border: 3px solid #2196f3; border-radius: 20px; position: relative; overflow: hidden;">
-<div style="position: absolute; top: 0; right: 0; background: #2196f3; color: white; padding: 0.25rem 1rem; border-radius: 0 0 0 20px; font-size: 0.8rem;">Essential</div>
-<h3 style="display: flex; align-items: center; gap: 0.75rem;">🎯 Outcome 2</h3>
+<div className="card fade-in-up hover-effect" style={{ padding: '2rem', background: '#e8f4fd', border: '3px solid #2196f3', borderRadius: '20px', position: 'relative', overflow: 'hidden' }}>
+<div style={{ position: 'absolute', top: '0', right: '0', background: '#2196f3', color: 'white', padding: '0.25rem 1rem', borderRadius: '0 0 0 20px', fontSize: '0.8rem' }}>Essential</div>
+<h3 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>🎯 Outcome 2</h3>
 <p>Differentiate between traditional AI and Physical AI applications</p>
-<div style="margin-top: 1rem; padding: 0.75rem; background: rgba(33, 150, 243, 0.1); border-radius: 12px;">
-  <div style="display: flex; align-items: center; gap: 0.5rem;">
-    <div style="width: 20px; height: 20px; border-radius: 50%; background: #2196f3; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem;">2</div>
+<div style={{ marginTop: '1rem', padding: '0.75rem', background: 'rgba(33, 150, 243, 0.1)', borderRadius: '12px' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+    <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: '#2196f3', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '0.75rem' }}>2</div>
     <span>Understand the paradigm shift</span>
   </div>
 </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #e8f4fd; border: 3px solid #2196f3; border-radius: 20px; position: relative; overflow: hidden;">
-<div style="position: absolute; top: 0; right: 0; background: #2196f3; color: white; padding: 0.25rem 1rem; border-radius: 0 0 0 20px; font-size: 0.8rem;">Critical</div>
-<h3 style="display: flex; align-items: center; gap: 0.75rem;">🎯 Outcome 3</h3>
+<div className="card fade-in-up hover-effect" style={{ padding: '2rem', background: '#e8f4fd', border: '3px solid #2196f3', borderRadius: '20px', position: 'relative', overflow: 'hidden' }}>
+<div style={{ position: 'absolute', top: '0', right: '0', background: '#2196f3', color: 'white', padding: '0.25rem 1rem', borderRadius: '0 0 0 20px', fontSize: '0.8rem' }}>Critical</div>
+<h3 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>🎯 Outcome 3</h3>
 <p>Identify key challenges in deploying AI in physical environments</p>
-<div style="margin-top: 1rem; padding: 0.75rem; background: rgba(33, 150, 243, 0.1); border-radius: 12px;">
-  <div style="display: flex; align-items: center; gap: 0.5rem;">
-    <div style="width: 20px; height: 20px; border-radius: 50%; background: #2196f3; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem;">3</div>
+<div style={{ marginTop: '1rem', padding: '0.75rem', background: 'rgba(33, 150, 243, 0.1)', borderRadius: '12px' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+    <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: '#2196f3', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '0.75rem' }}>3</div>
     <span>Recognize real-world constraints</span>
   </div>
 </div>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 2rem; background: #e8f4fd; border: 3px solid #2196f3; border-radius: 20px; position: relative; overflow: hidden;">
-<div style="position: absolute; top: 0; right: 0; background: #2196f3; color: white; padding: 0.25rem 1rem; border-radius: 0 0 0 20px; font-size: 0.8rem;">Advanced</div>
-<h3 style="display: flex; align-items: center; gap: 0.75rem;">🎯 Outcome 4</h3>
+<div className="card fade-in-up hover-effect" style={{ padding: '2rem', background: '#e8f4fd', border: '3px solid #2196f3', borderRadius: '20px', position: 'relative', overflow: 'hidden' }}>
+<div style={{ position: 'absolute', top: '0', right: '0', background: '#2196f3', color: 'white', padding: '0.25rem 1rem', borderRadius: '0 0 0 20px', fontSize: '0.8rem' }}>Advanced</div>
+<h3 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>🎯 Outcome 4</h3>
 <p>Articulate the significance of embodiment for general AI</p>
-<div style="margin-top: 1rem; padding: 0.75rem; background: rgba(33, 150, 243, 0.1); border-radius: 12px;">
-  <div style="display: flex; align-items: center; gap: 0.5rem;">
-    <div style="width: 20px; height: 20px; border-radius: 50%; background: #2196f3; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem;">4</div>
+<div style={{ marginTop: '1rem', padding: '0.75rem', background: 'rgba(33, 150, 243, 0.1)', borderRadius: '12px' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+    <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: '#2196f3', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '0.75rem' }}>4</div>
     <span>Master the philosophy</span>
   </div>
 </div>
@@ -447,87 +447,87 @@ This approach allows Physical AI systems to access the most current information 
 ## 💻 Hardware & Software Requirements
 
 ### 🛠️ Software Stack
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(autoFill, minmax(200px, 1fr))', gap: '1rem', margin: '1.5rem 0' }}>
 
-<span class="hover-effect" style="background: #e3f2fd; padding: 1rem; border-radius: 20px; text-align: center; cursor: pointer;">Ubuntu 22.04 LTS</span>
-<span class="hover-effect" style="background: #e3f2fd; padding: 1rem; border-radius: 20px; text-align: center; cursor: pointer;">ROS 2 Humble</span>
-<span class="hover-effect" style="background: #e3f2fd; padding: 1rem; border-radius: 20px; text-align: center; cursor: pointer;">Python 3.10+</span>
-<span class="hover-effect" style="background: #e3f2fd; padding: 1rem; border-radius: 20px; text-align: center; cursor: pointer;">Gazebo Harmonic</span>
-<span class="hover-effect" style="background: #e3f2fd; padding: 1rem; border-radius: 20px; text-align: center; cursor: pointer;">CUDA 12.x</span>
-<span class="hover-effect" style="background: #e3f2fd; padding: 1rem; border-radius: 20px; text-align: center; cursor: pointer;">Isaac Sim</span>
-<span class="hover-effect" style="background: #e3f2fd; padding: 1rem; border-radius: 20px; text-align: center; cursor: pointer;">OpenCV 4.x</span>
-<span class="hover-effect" style="background: #e3f2fd; padding: 1rem; border-radius: 20px; text-align: center; cursor: pointer;">PyTorch</span>
-<span class="hover-effect" style="background: #e3f2fd; padding: 1rem; border-radius: 20px; text-align: center; cursor: pointer;">TensorFlow</span>
-<span class="hover-effect" style="background: #e3f2fd; padding: 1rem; border-radius: 20px; text-align: center; cursor: pointer;">Docker</span>
-<span class="hover-effect" style="background: #e3f2fd; padding: 1rem; border-radius: 20px; text-align: center; cursor: pointer;">Git</span>
-<span class="hover-effect" style="background: #e3f2fd; padding: 1rem; border-radius: 20px; text-align: center; cursor: pointer;">VS Code</span>
+<span className="hover-effect" style={{ background: '#e3f2fd', padding: '1rem', borderRadius: '20px', textAlign: 'center', cursor: 'pointer' }}>Ubuntu 22.04 LTS</span>
+<span className="hover-effect" style={{ background: '#e3f2fd', padding: '1rem', borderRadius: '20px', textAlign: 'center', cursor: 'pointer' }}>ROS 2 Humble</span>
+<span className="hover-effect" style={{ background: '#e3f2fd', padding: '1rem', borderRadius: '20px', textAlign: 'center', cursor: 'pointer' }}>Python 3.10+</span>
+<span className="hover-effect" style={{ background: '#e3f2fd', padding: '1rem', borderRadius: '20px', textAlign: 'center', cursor: 'pointer' }}>Gazebo Harmonic</span>
+<span className="hover-effect" style={{ background: '#e3f2fd', padding: '1rem', borderRadius: '20px', textAlign: 'center', cursor: 'pointer' }}>CUDA 12.x</span>
+<span className="hover-effect" style={{ background: '#e3f2fd', padding: '1rem', borderRadius: '20px', textAlign: 'center', cursor: 'pointer' }}>Isaac Sim</span>
+<span className="hover-effect" style={{ background: '#e3f2fd', padding: '1rem', borderRadius: '20px', textAlign: 'center', cursor: 'pointer' }}>OpenCV 4.x</span>
+<span className="hover-effect" style={{ background: '#e3f2fd', padding: '1rem', borderRadius: '20px', textAlign: 'center', cursor: 'pointer' }}>PyTorch</span>
+<span className="hover-effect" style={{ background: '#e3f2fd', padding: '1rem', borderRadius: '20px', textAlign: 'center', cursor: 'pointer' }}>TensorFlow</span>
+<span className="hover-effect" style={{ background: '#e3f2fd', padding: '1rem', borderRadius: '20px', textAlign: 'center', cursor: 'pointer' }}>Docker</span>
+<span className="hover-effect" style={{ background: '#e3f2fd', padding: '1rem', borderRadius: '20px', textAlign: 'center', cursor: 'pointer' }}>Git</span>
+<span className="hover-effect" style={{ background: '#e3f2fd', padding: '1rem', borderRadius: '20px', textAlign: 'center', cursor: 'pointer' }}>VS Code</span>
 
 </div>
 
 ### 🖥️ Hardware Specifications
-<div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0;">
+<div className="grid-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(autoFit, minmax(300px, 1fr))', gap: '2rem', margin: '2rem 0' }}>
 
-<div class="card fade-in-up hover-effect" style="padding: 1.5rem; background: #f0f8ff; border: 2px solid #4a90e2; border-radius: 16px;">
+<div className="card fade-in-up hover-effect" style={{ padding: '1.5rem', background: '#f0f8ff', border: '2px solid #4a90e2', borderRadius: '16px' }}>
 <h4>Minimum Requirements</h4>
-<ul style="list-style-type: none; padding: 0;">
-<li style="margin: 0.5rem 0; padding: 0.5rem 0 0.5rem 1.5rem; position: relative;">
-  <span style="position: absolute; left: 0; color: #4a90e2;">🖥️</span>
+<ul style={{ listStyleType: 'none', padding: '0' }}>
+<li style={{ margin: '0.5rem 0', padding: '0.5rem 0 0.5rem 1.5rem', position: 'relative' }}>
+  <span style={{ position: 'absolute', left: '0', color: '#4a90e2' }}>🖥️</span>
   <strong>CPU:</strong> Intel i5 or AMD Ryzen 5 (6+ cores)
 </li>
-<li style="margin: 0.5rem 0; padding: 0.5rem 0 0.5rem 1.5rem; position: relative;">
-  <span style="position: absolute; left: 0; color: #4a90e2;">💾</span>
+<li style={{ margin: '0.5rem 0', padding: '0.5rem 0 0.5rem 1.5rem', position: 'relative' }}>
+  <span style={{ position: 'absolute', left: '0', color: '#4a90e2' }}>💾</span>
   <strong>RAM:</strong> 16GB DDR4
 </li>
-<li style="margin: 0.5rem 0; padding: 0.5rem 0 0.5rem 1.5rem; position: relative;">
-  <span style="position: absolute; left: 0; color: #4a90e2;">🎮</span>
+<li style={{ margin: '0.5rem 0', padding: '0.5rem 0 0.5rem 1.5rem', position: 'relative' }}>
+  <span style={{ position: 'absolute', left: '0', color: '#4a90e2' }}>🎮</span>
   <strong>GPU:</strong> NVIDIA RTX 3060 or equivalent
 </li>
-<li style="margin: 0.5rem 0; padding: 0.5rem 0 0.5rem 1.5rem; position: relative;">
-  <span style="position: absolute; left: 0; color: #4a90e2;">📦</span>
+<li style={{ margin: '0.5rem 0', padding: '0.5rem 0 0.5rem 1.5rem', position: 'relative' }}>
+  <span style={{ position: 'absolute', left: '0', color: '#4a90e2' }}>📦</span>
   <strong>Storage:</strong> 500GB SSD
 </li>
 </ul>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 1.5rem; background: #e8f5e9; border: 2px solid #4caf50; border-radius: 16px;">
+<div className="card fade-in-up hover-effect" style={{ padding: '1.5rem', background: '#e8f5e9', border: '2px solid #4caf50', borderRadius: '16px' }}>
 <h4>Recommended Requirements</h4>
-<ul style="list-style-type: none; padding: 0;">
-<li style="margin: 0.5rem 0; padding: 0.5rem 0 0.5rem 1.5rem; position: relative;">
-  <span style="position: absolute; left: 0; color: #4caf50;">🖥️</span>
+<ul style={{ listStyleType: 'none', padding: '0' }}>
+<li style={{ margin: '0.5rem 0', padding: '0.5rem 0 0.5rem 1.5rem', position: 'relative' }}>
+  <span style={{ position: 'absolute', left: '0', color: '#4caf50' }}>🖥️</span>
   <strong>CPU:</strong> Intel i9 or AMD Ryzen 9 (8+ cores)
 </li>
-<li style="margin: 0.5rem 0; padding: 0.5rem 0 0.5rem 1.5rem; position: relative;">
-  <span style="position: absolute; left: 0; color: #4caf50;">💾</span>
+<li style={{ margin: '0.5rem 0', padding: '0.5rem 0 0.5rem 1.5rem', position: 'relative' }}>
+  <span style={{ position: 'absolute', left: '0', color: '#4caf50' }}>💾</span>
   <strong>RAM:</strong> 32GB DDR4
 </li>
-<li style="margin: 0.5rem 0; padding: 0.5rem 0 0.5rem 1.5rem; position: relative;">
-  <span style="position: absolute; left: 0; color: #4caf50;">🎮</span>
+<li style={{ margin: '0.5rem 0', padding: '0.5rem 0 0.5rem 1.5rem', position: 'relative' }}>
+  <span style={{ position: 'absolute', left: '0', color: '#4caf50' }}>🎮</span>
   <strong>GPU:</strong> NVIDIA RTX 4080 or RTX 6000 Ada
 </li>
-<li style="margin: 0.5rem 0; padding: 0.5rem 0 0.5rem 1.5rem; position: relative;">
-  <span style="position: absolute; left: 0; color: #4caf50;">📦</span>
+<li style={{ margin: '0.5rem 0', padding: '0.5rem 0 0.5rem 1.5rem', position: 'relative' }}>
+  <span style={{ position: 'absolute', left: '0', color: '#4caf50' }}>📦</span>
   <strong>Storage:</strong> 1TB+ NVMe SSD
 </li>
 </ul>
 </div>
 
-<div class="card fade-in-up hover-effect" style="padding: 1.5rem; background: #fff3e0; border: 2px solid #ff9800; border-radius: 16px;">
+<div className="card fade-in-up hover-effect" style={{ padding: '1.5rem', background: '#fff3e0', border: '2px solid #ff9800', borderRadius: '16px' }}>
 <h4>Development Robot</h4>
-<ul style="list-style-type: none; padding: 0;">
-<li style="margin: 0.5rem 0; padding: 0.5rem 0 0.5rem 1.5rem; position: relative;">
-  <span style="position: absolute; left: 0; color: #ff9800;">🤖</span>
+<ul style={{ listStyleType: 'none', padding: '0' }}>
+<li style={{ margin: '0.5rem 0', padding: '0.5rem 0 0.5rem 1.5rem', position: 'relative' }}>
+  <span style={{ position: 'absolute', left: '0', color: '#ff9800' }}>🤖</span>
   <strong>TurtleBot3</strong> (affordable & educational)
 </li>
-<li style="margin: 0.5rem 0; padding: 0.5rem 0 0.5rem 1.5rem; position: relative;">
-  <span style="position: absolute; left: 0; color: #ff9800;">🔧</span>
+<li style={{ margin: '0.5rem 0', padding: '0.5rem 0 0.5rem 1.5rem', position: 'relative' }}>
+  <span style={{ position: 'absolute', left: '0', color: '#ff9800' }}>🔧</span>
   <strong>Jetson Nano</strong> (edge computing)
 </li>
-<li style="margin: 0.5rem 0; padding: 0.5rem 0 0.5rem 1.5rem; position: relative;">
-  <span style="position: absolute; left: 0; color: #ff9800;">🔌</span>
+<li style={{ margin: '0.5rem 0', padding: '0.5rem 0 0.5rem 1.5rem', position: 'relative' }}>
+  <span style={{ position: 'absolute', left: '0', color: '#ff9800' }}>🔌</span>
   <strong>Sensors</strong> (LIDAR, Camera, IMU)
 </li>
-<li style="margin: 0.5rem 0; padding: 0.5rem 0 0.5rem 1.5rem; position: relative;">
-  <span style="position: absolute; left: 0; color: #ff9800;">⚙️</span>
+<li style={{ margin: '0.5rem 0', padding: '0.5rem 0 0.5rem 1.5rem', position: 'relative' }}>
+  <span style={{ position: 'absolute', left: '0', color: '#ff9800' }}>⚙️</span>
   <strong>Actuators</strong> (motors, servos)
 </li>
 </ul>

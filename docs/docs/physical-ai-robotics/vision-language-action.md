@@ -6,11 +6,11 @@ description: Comprehensive guide to Vision-Language-Action models for robotic co
 
 # 🎯 Vision-Language-Action (VLA) for Physical AI
 
-<div class="module-highlight fade-in-up tilt-card" style="padding: 2.5rem; margin: 2.5rem 0; border-radius: 20px; background: linear-gradient(135deg, #f5f7fa, #e4edf9); border-left: 6px solid #9b59b6; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+<div className="module-highlight fade-in-up tilt-card" style={{padding: '2.5rem', margin: '2.5rem 0', borderRadius: '20px', background: 'linear-gradient(135deg, #f5f7fa, #e4edf9)', borderLeft: '6px solid #9b59b6', boxShadow: '0 20px 40px rgba(0,0,0,0.1)'}}>
 
 ## 🧠 The Next Generation of Embodied AI
 
-<div class="pulse" style="display: inline-block; padding: 0.5rem 1rem; background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; border-radius: 30px; font-size: 0.9rem;">
+<div className="pulse" style={{display: 'inline-block', padding: '0.5rem 1rem', background: 'linear-gradient(135deg, #9b59b6, #8e44ad)', color: 'white', borderRadius: '30px', fontSize: '0.9rem'}}>
   Multimodal Intelligence
   <br /><br />
   Vision-Language-Action (VLA) represents the frontier of embodied AI, seamlessly integrating visual perception, natural language understanding, and physical action to create truly intelligent robotic systems that can interpret human commands and perform complex tasks in real-world environments.
@@ -18,15 +18,15 @@ description: Comprehensive guide to Vision-Language-Action models for robotic co
 
 ## 🚀 Overview of Vision-Language-Action Systems
 
-<div class="grid-container" style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; margin: 2rem 0;">
+<div className="grid-container" style={{display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem', margin: '2rem 0'}}>
 
-<div class="hover-effect">
+<div className="hover-effect">
 Vision-Language-Action (VLA) systems represent a revolutionary approach to embodied artificial intelligence, where perception (vision), cognition (language), and action are seamlessly integrated. These systems enable robots to understand natural language commands and execute complex tasks in unstructured environments, bridging the gap between human communication and physical execution.
 
 The core concept involves three interconnected components working in harmony: visual perception systems that interpret the environment, language understanding modules that process natural language instructions, and action generation systems that convert high-level commands into precise physical movements.
 </div>
 
-<div class="card fade-in-up" style="padding: 1.5rem; border-radius: 16px; background: linear-gradient(135deg, #ffffff, #f8f9ff); border: 1px solid #e0e0ff;">
+<div className="card fade-in-up" style={{padding: '1.5rem', borderRadius: '16px', background: 'linear-gradient(135deg, #ffffff, #f8f9ff)', border: '1px solid #e0e0ff'}}>
 ### 🎯 Key Takeaway
 <div class="interactive-element">
 > *"VLA systems transform robots from simple programmed machines into intelligent agents that can understand and respond to human commands in complex, real-world environments. This represents the ultimate fusion of perception, cognition, and action in artificial intelligence."*

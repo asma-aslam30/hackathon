@@ -6,11 +6,11 @@ description: Comprehensive guide to developing autonomous humanoid robots with i
 
 # 🦾 Capstone - Autonomous Humanoid Development
 
-<div class="module-highlight fade-in-up tilt-card" style="padding: 2.5rem; margin: 2.5rem 0; border-radius: 20px; background: linear-gradient(135deg, #f5f7fa, #e4edf9); border-left: 6px solid #e67e22; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+<div className="module-highlight fade-in-up tilt-card" style={{padding: '2.5rem', margin: '2.5rem 0', borderRadius: '20px', background: 'linear-gradient(135deg, #f5f7fa, #e4edf9)', borderLeft: '6px solid #e67e22', boxShadow: '0 20px 40px rgba(0,0,0,0.1)'}}>
 
 ## 🤖 The Apex of Physical AI Integration
 
-<div class="pulse" style="display: inline-block; padding: 0.5rem 1rem; background: linear-gradient(135deg, #e67e22, #d35400); color: white; border-radius: 30px; font-size: 0.9rem;">
+<div className="pulse" style={{display: 'inline-block', padding: '0.5rem 1rem', background: 'linear-gradient(135deg, #e67e22, #d35400)', color: 'white', borderRadius: '30px', fontSize: '0.9rem'}}>
   Humanoid Robotics Synthesis
   <br /><br />
   The development of autonomous humanoid robots represents the ultimate integration of Physical AI technologies. This capstone project combines all the modules learned throughout the curriculum into a unified, intelligent, human-like robotic system capable of complex interaction and task execution in human environments.
@@ -18,15 +18,15 @@ description: Comprehensive guide to developing autonomous humanoid robots with i
 
 ## 🚀 Overview of Autonomous Humanoid Development
 
-<div class="grid-container" style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; margin: 2rem 0;">
+<div className="grid-container" style={{display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem', margin: '2rem 0'}}>
 
-<div class="hover-effect">
+<div className="hover-effect">
 Autonomous humanoid development is the most ambitious application of Physical AI, requiring the integration of multiple complex systems: advanced locomotion control, sophisticated perception systems, natural human interaction capabilities, and robust autonomy algorithms. These robots must navigate human environments, understand human communication, and perform tasks with the dexterity and intelligence of human beings.
 
 Humanoid robots present unique challenges and opportunities: they must be anthropomorphic enough to operate in human-designed environments while possessing the intelligence to understand and respond to human needs and commands. This capstone project synthesizes knowledge from computer vision, natural language processing, control systems, mechanics, and robotics into a single, coherent physical AI system.
 </div>
 
-<div class="card fade-in-up" style="padding: 1.5rem; border-radius: 16px; background: linear-gradient(135deg, #ffffff, #f8f9ff); border: 1px solid #e0e0ff;">
+<div className="card fade-in-up" style={{padding: '1.5rem', borderRadius: '16px', background: 'linear-gradient(135deg, #ffffff, #f8f9ff)', border: '1px solid #e0e0ff'}}>
 ### 🎯 Key Takeaway
 <div class="interactive-element">
 > *"Humanoid robotics represents the ultimate challenge in Physical AI: creating machines that can navigate, interact, and operate in human environments with human-like intelligence and capabilities. Successfully developing autonomous humanoid robots requires mastering every aspect of Physical AI."*
