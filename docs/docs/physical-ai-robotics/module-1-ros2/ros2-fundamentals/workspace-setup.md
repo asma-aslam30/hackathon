@@ -387,11 +387,15 @@ This package can dynamically retrieve up-to-date documentation via the MCP proto
 by querying the Context7 documentation server.
 
 Example query:
+```json
+{"method": "tools/call", "id": "resolve-library-id", "params": {"libraryName": "rclpy.node"}}
 ```
-{{"method": "tools/call", "id": "resolve-library-id", "params": {{"libraryName": "rclpy.node"}}}}
-```
-"""
-        
+
+## Context7 Documentation Access Patterns (Continued)
+
+The following Python code demonstrates how to create Context7-enhanced documentation:
+
+```python
         docs_path = package_path / 'context7_docs.md'
         with open(docs_path, 'w') as f:
             f.write(docs_content)
@@ -404,7 +408,7 @@ def main():
         "developer@robotics.com",
         "A sample Context7-enhanced ROS 2 package"
     )
-    
+
     print("Context7-enhanced package created successfully!")
 
 if __name__ == "__main__":

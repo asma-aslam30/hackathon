@@ -118,12 +118,12 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'MCP Guide',
-              to: '/docs/mcp-integration',
+              label: 'Physical AI & Robotics',
+              to: '/docs/physical-ai-robotics/introduction',
             },
             {
-              label: 'Physical AI & Robotics',
-              to: '/docs/intro',
+              label: 'AI Robot Brain (Isaac)',
+              to: '/docs/physical-ai-robotics/ai-robot-brain-isaac',
             },
           ],
         },

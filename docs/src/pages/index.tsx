@@ -77,14 +77,14 @@ function HomepageHeader() {
           <div className={styles.heroButtons}>
             <Link
               className={clsx('button button--lg', styles.primaryButton)}
-              to="/docs/intro">
+              to="/docs/physical-ai-robotics/introduction">
               <RocketIcon />
               <span>Get Started</span>
               <span className={styles.buttonGlow} aria-hidden="true" />
             </Link>
             <Link
               className={clsx('button button--lg', styles.secondaryButton)}
-              to="/docs/intro">
+              to="/docs/physical-ai-robotics/introduction">
               <CodeIcon />
               <span>View Docs</span>
             </Link>
