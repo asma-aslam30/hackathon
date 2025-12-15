@@ -29,13 +29,6 @@ const SparklesIcon = () => (
   </svg>
 );
 
-const DevicesIcon = () => (
-  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <rect x="2" y="3" width="20" height="14" rx="2" />
-    <path d="M8 21h8m-4-4v4" />
-  </svg>
-);
-
 const CodeIcon = () => (
   <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
     <polyline points="16 18 22 12 16 6" />
@@ -43,16 +36,31 @@ const CodeIcon = () => (
   </svg>
 );
 
-const AccessibleIcon = () => (
+const BrainIcon = () => (
   <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <circle cx="12" cy="12" r="10" />
-    <path d="M12 16v-4m0-4h.01" />
+    <path d="M12 4.5a2.5 2.5 0 0 0-4.96-.46 2.5 2.5 0 0 0-2.48 3 2.5 2.5 0 0 0-.06 4.5 2.5 2.5 0 0 0 3.06 2.96A2.5 2.5 0 0 0 10.5 19.5a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.48-3 2.5 2.5 0 0 0 .06-4.5 2.5 2.5 0 0 0-3.06-2.96A2.5 2.5 0 0 0 12 4.5Z" />
   </svg>
 );
 
-const HeartIcon = () => (
+const RobotIcon = () => (
   <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+    <rect x="3" y="11" width="18" height="10" rx="2" />
+    <circle cx="9" cy="6" r="2" />
+    <circle cx="15" cy="6" r="2" />
+    <path d="M10 16h.01M14 16h.01" />
+  </svg>
+);
+
+const GazeboIcon = () => (
+  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M12 3l2 5 5 .5-4 3.5 1 5-4.5-2.5L12 20l-1-5L6.5 12.5 12 10l1-5z" />
+  </svg>
+);
+
+const IsaacIcon = () => (
+  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M20 10c0 4.4-3.6 8-8 8s-8-3.6-8-8 3.6-8 8-8 8 3.6 8 8z" />
+    <circle cx="12" cy="10" r="3" />
   </svg>
 );
 
@@ -66,7 +74,7 @@ function HomepageHeader() {
         <div className={clsx(styles.heroGlass, 'animate-fade-in-up')}>
           <div className={styles.heroBadge}>
             <SparklesIcon />
-            <span>Next-Gen Documentation</span>
+            <span>Physical AI & Robotics Platform</span>
           </div>
 
           <Heading as="h1" className={styles.heroTitle}>
@@ -80,13 +88,12 @@ function HomepageHeader() {
               to="/docs/physical-ai-robotics/introduction">
               <RocketIcon />
               <span>Get Started</span>
-              <span className={styles.buttonGlow} aria-hidden="true" />
             </Link>
             <Link
               className={clsx('button button--lg', styles.secondaryButton)}
               to="/docs/physical-ai-robotics/introduction">
               <CodeIcon />
-              <span>View Docs</span>
+              <span>View Documentation</span>
             </Link>
           </div>
 
@@ -101,7 +108,7 @@ function HomepageHeader() {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
-              <span>Lightning Fast</span>
+              <span>AI-Powered</span>
             </div>
             <div className={styles.heroFeature}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -120,30 +127,94 @@ function HomepageHeader() {
   );
 }
 
+function ModulesSection() {
+  const modules = [
+    {
+      title: "ROS 2 - Robotic Nervous System",
+      icon: <BrainIcon />,
+      description: "The de facto standard for robotic middleware with advanced communication patterns",
+      color: "cyan",
+      to: "/docs/physical-ai-robotics/module-1-ros2/overview"
+    },
+    {
+      title: "Digital Twin - Gazebo & Unity",
+      icon: <RobotIcon />,
+      description: "High-fidelity simulation environments for development and testing",
+      color: "purple",
+      to: "/docs/physical-ai-robotics/module-2-digital-twin/overview"
+    },
+    {
+      title: "AI-Robot Brain - Isaac Sim",
+      icon: <IsaacIcon />,
+      description: "NVIDIA Isaac Sim for advanced robotics and AI development",
+      color: "pink",
+      to: "/docs/physical-ai-robotics/module-3-isaac-brain/overview"
+    },
+    {
+      title: "Vision-Language-Action",
+      icon: <GazeboIcon />,
+      description: "Intelligent systems combining perception, reasoning, and action",
+      color: "green",
+      to: "/docs/physical-ai-robotics/module-4-vla/overview"
+    }
+  ];
+
+  return (
+    <section className={styles.modulesSection}>
+      <div className="container">
+        <Heading as="h2" className={styles.sectionTitle}>
+          Core Modules
+        </Heading>
+        <p className={styles.sectionSubtitle}>
+          Comprehensive modules covering all aspects of Physical AI & Robotics
+        </p>
+
+        <div className={styles.modulesGrid}>
+          {modules.map((module, index) => (
+            <Link to={module.to} key={index} className={styles.moduleCard}>
+              <InteractiveCard
+                variant="glass"
+                accentColor={module.color}
+                className={styles.moduleCardInner}
+              >
+                <div className={clsx(styles.moduleIcon, styles[`icon-${module.color}`])}>
+                  {module.icon}
+                </div>
+                <h3 className={styles.moduleTitle}>{module.title}</h3>
+                <p className={styles.moduleDescription}>{module.description}</p>
+              </InteractiveCard>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function StatsSection() {
   return (
     <section className={styles.statsSection}>
       <div className="container">
         <div className={styles.statsGrid}>
           <StatsCounter
-            end={10000}
+            end={15000}
             suffix="+"
-            label="Active Users"
-            icon="👥"
+            label="Lines of Code"
+            icon="💻"
             accentColor="cyan"
           />
           <StatsCounter
-            end={500}
+            end={4}
             suffix="+"
-            label="Projects Built"
-            icon="🚀"
+            label="Core Modules"
+            icon="📚"
             accentColor="purple"
           />
           <StatsCounter
-            end={99}
-            suffix="%"
-            label="Satisfaction Rate"
-            icon="⭐"
+            end={100}
+            suffix="+"
+            label="Code Examples"
+            icon="🧪"
             accentColor="pink"
           />
           <StatsCounter
@@ -162,22 +233,22 @@ function StatsSection() {
 function TestimonialsSection() {
   const testimonials = [
     {
-      quote: "This is the most beautiful documentation site I've ever seen. The interactive elements make learning a joy!",
-      author: "Sarah Chen",
-      role: "Frontend Developer",
-      avatar: "👩‍💻",
+      quote: "The Physical AI & Robotics platform is a game-changer for robotic development. The combination of ROS 2, simulation environments, and AI capabilities is unparalleled.",
+      author: "Dr. Sarah Robotics",
+      role: "Robotics Researcher",
+      avatar: "🤖",
     },
     {
-      quote: "The cyber-minimalist design is stunning. It's both functional and visually impressive.",
-      author: "Alex Kumar",
-      role: "UI/UX Designer",
-      avatar: "🎨",
+      quote: "As a robotics engineer, I've found the integrated approach of this platform incredibly valuable. The documentation is comprehensive and the examples are practical.",
+      author: "Alex Automation",
+      role: "Automation Engineer",
+      avatar: "⚙️",
     },
     {
-      quote: "Amazing performance and accessibility. The animations are smooth and the contrast is perfect.",
-      author: "Jordan Smith",
+      quote: "Building complex robotic systems has never been easier with the comprehensive modules and AI integration. The platform accelerates development timelines significantly.",
+      author: "Jordan Innovator",
       role: "Tech Lead",
-      avatar: "👨‍💼",
+      avatar: "🚀",
     },
   ];
 
@@ -185,10 +256,10 @@ function TestimonialsSection() {
     <section className={styles.testimonialsSection}>
       <div className="container">
         <Heading as="h2" className={styles.sectionTitle}>
-          What People Say
+          What Experts Say
         </Heading>
         <p className={styles.sectionSubtitle}>
-          Loved by developers and designers worldwide
+          Trusted by robotics professionals worldwide
         </p>
 
         <Carousel autoPlay interval={6000} className={styles.testimonialCarousel}>
@@ -213,17 +284,71 @@ function TestimonialsSection() {
   );
 }
 
+function ShowcaseSection() {
+  const showcases = [
+    {
+      title: "Autonomous Mobile Robot",
+      description: "Navigation and manipulation in complex environments",
+      image: "https://via.placeholder.com/400x200/4f46e5/white?text=AMR"
+    },
+    {
+      title: "Humanoid Robot Control",
+      description: "AI-driven locomotion and balance systems",
+      image: "https://via.placeholder.com/400x200/ec4899/white?text=HUMANOID"
+    },
+    {
+      title: "Manipulation Tasks",
+      description: "Precision grasping and object manipulation",
+      image: "https://via.placeholder.com/400x200/0ea5e9/white?text=MANIPULATION"
+    },
+    {
+      title: "Simulation Environments",
+      description: "High-fidelity physics and sensor simulation",
+      image: "https://via.placeholder.com/400x200/10b981/white?text=SIMULATION"
+    }
+  ];
+
+  return (
+    <section className={styles.showcaseSection}>
+      <div className="container">
+        <Heading as="h2" className={styles.sectionTitle}>
+          Real World Applications
+        </Heading>
+        <p className={styles.sectionSubtitle}>
+          See how our platform is used in actual robotic applications
+        </p>
+
+        <div className={styles.showcaseGrid}>
+          {showcases.map((showcase, idx) => (
+            <div key={idx} className={styles.showcaseCard}>
+              <InteractiveCard variant="glass" accentColor={idx % 2 === 0 ? 'cyan' : 'purple'}>
+                <div className={styles.showcaseImage}>
+                  <img src={showcase.image} alt={showcase.title} />
+                </div>
+                <h3 className={styles.showcaseTitle}>{showcase.title}</h3>
+                <p className={styles.showcaseDescription}>{showcase.description}</p>
+              </InteractiveCard>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
       title={`Welcome to ${siteConfig.title}`}
-      description="Modern documentation with interactive UI and cyber-minimalist design">
+      description="Physical AI & Robotics Platform - Advanced robotics development with AI integration">
       <HomepageHeader />
       <main className={styles.mainContent}>
         <StatsSection />
-        <HomepageFeatures />
+        <ModulesSection />
+        <ShowcaseSection />
         <TestimonialsSection />
+        <HomepageFeatures />
       </main>
     </Layout>
   );
