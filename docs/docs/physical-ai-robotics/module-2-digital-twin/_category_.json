@@ -1,8 +1,8 @@
 {
   "label": "Module 2: The Digital Twin (Gazebo & Unity)",
-  "position": 3,
+  "position": 2,
   "link": {
     "type": "generated-index",
-    "title": "Digital Twin: Gazebo & Unity"
+    "description": "Focus: Physics simulation and environment building. Simulating physics, gravity, and collisions in Gazebo, high-fidelity rendering and human-robot interaction in Unity, and simulating sensors like LiDAR, Depth Cameras, and IMUs."
   }
 }

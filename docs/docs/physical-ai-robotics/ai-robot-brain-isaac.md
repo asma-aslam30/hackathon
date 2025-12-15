@@ -76,7 +76,7 @@ Isaac is critical for Physical AI because it provides:
 <div class="">
 
 <div class="card fade-in-up" class="">
-<h3Isaac Sim</h3>
+<h3>Isaac Sim</h3>
 <p>High-fidelity simulation environment for robotics:</p>
 <ul class="">
 <li>Realistic physics simulation with PhysX</li>
@@ -90,7 +90,7 @@ Isaac is critical for Physical AI because it provides:
 </div>
 
 <div class="card fade-in-up" class="" data-aos="fade-left">
-<h3Isaac Apps</h3>
+<h3>Isaac Apps</h3>
 <p>Reference applications and algorithms for robotics:</p>
 <ul class="">
 <li>Perception algorithms (vision, object detection)</li>
@@ -104,7 +104,7 @@ Isaac is critical for Physical AI because it provides:
 </div>
 
 <div class="card fade-in-up" class="" data-aos="fade-left">
-<h3Isaac SDK</h3>
+<h3>Isaac SDK</h3>
 <p>Software development kit for AI robotics:</p>
 <ul class="">
 <li>Deep learning framework integration</li>
@@ -182,8 +182,8 @@ Isaac is critical for Physical AI because it provides:
     <span >Inspection</span>
   </div>
   <div class="callout-row">
-      <spanEfficiency Gain</span>
-      <span40%</span>
+      <span>Efficiency Gain</span>
+      <span>40%</span>
     </div>
     <div class="progress-bar">
       <div class="progress progress-orange"></div>
@@ -206,8 +206,8 @@ Isaac is critical for Physical AI because it provides:
   </div>
   <div >
     <div >
-      <spanThroughput</span>
-      <span3x</span>
+      <span>Throughput</span>
+      <span>3x</span>
     </div>
     <div class="progress-bar">
       <div class="progress progress-green"></div>
@@ -230,8 +230,8 @@ Isaac is critical for Physical AI because it provides:
   </div>
   <div >
     <div >
-      <spanAccuracy</span>
-      <span99.5%</span>
+      <span>Accuracy</span>
+      <span>99.5%</span>
     </div>
     <div class="progress-bar">
       <div class="progress progress-blue"></div>
@@ -254,8 +254,8 @@ Isaac is critical for Physical AI because it provides:
   </div>
   <div >
     <div >
-      <spanUser Satisfaction</span>
-      <span93.7%</span>
+      <span>User Satisfaction</span>
+      <span>93.7%</span>
     </div>
     <div class="progress-bar">
       <div class="progress progress-purple" ></div>
@@ -1651,4 +1651,3 @@ The key advantages of Isaac include:
 As robotics continues to advance, Isaac will remain at the forefront, providing the necessary tools and capabilities to develop the next generation of intelligent robotic systems that will transform industries and improve human life.
 
 The future of robotics is intelligent, autonomous, and collaborative—and Isaac provides the foundation for realizing this future. Whether developing industrial automation systems, service robots, or research platforms, Isaac offers the comprehensive tools and capabilities needed to push the boundaries of what's possible in robotics and artificial intelligence.
-</div>
