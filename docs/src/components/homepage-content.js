@@ -5,13 +5,13 @@ export const homepageContent = {
     logoUrl: null,
     navigationItems: [
       { label: "Home", url: "/", type: "internal" },
-      { label: "Book", url: "/docs/intro", type: "internal" },
+      { label: "Book", url: "/docs/physical-ai-robotics/introduction", type: "internal" },
       { label: "AI Chatbot", url: "/chatbot", type: "internal" },
       { label: "GitHub", url: "https://github.com", type: "external" }
     ],
     ctaButton: {
       text: "Get Started",
-      url: "/docs/intro",
+      url: "/docs/physical-ai-robotics/introduction",
       type: "primary",
       target: "_self"
     }
@@ -24,7 +24,7 @@ export const homepageContent = {
     primaryCta: {
       id: "hero-primary-cta",
       text: "Read the Book",
-      url: "/docs/intro",
+      url: "/docs/physical-ai-robotics/introduction",
       type: "primary",
       target: "_self"
     },
@@ -44,7 +44,7 @@ export const homepageContent = {
         cta: {
           id: "slide1-cta",
           text: "Start Learning",
-          url: "/docs/intro",
+          url: "/docs/physical-ai-robotics/introduction",
           type: "primary",
           target: "_self"
         }
@@ -57,7 +57,7 @@ export const homepageContent = {
         cta: {
           id: "slide2-cta",
           text: "Explore Examples",
-          url: "/docs/examples",
+          url: "/docs/physical-ai-robotics/module-1-ros2/ros2-fundamentals/installation",
           type: "primary",
           target: "_self"
         }
@@ -70,21 +70,21 @@ export const homepageContent = {
       title: "Comprehensive Guides",
       description: "Detailed explanations of complex topics with practical examples and best practices.",
       iconUrl: "/img/icon-guide.svg", // Placeholder
-      link: "/docs/guides"
+      link: "/docs/physical-ai-robotics/introduction"
     },
     {
       id: "feature-2",
       title: "Interactive Examples",
       description: "Hands-on examples you can run and modify to deepen your understanding.",
       iconUrl: "/img/icon-example.svg", // Placeholder
-      link: "/docs/examples"
+      link: "/docs/physical-ai-robotics/module-1-ros2/ros2-fundamentals/workspace-setup"
     },
     {
       id: "feature-3",
       title: "AI Integration",
       description: "Learn how to integrate AI into your systems with practical patterns and techniques.",
       iconUrl: "/img/icon-ai.svg", // Placeholder
-      link: "/docs/ai-integration"
+      link: "/docs/physical-ai-robotics/module-3-isaac-brain/overview"
     }
   ],
   testimonials: [
@@ -109,7 +109,7 @@ export const homepageContent = {
     {
       id: "cta-read-book",
       text: "Read the Book",
-      url: "/docs/intro",
+      url: "/docs/physical-ai-robotics/introduction",
       type: "primary",
       target: "_self"
     },
