@@ -154,6 +154,15 @@
   cursor: not-allowed;
 }
 
+.warning-message {
+  background-color: #fff3cd;
+  border: 1px solid #ffeaa7;
+  color: #856404;
+  align-self: center;
+  max-width: 95%;
+  font-size: 0.9rem;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .chatbot-container {

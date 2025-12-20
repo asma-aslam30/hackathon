@@ -1,10 +1,7 @@
 import axios from 'axios';
 
 // API configuration constants
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL ||
-  (typeof window !== 'undefined' && window.location.hostname !== 'localhost'
-    ? `${window.location.protocol}//${window.location.hostname}:${window.location.port || 80}`
-    : 'http://localhost:8000');
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000';
 const API_TIMEOUT = 30000; // 30 seconds
 
 // Create axios instance with default configuration

@@ -91,6 +91,12 @@ function HomepageHeader() {
             </Link>
             <Link
               className={clsx('button button--lg', styles.secondaryButton)}
+              to="/chatbot">
+              <SparklesIcon />
+              <span>AI Chatbot</span>
+            </Link>
+            <Link
+              className={clsx('button button--lg', styles.secondaryButton)}
               to="/docs/physical-ai-robotics/introduction">
               <CodeIcon />
               <span>View Documentation</span>

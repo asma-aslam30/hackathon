@@ -18,9 +18,25 @@ const Chatbot = () => {
         const isHealthy = await chatbotService.checkHealth();
         if (!isHealthy) {
           console.warn('Chatbot service is not healthy');
+          // Show a message to the user that the service is unavailable
+          setMessages(prev => [...prev, {
+            id: 'service-warning',
+            text: 'Note: The chatbot backend service is currently unavailable. This may be because the backend is not deployed yet.',
+            sender: 'system',
+            timestamp: new Date(),
+            warning: true
+          }]);
         }
       } catch (error) {
         console.error('Error checking service health:', error.message);
+        // Show a message to the user that the service is unavailable
+        setMessages(prev => [...prev, {
+          id: 'service-error',
+          text: 'Note: The chatbot backend service is currently unavailable. This may be because the backend is not deployed yet.',
+          sender: 'system',
+          timestamp: new Date(),
+          warning: true
+        }]);
       }
     };
 
@@ -87,7 +103,7 @@ const Chatbot = () => {
           messages.map((message) => (
             <div
               key={message.id}
-              className={`message ${message.sender}-message`}
+              className={`message ${message.sender}-message ${message.warning ? 'warning-message' : ''}`}
             >
               <div className="message-text">{message.text}</div>
               {message.sources && message.sources.length > 0 && (

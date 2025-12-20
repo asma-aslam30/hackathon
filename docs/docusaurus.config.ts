@@ -105,6 +105,7 @@ const config: Config = {
           position: 'left',
           label: 'Physical AI & Robotics',
         },
+        { to: '/chatbot', label: 'AI Chatbot', position: 'left' },
         { to: '/blog', label: 'Blog', position: 'left' },
         {
           href: 'https://github.com/asma-aslam30/hackathon',
