@@ -45,6 +45,7 @@ const config: Config = {
       defer: true,
     },
   ],
+  staticDirectories: ['static', 'public'],
   presets: [
     [
       'classic',

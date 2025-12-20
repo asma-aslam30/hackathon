@@ -1,0 +1,147 @@
+openapi: 3.0.0
+info:
+  title: RAG Retrieval Testing API
+  description: API for testing and validating the RAG retrieval pipeline
+  version: 1.0.0
+paths:
+  /test/connection:
+    get:
+      summary: Test connection to Qdrant database
+      responses:
+        '200':
+          description: Connection successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  connected:
+                    type: boolean
+                  collection_info:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      vector_count:
+                        type: integer
+  /test/verify-embeddings:
+    get:
+      summary: Verify stored embeddings in Qdrant
+      responses:
+        '200':
+          description: Embeddings verified successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  total_embeddings:
+                    type: integer
+                  verified_count:
+                    type: integer
+                  verification_rate:
+                    type: number
+  /test/query:
+    post:
+      summary: Execute a sample query and retrieve results
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                top_k:
+                  type: integer
+                  default: 5
+                verify_accuracy:
+                  type: boolean
+                  default: true
+      responses:
+        '200':
+          description: Query executed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  query_id:
+                    type: string
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chunk_id:
+                          type: string
+                        content:
+                          type: string
+                        similarity_score:
+                          type: number
+                        source_url:
+                          type: string
+                  accuracy_metrics:
+                    type: object
+                    properties:
+                      accuracy_percentage:
+                        type: number
+                      precision:
+                        type: number
+                      recall:
+                        type: number
+  /test/session:
+    post:
+      summary: Execute a full test session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                test_config:
+                  type: object
+                  properties:
+                    coverage_percentage:
+                      type: number
+                      default: 80
+                    accuracy_threshold:
+                      type: number
+                      default: 90
+                    sample_queries:
+                      type: array
+                      items:
+                        type: string
+      responses:
+        '200':
+          description: Test session completed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  session_id:
+                    type: string
+                  results:
+                    type: object
+                    properties:
+                      total_queries:
+                        type: integer
+                      queries_passed:
+                        type: integer
+                      average_accuracy:
+                        type: number
+                      coverage_percentage:
+                        type: number
+                      issues_found:
+                        type: array
+                        items:
+                          type: string
+                      summary_report:
+                        type: string

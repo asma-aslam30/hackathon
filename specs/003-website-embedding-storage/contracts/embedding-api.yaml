@@ -1,0 +1,90 @@
+openapi: 3.0.0
+info:
+  title: RAG Embedding API
+  description: API for managing document embeddings in the RAG system
+  version: 1.0.0
+paths:
+  /embeddings:
+    post:
+      summary: Create embeddings for text chunks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text_chunks:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      content:
+                        type: string
+                      source_url:
+                        type: string
+                      metadata:
+                        type: object
+      responses:
+        '200':
+          description: Embeddings created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  embeddings_created:
+                    type: integer
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chunk_id:
+                          type: string
+                        embedding_id:
+                          type: string
+                        tokens:
+                          type: integer
+  /embeddings/search:
+    post:
+      summary: Search for similar embeddings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                top_k:
+                  type: integer
+                  default: 5
+      responses:
+        '200':
+          description: Similar embeddings found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        score:
+                          type: number
+                        content:
+                          type: string
+                        source_url:
+                          type: string
+                        metadata:
+                          type: object

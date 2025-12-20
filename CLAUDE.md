@@ -208,3 +208,18 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 
 ## Code Standards
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+
+## Active Technologies
+- Python 3.11+ + Cohere API client, Qdrant client, requests, beautifulsoup4, python-dotenv (003-website-embedding-storage)
+- Qdrant vector database (cloud tier) (003-website-embedding-storage)
+- Python 3.11+ + qdrant-client, python-dotenv, pytest, numpy (004-data-retrieval-testing)
+- Qdrant vector database (accessing existing embeddings from Spec 1) (004-data-retrieval-testing)
+- Python 3.11 + FastAPI, OpenAI Agents SDK, Qdrant Client, Pydantic, uvicorn (001-agent-retrieval-integration)
+- Qdrant vector database (external cloud instance) (001-agent-retrieval-integration)
+- JavaScript/TypeScript (frontend), Python 3.11 (backend) + Docusaurus framework (frontend), FastAPI (backend), Axios/Fetch API for HTTP requests (001-backend-frontend-integration)
+- N/A (using existing Qdrant vector database for retrieval) (001-backend-frontend-integration)
+- JavaScript/TypeScript, CSS, HTML + Docusaurus framework, React components, Node.js (005-docusaurus-landing-page-styling)
+- N/A (static site generation) (005-docusaurus-landing-page-styling)
+
+## Recent Changes
+- 003-website-embedding-storage: Added Python 3.11+ + Cohere API client, Qdrant client, requests, beautifulsoup4, python-dotenv

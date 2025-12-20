@@ -1,0 +1,14 @@
+# Development dependencies for the Agent Retrieval System
+pytest==7.4.3
+pytest-asyncio==0.21.1
+black==23.10.1
+flake8==6.0.0
+mypy==1.7.1
+pre-commit==3.5.0
+tox==4.11.3
+virtualenv==20.24.5
+pip-tools==7.3.0
+bandit==1.7.5
+safety==2.4.0b1
+pytest-cov==4.1.0
+pytest-mock==3.12.0

@@ -4,7 +4,14 @@
       "command": "npx",
       "args": ["-y", "@upstash/context7-mcp"],
       "env": {
-        "CONTEXT7_API_KEY": "YOUR_API_KEY_HERE"
+        "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
+      }
+    },
+    "github": {
+      "command": "node",
+      "args": ["github-mcp-server.js", "3001"],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
       }
     }
   }

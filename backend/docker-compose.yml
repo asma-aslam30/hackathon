@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  agent-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - AI_PROVIDER=${AI_PROVIDER:-gemini}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-2.5-flash}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4-turbo-preview}
+      - QDRANT_API_KEY=${QDRANT_API_KEY}
+      - QDRANT_HOST=${QDRANT_HOST}
+      - QDRANT_PORT=${QDRANT_PORT:-6333}
+      - QDRANT_HTTPS=${QDRANT_HTTPS:-true}
+      - QDRANT_COLLECTION_NAME=${QDRANT_COLLECTION_NAME:-rag_embeddings}
+      - DEBUG_MODE=${DEBUG_MODE:-false}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - MAX_QUERY_LENGTH=${MAX_QUERY_LENGTH:-1000}
+      - RESPONSE_TIMEOUT=${RESPONSE_TIMEOUT:-30}
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=8000
+      - COHERE_API_KEY=${COHERE_API_KEY}
+      - SOURCE_CONTENT_PATH=${SOURCE_CONTENT_PATH:-./test_data/original_content.json}
+      - TARGET_URL=${TARGET_URL:-http://localhost:3000}
+    depends_on:
+      - qdrant
+    restart: unless-stopped
+    networks:
+      - agent-network
+    # Remove volume mount for production to avoid conflicts
+    # volumes:
+    #   - .:/app
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant_data
+    environment:
+      - QDRANT_API_KEY=${QDRANT_API_KEY}
+    restart: unless-stopped
+    networks:
+      - agent-network
+
+volumes:
+  qdrant_data:
+
+networks:
+  agent-network:
+    driver: bridge

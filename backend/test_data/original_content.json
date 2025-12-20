@@ -1,0 +1,47 @@
+{
+  "ros2_intro": {
+    "url": "https://example.com/ros2/intro",
+    "content": "ROS2 is the next generation of the Robot Operating System. It provides a collection of libraries and tools to help software developers create robot applications. It offers improved security, better real-time support, and a more modular architecture compared to ROS1.",
+    "metadata": {
+      "source": "ROS2 Documentation",
+      "topic": "Introduction",
+      "type": "concept"
+    }
+  },
+  "ros2_communication": {
+    "url": "https://example.com/ros2/communication",
+    "content": "ROS2 communication patterns include topics for asynchronous message passing, services for request-response interactions, and actions for long-running tasks with feedback. These patterns provide different ways for nodes to communicate based on their specific needs.",
+    "metadata": {
+      "source": "ROS2 Documentation",
+      "topic": "Communication",
+      "type": "concept"
+    }
+  },
+  "ros2_services": {
+    "url": "https://example.com/ros2/services",
+    "content": "Services in ROS2 provide a request-response communication pattern. A service client sends a request to a service server, which processes the request and returns a response. This is useful for operations that require immediate results.",
+    "metadata": {
+      "source": "ROS2 Documentation",
+      "topic": "Services",
+      "type": "concept"
+    }
+  },
+  "ros2_parameters": {
+    "url": "https://example.com/ros2/parameters",
+    "content": "Parameters in ROS2 allow nodes to be configured at runtime. They provide a way to modify node behavior without recompiling code. Parameters can be set at launch time or changed dynamically during execution.",
+    "metadata": {
+      "source": "ROS2 Documentation",
+      "topic": "Parameters",
+      "type": "concept"
+    }
+  },
+  "ros2_differences": {
+    "url": "https://example.com/ros2/differences",
+    "content": "ROS2 differs from ROS1 in several key ways: it uses DDS for communication instead of its own custom protocol, provides better security with authentication and encryption, has improved real-time support, and offers a more modular architecture that supports multiple DDS implementations.",
+    "metadata": {
+      "source": "ROS2 Documentation",
+      "topic": "Differences",
+      "type": "comparison"
+    }
+  }
+}

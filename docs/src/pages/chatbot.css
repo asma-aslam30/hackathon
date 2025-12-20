@@ -1,0 +1,58 @@
+/**
+ * Chatbot page specific styles
+ * Custom styling for the chatbot page layout and components
+ */
+
+.chatbot-page-container {
+  min-height: 80vh;
+  padding: 2rem 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+}
+
+.chatbot-wrapper {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 1px solid #eaecef;
+}
+
+.hero {
+  margin-bottom: 2rem;
+  padding: 2rem 0;
+  background: transparent;
+}
+
+.hero__title h1 {
+  color: #1a1a1a;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero__subtitle p {
+  color: #666;
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .chatbot-page-container {
+    padding: 1rem 0;
+  }
+
+  .hero__title h1 {
+    font-size: 2rem;
+  }
+
+  .hero__subtitle p {
+    font-size: 1.1rem;
+  }
+
+  .chatbot-wrapper {
+    margin: 1rem;
+    border-radius: 0.75rem;
+  }
+}

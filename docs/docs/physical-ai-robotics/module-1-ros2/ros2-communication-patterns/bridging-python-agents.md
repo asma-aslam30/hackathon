@@ -1,4052 +1,2133 @@
 ---
-sidebar_position: 5
-sidebar_label: Bridging Python Agents to ROS Controllers with Context7 Integration
+sidebar_position: 4
+sidebar_label: Advanced Communication Patterns and Bridging
 ---
 
-# Bridging Python Agents to ROS Controllers with Context7 Integration - A Comprehensive Guide
+# Advanced Communication Patterns and Bridging in ROS 2
 
-## Table of Contents
-1. [Introduction](#introduction)
-2. [Deep Technical Analysis](#deep-technical-analysis)
-3. [Python Agent Architecture](#python-agent-architecture)
-4. [ROS Controller Integration](#ros-controller-integration)
-5. [Bridging Mechanisms](#bridging-mechanisms)
-6. [Context7 Integration for Documentation](#context7-integration-for-documentation)
-7. [Advanced Integration Patterns](#advanced-integration-patterns)
-8. [Real-World Examples](#real-world-examples)
-9. [Best Practices](#best-practices)
-10. [Performance Optimization](#performance-optimization)
-11. [Security Considerations](#security-considerations)
-12. [Future Developments](#future-developments)
-13. [Summary](#summary)
+## Introduction to Advanced Communication Patterns
 
-## Introduction
+The Robot Operating System 2 (ROS 2) provides a sophisticated communication infrastructure that goes far beyond the fundamental publish-subscribe, request-reply, and goal-oriented patterns. Advanced communication patterns include complex system architectures, cross-domain communication bridging, and integration with external systems. These patterns enable the creation of highly distributed, resilient, and scalable robotic systems that can operate across various domains and platforms.
 
-The integration of Python-based intelligent agents with ROS (Robot Operating System) controllers represents a critical advancement in modern robotics, enabling sophisticated AI capabilities to be seamlessly incorporated into robotic systems. This bridging mechanism allows Python agents—often implementing machine learning models, planning algorithms, or high-level decision-making systems—to communicate effectively with low-level ROS controllers that handle actuator commands, sensor processing, and real-time control tasks.
+In this comprehensive guide, we'll explore the intricate details of these advanced patterns, including bidirectional bridges between different communication domains, complex message routing mechanisms, and architectural patterns that enable seamless integration of heterogeneous systems. Understanding these advanced patterns is crucial for developing sophisticated robotic applications that must integrate with legacy systems, cloud services, or other robotic platforms.
 
-In contemporary robotics applications, especially in the context of humanoid robots and advanced autonomous systems, the ability to bridge high-level cognitive capabilities with low-level control systems is essential. Python, with its rich ecosystem of AI and machine learning libraries, serves as an ideal platform for implementing intelligent agents. Meanwhile, ROS provides the communication infrastructure and control framework that connects various components of a robotic system.
+The evolution from ROS 1 to ROS 2 introduced significant improvements in communication reliability, real-time performance, and cross-platform compatibility. These improvements enable new architectural possibilities, including distributed systems spanning multiple machines, real-time performance guarantees, and secure communication paradigms.
 
-The integration of Context7 documentation systems adds another layer of sophistication to this bridging process, providing on-demand access to up-to-date documentation, API references, and best practices that can enhance both development and runtime capabilities of the integrated system.
+## Deep Technical Analysis of Communication Bridging
 
-This comprehensive guide explores the latest developments in bridging Python agents to ROS controllers as of 2025, including advanced integration patterns, performance optimization techniques, and security considerations. We'll examine how Context7 integration can enhance the development, debugging, and maintenance of these bridged systems, providing developers with immediate access to relevant documentation and best practices.
+### ROS 2 to ROS 1 Bridge
 
-## Deep Technical Analysis
+One of the most critical advanced patterns is the bridge between ROS 2 and ROS 1. This bridging capability enables gradual migration from ROS 1 to ROS 2 while maintaining interoperability between existing ROS 1 nodes and new ROS 2 components. The bridge works by forwarding messages between the two systems, maintaining the illusion of a unified system despite the underlying architectural differences.
 
-### The Need for Agent-Controller Integration
+The ROS 1-ROS 2 bridge operates through a pair of processes that run concurrently:
+- **ROS 1 Bridge Node**: Communicates with the ROS 1 master and nodes using the ROS 1 communication protocols
+- **ROS 2 Bridge Node**: Communicates with the ROS 2 system using DDS-based communication
 
-Modern robotics applications, particularly those involving humanoid robots and complex autonomous systems, require a multi-layered control architecture. At the highest level, intelligent agents make strategic decisions based on sensor data, goals, and environmental information. At the lowest level, real-time controllers manage actuators, sensors, and basic control loops with precise timing requirements.
+The bridge maintains topic mapping between the two systems, ensuring that messages published on a ROS 1 topic are transparently forwarded to the corresponding ROS 2 topic and vice versa.
 
-The bridging of Python agents to ROS controllers addresses several critical technical challenges:
+```cpp
+// Implementation of a custom bridge example
+#include "rclcpp/rclcpp.hpp"
+#include "rosbridge_suite/rosbridge_tcp.h"
+#include "std_msgs/msg/string.hpp"
+#include "geometry_msgs/msg/twist.hpp"
+#include <websocketpp/config/asio_no_tls_client.hpp>
+#include <websocketpp/client.hpp>
 
-1. **Abstraction Layering**: Separating high-level decision making from low-level control
-2. **Programming Language Integration**: Combining Python's AI/ML capabilities with C++'s real-time performance
-3. **Communication Pattern Matching**: Ensuring appropriate communication patterns between different system layers
-4. **Timing Requirements**: Managing the different timing constraints of AI algorithms versus real-time control
-5. **Data Format Translation**: Converting between Python data structures and ROS message formats
+class AdvancedBridgeNode : public rclcpp::Node
+{
+public:
+    AdvancedBridgeNode() : Node("advanced_bridge_node")
+    {
+        // Initialize ROS 2 publishers and subscribers
+        ros2_cmd_pub_ = this->create_publisher<geometry_msgs::msg::Twist>("cmd_vel", 10);
+        ros2_sensor_sub_ = this->create_subscription<std_msgs::msg::String>(
+            "sensor_data", 10,
+            std::bind(&AdvancedBridgeNode::ros2_sensor_callback, this, std::placeholders::_1)
+        );
+        
+        // Initialize ROS 1 bridge interface
+        initialize_ros1_bridge();
+        
+        // Initialize websocket bridge for external communication
+        initialize_websocket_bridge();
+        
+        // Initialize parameter bridge for cross-domain configuration
+        initialize_parameter_bridge();
+        
+        RCLCPP_INFO(this->get_logger(), "Advanced bridge node initialized");
+    }
 
-### Architectural Patterns
+private:
+    void initialize_ros1_bridge()
+    {
+        // Setup ROS 1 bridge parameters
+        this->declare_parameter("bridge_enable_ros1", true);
+        this->declare_parameter("bridge_topics_mapping", "");
+        this->declare_parameter("bridge_services_mapping", "");
+        
+        if (this->get_parameter("bridge_enable_ros1").as_bool()) {
+            // Initialize ROS 1 bridge connection
+            // In a real implementation, this would establish connection to ROS 1 master
+            RCLCPP_INFO(this->get_logger(), "ROS 1 bridge enabled");
+            
+            // Example of topic mapping configuration
+            auto topics_mapping = this->get_parameter("bridge_topics_mapping").as_string();
+            parse_topic_mapping(topics_mapping);
+        }
+    }
+    
+    void initialize_websocket_bridge()
+    {
+        // Websocket bridge for external communication (web browsers, external systems)
+        this->declare_parameter("websocket_port", 9090);
+        this->declare_parameter("websocket_address", "0.0.0.0");
+        
+        websocket_port_ = this->get_parameter("websocket_port").as_int();
+        websocket_address_ = this->get_parameter("websocket_address").as_string();
+        
+        // Setup websocket server (simplified)
+        setup_websocket_server();
+    }
+    
+    void initialize_parameter_bridge()
+    {
+        // Bridge parameters between different domains
+        this->declare_parameter("enable_parameter_bridge", true);
+        this->declare_parameter("parameter_mapping", "");
+        
+        if (this->get_parameter("enable_parameter_bridge").as_bool()) {
+            parameter_bridge_enabled_ = true;
+            RCLCPP_INFO(this->get_logger(), "Parameter bridge enabled");
+        }
+    }
+    
+    void ros2_sensor_callback(const std_msgs::msg::String::SharedPtr msg)
+    {
+        // Forward ROS 2 message to ROS 1 and external systems
+        RCLCPP_INFO(this->get_logger(), "Received ROS 2 sensor data: %s", msg->data.c_str());
+        
+        // Forward to ROS 1 (if bridge is active)
+        if (ros1_connected_) {
+            forward_to_ros1("sensor_data", msg);
+        }
+        
+        // Forward to websocket (for web visualization)
+        if (websocket_connected_) {
+            forward_via_websocket("sensor_data", msg);
+        }
+        
+        // Store in parameter bridge if configured
+        if (parameter_bridge_enabled_) {
+            update_parameter_bridge("sensor_data_last", msg->data);
+        }
+    }
+    
+    void forward_to_ros1(const std::string& topic, const std_msgs::msg::String::SharedPtr msg)
+    {
+        // In real implementation, this would forward message to ROS 1 system
+        RCLCPP_DEBUG(this->get_logger(), "Forwarding to ROS 1: %s -> %s", topic.c_str(), msg->data.c_str());
+    }
+    
+    void forward_via_websocket(const std::string& topic, const std_msgs::msg::String::SharedPtr msg)
+    {
+        // Forward message via websocket to external systems
+        RCLCPP_DEBUG(this->get_logger(), "Forwarding via websocket: %s -> %s", topic.c_str(), msg->data.c_str());
+    }
+    
+    void update_parameter_bridge(const std::string& param_name, const std::string& param_value)
+    {
+        // Update cross-domain parameter
+        RCLCPP_DEBUG(this->get_logger(), "Updating parameter bridge: %s = %s", param_name.c_str(), param_value.c_str());
+    }
+    
+    void parse_topic_mapping(const std::string& mapping_string)
+    {
+        // Parse topic mapping configuration
+        RCLCPP_INFO(this->get_logger(), "Parsing topic mapping: %s", mapping_string.c_str());
+    }
+    
+    void setup_websocket_server()
+    {
+        // Setup websocket server for external communication
+        RCLCPP_INFO(this->get_logger(), "Initializing websocket server at %s:%d", 
+                   websocket_address_.c_str(), websocket_port_);
+    }
+    
+    rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr ros2_cmd_pub_;
+    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr ros2_sensor_sub_;
+    
+    int websocket_port_;
+    std::string websocket_address_;
+    bool ros1_connected_ = false;
+    bool websocket_connected_ = false;
+    bool parameter_bridge_enabled_ = false;
+};
+```
 
-Several architectural patterns have emerged for bridging Python agents to ROS controllers:
+### Web Communication Bridge
 
-1. **Direct Bridge Pattern**: Direct communication between Python agents and ROS controllers through ROS communication primitives
-2. **Proxy Pattern**: Intermediary components that translate between agent and controller interfaces
-3. **Service-Oriented Pattern**: Using ROS services for synchronous agent-controller communication
-4. **Event-Driven Pattern**: Asynchronous communication through ROS topics with event-based processing
-5. **Hybrid Pattern**: Combination of multiple patterns for different types of agent-controller interactions
+Web communication bridges enable ROS 2 systems to interact with web-based applications and dashboards. This pattern is essential for remote monitoring, web-based teleoperation, and user interfaces that leverage modern web technologies.
 
-### rclpy vs Traditional Approaches
-
-The introduction of rclpy (ROS Client Library for Python) has significantly simplified the integration of Python agents with ROS systems. Unlike earlier approaches that required separate processes or complex inter-process communication, rclpy allows Python agents to directly participate in the ROS communication graph as first-class nodes.
-
-The technical advantages of this approach include:
-
-- **Reduced Latency**: Direct message passing without inter-process communication overhead
-- **Simplified Deployment**: Single-process solutions for coordinated agent-controller systems
-- **Enhanced Debugging**: Unified debugging environment for both agent and control logic
-- **Resource Efficiency**: Shared memory spaces and reduced system resource usage
-
-### Real-Time Considerations
-
-When bridging Python agents to ROS controllers, real-time performance becomes a critical concern. Python's garbage collection and dynamic nature can introduce non-deterministic delays that may be problematic for time-critical control systems. Modern approaches address this through:
-
-- **Asynchronous Processing**: Using asyncio and non-blocking operations
-- **Thread Isolation**: Separating time-critical control from Python agent processing
-- **Buffer Management**: Careful management of data buffers to prevent memory allocation delays
-- **Optimized Message Handling**: Efficient serialization/deserialization of ROS messages
-
-## Python Agent Architecture
-
-### Design Principles for Intelligent Agents
-
-Python agents designed for robotic systems should follow specific architectural principles to ensure effective integration with ROS controllers:
-
-1. **Modularity**: Agents should be decomposed into specialized modules that handle different aspects of intelligence
-2. **State Management**: Clear separation between agent state and ROS system state
-3. **Event Handling**: Asynchronous processing of sensor data and system events
-4. **Decision Making**: Clear separation between perception, planning, and action selection
-5. **Learning Integration**: Support for online and offline learning within the control loop
-
-### Core Agent Components
-
-A well-designed Python agent for ROS integration typically includes these core components:
+The web bridge typically uses WebSockets for real-time bidirectional communication, JSON for message serialization, and a standardized message format that can represent ROS 2 messages in a web-friendly format.
 
 ```python
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import QoSProfile
-import asyncio
-import threading
-from queue import Queue, Empty
-from typing import Dict, Any, Callable, Optional
+from std_msgs.msg import String, Float64, Int32
+from geometry_msgs.msg import Twist, Point
+from sensor_msgs.msg import LaserScan, Image
+from rosbridge_library.capabilities import subscribe, publish, advertise, service_call
+from flask import Flask, render_template
+from flask_socketio import SocketIO, emit
 import json
+import threading
+import base64
+import numpy as np
 import time
+from typing import Dict, Any, Optional
+import asyncio
 
-class IntelligentAgent:
-    """
-    Base class for an intelligent agent designed to bridge with ROS controllers.
-    Provides core functionality for perception, decision making, and action execution.
-    """
+class WebBridgeNode(Node):
+    def __init__(self):
+        super().__init__('web_bridge_node')
+        
+        # Web server setup
+        self.web_host = '0.0.0.0'
+        self.web_port = self.declare_parameter('web_port', 5000).value
+        self.websocket_port = self.declare_parameter('websocket_port', 9090).value
+        
+        # Initialize Flask app
+        self.app = Flask(__name__)
+        self.socketio = SocketIO(self.app, cors_allowed_origins="*", async_mode='gevent')
+        
+        # ROS 2 publishers and subscribers
+        self.cmd_pub = self.create_publisher(Twist, 'cmd_vel', 10)
+        self.status_pub = self.create_publisher(String, 'web_status', 10)
+        
+        # Internal message queues for bridging
+        self.message_queues = {}
+        
+        # Client connections tracking
+        self.clients = {}
+        
+        # Setup message handlers
+        self.setup_websocket_handlers()
+        
+        # Start web server in background thread
+        self.start_web_server()
+        
+        # Start message processing timer
+        self.message_timer = self.create_timer(0.1, self.process_web_messages)
+        
+        self.get_logger().info(f'Web bridge initialized on port {self.web_port}')
     
-    def __init__(self, name: str, context7_integration: bool = True):
-        self.name = name
-        self.context7_integration = context7_integration
+    def setup_websocket_handlers(self):
+        """Setup WebSocket event handlers"""
         
-        # Internal state management
-        self.state = {}
-        self.perception_buffer = {}
-        self.decision_queue = Queue()
-        self.action_queue = Queue()
-        
-        # Event callbacks
-        self.event_callbacks: Dict[str, Callable] = {}
-        
-        # Performance monitoring
-        self.metrics = {
-            'perception_time': [],
-            'decision_time': [],
-            'action_time': [],
-            'total_cycle_time': []
-        }
-        
-        # Timestamps for timing analysis
-        self.timestamps = {}
-    
-    def register_event_callback(self, event_type: str, callback: Callable):
-        """Register a callback function for specific events."""
-        self.event_callbacks[event_type] = callback
-    
-    def process_sensor_data(self, sensor_type: str, data: Any):
-        """Process incoming sensor data and update internal perception."""
-        start_time = time.time()
-        
-        if sensor_type not in self.perception_buffer:
-            self.perception_buffer[sensor_type] = []
-        
-        self.perception_buffer[sensor_type].append(data)
-        
-        # Keep only recent data to prevent memory bloat
-        if len(self.perception_buffer[sensor_type]) > 100:
-            self.perception_buffer[sensor_type] = self.perception_buffer[sensor_type][-50:]
-        
-        # Record performance metric
-        self.metrics['perception_time'].append(time.time() - start_time)
-    
-    def make_decision(self) -> Optional[Dict[str, Any]]:
-        """Make high-level decisions based on current state and perceptions."""
-        start_time = time.time()
-        
-        # This is where the core AI/decision logic would be implemented
-        decision = self._execute_decision_logic()
-        
-        # Record performance metric
-        self.metrics['decision_time'].append(time.time() - start_time)
-        
-        return decision
-    
-    def _execute_decision_logic(self) -> Optional[Dict[str, Any]]:
-        """Execute the actual decision-making algorithm."""
-        # In a real implementation, this would contain the core AI logic
-        # such as planning, learning, or reasoning algorithms
-        
-        # For demonstration, return a simple decision
-        if self.perception_buffer.get('sensor_data'):
-            return {
-                'action': 'move_forward',
-                'confidence': 0.8,
-                'timestamp': time.time()
+        @self.socketio.on('connect')
+        def handle_connect():
+            client_id = request.sid
+            self.clients[client_id] = {
+                'connected_at': time.time(),
+                'subscriptions': [],
+                'last_heartbeat': time.time()
             }
-        return None
+            self.get_logger().info(f'Web client connected: {client_id}')
+            
+            # Send welcome message
+            emit('connection_status', {
+                'status': 'connected',
+                'client_id': client_id,
+                'timestamp': time.time()
+            })
+        
+        @self.socketio.on('disconnect')
+        def handle_disconnect():
+            client_id = request.sid
+            if client_id in self.clients:
+                del self.clients[client_id]
+            self.get_logger().info(f'Web client disconnected: {client_id}')
+        
+        @self.socketio.on('subscribe')
+        def handle_subscribe(data):
+            client_id = request.sid
+            topic = data.get('topic', '')
+            queue_name = data.get('queue_name', f'web_queue_{len(self.message_queues)}')
+            
+            if client_id in self.clients:
+                self.clients[client_id]['subscriptions'].append(topic)
+            
+            # Create message queue for this subscription
+            self.message_queues[queue_name] = {
+                'topic': topic,
+                'messages': [],
+                'client_id': client_id
+            }
+            
+            emit('subscription_ack', {
+                'topic': topic,
+                'queue': queue_name,
+                'status': 'subscribed'
+            })
+        
+        @self.socketio.on('unsubscribe')
+        def handle_unsubscribe(data):
+            topic = data.get('topic', '')
+            client_id = request.sid
+            
+            if client_id in self.clients:
+                if topic in self.clients[client_id]['subscriptions']:
+                    self.clients[client_id]['subscriptions'].remove(topic)
+            
+            emit('unsubscribe_ack', {'topic': topic, 'status': 'unsubscribed'})
+        
+        @self.socketio.on('publish')
+        def handle_publish(data):
+            """Handle messages published from web client"""
+            topic = data.get('topic', '')
+            message_data = data.get('message', {})
+            
+            # Convert web message to ROS message
+            ros_msg = self.convert_web_to_ros(topic, message_data)
+            
+            if ros_msg is not None:
+                self.publish_to_ros(topic, ros_msg)
+                self.get_logger().info(f'Published from web: {topic}')
+        
+        @self.socketio.on('teleop_command')
+        def handle_teleop_command(data):
+            """Handle teleoperation commands from web interface"""
+            linear_speed = data.get('linear', 0.0)
+            angular_speed = data.get('angular', 0.0)
+            
+            # Create Twist message for robot movement
+            cmd_msg = Twist()
+            cmd_msg.linear.x = float(linear_speed)
+            cmd_msg.angular.z = float(angular_speed)
+            
+            self.cmd_pub.publish(cmd_msg)
+            
+            # Echo command back to client
+            emit('command_echo', {
+                'linear': linear_speed,
+                'angular': angular_speed,
+                'timestamp': time.time()
+            })
+        
+        @self.socketio.on('parameter_update')
+        def handle_parameter_update(data):
+            """Handle parameter updates from web interface"""
+            param_name = data.get('name', '')
+            param_value = data.get('value', None)
+            
+            # In a real implementation, this would update ROS parameters
+            self.get_logger().info(f'Parameter update: {param_name} = {param_value}')
+            
+            emit('parameter_ack', {
+                'name': param_name,
+                'value': param_value,
+                'status': 'updated'
+            })
     
-    def execute_action(self, action: Dict[str, Any]):
-        """Execute an action, potentially sending commands to ROS controllers."""
-        start_time = time.time()
-        
-        # This would typically publish to ROS topics or call ROS services
-        # For demonstration, we'll log the action
-        print(f"Agent {self.name} executing action: {action}")
-        
-        # Record performance metric
-        self.metrics['action_time'].append(time.time() - start_time)
+    def convert_web_to_ros(self, topic: str, web_data: Dict[str, Any]) -> Optional[Any]:
+        """Convert web message format to ROS message"""
+        try:
+            if topic == '/cmd_vel':
+                cmd_msg = Twist()
+                cmd_msg.linear.x = float(web_data.get('linear_x', 0.0))
+                cmd_msg.linear.y = float(web_data.get('linear_y', 0.0))
+                cmd_msg.linear.z = float(web_data.get('linear_z', 0.0))
+                cmd_msg.angular.x = float(web_data.get('angular_x', 0.0))
+                cmd_msg.angular.y = float(web_data.get('angular_y', 0.0))
+                cmd_msg.angular.z = float(web_data.get('angular_z', 0.0))
+                return cmd_msg
+            
+            elif topic == '/web_status':
+                status_msg = String()
+                status_msg.data = str(web_data.get('message', ''))
+                return status_msg
+            
+            # Add more topic conversions as needed
+            self.get_logger().warn(f'Unsupported topic conversion: {topic}')
+            return None
+            
+        except Exception as e:
+            self.get_logger().error(f'Error converting web message: {str(e)}')
+            return None
     
-    def get_performance_metrics(self) -> Dict[str, Any]:
-        """Return performance metrics for analysis."""
-        metrics = {}
-        for key, values in self.metrics.items():
-            if values:
-                metrics[f'{key}_avg'] = sum(values) / len(values)
-                metrics[f'{key}_count'] = len(values)
-            else:
-                metrics[f'{key}_avg'] = 0.0
-                metrics[f'{key}_count'] = 0
-        
-        return metrics
-
-class AgentROSNode(Node):
-    """
-    ROS Node that integrates the intelligent agent with ROS communication.
-    """
+    def publish_to_ros(self, topic: str, message):
+        """Publish message to ROS 2 topic"""
+        try:
+            if topic == '/cmd_vel':
+                self.cmd_pub.publish(message)
+            elif topic == '/web_status':
+                self.status_pub.publish(message)
+            # Add more topic publishers as needed
+        except Exception as e:
+            self.get_logger().error(f'Error publishing to ROS: {str(e)}')
     
-    def __init__(self, agent: IntelligentAgent):
-        super().__init__(f'{agent.name}_bridge_node')
-        
-        self.agent = agent
-        
-        # ROS communication components
-        self.qos_profile = QoSProfile(depth=10)
-        
-        # Publishers for commands to ROS controllers
-        self.command_publisher = self.create_publisher(
-            String, 'agent_commands', self.qos_profile
-        )
-        
-        # Subscribers for sensor data from ROS
-        self.sensor_subscriptions = {}
-        
-        # Create sensor subscriptions for common sensor types
-        sensor_types = ['laser_scan', 'imu_data', 'camera_image', 'joint_states']
-        for sensor_type in sensor_types:
-            self.sensor_subscriptions[sensor_type] = self.create_subscription(
-                String,  # In practice, these would be the actual message types
-                f'sensor/{sensor_type}',
-                lambda msg, st=sensor_type: self._sensor_callback(msg, st),
-                self.qos_profile
+    def process_web_messages(self):
+        """Process messages from ROS 2 and forward to web clients"""
+        # This method would normally receive messages from ROS 2 topics
+        # For demonstration, we'll simulate periodic status updates
+        status_msg = String()
+        status_msg.data = f"System OK - Connected clients: {len(self.clients)}"
+        self.status_pub.publish(status_msg)
+    
+    def start_web_server(self):
+        """Start web server in background thread"""
+        def run_web_server():
+            self.socketio.run(
+                self.app,
+                host=self.web_host,
+                port=self.web_port,
+                debug=False,
+                use_reloader=False
             )
         
-        # Timer for agent execution loop
-        self.agent_timer = self.create_timer(0.1, self.agent_execution_loop)
-        
-        # Timer for performance monitoring
-        self.metrics_timer = self.create_timer(5.0, self.log_performance_metrics)
-        
-        self.get_logger().info(f'Agent-ROS Bridge Node for {agent.name} initialized')
+        web_thread = threading.Thread(target=run_web_server)
+        web_thread.daemon = True
+        web_thread.start()
+
+class RosToWebBridge:
+    """Bridge from ROS 2 topics to web clients"""
     
-    def _sensor_callback(self, msg, sensor_type):
-        """Handle incoming sensor data from ROS."""
+    def __init__(self, node: WebBridgeNode):
+        self.node = node
+        self.topic_subscribers = {}
+        
+        # Topics to bridge to web
+        self.topics_to_bridge = [
+            ('/web_status', String),
+            ('/scan', LaserScan),
+            ('/camera/image_raw', Image),
+            ('/odom', Point)
+        ]
+    
+    def start_bridge(self):
+        """Start the topic bridging"""
+        for topic_name, msg_type in self.topics_to_bridge:
+            self.node.get_logger().info(f'Setting up bridge for {topic_name}')
+            
+            # Create subscriber for each topic
+            sub = self.node.create_subscription(
+                msg_type,
+                topic_name,
+                lambda msg, t=topic_name: self.ros_to_web_converter(msg, t),
+                10
+            )
+            self.topic_subscribers[topic_name] = sub
+    
+    def ros_to_web_converter(self, msg, topic_name: str):
+        """Convert ROS message to web format and send to clients"""
+        
+        # Convert ROS message to web-friendly format
+        web_format = self.convert_ros_to_web(msg, topic_name)
+        
+        if web_format is not None:
+            # Emit to all connected web clients
+            for client_id in self.node.clients:
+                self.node.socketio.emit('ros_message', {
+                    'topic': topic_name,
+                    'message': web_format,
+                    'timestamp': time.time()
+                }, room=client_id)
+    
+    def convert_ros_to_web(self, msg, topic_name: str) -> Optional[Dict[str, Any]]:
+        """Convert ROS message to web format"""
         try:
-            # Parse sensor data (in practice, this would be specific to message type)
-            sensor_data = json.loads(msg.data)
-            self.agent.process_sensor_data(sensor_type, sensor_data)
-        except json.JSONDecodeError:
-            # Handle raw data if not JSON
-            self.agent.process_sensor_data(sensor_type, msg.data)
+            if topic_name == '/web_status' and hasattr(msg, 'data'):
+                return {
+                    'type': 'status',
+                    'data': str(msg.data),
+                    'timestamp': time.time()
+                }
+            
+            elif topic_name == '/scan' and hasattr(msg, 'ranges'):
+                return {
+                    'type': 'laser_scan',
+                    'ranges': [float(r) if r < float('inf') else 100.0 for r in msg.ranges[:180]],  # First 180 ranges
+                    'angle_min': float(msg.angle_min),
+                    'angle_max': float(msg.angle_max),
+                    'angle_increment': float(msg.angle_increment)
+                }
+            
+            elif topic_name == '/camera/image_raw' and hasattr(msg, 'data'):
+                # Convert image to base64 for web
+                image_data = base64.b64encode(msg.data).decode('utf-8')
+                return {
+                    'type': 'image',
+                    'encoding': str(msg.encoding),
+                    'height': int(msg.height),
+                    'width': int(msg.width),
+                    'data': image_data
+                }
+            
+            elif topic_name == '/odom' and hasattr(msg, 'x'):
+                return {
+                    'type': 'position',
+                    'x': float(msg.x),
+                    'y': float(msg.y),
+                    'z': float(msg.z)
+                }
+            
+            # Add more conversions as needed
+            self.node.get_logger().warn(f'Unsupported message conversion for: {topic_name}')
+            return None
+            
         except Exception as e:
-            self.get_logger().error(f'Error processing {sensor_type} data: {e}')
-    
-    def agent_execution_loop(self):
-        """Main execution loop for the intelligent agent."""
-        start_time = self.get_clock().now().nanoseconds
-        
-        # Make decisions based on current perceptions
-        decision = self.agent.make_decision()
-        
-        if decision:
-            # Execute actions
-            self.agent.execute_action(decision)
-            
-            # Publish commands to ROS controllers
-            command_msg = String()
-            command_msg.data = json.dumps(decision)
-            self.command_publisher.publish(command_msg)
-        
-        # Record cycle time
-        end_time = self.get_clock().now().nanoseconds
-        cycle_time = (end_time - start_time) / 1e9  # Convert to seconds
-        self.agent.metrics['total_cycle_time'].append(cycle_time)
-    
-    def log_performance_metrics(self):
-        """Log performance metrics periodically."""
-        metrics = self.agent.get_performance_metrics()
-        self.get_logger().info(f'Agent performance metrics: {metrics}')
-
-def main(args=None):
-    rclpy.init(args=args)
-    
-    # Create an intelligent agent
-    agent = IntelligentAgent(name='navigation_agent')
-    
-    # Create the ROS bridge node
-    node = AgentROSNode(agent)
-    
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        node.get_logger().info('Agent-ROS bridge interrupted')
-    finally:
-        node.destroy_node()
-        rclpy.shutdown()
-
-if __name__ == '__main__':
-    from std_msgs.msg import String
-    main()
-```
-
-### Advanced Agent Architectures
-
-Modern Python agents often implement sophisticated architectures that go beyond simple reactive systems:
-
-```python
-import rclpy
-from rclpy.node import Node
-from rclpy.qos import QoSProfile
-from dataclasses import dataclass
-from typing import List, Dict, Any, Optional, Callable
-import asyncio
-import threading
-from queue import Queue
-import numpy as np
-from collections import deque
-import time
-
-@dataclass
-class AgentState:
-    """Represents the current state of the intelligent agent."""
-    position: np.ndarray
-    orientation: np.ndarray
-    velocity: np.ndarray
-    goals: List[np.ndarray]
-    obstacles: List[np.ndarray]
-    battery_level: float
-    sensor_data: Dict[str, Any]
-
-@dataclass
-class Action:
-    """Represents an action that the agent wants to execute."""
-    type: str  # 'move', 'sense', 'communicate', 'wait', etc.
-    parameters: Dict[str, Any]
-    priority: int
-    timestamp: float
-
-class AdvancedIntelligentAgent:
-    """
-    Advanced intelligent agent with sophisticated planning, learning, and reasoning capabilities.
-    """
-    
-    def __init__(self, name: str, config: Dict[str, Any] = None):
-        self.name = name
-        self.config = config or {}
-        
-        # Agent state and perception
-        self.state = AgentState(
-            position=np.array([0.0, 0.0, 0.0]),
-            orientation=np.array([0.0, 0.0, 0.0, 1.0]),  # Quaternion
-            velocity=np.array([0.0, 0.0, 0.0]),
-            goals=[],
-            obstacles=[],
-            battery_level=100.0,
-            sensor_data={}
-        )
-        
-        # Planning and reasoning components
-        self.planner = PathPlanner()
-        self.reasoner = Reasoner()
-        self.learner = OnlineLearner()
-        
-        # Action and decision queues
-        self.action_queue = Queue()
-        self.decision_queue = Queue()
-        self.high_priority_actions = []
-        
-        # Memory and learning
-        self.episode_memory = deque(maxlen=1000)
-        self.long_term_memory = {}
-        
-        # Performance metrics
-        self.metrics = {
-            'planning_time': deque(maxlen=100),
-            'reasoning_time': deque(maxlen=100),
-            'learning_updates': 0,
-            'action_success_rate': deque(maxlen=100)
-        }
-        
-        # Callbacks for external integration
-        self.callbacks: Dict[str, List[Callable]] = {
-            'sensor_update': [],
-            'action_complete': [],
-            'goal_reached': []
-        }
-    
-    def update_sensor_data(self, sensor_type: str, data: Any):
-        """Process new sensor data and update internal state."""
-        # Store sensor data
-        self.state.sensor_data[sensor_type] = data
-        
-        # Process sensor data based on type
-        if sensor_type == 'laser_scan':
-            self._process_laser_scan(data)
-        elif sensor_type == 'camera_image':
-            self._process_camera_image(data)
-        elif sensor_type == 'imu':
-            self._process_imu_data(data)
-        elif sensor_type == 'joint_states':
-            self._process_joint_states(data)
-        
-        # Trigger sensor update callbacks
-        for callback in self.callbacks['sensor_update']:
-            try:
-                callback(sensor_type, data)
-            except Exception as e:
-                print(f"Error in sensor update callback: {e}")
-    
-    def _process_laser_scan(self, scan_data):
-        """Process laser scan data to detect obstacles."""
-        # In a real implementation, this would use the actual scan data
-        # For demonstration, we'll create mock obstacles
-        if hasattr(scan_data, 'ranges'):
-            ranges = scan_data.ranges
-            # Detect obstacles within 1m
-            obstacles = []
-            for i, range_val in enumerate(ranges):
-                if 0 < range_val < 1.0:  # Obstacle within 1m
-                    angle = scan_data.angle_min + i * scan_data.angle_increment
-                    x = range_val * np.cos(angle)
-                    y = range_val * np.sin(angle)
-                    obstacles.append(np.array([x, y, 0.0]))
-            self.state.obstacles = obstacles
-    
-    def _process_camera_image(self, image_data):
-        """Process camera image data for perception."""
-        # In a real implementation, this would run computer vision algorithms
-        pass  # Placeholder for image processing
-    
-    def _process_imu_data(self, imu_data):
-        """Process IMU data to update state."""
-        # Update orientation and acceleration
-        if hasattr(imu_data, 'orientation'):
-            self.state.orientation = np.array([
-                imu_data.orientation.x,
-                imu_data.orientation.y,
-                imu_data.orientation.z,
-                imu_data.orientation.w
-            ])
-    
-    def _process_joint_states(self, joint_data):
-        """Process joint state data."""
-        # Update position based on joint states if available
-        pass  # Placeholder for joint state processing
-    
-    def plan_actions(self) -> List[Action]:
-        """Generate a sequence of actions based on current state and goals."""
-        start_time = time.time()
-        
-        # Use planner to generate path if goals exist
-        if self.state.goals:
-            target = self.state.goals[0]  # Simple: go to first goal
-            
-            # Plan path to target
-            path = self.planner.plan_path(self.state.position, target, self.state.obstacles)
-            
-            if path:
-                # Generate movement actions along the path
-                actions = []
-                for waypoint in path:
-                    move_action = Action(
-                        type='move_to',
-                        parameters={'target': waypoint},
-                        priority=5,
-                        timestamp=time.time()
-                    )
-                    actions.append(move_action)
-                
-                # Record planning time
-                self.metrics['planning_time'].append(time.time() - start_time)
-                return actions
-        
-        # Default action if no specific plan
-        idle_action = Action(
-            type='idle',
-            parameters={},
-            priority=1,
-            timestamp=time.time()
-        )
-        return [idle_action]
-    
-    def execute_decision_cycle(self):
-        """Execute one complete decision-making cycle."""
-        start_time = time.time()
-        
-        # Plan actions based on current state
-        planned_actions = self.plan_actions()
-        
-        # Reason about the best sequence of actions
-        reasoned_actions = self.reasoner.select_best_actions(
-            planned_actions, self.state
-        )
-        
-        # Add actions to execution queue based on priority
-        for action in reasoned_actions:
-            if action.priority > 3:  # High priority actions
-                self.high_priority_actions.append(action)
-                self.high_priority_actions.sort(key=lambda x: x.priority, reverse=True)
-            else:
-                self.action_queue.put(action)
-        
-        # Record reasoning time
-        self.metrics['reasoning_time'].append(time.time() - start_time)
-    
-    def execute_action(self, action: Action) -> bool:
-        """Execute a single action and return success status."""
-        try:
-            if action.type == 'move_to':
-                return self._execute_move_to(action.parameters)
-            elif action.type == 'rotate_to':
-                return self._execute_rotate_to(action.parameters)
-            elif action.type == 'sense':
-                return self._execute_sense(action.parameters)
-            elif action.type == 'idle':
-                return True  # Idle action always succeeds
-            else:
-                print(f"Unknown action type: {action.type}")
-                return False
-        except Exception as e:
-            print(f"Error executing action {action.type}: {e}")
-            return False
-    
-    def _execute_move_to(self, params: Dict[str, Any]) -> bool:
-        """Execute move-to action."""
-        # In a real implementation, this would send movement commands to ROS controllers
-        target = params.get('target')
-        if target is not None:
-            # Update agent position (simplified for demonstration)
-            direction = target - self.state.position
-            distance = np.linalg.norm(direction)
-            
-            if distance > 0.1:  # If not close enough to target
-                # Move towards target
-                normalized_direction = direction / distance
-                movement = normalized_direction * min(0.1, distance)  # Move 0.1m or less
-                self.state.position += movement
-                return True
-            else:
-                # Reached target
-                return True
-        return False
-    
-    def _execute_rotate_to(self, params: Dict[str, Any]) -> bool:
-        """Execute rotate-to action."""
-        # Implementation placeholder
-        return True
-    
-    def _execute_sense(self, params: Dict[str, Any]) -> bool:
-        """Execute sense action."""
-        # Implementation placeholder
-        return True
-    
-    def get_next_action(self) -> Optional[Action]:
-        """Get the next action to execute."""
-        # Check high priority actions first
-        while self.high_priority_actions:
-            return self.high_priority_actions.pop(0)  # Pop highest priority
-        
-        # Check regular queue
-        try:
-            return self.action_queue.get_nowait()
-        except:
+            self.node.get_logger().error(f'Error converting ROS message to web: {str(e)}')
             return None
 
-class PathPlanner:
-    """Simple path planning component."""
+def main():
+    rclpy.init()
     
-    def plan_path(self, start: np.ndarray, goal: np.ndarray, obstacles: List[np.ndarray]) -> List[np.ndarray]:
-        """Plan a path from start to goal avoiding obstacles."""
-        # Simplified implementation - in reality would use A*, RRT, or other algorithms
-        # For demonstration, return direct path with obstacle avoidance
-        path = [start]
-        
-        # Direct path from start to goal
-        direction = goal - start
-        distance = np.linalg.norm(direction)
-        
-        if distance > 0:
-            steps = int(distance / 0.1)  # 0.1m steps
-            step_vector = direction / max(1, steps)
-            
-            current_pos = start.copy()
-            for i in range(steps):
-                current_pos += step_vector
-                path.append(current_pos.copy())
-        
-        # Simple obstacle avoidance - would be much more sophisticated in practice
-        return path
-
-class Reasoner:
-    """Component for reasoning about actions and decisions."""
+    # Create bridge node
+    bridge_node = WebBridgeNode()
+    ros_to_web_bridge = RosToWebBridge(bridge_node)
     
-    def select_best_actions(self, possible_actions: List[Action], state: AgentState) -> List[Action]:
-        """Select the best actions based on current state and priorities."""
-        # In a real implementation, this would use sophisticated reasoning
-        # For demonstration, sort by priority
-        return sorted(possible_actions, key=lambda x: x.priority, reverse=True)
-
-class OnlineLearner:
-    """Component for online learning and adaptation."""
-    
-    def update_model(self, state: AgentState, action: Action, reward: float):
-        """Update learning model based on state-action-reward."""
-        # Placeholder for learning algorithm implementation
-        pass
-
-def main(args=None):
-    rclpy.init(args=args)
-    
-    # Create advanced intelligent agent
-    agent = AdvancedIntelligentAgent(name='advanced_navigation_agent')
-    
-    # Add some goals for demonstration
-    agent.state.goals = [np.array([2.0, 2.0, 0.0]), np.array([3.0, 3.0, 0.0])]
-    
-    # Create ROS bridge node
-    node = AgentROSNode(agent)  # Using the node class from the previous example
+    # Start ROS to web bridging
+    ros_to_web_bridge.start_bridge()
     
     try:
-        rclpy.spin(node)
+        rclpy.spin(bridge_node)
     except KeyboardInterrupt:
-        node.get_logger().info('Advanced agent interrupted')
+        bridge_node.get_logger().info('Shutting down web bridge')
     finally:
-        node.destroy_node()
         rclpy.shutdown()
 
 if __name__ == '__main__':
-    from std_msgs.msg import String
     main()
 ```
 
-### Context7 Integration in Agent Architecture
+### Multi-Agent System Bridging
 
-Integrating Context7 documentation access directly into the agent architecture provides significant benefits:
+Multi-agent systems require specialized bridging patterns to coordinate multiple autonomous agents, each potentially running on different platforms or communication frameworks. This pattern is crucial for swarm robotics, distributed sensor networks, and multi-robot systems.
+
+```cpp
+#include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/string.hpp"
+#include "multirobot_coordinator_msgs/msg/coordination_command.hpp"
+#include "multirobot_coordinator_msgs/msg/agent_status.hpp"
+#include <map>
+#include <vector>
+#include <mutex>
+#include <algorithm>
+
+class MultiAgentBridgeNode : public rclcpp::Node
+{
+public:
+    struct AgentInfo {
+        std::string id;
+        std::string type;
+        bool active;
+        rclcpp::Time last_seen;
+        std::string status;
+        std::vector<std::string> capabilities;
+        std::string ip_address;
+        int port;
+    };
+
+    explicit MultiAgentBridgeNode(const rclcpp::NodeOptions & options = rclcpp::NodeOptions())
+    : Node("multi_agent_bridge", options)
+    {
+        // Parameters for multi-agent coordination
+        this->declare_parameter("agent_discovery_interval", 5.0);
+        this->declare_parameter("agent_timeout", 30.0);
+        this->declare_parameter("coordinator_address", "localhost");
+        this->declare_parameter("coordinator_port", 8080);
+        
+        discovery_interval_ = this->get_parameter("agent_discovery_interval").as_double();
+        agent_timeout_ = this->get_parameter("agent_timeout").as_double();
+        
+        // Publishers and subscribers for agent coordination
+        agent_status_pub_ = this->create_publisher<multirobot_coordinator_msgs::msg::AgentStatus>(
+            "agent_status", 100
+        );
+        coordination_cmd_pub_ = this->create_publisher<multirobot_coordinator_msgs::msg::CoordinationCommand>(
+            "coordination_commands", 100
+        );
+        
+        agent_status_sub_ = this->create_subscription<multirobot_coordinator_msgs::msg::AgentStatus>(
+            "agent_status", 100,
+            std::bind(&MultiAgentBridgeNode::agent_status_callback, this, std::placeholders::_1)
+        );
+        
+        // Setup discovery timer
+        discovery_timer_ = this->create_wall_timer(
+            std::chrono::duration<double>(discovery_interval_),
+            std::bind(&MultiAgentBridgeNode::discovery_timer_callback, this)
+        );
+        
+        // Setup cleanup timer
+        cleanup_timer_ = this->create_wall_timer(
+            std::chrono::duration<double>(5.0),
+            std::bind(&MultiAgentBridgeNode::cleanup_old_agents, this)
+        );
+        
+        RCLCPP_INFO(this->get_logger(), "Multi-agent bridge initialized");
+    }
+
+private:
+    void agent_status_callback(const multirobot_coordinator_msgs::msg::AgentStatus::SharedPtr msg)
+    {
+        std::lock_guard<std::mutex> lock(agents_mutex_);
+        
+        // Update or add agent info
+        AgentInfo agent_info;
+        agent_info.id = msg->agent_id;
+        agent_info.type = msg->agent_type;
+        agent_info.active = msg->active;
+        agent_info.last_seen = this->get_clock()->now();
+        agent_info.status = msg->status;
+        agent_info.capabilities = msg->capabilities;
+        
+        agent_registry_[msg->agent_id] = agent_info;
+        
+        RCLCPP_DEBUG(this->get_logger(), 
+                    "Agent status updated: %s - Active: %s", 
+                    msg->agent_id.c_str(), 
+                    msg->active ? "YES" : "NO");
+    }
+    
+    void discovery_timer_callback()
+    {
+        // Broadcast discovery request to find new agents
+        auto discovery_msg = multirobot_coordinator_msgs::msg::CoordinationCommand();
+        discovery_msg.command = "DISCOVERY_REQUEST";
+        discovery_msg.timestamp = this->get_clock()->now();
+        
+        coordination_cmd_pub_->publish(discovery_msg);
+        
+        // Also perform active agent discovery (implementation dependent)
+        discover_new_agents();
+    }
+    
+    void discover_new_agents()
+    {
+        std::lock_guard<std::mutex> lock(agents_mutex_);
+        
+        // In a real implementation, this would actively probe network addresses
+        // or listen for beacon packets from agents
+        RCLCPP_DEBUG(this->get_logger(), "Performing agent discovery...");
+        
+        // Example: Scan for agents on known ports/network segments
+        for (const auto& [id, agent] : agent_registry_) {
+            if (should_refresh_agent(agent)) {
+                request_agent_status(id);
+            }
+        }
+    }
+    
+    bool should_refresh_agent(const AgentInfo& agent) const
+    {
+        auto now = this->get_clock()->now();
+        auto time_since_seen = (now - agent.last_seen).seconds();
+        return time_since_seen > 10.0; // Refresh if not seen in 10 seconds
+    }
+    
+    void request_agent_status(const std::string& agent_id)
+    {
+        auto status_request = multirobot_coordinator_msgs::msg::CoordinationCommand();
+        status_request.command = "REQUEST_STATUS";
+        status_request.target_agent_id = agent_id;
+        status_request.timestamp = this->get_clock()->now();
+        
+        coordination_cmd_pub_->publish(status_request);
+    }
+    
+    void cleanup_old_agents()
+    {
+        std::lock_guard<std::mutex> lock(agents_mutex_);
+        
+        auto now = this->get_clock()->now();
+        auto it = agent_registry_.begin();
+        
+        while (it != agent_registry_.end()) {
+            auto time_since_seen = (now - it->second.last_seen).seconds();
+            
+            if (time_since_seen > agent_timeout_) {
+                RCLCPP_WARN(this->get_logger(), 
+                           "Removing inactive agent: %s (inactive for %.1f seconds)", 
+                           it->first.c_str(), time_since_seen);
+                it = agent_registry_.erase(it);
+            } else {
+                ++it;
+            }
+        }
+    }
+    
+    void assign_tasks_to_agents()
+    {
+        std::lock_guard<std::mutex> lock(agents_mutex_);
+        
+        // Simple round-robin task assignment algorithm
+        std::vector<std::string> active_agents;
+        for (const auto& [id, agent] : agent_registry_) {
+            if (agent.active && agent.status == "READY") {
+                active_agents.push_back(id);
+            }
+        }
+        
+        if (!active_agents.empty()) {
+            // Assign tasks based on agent capabilities and current workload
+            for (const auto& agent_id : active_agents) {
+                assign_task_to_agent(agent_id);
+            }
+        }
+    }
+    
+    void assign_task_to_agent(const std::string& agent_id)
+    {
+        // In a real implementation, this would assign specific tasks
+        // based on agent capabilities, current state, and task requirements
+        auto task_assignment = multirobot_coordinator_msgs::msg::CoordinationCommand();
+        task_assignment.command = "TASK_ASSIGNMENT";
+        task_assignment.target_agent_id = agent_id;
+        task_assignment.parameters["task_type"] = "EXPLORATION";
+        task_assignment.parameters["priority"] = "HIGH";
+        task_assignment.timestamp = this->get_clock()->now();
+        
+        coordination_cmd_pub_->publish(task_assignment);
+    }
+    
+    // Publishers and subscribers
+    rclcpp::Publisher<multirobot_coordinator_msgs::msg::AgentStatus>::SharedPtr agent_status_pub_;
+    rclcpp::Publisher<multirobot_coordinator_msgs::msg::CoordinationCommand>::SharedPtr coordination_cmd_pub_;
+    rclcpp::Subscription<multirobot_coordinator_msgs::msg::AgentStatus>::SharedPtr agent_status_sub_;
+    
+    // Timers
+    rclcpp::TimerBase::SharedPtr discovery_timer_;
+    rclcpp::TimerBase::SharedPtr cleanup_timer_;
+    
+    // Agent registry and management
+    std::map<std::string, AgentInfo> agent_registry_;
+    std::mutex agents_mutex_;
+    
+    // Configuration parameters
+    double discovery_interval_;
+    double agent_timeout_;
+};
+```
+
+## Cross-Platform Communication Bridging
+
+### DDS Bridge Implementation
+
+Data Distribution Service (DDS) bridges enable communication between different DDS implementations or between DDS and other middleware systems. This is crucial for integrating ROS 2 with industrial systems, aerospace applications, or other DDS-based systems.
 
 ```python
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String
+from std_msgs.msg import String, Int32, Float64
+from geometry_msgs.msg import Twist, Pose
+from sensor_msgs.msg import LaserScan
+import threading
+import time
+import open_splice_ddsi  # Hypothetical DDS interface
+import cyclone_drs  # Another hypothetical DDS interface
+from typing import Dict, Any, Optional, List
+import json
+
+class DDSBridgeNode(Node):
+    def __init__(self):
+        super().__init__('dds_bridge_node')
+        
+        # DDS configurations
+        self.dds_configs = self.declare_parameter('dds_configs', []).value
+        
+        # ROS publishers/subscribers
+        self.ros_publishers = {}
+        self.ros_subscribers = {}
+        
+        # DDS participants and entities
+        self.dds_participants = {}
+        self.dds_readers = {}
+        self.dds_writers = {}
+        
+        # Message transformation rules
+        self.transformation_rules = {}
+        
+        # Bridging configuration
+        self.bridge_config = {
+            'enable_qos_mapping': True,
+            'enable_type_conversion': True,
+            'enable_security': False,
+            'sync_buffers': True
+        }
+        
+        self.initialize_bridging()
+        
+        # Start bridging process
+        self.start_bridging_process()
+        
+        self.get_logger().info('DDS bridge node initialized')
+    
+    def initialize_bridging(self):
+        """Initialize the DDS bridging configuration"""
+        # Initialize ROS side
+        self.setup_ros_interfaces()
+        
+        # Initialize DDS side
+        self.setup_dds_interfaces()
+        
+        # Setup transformation rules
+        self.setup_transformation_rules()
+    
+    def setup_ros_interfaces(self):
+        """Setup ROS 2 publishers and subscribers"""
+        # Common topics to bridge
+        ros_topics = [
+            ('/cmd_vel', Twist),
+            ('/odom', Pose),
+            ('/scan', LaserScan),
+            ('/status', String)
+        ]
+        
+        for topic_name, msg_type in ros_topics:
+            # Create publisher for bridging back from DDS
+            pub = self.create_publisher(msg_type, f'{topic_name}_from_dds', 10)
+            self.ros_publishers[topic_name] = pub
+            
+            # Create subscriber for bridging to DDS
+            sub = self.create_subscription(
+                msg_type,
+                topic_name,
+                lambda msg, t=topic_name: self.ros_to_dds_forwarder(msg, t),
+                10
+            )
+            self.ros_subscribers[topic_name] = sub
+    
+    def setup_dds_interfaces(self):
+        """Setup DDS participants, readers, and writers"""
+        for config in self.dds_configs:
+            domain_id = config.get('domain_id', 0)
+            participant_name = config.get('participant_name', 'default_participant')
+            
+            # Create DDS participant
+            participant = self.create_dds_participant(domain_id, participant_name)
+            self.dds_participants[participant_name] = participant
+            
+            # Setup DDS readers and writers based on configuration
+            for topic_config in config.get('topics', []):
+                topic_name = topic_config['name']
+                dds_type = topic_config['type']
+                
+                # Create DDS writer
+                writer = self.create_dds_writer(participant, topic_name, dds_type)
+                self.dds_writers[f'{participant_name}.{topic_name}'] = writer
+                
+                # Create DDS reader
+                reader = self.create_dds_reader(participant, topic_name, dds_type)
+                self.dds_readers[f'{participant_name}.{topic_name}'] = reader
+    
+    def create_dds_participant(self, domain_id: int, name: str):
+        """Create DDS participant"""
+        # In real implementation, this would create actual DDS participant
+        # For demo purposes, return a mock object
+        return MockDDSParticipant(domain_id, name)
+    
+    def create_dds_writer(self, participant, topic_name: str, dds_type: str):
+        """Create DDS data writer"""
+        # In real implementation, this would create actual DDS writer
+        return MockDDSWriter(participant, topic_name, dds_type)
+    
+    def create_dds_reader(self, participant, topic_name: str, dds_type: str):
+        """Create DDS data reader"""
+        # In real implementation, this would create actual DDS reader
+        return MockDDSReader(participant, topic_name, dds_type, self.dds_message_handler)
+    
+    def setup_transformation_rules(self):
+        """Setup rules for transforming between ROS and DDS messages"""
+        # Example transformation rules
+        self.transformation_rules = {
+            'Twist_to_DDS_Command': {
+                'mapping': {
+                    'linear.x': 'cmd.linear.x',
+                    'linear.y': 'cmd.linear.y',
+                    'angular.z': 'cmd.angular.z'
+                },
+                'validator': self.validate_twist_transformation
+            },
+            'DDS_Scan_to_LaserScan': {
+                'mapping': {
+                    'ranges': 'scan.ranges',
+                    'intensities': 'scan.intensities',
+                    'angle_min': 'scan.angle_min'
+                },
+                'validator': self.validate_scan_transformation
+            }
+        }
+    
+    def ros_to_dds_forwarder(self, msg, topic_name: str):
+        """Forward ROS message to DDS"""
+        try:
+            # Transform ROS message to DDS format
+            dds_msg = self.transform_ros_to_dds(msg, topic_name)
+            
+            if dds_msg is not None:
+                # Find appropriate DDS writer
+                for key, writer in self.dds_writers.items():
+                    if topic_name in key:
+                        writer.write(dds_msg)
+                        break
+                
+                self.get_logger().debug(f'Forwarded ROS message to DDS: {topic_name}')
+        
+        except Exception as e:
+            self.get_logger().error(f'Error forwarding ROS to DDS: {str(e)}')
+    
+    def dds_message_handler(self, dds_msg, topic_name: str):
+        """Handle incoming DDS message and forward to ROS"""
+        try:
+            # Transform DDS message to ROS format
+            ros_msg = self.transform_dds_to_ros(dds_msg, topic_name)
+            
+            if ros_msg is not None:
+                # Find appropriate ROS publisher
+                pub_key = f'{topic_name}_from_dds'
+                if pub_key in self.ros_publishers:
+                    self.ros_publishers[pub_key].publish(ros_msg)
+                
+                self.get_logger().debug(f'Forwarded DDS message to ROS: {topic_name}')
+        
+        except Exception as e:
+            self.get_logger().error(f'Error forwarding DDS to ROS: {str(e)}')
+    
+    def transform_ros_to_dds(self, ros_msg, topic_name: str):
+        """Transform ROS message to DDS format"""
+        # This would contain actual transformation logic
+        # For demo, return a mock transformation
+        if topic_name == '/cmd_vel':
+            return self.create_mock_dds_command(ros_msg)
+        elif topic_name == '/scan':
+            return self.create_mock_dds_scan(ros_msg)
+        
+        return None
+    
+    def transform_dds_to_ros(self, dds_msg, topic_name: str):
+        """Transform DDS message to ROS format"""
+        # This would contain actual transformation logic
+        if hasattr(dds_msg, 'cmd') and hasattr(dds_msg.cmd, 'linear'):
+            from geometry_msgs.msg import Twist
+            ros_msg = Twist()
+            ros_msg.linear.x = getattr(dds_msg.cmd.linear, 'x', 0.0)
+            ros_msg.angular.z = getattr(dds_msg.cmd.angular, 'z', 0.0)
+            return ros_msg
+        
+        return None
+    
+    def create_mock_dds_command(self, ros_msg):
+        """Create mock DDS command from ROS Twist message"""
+        # This is a mock implementation
+        class MockDDSCommand:
+            def __init__(self, linear_x=0.0, angular_z=0.0):
+                class Linear:
+                    x = linear_x
+                class Angular:
+                    z = angular_z
+                self.linear = Linear()
+                self.angular = Angular()
+        
+        return MockDDSCommand(ros_msg.linear.x, ros_msg.angular.z)
+    
+    def validate_twist_transformation(self, ros_msg, dds_msg) -> bool:
+        """Validate twist transformation"""
+        try:
+            if not hasattr(ros_msg, 'linear') or not hasattr(ros_msg, 'angular'):
+                return False
+            
+            linear_x = ros_msg.linear.x if hasattr(ros_msg.linear, 'x') else 0.0
+            angular_z = ros_msg.angular.z if hasattr(ros_msg.angular, 'z') else 0.0
+            
+            # Validate range
+            if abs(linear_x) > 5.0 or abs(angular_z) > 3.14:
+                self.get_logger().warn('Command values out of expected range')
+            
+            return True
+        except:
+            return False
+    
+    def start_bridging_process(self):
+        """Start the bridging process in background thread"""
+        def bridge_worker():
+            while rclpy.ok():
+                try:
+                    # Process DDS data (this would involve DDS-specific polling)
+                    self.process_dds_data()
+                    
+                    # Process any buffered data
+                    self.process_buffered_messages()
+                    
+                    time.sleep(0.01)  # 100 Hz
+                except Exception as e:
+                    self.get_logger().error(f'Bridging worker error: {str(e)}')
+        
+        self.bridge_thread = threading.Thread(target=bridge_worker)
+        self.bridge_thread.daemon = True
+        self.bridge_thread.start()
+    
+    def process_dds_data(self):
+        """Process incoming DDS data"""
+        # In real implementation, this would poll DDS readers
+        pass
+    
+    def process_buffered_messages(self):
+        """Process any buffered messages"""
+        # Process queued messages if any
+        pass
+
+class MockDDSParticipant:
+    def __init__(self, domain_id, name):
+        self.domain_id = domain_id
+        self.name = name
+        self.entities = []
+
+class MockDDSWriter:
+    def __init__(self, participant, topic_name, dds_type):
+        self.participant = participant
+        self.topic_name = topic_name
+        self.dds_type = dds_type
+    
+    def write(self, message):
+        # Mock write implementation
+        pass
+
+class MockDDSReader:
+    def __init__(self, participant, topic_name, dds_type, callback):
+        self.participant = participant
+        self.topic_name = topic_name
+        self.dds_type = dds_type
+        self.callback = callback
+
+def main():
+    rclpy.init()
+    
+    dds_bridge = DDSBridgeNode()
+    
+    try:
+        rclpy.spin(dds_bridge)
+    except KeyboardInterrupt:
+        dds_bridge.get_logger().info('Shutting down DDS bridge')
+    finally:
+        rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+```
+
+## Advanced Message Routing and Filtering
+
+### Content-Based Message Routing
+
+Content-based routing allows messages to be forwarded based on their content, enabling sophisticated filtering and routing mechanisms:
+
+```cpp
+#include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/string.hpp"
+#include "sensor_msgs/msg/laser_scan.hpp"
+#include "geometry_msgs/msg/twist.hpp"
+#include <regex>
+#include <functional>
+#include <map>
+
+class ContentBasedRouter : public rclcpp::Node
+{
+public:
+    struct RouteRule {
+        std::string pattern;  // Regex pattern for matching
+        std::string destination_topic;
+        std::function<bool(const std::string&)> condition;  // Additional condition
+        bool priority_route;  // Whether this is a priority route
+    };
+
+    explicit ContentBasedRouter(const rclcpp::NodeOptions & options = rclcpp::NodeOptions())
+    : Node("content_based_router", options)
+    {
+        // Initialize route rules
+        initialize_routing_rules();
+        
+        // Setup subscribers
+        message_sub_ = this->create_subscription<std_msgs::msg::String>(
+            "input_stream", 100,
+            std::bind(&ContentBasedRouter::message_callback, this, std::placeholders::_1)
+        );
+        
+        laser_sub_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
+            "scan_input", 100,
+            std::bind(&ContentBasedRouter::laser_callback, this, std::placeholders::_1)
+        );
+        
+        // Setup publishers for routed messages
+        setup_routed_publishers();
+        
+        RCLCPP_INFO(this->get_logger(), "Content-based router initialized with %zu rules", routing_rules_.size());
+    }
+
+private:
+    void initialize_routing_rules()
+    {
+        // Rule 1: Error messages to error channel
+        RouteRule error_rule;
+        error_rule.pattern = ".*ERROR.*|.*FATAL.*|.*CRITICAL.*";
+        error_rule.destination_topic = "error_log";
+        error_rule.condition = nullptr;
+        error_rule.priority_route = true;
+        routing_rules_.push_back(error_rule);
+        
+        // Rule 2: Warning messages to warning channel
+        RouteRule warning_rule;
+        warning_rule.pattern = ".*WARNING.*|.*WARN.*";
+        warning_rule.destination_topic = "warning_log";
+        warning_rule.condition = nullptr;
+        warning_rule.priority_route = false;
+        routing_rules_.push_back(warning_rule);
+        
+        // Rule 3: High-priority messages
+        RouteRule high_priority_rule;
+        high_priority_rule.pattern = ".*HIGH_PRIORITY.*";
+        high_priority_rule.destination_topic = "priority_messages";
+        high_priority_rule.condition = nullptr;
+        high_priority_rule.priority_route = true;
+        routing_rules_.push_back(high_priority_rule);
+        
+        // Rule 4: Sensor data with specific conditions
+        RouteRule sensor_rule;
+        sensor_rule.pattern = ".*SENSOR.*";
+        sensor_rule.destination_topic = "sensor_processed";
+        sensor_rule.condition = [this](const std::string& msg) -> bool {
+            return msg.length() > 10;  // Only route if message is long enough
+        };
+        sensor_rule.priority_route = false;
+        routing_rules_.push_back(sensor_rule);
+        
+        // Rule 5: Debug messages (lower priority)
+        RouteRule debug_rule;
+        debug_rule.pattern = ".*DEBUG.*|.*VERBOSE.*";
+        debug_rule.destination_topic = "debug_log";
+        debug_rule.condition = nullptr;
+        debug_rule.priority_route = false;
+        routing_rules_.push_back(debug_rule);
+    }
+    
+    void setup_routed_publishers()
+    {
+        // Create publishers for each destination topic
+        for (const auto& rule : routing_rules_) {
+            if (publisher_map_.find(rule.destination_topic) == publisher_map_.end()) {
+                auto pub = this->create_publisher<std_msgs::msg::String>(rule.destination_topic, 100);
+                publisher_map_[rule.destination_topic] = pub;
+            }
+        }
+    }
+    
+    void message_callback(const std_msgs::msg::String::SharedPtr msg)
+    {
+        std::string content = msg->data;
+        bool routed = false;
+        
+        // Apply rules in priority order
+        for (const auto& rule : routing_rules_) {
+            if (std::regex_search(content, std::regex(rule.pattern))) {
+                // Check additional condition if provided
+                if (rule.condition && !rule.condition(content)) {
+                    continue;  // Skip if condition not met
+                }
+                
+                // Route the message
+                auto routed_msg = std::make_shared<std_msgs::msg::String>();
+                routed_msg->data = format_routed_message(content, rule.destination_topic);
+                
+                auto it = publisher_map_.find(rule.destination_topic);
+                if (it != publisher_map_.end()) {
+                    it->second->publish(routed_msg);
+                    RCLCPP_DEBUG(this->get_logger(), "Routed message to %s: %s", 
+                                rule.destination_topic.c_str(), content.c_str());
+                    routed = true;
+                    
+                    // If it's a priority route, don't continue to other rules
+                    if (rule.priority_route) {
+                        break;
+                    }
+                }
+            }
+        }
+        
+        if (!routed) {
+            // Default routing for unmatched messages
+            auto default_msg = std::make_shared<std_msgs::msg::String>();
+            default_msg->data = "[DEFAULT] " + content;
+            default_publisher_->publish(default_msg);
+        }
+    }
+    
+    void laser_callback(const sensor_msgs::msg::LaserScan::SharedPtr scan_msg)
+    {
+        // Process laser scan data and route based on content/analysis
+        std::stringstream scan_summary;
+        scan_summary << "LASER_SCAN "
+                     << "Ranges: " << scan_msg->ranges.size()
+                     << " MinRange: " << scan_msg->range_min
+                     << " MaxRange: " << scan_msg->range_max;
+        
+        std::string scan_content = scan_summary.str();
+        
+        // Apply routing rules to laser data
+        for (const auto& rule : routing_rules_) {
+            if (std::regex_search(scan_content, std::regex(rule.pattern))) {
+                if (rule.condition && !rule.condition(scan_content)) {
+                    continue;
+                }
+                
+                auto routed_msg = std::make_shared<std_msgs::msg::String>();
+                routed_msg->data = scan_content;
+                
+                auto it = publisher_map_.find(rule.destination_topic);
+                if (it != publisher_map_.end()) {
+                    it->second->publish(routed_msg);
+                    RCLCPP_DEBUG(this->get_logger(), "Routed laser data to %s", rule.destination_topic.c_str());
+                    break;
+                }
+            }
+        }
+    }
+    
+    std::string format_routed_message(const std::string& original, const std::string& destination)
+    {
+        return "[ROUTED:" + destination + "] " + original;
+    }
+    
+    std::vector<RouteRule> routing_rules_;
+    std::map<std::string, rclcpp::Publisher<std_msgs::msg::String>::SharedPtr> publisher_map_;
+    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr default_publisher_;
+    
+    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr message_sub_;
+    rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr laser_sub_;
+};
+```
+
+## Bridging with External Systems
+
+### Cloud Service Bridging
+
+Bridging ROS 2 with cloud services requires careful consideration of network protocols, data serialization, and security:
+
+```python
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import String, Int32, Float64
+from sensor_msgs.msg import Image, LaserScan
+from geometry_msgs.msg import Twist
 import requests
 import json
+import threading
+import time
+import base64
+import io
+from datetime import datetime
 from typing import Dict, Any, Optional
-from dataclasses import dataclass
-import threading
-import time
+import asyncio
+from aiohttp import ClientSession, ClientError
 
-@dataclass
-class Context7Result:
-    """Result from Context7 documentation query."""
-    success: bool
-    content: Optional[str]
-    metadata: Dict[str, Any]
-    timestamp: float
-
-class Context7Agent:
-    """
-    Intelligent agent with integrated Context7 documentation access.
-    """
-    
-    def __init__(self, name: str, context7_endpoint: str = "http://localhost:8080"):
-        self.name = name
-        self.context7_endpoint = context7_endpoint
-        self.context7_cache = {}
+class CloudBridgeNode(Node):
+    def __init__(self):
+        super().__init__('cloud_bridge_node')
         
-        # Performance metrics for Context7 access
-        self.context7_metrics = {
-            'query_count': 0,
-            'cache_hits': 0,
-            'avg_response_time': [],
-            'error_count': 0
+        # Cloud configuration
+        self.cloud_config = {
+            'api_base_url': self.declare_parameter('api_base_url', 'https://api.example.com').value,
+            'auth_token': self.declare_parameter('auth_token', '').value,
+            'cloud_topics': self.declare_parameter('cloud_topics', []).value,
+            'upload_interval': self.declare_parameter('upload_interval', 30.0).value,
+            'batch_size': self.declare_parameter('batch_size', 10).value,
+            'connection_timeout': self.declare_parameter('connection_timeout', 10.0).value
         }
         
-        # Lock for thread-safe operations
-        self.cache_lock = threading.Lock()
-    
-    def query_documentation(self, topic: str, use_cache: bool = True) -> Optional[Context7Result]:
-        """
-        Query Context7 for documentation on a specific topic.
-        """
-        start_time = time.time()
-        
-        # Check cache first if enabled
-        if use_cache:
-            with self.cache_lock:
-                if topic in self.context7_cache:
-                    cached_result = self.context7_cache[topic]
-                    if time.time() - cached_result['timestamp'] < 300:  # 5 min TTL
-                        self.context7_metrics['cache_hits'] += 1
-                        self.context7_metrics['avg_response_time'].append(time.time() - start_time)
-                        return Context7Result(
-                            success=True,
-                            content=cached_result['content'],
-                            metadata=cached_result['metadata'],
-                            timestamp=cached_result['timestamp']
-                        )
-        
-        # In a real implementation, this would make an MCP call to Context7
-        # For demonstration, we'll simulate the call with mock data
-        try:
-            documentation = self._get_mock_context7_documentation(topic)
-            
-            if documentation:
-                result = Context7Result(
-                    success=True,
-                    content=documentation['content'],
-                    metadata=documentation['metadata'],
-                    timestamp=time.time()
-                )
-                
-                # Cache the result
-                if use_cache:
-                    with self.cache_lock:
-                        self.context7_cache[topic] = {
-                            'content': documentation['content'],
-                            'metadata': documentation['metadata'],
-                            'timestamp': time.time()
-                        }
-                
-                # Update metrics
-                self.context7_metrics['query_count'] += 1
-                self.context7_metrics['avg_response_time'].append(time.time() - start_time)
-                
-                return result
-            else:
-                self.context7_metrics['error_count'] += 1
-                return Context7Result(
-                    success=False,
-                    content=None,
-                    metadata={'error': f'No documentation found for {topic}'},
-                    timestamp=time.time()
-                )
-        
-        except Exception as e:
-            self.context7_metrics['error_count'] += 1
-            return Context7Result(
-                success=False,
-                content=None,
-                metadata={'error': str(e)},
-                timestamp=time.time()
-            )
-    
-    def _get_mock_context7_documentation(self, topic: str) -> Optional[Dict[str, Any]]:
-        """
-        Mock function to simulate Context7 documentation retrieval.
-        In a real implementation, this would connect to the Context7 MCP server.
-        """
-        mock_docs = {
-            "ros2.action_clients": {
-                "content": """
-# ROS 2 Action Clients
-
-Action clients in ROS 2 provide a way to send goals to action servers and receive feedback during execution. They are ideal for long-running operations that require progress monitoring.
-
-## Key Features:
-- Goal request and response handling
-- Feedback during execution
-- Cancellation capability
-- Asynchronous operation support
-
-## Best Practices:
-- Always handle goal rejection
-- Monitor feedback for progress
-- Implement proper timeout management
-- Consider reconnection logic for robustness
-
-## Common Use Cases:
-- Robot navigation with progress monitoring
-- Complex manipulation tasks
-- Calibration procedures
-                """,
-                "metadata": {
-                    "topic": "ros2.action_clients",
-                    "version": "humble",
-                    "last_updated": "2024-12-14",
-                    "quality": "high"
-                }
-            },
-            "python.ai_integration": {
-                "content": """
-# Python AI Integration with ROS 2
-
-Integrating AI models with ROS 2 requires careful consideration of data formats, timing, and resource management.
-
-## Data Format Considerations:
-- Convert numpy arrays to ROS message formats efficiently
-- Use appropriate message types for your data
-- Consider serialization overhead for large datasets
-
-## Timing and Performance:
-- Separate AI processing from real-time control loops
-- Use thread pools for model inference
-- Implement proper buffering for sensor data
-
-## Memory Management:
-- Use generators for large datasets
-- Implement object pooling for frequent allocations
-- Monitor memory usage during model inference
-                """,
-                "metadata": {
-                    "topic": "python.ai_integration",
-                    "version": "humble",
-                    "last_updated": "2024-12-14",
-                    "quality": "high"
-                }
-            },
-            "robot_localization": {
-                "content": """
-# Robot Localization in ROS 2
-
-Robot localization determines the robot's position and orientation in a known or unknown environment.
-
-## Localization Methods:
-- AMCL (Adaptive Monte Carlo Localization) for 2D pose estimation
-- EKF (Extended Kalman Filter) for sensor fusion
-- UKF (Unscented Kalman Filter) for nonlinear systems
-
-## Configuration Best Practices:
-- Tune covariance matrices based on sensor characteristics
-- Use appropriate sensor sources for your environment
-- Implement loop closure detection for long-term operation
-
-## Performance Optimization:
-- Optimize particle counts for your computational resources
-- Use appropriate map resolution
-- Consider multi-hypothesis tracking for ambiguous situations
-                """,
-                "metadata": {
-                    "topic": "robot_localization",
-                    "version": "humble",
-                    "last_updated": "2024-12-14",
-                    "quality": "high"
-                }
-            }
+        # Authentication and security
+        self.auth_headers = {
+            'Authorization': f'Bearer {self.cloud_config["auth_token"]}',
+            'Content-Type': 'application/json',
+            'User-Agent': 'ROS2-Cloud-Bridge/1.0'
         }
         
-        return mock_docs.get(topic)
-    
-    def get_context7_metrics(self) -> Dict[str, Any]:
-        """Get Context7 access metrics."""
-        metrics = self.context7_metrics.copy()
-        if metrics['avg_response_time']:
-            avg_time = sum(metrics['avg_response_time']) / len(metrics['avg_response_time'])
-            metrics['avg_response_time_ms'] = avg_time * 1000
-        return metrics
-
-class Context7AgentROSNode(Node):
-    """
-    ROS Node that integrates Context7 agent with ROS communication.
-    """
-    
-    def __init__(self, agent: Context7Agent):
-        super().__init__(f'{agent.name}_context7_bridge_node')
-        
-        self.agent = agent
-        
-        # Publisher for Context7 queries
-        self.context7_request_pub = self.create_publisher(
-            String, 'context7_request', 10
-        )
-        
-        # Subscriber for Context7 responses
-        self.context7_response_sub = self.create_subscription(
-            String, 'context7_response', self.context7_response_callback, 10
-        )
-        
-        # Timer for periodic Context7 queries
-        self.context7_timer = self.create_timer(10.0, self.periodic_context7_query)
-        
-        # Timer for metrics reporting
-        self.metrics_timer = self.create_timer(30.0, self.report_context7_metrics)
-        
-        self.get_logger().info(f'Context7 Agent Bridge Node initialized')
-    
-    def periodic_context7_query(self):
-        """Periodically query Context7 for relevant documentation."""
-        topics_to_query = [
-            "ros2.action_clients",
-            "python.ai_integration",
-            "robot_localization"
-        ]
-        
-        for topic in topics_to_query:
-            result = self.agent.query_documentation(topic)
-            if result:
-                if result.success:
-                    self.get_logger().info(f'Context7 query for {topic}: Success')
-                    self.get_logger().debug(f'Doc content length: {len(result.content or "")} chars')
-                else:
-                    self.get_logger().warn(f'Context7 query for {topic}: Failed - {result.metadata.get("error", "Unknown error")}')
-    
-    def context7_response_callback(self, msg):
-        """Handle responses from external Context7 system."""
-        # In a real implementation, this would handle responses from
-        # a separate Context7 MCP server
-        pass
-    
-    def report_context7_metrics(self):
-        """Report Context7 access metrics."""
-        metrics = self.agent.get_context7_metrics()
-        self.get_logger().info(f'Context7 metrics: {metrics}')
-
-def main(args=None):
-    rclpy.init(args=args)
-    
-    # Create Context7-integrated agent
-    agent = Context7Agent(name='context7_integrated_agent')
-    
-    # Create ROS bridge node
-    node = Context7AgentROSNode(agent)
-    
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        node.get_logger().info('Context7 agent interrupted')
-    finally:
-        node.destroy_node()
-        rclpy.shutdown()
-
-if __name__ == '__main__':
-    main()
-```
-
-## ROS Controller Integration
-
-### Understanding ROS Controllers
-
-ROS controllers are specialized nodes that handle low-level control of robotic systems. They typically interface directly with hardware drivers and implement control algorithms that require precise timing and real-time performance. Controllers in ROS 2 are often part of the `ros2_control` framework, which provides a standardized interface for different types of controllers.
-
-The `ros2_control` framework includes:
-
-1. **Hardware Interface**: Abstraction layer for different hardware platforms
-2. **Controller Manager**: Runtime management of active controllers
-3. **Controllers**: Specific control algorithms (position, velocity, effort, etc.)
-4. **Resource Manager**: Resource allocation and conflict resolution
-5. **Transmission Interface**: Mapping between hardware and controller commands
-
-### Controller Architecture Patterns
-
-Modern ROS controller implementations follow specific architectural patterns that facilitate integration with Python agents:
-
-```python
-import rclpy
-from rclpy.node import Node
-from rclpy.qos import QoSProfile
-from control_msgs.msg import JointTrajectoryControllerState
-from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
-from sensor_msgs.msg import JointState
-from builtin_interfaces.msg import Duration
-from controller_manager_msgs.srv import SwitchController
-import threading
-import time
-from collections import deque
-import numpy as np
-
-class BaseController(Node):
-    """
-    Base class for ROS controllers with standard interfaces.
-    """
-    
-    def __init__(self, controller_name: str):
-        super().__init__(f'{controller_name}_node')
-        
-        self.controller_name = controller_name
-        self.joint_names = []
-        self.control_mode = 'position'  # position, velocity, effort
-        self.is_active = False
-        
-        # Joint state storage
-        self.current_joint_states = {}
-        
-        # Control buffers
-        self.command_buffer = deque(maxlen=100)
-        self.state_buffer = deque(maxlen=100)
-        
-        # Control loop parameters
-        self.control_frequency = 100.0  # Hz
-        self.control_period = 1.0 / self.control_frequency
+        # Data buffers for batching
+        self.data_buffers = {}
+        self.buffer_locks = {}
         
         # Publishers and subscribers
-        self.state_pub = self.create_publisher(
-            JointTrajectoryControllerState, 
-            f'{controller_name}/state', 
-            QoSProfile(depth=10)
+        self.ros_subscribers = {}
+        self.setup_ros_interfaces()
+        
+        # Cloud communication timer
+        self.upload_timer = self.create_timer(
+            self.cloud_config['upload_interval'],
+            self.upload_batched_data
         )
         
-        self.joint_state_sub = self.create_subscription(
-            JointState,
-            'joint_states',
-            self.joint_state_callback,
-            QoSProfile(depth=100)
-        )
+        # Connection monitoring
+        self.connection_monitor_timer = self.create_timer(5.0, self.monitor_connection)
         
-        # Timer for control loop
-        self.control_timer = self.create_timer(
-            1.0/self.control_frequency, 
-            self.control_loop
-        )
-        
-        self.get_logger().info(f'Base controller {controller_name} initialized')
-    
-    def joint_state_callback(self, msg):
-        """Handle joint state updates."""
-        for i, name in enumerate(msg.name):
-            if i < len(msg.position):
-                self.current_joint_states[name] = {
-                    'position': msg.position[i],
-                    'velocity': msg.velocity[i] if i < len(msg.velocity) else 0.0,
-                    'effort': msg.effort[i] if i < len(msg.effort) else 0.0
-                }
-        
-        # Add to state buffer
-        self.state_buffer.append({
-            'timestamp': self.get_clock().now().nanoseconds,
-            'states': self.current_joint_states.copy()
-        })
-    
-    def control_loop(self):
-        """Main control loop that runs at fixed frequency."""
-        if not self.is_active:
-            return
-        
-        # Implement control algorithm here
-        self.execute_control_step()
-        
-        # Publish current state
-        self.publish_state()
-    
-    def execute_control_step(self):
-        """Execute one step of the control algorithm."""
-        # This should be implemented by subclasses
-        pass
-    
-    def publish_state(self):
-        """Publish current controller state."""
-        state_msg = JointTrajectoryControllerState()
-        state_msg.header.stamp = self.get_clock().now().to_msg()
-        state_msg.header.frame_id = "base_link"
-        
-        # Publish joint names
-        state_msg.joint_names = list(self.current_joint_states.keys())
-        
-        # Publish desired and actual positions
-        for joint_name in state_msg.joint_names:
-            joint_state = self.current_joint_states[joint_name]
-            state_msg.actual.positions.append(joint_state['position'])
-            state_msg.actual.velocities.append(joint_state['velocity'])
-            state_msg.actual.effort.append(joint_state['effort'])
-            
-            # For demonstration, desired = actual
-            state_msg.desired.positions.append(joint_state['position'])
-            state_msg.desired.velocities.append(joint_state['velocity'])
-            state_msg.error.positions.append(0.0)
-        
-        self.state_pub.publish(state_msg)
-
-class PositionController(BaseController):
-    """
-    Position controller that implements position-based control.
-    """
-    
-    def __init__(self, controller_name: str, joint_names: list):
-        super().__init__(controller_name)
-        
-        self.joint_names = joint_names
-        self.target_positions = {name: 0.0 for name in joint_names}
-        self.current_positions = {name: 0.0 for name in joint_names}
-        
-        # PID parameters
-        self.kp = {name: 10.0 for name in joint_names}
-        self.ki = {name: 0.1 for name in joint_names}
-        self.kd = {name: 0.05 for name in joint_names}
-        
-        # PID state
-        self.integral_error = {name: 0.0 for name in joint_names}
-        self.previous_error = {name: 0.0 for name in joint_names}
-        self.previous_time = self.get_clock().now()
-        
-        # Command subscriber
-        self.command_sub = self.create_subscription(
-            JointTrajectory,
-            f'{controller_name}/joint_trajectory',
-            self.command_callback,
-            QoSProfile(depth=10)
-        )
-        
-        # Activate controller
-        self.is_active = True
-        
-        self.get_logger().info(f'Position controller {controller_name} initialized for joints: {joint_names}')
-    
-    def command_callback(self, msg):
-        """Handle trajectory commands."""
-        if msg.points:
-            # Get the first point in the trajectory (simplified)
-            point = msg.points[0]
-            
-            # Update target positions
-            for i, joint_name in enumerate(msg.joint_names):
-                if joint_name in self.target_positions and i < len(point.positions):
-                    self.target_positions[joint_name] = point.positions[i]
-    
-    def execute_control_step(self):
-        """Execute position control algorithm."""
-        current_time = self.get_clock().now()
-        dt = (current_time.nanoseconds - self.previous_time.nanoseconds) / 1e9
-        
-        if dt <= 0:
-            return
-        
-        # Calculate control for each joint
-        for joint_name in self.joint_names:
-            if joint_name in self.current_joint_states:
-                current_pos = self.current_joint_states[joint_name]['position']
-                target_pos = self.target_positions[joint_name]
-                
-                # Calculate error
-                error = target_pos - current_pos
-                
-                # Update integral (with anti-windup)
-                self.integral_error[joint_name] += error * dt
-                # Limit integral to prevent windup
-                self.integral_error[joint_name] = max(min(self.integral_error[joint_name], 10.0), -10.0)
-                
-                # Calculate derivative
-                derivative = (error - self.previous_error[joint_name]) / dt if dt > 0 else 0.0
-                
-                # Calculate control output
-                control_output = (
-                    self.kp[joint_name] * error +
-                    self.ki[joint_name] * self.integral_error[joint_name] +
-                    self.kd[joint_name] * derivative
-                )
-                
-                # Update previous values
-                self.previous_error[joint_name] = error
-                self.previous_time = current_time
-
-class TrajectoryController(PositionController):
-    """
-    Trajectory controller that implements smooth trajectory following.
-    """
-    
-    def __init__(self, controller_name: str, joint_names: list):
-        super().__init__(controller_name, joint_names)
-        
-        # Trajectory execution variables
-        self.active_trajectory = None
-        self.trajectory_progress = 0
-        self.trajectory_start_time = None
-        
-        # Trajectory interpolation
-        self.interpolation_method = 'cubic'  # or 'linear'
-        
-        self.get_logger().info(f'Trajectory controller {controller_name} initialized')
-    
-    def command_callback(self, msg):
-        """Handle trajectory commands with time-based execution."""
-        self.active_trajectory = msg
-        self.trajectory_progress = 0
-        self.trajectory_start_time = self.get_clock().now()
-    
-    def execute_control_step(self):
-        """Execute trajectory following control."""
-        if self.active_trajectory and self.trajectory_start_time:
-            # Calculate progress along trajectory
-            elapsed_time = self.get_clock().now() - self.trajectory_start_time
-            elapsed_sec = elapsed_time.nanoseconds / 1e9
-            
-            # Find appropriate trajectory point
-            current_point = self._get_current_trajectory_point(elapsed_sec)
-            
-            if current_point:
-                # Update target positions from trajectory
-                for i, joint_name in enumerate(self.active_trajectory.joint_names):
-                    if i < len(current_point.positions):
-                        self.target_positions[joint_name] = current_point.positions[i]
-        
-        # Execute base position control
-        super().execute_control_step()
-    
-    def _get_current_trajectory_point(self, elapsed_time: float) -> Optional[JointTrajectoryPoint]:
-        """Get the current trajectory point based on elapsed time."""
-        if not self.active_trajectory or not self.active_trajectory.points:
-            return None
-        
-        # Find the appropriate point in the trajectory
-        for i, point in enumerate(self.active_trajectory.points):
-            point_time = point.time_from_start.sec + point.time_from_start.nanosec / 1e9
-            
-            if elapsed_time <= point_time:
-                # Perform interpolation between previous point and current point
-                if i > 0:
-                    prev_point = self.active_trajectory.points[i-1]
-                    prev_time = prev_point.time_from_start.sec + prev_point.time_from_start.nanosec / 1e9
-                    
-                    # Linear interpolation
-                    alpha = (elapsed_time - prev_time) / (point_time - prev_time) if point_time != prev_time else 1.0
-                    
-                    interpolated_point = JointTrajectoryPoint()
-                    interpolated_point.positions = []
-                    
-                    for j in range(len(point.positions)):
-                        pos = prev_point.positions[j] + alpha * (point.positions[j] - prev_point.positions[j])
-                        interpolated_point.positions.append(pos)
-                    
-                    interpolated_point.velocities = []  # Simplified
-                    interpolated_point.accelerations = []  # Simplified
-                    
-                    return interpolated_point
-                else:
-                    # First point
-                    return point
-        
-        # If past the end of the trajectory, use the last point
-        return self.active_trajectory.points[-1]
-
-def main(args=None):
-    rclpy.init(args=args)
-    
-    # Create trajectory controller
-    controller = TrajectoryController(
-        controller_name='arm_controller',
-        joint_names=['joint1', 'joint2', 'joint3']
-    )
-    
-    try:
-        rclpy.spin(controller)
-    except KeyboardInterrupt:
-        controller.get_logger().info('Controller interrupted')
-    finally:
-        controller.destroy_node()
-        rclpy.shutdown()
-
-if __name__ == '__main__':
-    main()
-```
-
-### Agent-Controller Communication Protocols
-
-Establishing effective communication between Python agents and ROS controllers requires careful consideration of communication patterns, message formats, and timing requirements:
-
-```python
-import rclpy
-from rclpy.node import Node
-from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
-from std_msgs.msg import String, Float64MultiArray
-from geometry_msgs.msg import Twist, Pose
-from sensor_msgs.msg import JointState
-import json
-import time
-from typing import Dict, Any, Callable, Optional
-import threading
-from queue import Queue, Empty
-
-class AgentControllerBridge(Node):
-    """
-    Bridge between Python agents and ROS controllers with multiple communication protocols.
-    """
-    
-    def __init__(self, agent_name: str, controller_prefix: str):
-        super().__init__(f'{agent_name}_controller_bridge')
-        
-        self.agent_name = agent_name
-        self.controller_prefix = controller_prefix
-        
-        # QoS profiles for different communication needs
-        self.reliable_qos = QoSProfile(
-            depth=10,
-            reliability=ReliabilityPolicy.RELIABLE,
-            history=HistoryPolicy.KEEP_LAST
-        )
-        
-        self.best_effort_qos = QoSProfile(
-            depth=5,
-            reliability=ReliabilityPolicy.BEST_EFFORT,
-            history=HistoryPolicy.KEEP_LAST
-        )
-        
-        # Publishers for different controller interfaces
-        self.cmd_vel_pub = self.create_publisher(
-            Twist, f'{controller_prefix}/cmd_vel', self.reliable_qos
-        )
-        
-        self.joint_cmd_pub = self.create_publisher(
-            JointState, f'{controller_prefix}/joint_commands', self.reliable_qos
-        )
-        
-        self.goal_pub = self.create_publisher(
-            Pose, f'{controller_prefix}/goal', self.reliable_qos
-        )
-        
-        # Subscribers for controller feedback
-        self.odom_sub = self.create_subscription(
-            String, f'{controller_prefix}/odometry', self.odom_callback, self.best_effort_qos
-        )
-        
-        self.joint_state_sub = self.create_subscription(
-            JointState, f'{controller_prefix}/joint_states', self.joint_state_callback, self.best_effort_qos
-        )
-        
-        # Agent communication interfaces
-        self.agent_command_sub = self.create_subscription(
-            String, f'{agent_name}/commands', self.agent_command_callback, self.reliable_qos
-        )
-        
-        self.controller_feedback_pub = self.create_publisher(
-            String, f'{agent_name}/controller_feedback', self.reliable_qos
-        )
-        
-        # Communication state
-        self.current_odometry = {}
-        self.current_joint_states = {}
-        self.agent_commands = Queue()
-        self.controller_status = 'idle'
-        
-        # Protocol handlers
-        self.protocol_handlers = {
-            'direct_command': self.handle_direct_command,
-            'trajectory_request': self.handle_trajectory_request,
-            'status_request': self.handle_status_request,
-            'parameter_update': self.handle_parameter_update
-        }
-        
-        # Communication timer
-        self.comm_timer = self.create_timer(0.05, self.communication_loop)  # 20 Hz
-        
-        # Performance monitoring
-        self.comm_stats = {
+        # Statistics
+        self.stats = {
             'messages_sent': 0,
             'messages_received': 0,
-            'avg_latency': [],
-            'error_count': 0
+            'upload_errors': 0,
+            'last_upload': 0
         }
         
-        self.get_logger().info(f'Agent-Controller Bridge initialized for {agent_name}')
+        self.get_logger().info('Cloud bridge node initialized')
     
-    def agent_command_callback(self, msg):
-        """Handle commands from the Python agent."""
+    def setup_ros_interfaces(self):
+        """Setup ROS interfaces for cloud bridging"""
+        cloud_topics = self.cloud_config['cloud_topics']
+        
+        for topic_info in cloud_topics:
+            topic_name = topic_info['name']
+            topic_type = topic_info['type']
+            cloud_endpoint = topic_info['endpoint']
+            upload_strategy = topic_info.get('strategy', 'immediate')
+            
+            # Create appropriate subscriber based on message type
+            if topic_type == 'std_msgs/String':
+                sub = self.create_subscription(
+                    String,
+                    topic_name,
+                    lambda msg, t=topic_name, e=cloud_endpoint, s=upload_strategy: 
+                        self.ros_message_handler(msg, t, e, s),
+                    10
+                )
+            elif topic_type == 'sensor_msgs/Image':
+                sub = self.create_subscription(
+                    Image,
+                    topic_name,
+                    lambda msg, t=topic_name, e=cloud_endpoint, s=upload_strategy: 
+                        self.image_message_handler(msg, t, e, s),
+                    10
+                )
+            elif topic_type == 'sensor_msgs/LaserScan':
+                sub = self.create_subscription(
+                    LaserScan,
+                    topic_name,
+                    lambda msg, t=topic_name, e=cloud_endpoint, s=upload_strategy: 
+                        self.laser_message_handler(msg, t, e, s),
+                    10
+                )
+            elif topic_type == 'geometry_msgs/Twist':
+                sub = self.create_subscription(
+                    Twist,
+                    topic_name,
+                    lambda msg, t=topic_name, e=cloud_endpoint, s=upload_strategy: 
+                        self.twist_message_handler(msg, t, e, s),
+                    10
+                )
+            else:
+                self.get_logger().warn(f'Unsupported message type: {topic_type}')
+                continue
+            
+            self.ros_subscribers[topic_name] = {
+                'subscriber': sub,
+                'endpoint': cloud_endpoint,
+                'strategy': upload_strategy,
+                'buffer': [] if upload_strategy == 'batch' else None,
+                'lock': threading.Lock()
+            }
+            
+            # Initialize data buffer if using batch strategy
+            if upload_strategy == 'batch':
+                self.data_buffers[topic_name] = []
+                self.buffer_locks[topic_name] = threading.Lock()
+    
+    def ros_message_handler(self, msg, topic_name: str, endpoint: str, strategy: str):
+        """Handle standard ROS messages"""
+        payload = {
+            'topic': topic_name,
+            'data': msg.data,
+            'timestamp': datetime.utcnow().isoformat(),
+            'ros_timestamp': self.get_clock().now().to_msg().sec,
+            'source_node': self.get_name()
+        }
+        
+        self.handle_message_for_cloud(payload, topic_name, endpoint, strategy)
+    
+    def image_message_handler(self, msg, topic_name: str, endpoint: str, strategy: str):
+        """Handle image messages with compression"""
+        # Convert image to base64 for JSON transport
+        image_data = base64.b64encode(bytes(msg.data)).decode('utf-8')
+        
+        payload = {
+            'topic': topic_name,
+            'image': {
+                'data': image_data,
+                'encoding': msg.encoding,
+                'height': msg.height,
+                'width': msg.width,
+                'step': msg.step
+            },
+            'timestamp': datetime.utcnow().isoformat(),
+            'source_node': self.get_name()
+        }
+        
+        self.handle_message_for_cloud(payload, topic_name, endpoint, strategy)
+    
+    def laser_message_handler(self, msg, topic_name: str, endpoint: str, strategy: str):
+        """Handle laser scan messages"""
+        payload = {
+            'topic': topic_name,
+            'laser_scan': {
+                'ranges': [float(r) if r < float('inf') else 999.0 for r in msg.ranges[:100]],  # Limit for performance
+                'intensities': [float(i) for i in msg.intensities],
+                'angle_min': float(msg.angle_min),
+                'angle_max': float(msg.angle_max),
+                'angle_increment': float(msg.angle_increment),
+                'time_increment': float(msg.time_increment),
+                'scan_time': float(msg.scan_time),
+                'range_min': float(msg.range_min),
+                'range_max': float(msg.range_max)
+            },
+            'timestamp': datetime.utcnow().isoformat(),
+            'source_node': self.get_name()
+        }
+        
+        self.handle_message_for_cloud(payload, topic_name, endpoint, strategy)
+    
+    def twist_message_handler(self, msg, topic_name: str, endpoint: str, strategy: str):
+        """Handle twist messages"""
+        payload = {
+            'topic': topic_name,
+            'twist': {
+                'linear': {
+                    'x': float(msg.linear.x),
+                    'y': float(msg.linear.y),
+                    'z': float(msg.linear.z)
+                },
+                'angular': {
+                    'x': float(msg.angular.x),
+                    'y': float(msg.angular.y),
+                    'z': float(msg.angular.z)
+                }
+            },
+            'timestamp': datetime.utcnow().isoformat(),
+            'source_node': self.get_name()
+        }
+        
+        self.handle_message_for_cloud(payload, topic_name, endpoint, strategy)
+    
+    def handle_message_for_cloud(self, payload: Dict[str, Any], topic_name: str, endpoint: str, strategy: str):
+        """Handle message processing based on strategy"""
+        if strategy == 'immediate':
+            # Send immediately
+            self.send_to_cloud(endpoint, payload)
+            self.stats['messages_sent'] += 1
+        
+        elif strategy == 'batch':
+            # Add to batch buffer
+            with self.buffer_locks[topic_name]:
+                self.data_buffers[topic_name].append(payload)
+                
+                # Check if buffer is full
+                if len(self.data_buffers[topic_name]) >= self.cloud_config['batch_size']:
+                    self.send_batch(topic_name, endpoint)
+    
+    async def async_send_to_cloud(self, url: str, data: Dict[str, Any]) -> bool:
+        """Asynchronously send data to cloud"""
         try:
-            command_data = json.loads(msg.data)
-            self.agent_commands.put(command_data)
-            self.comm_stats['messages_received'] += 1
-        except json.JSONDecodeError:
-            self.get_logger().error(f'Invalid JSON command: {msg.data}')
-            self.comm_stats['error_count'] += 1
+            async with ClientSession(headers=self.auth_headers) as session:
+                async with session.post(url, json=data, timeout=self.cloud_config['connection_timeout']) as response:
+                    if response.status == 200:
+                        self.get_logger().debug(f'Successfully sent data to cloud: {url}')
+                        return True
+                    else:
+                        error_text = await response.text()
+                        self.get_logger().error(f'Cloud upload failed: {response.status} - {error_text}')
+                        return False
+        except ClientError as e:
+            self.get_logger().error(f'Network error during cloud upload: {str(e)}')
+            self.stats['upload_errors'] += 1
+            return False
         except Exception as e:
-            self.get_logger().error(f'Error processing agent command: {e}')
-            self.comm_stats['error_count'] += 1
+            self.get_logger().error(f'Unexpected error during cloud upload: {str(e)}')
+            self.stats['upload_errors'] += 1
+            return False
     
-    def odom_callback(self, msg):
-        """Handle odometry feedback from controller."""
+    def send_to_cloud(self, endpoint: str, data: Dict[str, Any]) -> bool:
+        """Synchronous send to cloud"""
         try:
-            self.current_odometry = json.loads(msg.data)
-        except json.JSONDecodeError:
-            self.get_logger().warn(f'Invalid odometry data: {msg.data}')
-    
-    def joint_state_callback(self, msg):
-        """Handle joint state feedback from controller."""
-        self.current_joint_states = {
-            name: {
-                'position': msg.position[i] if i < len(msg.position) else 0.0,
-                'velocity': msg.velocity[i] if i < len(msg.velocity) else 0.0,
-                'effort': msg.effort[i] if i < len(msg.effort) else 0.0
-            }
-            for i, name in enumerate(msg.name)
-        }
-    
-    def communication_loop(self):
-        """Main communication loop for processing agent commands."""
-        # Process commands from agent
-        while True:
-            try:
-                command = self.agent_commands.get_nowait()
-                self.process_agent_command(command)
-            except Empty:
-                break  # No more commands to process
-    
-    def process_agent_command(self, command: Dict[str, Any]):
-        """Process commands from the Python agent using appropriate protocol."""
-        command_type = command.get('type', 'unknown')
-        
-        if command_type in self.protocol_handlers:
-            start_time = time.time()
+            url = f"{self.cloud_config['api_base_url']}{endpoint}"
             
-            try:
-                result = self.protocol_handlers[command_type](command)
+            response = requests.post(
+                url,
+                json=data,
+                headers=self.auth_headers,
+                timeout=self.cloud_config['connection_timeout']
+            )
+            
+            if response.status_code == 200:
+                self.get_logger().debug(f'Successfully sent data to cloud: {endpoint}')
+                return True
+            else:
+                self.get_logger().error(f'Cloud upload failed: {response.status_code} - {response.text}')
+                return False
                 
-                # Calculate latency and update stats
-                latency = time.time() - start_time
-                self.comm_stats['avg_latency'].append(latency)
-                
-                # Publish result back to agent if needed
-                if result:
-                    response_msg = String()
-                    response_msg.data = json.dumps(result)
-                    self.controller_feedback_pub.publish(response_msg)
-                
-            except Exception as e:
-                self.get_logger().error(f'Error processing command {command_type}: {e}')
-                self.comm_stats['error_count'] += 1
-        else:
-            self.get_logger().warn(f'Unknown command type: {command_type}')
+        except requests.exceptions.RequestException as e:
+            self.get_logger().error(f'Network error during cloud upload: {str(e)}')
+            self.stats['upload_errors'] += 1
+            return False
+        except Exception as e:
+            self.get_logger().error(f'Unexpected error during cloud upload: {str(e)}')
+            self.stats['upload_errors'] += 1
+            return False
     
-    def handle_direct_command(self, command: Dict[str, Any]) -> Optional[Dict[str, Any]]:
-        """Handle direct velocity or position commands."""
-        cmd_type = command.get('command', 'unknown')
+    def send_batch(self, topic_name: str, endpoint: str):
+        """Send batched data to cloud"""
+        with self.buffer_locks[topic_name]:
+            batch_data = self.data_buffers[topic_name][:]
+            self.data_buffers[topic_name] = []  # Clear buffer
         
-        if cmd_type == 'cmd_vel':
-            # Send velocity command to controller
-            twist_msg = Twist()
-            twist_msg.linear.x = command.get('linear_x', 0.0)
-            twist_msg.linear.y = command.get('linear_y', 0.0)
-            twist_msg.linear.z = command.get('linear_z', 0.0)
-            twist_msg.angular.x = command.get('angular_x', 0.0)
-            twist_msg.angular.y = command.get('angular_y', 0.0)
-            twist_msg.angular.z = command.get('angular_z', 0.0)
-            
-            self.cmd_vel_pub.publish(twist_msg)
-            self.comm_stats['messages_sent'] += 1
-            
-            return {'status': 'command_sent', 'command': 'cmd_vel'}
-        
-        elif cmd_type == 'joint_cmd':
-            # Send joint commands to controller
-            joint_msg = JointState()
-            joint_msg.header.stamp = self.get_clock().now().to_msg()
-            joint_msg.name = command.get('joint_names', [])
-            joint_msg.position = command.get('positions', [])
-            joint_msg.velocity = command.get('velocities', [])
-            joint_msg.effort = command.get('efforts', [])
-            
-            self.joint_cmd_pub.publish(joint_msg)
-            self.comm_stats['messages_sent'] += 1
-            
-            return {'status': 'command_sent', 'command': 'joint_cmd'}
-        
-        return {'status': 'unknown_command', 'command': cmd_type}
-    
-    def handle_trajectory_request(self, command: Dict[str, Any]) -> Optional[Dict[str, Any]]:
-        """Handle trajectory planning and execution requests."""
-        # For demonstration, send a simple goal
-        if 'goal' in command:
-            goal = command['goal']
-            pose_msg = Pose()
-            pose_msg.position.x = goal.get('x', 0.0)
-            pose_msg.position.y = goal.get('y', 0.0)
-            pose_msg.position.z = goal.get('z', 0.0)
-            pose_msg.orientation.w = 1.0  # Simplified orientation
-            
-            self.goal_pub.publish(pose_msg)
-            self.comm_stats['messages_sent'] += 1
-            
-            return {'status': 'trajectory_sent', 'goal': goal}
-        
-        return {'status': 'invalid_trajectory', 'error': 'No goal specified'}
-    
-    def handle_status_request(self, command: Dict[str, Any]) -> Optional[Dict[str, Any]]:
-        """Handle status requests from the agent."""
-        return {
-            'status': self.controller_status,
-            'timestamp': self.get_clock().now().nanoseconds,
-            'joint_states': self.current_joint_states,
-            'odometry': self.current_odometry
-        }
-    
-    def handle_parameter_update(self, command: Dict[str, Any]) -> Optional[Dict[str, Any]]:
-        """Handle parameter updates for controller tuning."""
-        # In a real implementation, this would update controller parameters
-        # For demonstration, just acknowledge the update
-        parameters = command.get('parameters', {})
-        
-        self.get_logger().info(f'Parameter update received: {list(parameters.keys())}')
-        
-        return {
-            'status': 'parameters_updated',
-            'updated_params': list(parameters.keys())
-        }
-
-def main(args=None):
-    rclpy.init(args=args)
-    
-    # Create bridge between agent and controller
-    bridge = AgentControllerBridge(
-        agent_name='navigation_agent',
-        controller_prefix='mobile_base_controller'
-    )
-    
-    try:
-        rclpy.spin(bridge)
-    except KeyboardInterrupt:
-        bridge.get_logger().info('Agent-Controller Bridge interrupted')
-    finally:
-        bridge.destroy_node()
-        rclpy.shutdown()
-
-if __name__ == '__main__':
-    main()
-```
-
-## Bridging Mechanisms
-
-### Direct Integration Approaches
-
-The most straightforward approach to bridging Python agents to ROS controllers is direct integration within the same node process:
-
-```python
-import rclpy
-from rclpy.node import Node
-from rclpy.qos import QoSProfile
-from sensor_msgs.msg import LaserScan, Imu, JointState
-from geometry_msgs.msg import Twist
-from std_msgs.msg import String
-import numpy as np
-import time
-import threading
-from queue import Queue
-import json
-
-class DirectAgentControllerNode(Node):
-    """
-    Direct integration approach: Python agent and ROS controllers in same node.
-    This provides the lowest latency communication but requires careful resource management.
-    """
-    
-    def __init__(self):
-        super().__init__('direct_agent_controller_node')
-        
-        # Agent components
-        self.agent_state = {
-            'position': np.array([0.0, 0.0, 0.0]),
-            'orientation': np.array([0.0, 0.0, 0.0, 1.0]),
-            'velocity': np.array([0.0, 0.0, 0.0]),
-            'goals': [],
-            'obstacles': [],
-            'battery_level': 100.0,
-            'is_moving': False
-        }
-        
-        self.agent_memory = {
-            'visited_positions': [],
-            'explored_areas': [],
-            'learned_patterns': {}
-        }
-        
-        # Controller components
-        self.controller_state = {
-            'joint_positions': {},
-            'joint_velocities': {},
-            'current_mode': 'idle',
-            'last_command_time': 0.0,
-            'safety_limits': {
-                'max_velocity': 1.0,
-                'max_acceleration': 2.0,
-                'collision_threshold': 0.5
+        if batch_data:
+            payload = {
+                'batch_id': f'{topic_name}_{datetime.utcnow().strftime("%Y%m%d_%H%M%S")}',
+                'count': len(batch_data),
+                'data': batch_data,
+                'timestamp': datetime.utcnow().isoformat()
             }
-        }
-        
-        # Communication setup
-        qos_profile = QoSProfile(depth=10)
-        
-        # Publishers
-        self.cmd_vel_pub = self.create_publisher(Twist, 'cmd_vel', qos_profile)
-        self.joint_cmd_pub = self.create_publisher(JointState, 'joint_commands', qos_profile)
-        self.status_pub = self.create_publisher(String, 'agent_status', qos_profile)
-        
-        # Subscribers
-        self.laser_sub = self.create_subscription(LaserScan, 'scan', self.laser_callback, qos_profile)
-        self.imu_sub = self.create_subscription(Imu, 'imu/data', self.imu_callback, qos_profile)
-        self.joint_state_sub = self.create_subscription(JointState, 'joint_states', self.joint_state_callback, qos_profile)
-        
-        # Agent control timer
-        self.agent_timer = self.create_timer(0.1, self.agent_control_loop)  # 10 Hz
-        
-        # Controller execution timer
-        self.controller_timer = self.create_timer(0.01, self.controller_execution_loop)  # 100 Hz
-        
-        # Performance monitoring
-        self.performance_stats = {
-            'agent_cycles': 0,
-            'controller_cycles': 0,
-            'avg_agent_time': [],
-            'avg_controller_time': [],
-            'sensor_updates': 0
-        }
-        
-        self.get_logger().info('Direct Agent-Controller Integration Node initialized')
-    
-    def laser_callback(self, msg):
-        """Handle laser scan data for agent perception."""
-        # Process laser data for obstacle detection
-        ranges = [r for r in msg.ranges if not (np.isnan(r) or np.isinf(r)) and r > 0]
-        
-        if ranges:
-            min_range = min(ranges)
-            self.agent_state['obstacles'] = [{'distance': min_range, 'direction': 'front'}]
-            self.controller_state['safety_limits']['collision_threshold'] = min_range
-        
-        self.performance_stats['sensor_updates'] += 1
-    
-    def imu_callback(self, msg):
-        """Handle IMU data for agent localization."""
-        self.agent_state['orientation'] = np.array([
-            msg.orientation.x,
-            msg.orientation.y,
-            msg.orientation.z,
-            msg.orientation.w
-        ])
-        
-        self.agent_state['velocity'] = np.array([
-            msg.linear_acceleration.x,
-            msg.linear_acceleration.y,
-            msg.linear_acceleration.z
-        ])
-    
-    def joint_state_callback(self, msg):
-        """Handle joint state feedback from controllers."""
-        for i, name in enumerate(msg.name):
-            if i < len(msg.position):
-                self.controller_state['joint_positions'][name] = msg.position[i]
-            if i < len(msg.velocity):
-                self.controller_state['joint_velocities'][name] = msg.velocity[i]
-    
-    def agent_control_loop(self):
-        """Main agent control loop with decision making."""
-        start_time = time.time()
-        
-        # Update agent state based on current information
-        self.update_agent_state()
-        
-        # Make high-level decisions
-        action = self.make_decision()
-        
-        if action:
-            # Execute action through controller interface
-            self.execute_action(action)
-        
-        # Publish status
-        self.publish_status()
-        
-        # Update performance metrics
-        agent_time = time.time() - start_time
-        self.performance_stats['avg_agent_time'].append(agent_time)
-        self.performance_stats['agent_cycles'] += 1
-    
-    def controller_execution_loop(self):
-        """Real-time controller execution loop."""
-        start_time = time.time()
-        
-        # Execute low-level control based on agent commands
-        self.execute_low_level_control()
-        
-        # Update controller state
-        self.update_controller_state()
-        
-        # Update performance metrics
-        controller_time = time.time() - start_time
-        self.performance_stats['avg_controller_time'].append(controller_time)
-        self.performance_stats['controller_cycles'] += 1
-    
-    def update_agent_state(self):
-        """Update agent's internal state based on sensor data."""
-        # This would include complex perception and localization algorithms
-        # For demonstration, we'll do a simple update
-        pass
-    
-    def make_decision(self):
-        """Make high-level decisions based on current state."""
-        # Simple decision making for demonstration
-        if self.agent_state['obstacles']:
-            obstacle = self.agent_state['obstacles'][0]
-            if obstacle['distance'] < 0.5:  # Emergency stop
-                return {
-                    'type': 'emergency_stop',
-                    'reason': 'obstacle_too_close',
-                    'distance': obstacle['distance']
-                }
-        
-        # Move forward if clear
-        return {
-            'type': 'move',
-            'linear_velocity': 0.2,
-            'angular_velocity': 0.0
-        }
-    
-    def execute_action(self, action):
-        """Execute agent action through controller interface."""
-        if action['type'] == 'move':
-            twist_msg = Twist()
-            twist_msg.linear.x = action.get('linear_velocity', 0.0)
-            twist_msg.angular.z = action.get('angular_velocity', 0.0)
             
-            self.cmd_vel_pub.publish(twist_msg)
-            self.agent_state['is_moving'] = True
-            self.controller_state['last_command_time'] = time.time()
+            success = self.send_to_cloud(endpoint, payload)
+            if success:
+                self.stats['messages_sent'] += len(batch_data)
+    
+    def upload_batched_data(self):
+        """Periodically send all batched data"""
+        for topic_name, topic_info in self.ros_subscribers.items():
+            if topic_info['strategy'] == 'batch':
+                with self.buffer_locks[topic_name]:
+                    if self.data_buffers[topic_name]:
+                        self.send_batch(topic_name, topic_info['endpoint'])
         
-        elif action['type'] == 'emergency_stop':
-            # Emergency stop - zero velocities
-            stop_msg = Twist()
-            self.cmd_vel_pub.publish(stop_msg)
-            self.agent_state['is_moving'] = False
-    
-    def execute_low_level_control(self):
-        """Execute low-level control algorithms."""
-        # This runs at high frequency for time-critical control
-        current_time = time.time()
+        self.stats['last_upload'] = time.time()
         
-        # Check for safety timeouts
-        if (current_time - self.controller_state['last_command_time']) > 2.0:  # 2 second timeout
-            # Emergency stop if no recent commands
-            stop_msg = Twist()
-            self.cmd_vel_pub.publish(stop_msg)
-    
-    def update_controller_state(self):
-        """Update controller-specific state."""
-        # Update any controller-specific state variables
-        pass
-    
-    def publish_status(self):
-        """Publish agent status to monitoring systems."""
-        status_msg = String()
-        status_msg.data = json.dumps({
-            'position': self.agent_state['position'].tolist(),
-            'is_moving': self.agent_state['is_moving'],
-            'obstacle_distance': self.agent_state['obstacles'][0]['distance'] if self.agent_state['obstacles'] else float('inf'),
-            'battery_level': self.agent_state['battery_level'],
-            'timestamp': time.time()
-        })
-        
-        self.status_pub.publish(status_msg)
-
-def main(args=None):
-    rclpy.init(args=args)
-    node = DirectAgentControllerNode()
-    
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        node.get_logger().info('Direct integration node interrupted')
-    finally:
-        node.destroy_node()
-        rclpy.shutdown()
-
-if __name__ == '__main__':
-    main()
-```
-
-### Message Passing Integration
-
-For more complex architectures, separate processes with message passing can provide better isolation and scalability:
-
-```python
-import rclpy
-from rclpy.node import Node
-from std_msgs.msg import String
-from sensor_msgs.msg import LaserScan, JointState
-from geometry_msgs.msg import Twist
-import multiprocessing
-import threading
-import queue
-import json
-import time
-import asyncio
-
-class MessagePassingAgent:
-    """
-    Python agent running in a separate process that communicates via message queues.
-    """
-    
-    def __init__(self, command_queue, data_queue, result_queue):
-        self.command_queue = command_queue
-        self.data_queue = data_queue
-        self.result_queue = result_queue
-        
-        # Agent state
-        self.state = {
-            'position': [0.0, 0.0, 0.0],
-            'goals': [],
-            'obstacles': []
-        }
-        
-        self.running = True
-    
-    def run(self):
-        """Main execution loop for the agent."""
-        while self.running:
-            # Check for commands
-            try:
-                if not self.command_queue.empty():
-                    command = self.command_queue.get_nowait()
-                    self.handle_command(command)
-            except queue.Empty:
-                pass
-            
-            # Check for sensor data
-            try:
-                if not self.data_queue.empty():
-                    sensor_data = self.data_queue.get_nowait()
-                    self.process_sensor_data(sensor_data)
-            except queue.Empty:
-                pass
-            
-            # Make decisions
-            action = self.make_decision()
-            if action:
-                self.result_queue.put(action)
-            
-            # Sleep briefly to prevent busy waiting
-            time.sleep(0.01)
-    
-    def handle_command(self, command):
-        """Handle commands from ROS system."""
-        if command['type'] == 'set_goal':
-            self.state['goals'].append(command['goal'])
-        elif command['type'] == 'stop':
-            self.running = False
-    
-    def process_sensor_data(self, sensor_data):
-        """Process incoming sensor data."""
-        if sensor_data['type'] == 'laser_scan':
-            # Process laser scan for obstacles
-            ranges = sensor_data['data']['ranges']
-            valid_ranges = [r for r in ranges if 0 < r < 5.0]  # Only valid ranges up to 5m
-            if valid_ranges:
-                min_range = min(valid_ranges)
-                self.state['obstacles'] = [{'distance': min_range, 'direction': 'front'}]
-    
-    def make_decision(self):
-        """Make high-level decisions."""
-        if self.state['obstacles']:
-            obstacle = self.state['obstacles'][0]
-            if obstacle['distance'] < 0.5:  # Emergency stop
-                return {
-                    'type': 'command',
-                    'command': 'emergency_stop',
-                    'reason': 'obstacle_detected'
-                }
-        
-        # Continue with navigation
-        return {
-            'type': 'command',
-            'command': 'move_forward',
-            'velocity': 0.2
-        }
-
-class MessagePassingBridgeNode(Node):
-    """
-    ROS Node that bridges to a separate Python agent process using message queues.
-    """
-    
-    def __init__(self):
-        super().__init__('message_passing_bridge_node')
-        
-        # Create message queues for communication
-        self.command_queue = multiprocessing.Queue()
-        self.data_queue = multiprocessing.Queue()
-        self.result_queue = multiprocessing.Queue()
-        
-        # Start the agent process
-        self.agent_process = multiprocessing.Process(
-            target=self.run_agent_process,
-            args=(self.command_queue, self.data_queue, self.result_queue)
+        # Log periodic statistics
+        self.get_logger().info(
+            f'Cloud bridge stats - Sent: {self.stats["messages_sent"]}, '
+            f'Errors: {self.stats["upload_errors"]}'
         )
-        self.agent_process.start()
-        
-        # ROS communication
-        self.qos_profile = 10
-        
-        # Publishers
-        self.cmd_vel_pub = self.create_publisher(Twist, 'cmd_vel', self.qos_profile)
-        self.status_pub = self.create_publisher(String, 'agent_status', self.qos_profile)
-        
-        # Subscribers
-        self.laser_sub = self.create_subscription(
-            LaserScan, 'scan', self.laser_callback, self.qos_profile
-        )
-        self.joint_state_sub = self.create_subscription(
-            JointState, 'joint_states', self.joint_state_callback, self.qos_profile
-        )
-        
-        # Timer for checking agent results
-        self.result_check_timer = self.create_timer(0.05, self.check_agent_results)
-        
-        # Timer for sending data to agent
-        self.data_send_timer = self.create_timer(0.1, self.send_sensor_data)
-        
-        self.get_logger().info('Message Passing Bridge Node initialized')
     
-    def run_agent_process(self, command_queue, data_queue, result_queue):
-        """Run the agent in a separate process."""
-        agent = MessagePassingAgent(command_queue, data_queue, result_queue)
-        agent.run()
-    
-    def laser_callback(self, msg):
-        """Handle laser scan data."""
-        # Convert ROS message to a format suitable for the agent
-        laser_data = {
-            'type': 'laser_scan',
-            'data': {
-                'ranges': list(msg.ranges),
-                'angle_min': msg.angle_min,
-                'angle_max': msg.angle_max,
-                'angle_increment': msg.angle_increment
-            }
-        }
-        
-        # Put data in queue for agent
-        self.data_queue.put(laser_data)
-    
-    def joint_state_callback(self, msg):
-        """Handle joint state data."""
-        joint_data = {
-            'type': 'joint_state',
-            'data': {
-                'names': list(msg.name),
-                'positions': list(msg.position),
-                'velocities': list(msg.velocity)
-            }
-        }
-        
-        self.data_queue.put(joint_data)
-    
-    def check_agent_results(self):
-        """Check for results from the agent process."""
+    def monitor_connection(self):
+        """Monitor cloud connection status"""
         try:
-            if not self.result_queue.empty():
-                result = self.result_queue.get_nowait()
-                self.handle_agent_result(result)
-        except queue.Empty:
-            pass
-    
-    def handle_agent_result(self, result):
-        """Handle results from the agent."""
-        if result['type'] == 'command':
-            command = result['command']
+            ping_url = f"{self.cloud_config['api_base_url']}/ping"
+            response = requests.get(ping_url, headers=self.auth_headers, timeout=5.0)
             
-            if command == 'emergency_stop':
-                # Stop the robot
-                stop_msg = Twist()
-                self.cmd_vel_pub.publish(stop_msg)
-                self.get_logger().warn('Emergency stop command received from agent')
-            
-            elif command == 'move_forward':
-                # Move forward
-                velocity = result.get('velocity', 0.2)
-                cmd_msg = Twist()
-                cmd_msg.linear.x = velocity
-                cmd_msg.angular.z = 0.0
-                self.cmd_vel_pub.publish(cmd_msg)
+            if response.status_code == 200:
+                self.get_logger().debug('Cloud connection healthy')
+            else:
+                self.get_logger().warn(f'Cloud connection issue: {response.status_code}')
+                
+        except Exception as e:
+            self.get_logger().error(f'Cloud connection check failed: {str(e)}')
     
-    def send_sensor_data(self):
-        """Send periodic data to the agent (if needed)."""
-        # This can be used to send periodic updates to the agent
-        # For example, position updates if GPS or odometry is available
-        pass
+    def get_bridge_status(self) -> Dict[str, Any]:
+        """Get current bridge status"""
+        return {
+            'stats': self.stats,
+            'config': {
+                'api_base_url': self.cloud_config['api_base_url'],
+                'upload_interval': self.cloud_config['upload_interval'],
+                'batch_size': self.cloud_config['batch_size']
+            },
+            'subscriptions': list(self.ros_subscribers.keys()),
+            'buffer_sizes': {topic: len(buffer) if buffer else 0 
+                           for topic, buffer in self.data_buffers.items()},
+            'timestamp': datetime.utcnow().isoformat()
+        }
 
-def main(args=None):
-    rclpy.init(args=args)
-    node = MessagePassingBridgeNode()
+def main():
+    rclpy.init()
+    
+    cloud_bridge = CloudBridgeNode()
     
     try:
-        rclpy.spin(node)
+        rclpy.spin(cloud_bridge)
     except KeyboardInterrupt:
-        node.get_logger().info('Message passing bridge interrupted')
-        # Terminate the agent process
-        node.command_queue.put({'type': 'stop'})
-        node.agent_process.join(timeout=2.0)
-        if node.agent_process.is_alive():
-            node.agent_process.terminate()
+        cloud_bridge.get_logger().info('Shutting down cloud bridge')
     finally:
-        node.destroy_node()
         rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
 ```
 
-### Context7 Integration in Bridging Mechanisms
+## Advanced Bridging Patterns
 
-Integrating Context7 documentation access into bridging mechanisms allows for dynamic optimization and debugging:
+### Bidirectional Real-Time Bridge
+
+Creating a true bidirectional bridge with real-time guarantees requires careful attention to timing, synchronization, and resource management:
+
+```cpp
+#include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/string.hpp"
+#include "geometry_msgs/msg/twist.hpp"
+#include "realtime_tools/realtime_publisher.h"
+#include "realtime_tools/realtime_buffer.h"
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+#include <deque>
+#include <chrono>
+
+class RealtimeBridgeNode : public rclcpp::Node
+{
+public:
+    struct MessageQueue {
+        std::deque<geometry_msgs::msg::Twist> messages;
+        std::mutex queue_mutex;
+        std::condition_variable queue_condition;
+        
+        void push_back(const geometry_msgs::msg::Twist& msg) {
+            std::lock_guard<std::mutex> lock(queue_mutex);
+            messages.push_back(msg);
+            queue_condition.notify_one();
+        }
+        
+        bool try_pop_front(geometry_msgs::msg::Twist& msg) {
+            std::lock_guard<std::mutex> lock(queue_mutex);
+            if (!messages.empty()) {
+                msg = messages.front();
+                messages.pop_front();
+                return true;
+            }
+            return false;
+        }
+        
+        bool wait_and_pop_front(geometry_msgs::msg::Twist& msg, 
+                               std::chrono::milliseconds timeout) {
+            std::unique_lock<std::mutex> lock(queue_mutex);
+            if (queue_condition.wait_for(lock, timeout, 
+                                        [&] { return !messages.empty(); })) {
+                msg = messages.front();
+                messages.pop_front();
+                return true;
+            }
+            return false;
+        }
+    };
+
+    explicit RealtimeBridgeNode(const rclcpp::NodeOptions & options = rclcpp::NodeOptions())
+    : Node("realtime_bridge", options)
+    {
+        // Real-time parameters
+        this->declare_parameter("realtime_priority", 80);
+        this->declare_parameter("max_latency_ms", 10);
+        this->declare_parameter("buffer_size", 100);
+        
+        realtime_priority_ = this->get_parameter("realtime_priority").as_int();
+        max_latency_ms_ = this->get_parameter("max_latency_ms").as_int();
+        buffer_size_ = this->get_parameter("buffer_size").as_int();
+        
+        // Setup publishers and subscribers
+        cmd_pub_ = this->create_publisher<geometry_msgs::msg::Twist>("cmd_output", 10);
+        cmd_sub_ = this->create_subscription<geometry_msgs::msg::Twist>(
+            "cmd_input", 10,
+            std::bind(&RealtimeBridgeNode::cmd_callback, this, std::placeholders::_1)
+        );
+        
+        // Setup message queues for real-time processing
+        bridge_queue_ = std::make_unique<MessageQueue>();
+        
+        // Start real-time processing thread
+        start_realtime_thread();
+        
+        RCLCPP_INFO(this->get_logger(), "Real-time bridge initialized with priority %d", realtime_priority_);
+    }
+
+private:
+    void cmd_callback(const geometry_msgs::msg::Twist::SharedPtr msg)
+    {
+        // Add message to queue for real-time processing
+        geometry_msgs::msg::Twist processed_msg = preprocess_message(*msg);
+        bridge_queue_->push_back(processed_msg);
+    }
+    
+    geometry_msgs::msg::Twist preprocess_message(const geometry_msgs::msg::Twist& input)
+    {
+        // Preprocess message with real-time constraints
+        geometry_msgs::msg::Twist output = input;
+        
+        // Apply any real-time preprocessing (filtering, scaling, etc.)
+        output.linear.x *= 1.0;  // No scaling in this example
+        output.angular.z *= 1.0;
+        
+        return output;
+    }
+    
+    void start_realtime_thread()
+    {
+        realtime_thread_ = std::thread([this]() {
+            // Set real-time priority
+            struct sched_param param;
+            param.sched_priority = realtime_priority_;
+            if (sched_setscheduler(0, SCHED_FIFO, &param) == -1) {
+                RCLCPP_WARN(this->get_logger(), "Could not set real-time priority");
+            }
+            
+            RCLCPP_INFO(this->get_logger(), "Real-time thread started");
+            
+            geometry_msgs::msg::Twist msg;
+            auto timeout = std::chrono::milliseconds(max_latency_ms_);
+            
+            while (rclcpp::ok()) {
+                try {
+                    // Wait for message with timeout
+                    if (bridge_queue_->wait_and_pop_front(msg, timeout)) {
+                        // Process message in real-time
+                        auto processed_msg = process_realtime_message(msg);
+                        
+                        // Publish with real-time publisher
+                        if (cmd_pub_->trylock()) {
+                            *cmd_pub_->get_msg() = processed_msg;
+                            cmd_pub_->unlockAndPublish();
+                        }
+                        
+                        // Track latency
+                        auto now = std::chrono::high_resolution_clock::now();
+                        auto latency = std::chrono::duration_cast<std::chrono::microseconds>(
+                            now - message_start_time_).count();
+                        
+                        if (latency > max_latency_ms_ * 1000) {
+                            RCLCPP_WARN_THROTTLE(
+                                this->get_logger(),
+                                *this->get_clock(),
+                                1000,  // throttle period in ms
+                                "Real-time deadline exceeded: %ld μs", latency
+                            );
+                        }
+                    } else {
+                        // Timeout occurred - could implement watchdog behavior
+                        RCLCPP_DEBUG_THROTTLE(
+                            this->get_logger(),
+                            *this->get_clock(),
+                            5000,  // throttle period in ms
+                            "Real-time queue timeout"
+                        );
+                    }
+                    
+                } catch (const std::exception& e) {
+                    RCLCPP_ERROR(this->get_logger(), "Real-time thread error: %s", e.what());
+                }
+            }
+            
+            RCLCPP_INFO(this->get_logger(), "Real-time thread exiting");
+        });
+        
+        // Detach the thread - it will run independently
+        realtime_thread_.detach();
+    }
+    
+    geometry_msgs::msg::Twist process_realtime_message(const geometry_msgs::msg::Twist& input)
+    {
+        // Process message in real-time context
+        // This should be kept as lightweight as possible
+        geometry_msgs::msg::Twist output = input;
+        
+        // Apply any real-time processing
+        // Note: Avoid locks, dynamic allocations, system calls, etc.
+        output.linear.x = std::clamp(input.linear.x, -2.0, 2.0);
+        output.angular.z = std::clamp(input.angular.z, -1.5, 1.5);
+        
+        return output;
+    }
+    
+    // Publishers and subscribers
+    rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_pub_;
+    rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_sub_;
+    
+    // Real-time processing
+    std::unique_ptr<MessageQueue> bridge_queue_;
+    std::thread realtime_thread_;
+    
+    // Configuration
+    int realtime_priority_;
+    int max_latency_ms_;
+    int buffer_size_;
+    
+    // Timing
+    std::chrono::high_resolution_clock::time_point message_start_time_;
+};
+```
+
+## Bridging with Legacy Systems
+
+### Protocol Adapter Pattern
+
+Creating bridges to legacy systems often requires implementing protocol adapters that can translate between different communication protocols:
 
 ```python
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String
+from std_msgs.msg import String, Int32, Float64
+import socket
+import struct
 import threading
 import time
-import json
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, Callable
+import xml.etree.ElementTree as ET
 
-class Context7BridgingNode(Node):
-    """
-    Bridging node with integrated Context7 documentation access.
-    """
-    
+class LegacyProtocolAdapter(Node):
     def __init__(self):
-        super().__init__('context7_bridging_node')
+        super().__init__('legacy_protocol_adapter')
         
-        # Context7 integration components
-        self.context7_cache = {}
-        self.context7_request_count = 0
-        self.context7_cache_lock = threading.Lock()
+        # Legacy system configuration
+        self.legacy_config = {
+            'protocol': self.declare_parameter('protocol', 'tcp').value,
+            'host': self.declare_parameter('legacy_host', 'localhost').value,
+            'port': self.declare_parameter('legacy_port', 12345).value,
+            'timeout': self.declare_parameter('timeout', 5.0).value,
+            'message_format': self.declare_parameter('message_format', 'binary').value
+        }
         
-        # Bridging components
-        self.qos_profile = 10
+        # Protocol-specific configuration
+        self.protocol_handlers = {
+            'modbus': self.handle_modbus_message,
+            'opc_ua': self.handle_opc_ua_message,
+            'custom_binary': self.handle_custom_binary_message,
+            'xml_based': self.handle_xml_message
+        }
+        
+        # Connection management
+        self.socket_connection = None
+        self.connection_lock = threading.Lock()
+        self.message_queue = []
         
         # Publishers and subscribers
-        self.agent_cmd_pub = self.create_publisher(String, 'agent_commands', self.qos_profile)
-        self.controller_cmd_pub = self.create_publisher(String, 'controller_commands', self.qos_profile)
+        self.ros_publishers = {}
+        self.ros_subscribers = {}
+        self.setup_ros_interfaces()
         
-        self.agent_response_sub = self.create_subscription(
-            String, 'agent_responses', self.agent_response_callback, self.qos_profile
+        # Connection monitoring
+        self.connection_timer = self.create_timer(2.0, self.monitor_connection)
+        
+        # Start legacy protocol handler
+        self.start_legacy_communication()
+        
+        self.get_logger().info('Legacy protocol adapter initialized')
+    
+    def setup_ros_interfaces(self):
+        """Setup ROS interfaces for legacy system bridging"""
+        # Setup publishers for data from legacy system
+        self.legacy_data_pub = self.create_publisher(String, 'legacy_data', 10)
+        
+        # Setup subscribers for commands to legacy system
+        self.legacy_cmd_sub = self.create_subscription(
+            String,
+            'legacy_command',
+            self.legacy_command_callback,
+            10
         )
-        self.controller_response_sub = self.create_subscription(
-            String, 'controller_responses', self.controller_response_callback, self.qos_profile
-        )
         
-        # Context7 interface
-        self.context7_request_pub = self.create_publisher(String, 'context7_requests', self.qos_profile)
-        self.context7_response_sub = self.create_subscription(
-            String, 'context7_responses', self.context7_response_callback, self.qos_profile
-        )
-        
-        # Timer for periodic Context7 queries
-        self.context7_timer = self.create_timer(5.0, self.periodic_context7_query)
-        
-        # Timer for bridging operations
-        self.bridge_timer = self.create_timer(0.1, self.bridge_operations)
-        
-        self.get_logger().info('Context7 Bridging Node initialized')
+        # Setup diagnostic publisher
+        self.diag_pub = self.create_publisher(String, 'legacy_diagnostics', 10)
     
-    def agent_response_callback(self, msg):
-        """Handle responses from the Python agent."""
-        try:
-            response_data = json.loads(msg.data)
-            
-            # Check if agent needs documentation help
-            if response_data.get('needs_documentation'):
-                topic = response_data['needs_documentation']
-                self.request_context7_documentation(topic)
-            
-            # Process the agent's decision
-            self.process_agent_decision(response_data)
-            
-        except json.JSONDecodeError:
-            self.get_logger().error(f'Invalid JSON from agent: {msg.data}')
-    
-    def controller_response_callback(self, msg):
-        """Handle responses from the ROS controller."""
-        try:
-            response_data = json.loads(msg.data)
-            
-            # Process controller feedback
-            self.process_controller_feedback(response_data)
-            
-            # Check if controller needs documentation
-            if response_data.get('documentation_needed'):
-                topic = response_data['documentation_needed']
-                self.request_context7_documentation(topic)
-                
-        except json.JSONDecodeError:
-            self.get_logger().error(f'Invalid JSON from controller: {msg.data}')
-    
-    def context7_response_callback(self, msg):
-        """Handle responses from Context7 documentation system."""
-        try:
-            response_data = json.loads(msg.data)
-            topic = response_data.get('topic')
-            content = response_data.get('content')
-            
-            if topic and content:
-                with self.context7_cache_lock:
-                    self.context7_cache[topic] = {
-                        'content': content,
-                        'timestamp': time.time(),
-                        'retrieved_from': response_data.get('source', 'unknown')
-                    }
-                
-                self.get_logger().info(f'Context7 documentation cached for: {topic}')
-                
-        except json.JSONDecodeError:
-            self.get_logger().error(f'Invalid Context7 response: {msg.data}')
-    
-    def request_context7_documentation(self, topic: str):
-        """Request documentation from Context7 system."""
-        request_msg = String()
-        request_data = {
-            'request_type': 'documentation',
-            'topic': topic,
-            'requester': self.get_name(),
-            'timestamp': time.time()
-        }
-        request_msg.data = json.dumps(request_data)
-        self.context7_request_pub.publish(request_msg)
-        self.context7_request_count += 1
-    
-    def periodic_context7_query(self):
-        """Periodically query Context7 for relevant documentation."""
-        topics_to_query = [
-            "ros2.agent_integration",
-            "controller_best_practices", 
-            "communication_patterns",
-            "performance_optimization"
-        ]
-        
-        for topic in topics_to_query:
-            self.request_context7_documentation(topic)
-    
-    def bridge_operations(self):
-        """Perform bridging operations with Context7-enhanced decision making."""
-        # Check if we have relevant documentation in cache
-        with self.context7_cache_lock:
-            if 'ros2.agent_integration' in self.context7_cache:
-                # Use cached documentation to make better bridging decisions
-                doc_content = self.context7_cache['ros2.agent_integration']['content']
-                
-                # Apply Context7-recommended best practices
-                self.apply_context7_best_practices(doc_content)
-    
-    def apply_context7_best_practices(self, documentation: str):
-        """Apply Context7-recommended best practices to bridging operations."""
-        # This would parse the documentation and apply recommended practices
-        # For demonstration, we'll just log that we're applying them
-        if "async" in documentation.lower():
-            self.get_logger().info("Applying asynchronous communication patterns per Context7 recommendation")
-        
-        if "qos" in documentation.lower():
-            self.get_logger().info("Optimizing QoS settings per Context7 recommendation")
-    
-    def process_agent_decision(self, decision: Dict[str, Any]):
-        """Process agent decisions with Context7 guidance."""
-        if 'action' in decision:
-            action = decision['action']
-            
-            # Check Context7 for best practices for this action type
-            action_doc_topic = f"action.{action}"
-            if action_doc_topic in self.context7_cache:
-                # Apply documented best practices for this action
-                self.get_logger().info(f"Applying Context7 best practices for action: {action}")
-            
-            # Forward action to controller
-            controller_cmd = String()
-            controller_cmd.data = json.dumps(decision)
-            self.controller_cmd_pub.publish(controller_cmd)
-    
-    def process_controller_feedback(self, feedback: Dict[str, Any]):
-        """Process controller feedback with Context7 insights."""
-        # Forward feedback to agent
-        agent_response = String()
-        agent_response.data = json.dumps(feedback)
-        self.agent_cmd_pub.publish(agent_response)
-
-def main(args=None):
-    rclpy.init(args=args)
-    node = Context7BridgingNode()
-    
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        node.get_logger().info('Context7 bridging node interrupted')
-    finally:
-        node.destroy_node()
-        rclpy.shutdown()
-
-if __name__ == '__main__':
-    main()
-```
-
-## Context7 Integration for Documentation
-
-### Dynamic Documentation Access
-
-The integration of Context7 with Python agent-ROS controller bridges enables dynamic access to up-to-date documentation and best practices, which can significantly enhance both development and runtime capabilities:
-
-```python
-import rclpy
-from rclpy.node import Node
-from std_msgs.msg import String
-import asyncio
-import aiohttp
-import json
-import threading
-import time
-from typing import Dict, Any, Optional
-from dataclasses import dataclass
-
-@dataclass
-class DocumentationRequest:
-    """Request object for Context7 documentation."""
-    topic: str
-    priority: int = 1
-    context: Dict[str, Any] = None
-
-@dataclass
-class DocumentationResponse:
-    """Response object from Context7 documentation."""
-    success: bool
-    topic: str
-    content: str
-    metadata: Dict[str, Any]
-    timestamp: float
-
-class Context7DocumentationManager:
-    """
-    Manager for Context7 documentation access with caching and async operations.
-    """
-    
-    def __init__(self, context7_endpoint: str = "http://localhost:8080"):
-        self.context7_endpoint = context7_endpoint
-        self.doc_cache: Dict[str, DocumentationResponse] = {}
-        self.request_queue = asyncio.Queue()
-        self.response_queue = asyncio.Queue()
-        
-        # Cache configuration
-        self.cache_ttl = 300  # 5 minutes
-        self.max_cache_size = 100
-        
-        # Async operations
-        self.session = None
-        self.running = False
-        self.doc_lock = threading.Lock()
-    
-    async def initialize(self):
-        """Initialize the documentation manager."""
-        self.session = aiohttp.ClientSession()
-        self.running = True
-        
-        # Start request processing
-        asyncio.create_task(self.process_requests())
-    
-    async def cleanup(self):
-        """Clean up resources."""
-        self.running = False
-        if self.session:
-            await self.session.close()
-    
-    async def get_documentation(self, topic: str, use_cache: bool = True) -> Optional[DocumentationResponse]:
-        """Get documentation for a specific topic."""
-        # Check cache first
-        if use_cache:
-            with self.doc_lock:
-                if topic in self.doc_cache:
-                    cached_response = self.doc_cache[topic]
-                    if time.time() - cached_response.timestamp < self.cache_ttl:
-                        return cached_response
-        
-        # Request from Context7
-        request = DocumentationRequest(topic=topic)
-        await self.request_queue.put(request)
-        
-        # Wait for response
-        timeout = 10.0  # 10 second timeout
-        start_time = time.time()
-        
-        while time.time() - start_time < timeout:
-            try:
-                response = self.response_queue.get_nowait()
-                if response.topic == topic:
-                    # Add to cache if successful
-                    if response.success:
-                        with self.doc_lock:
-                            self.doc_cache[topic] = response
-                            
-                            # Limit cache size
-                            if len(self.doc_cache) > self.max_cache_size:
-                                # Remove oldest entries
-                                oldest_key = min(
-                                    self.doc_cache.keys(),
-                                    key=lambda k: self.doc_cache[k].timestamp
-                                )
-                                del self.doc_cache[oldest_key]
+    def start_legacy_communication(self):
+        """Start communication with legacy system"""
+        def legacy_communication_worker():
+            while rclpy.ok():
+                try:
+                    self.connect_to_legacy_system()
                     
-                    return response
-            except asyncio.QueueEmpty:
-                await asyncio.sleep(0.01)  # Sleep briefly before checking again
+                    while rclpy.ok() and self.is_connected():
+                        try:
+                            # Receive data from legacy system
+                            raw_data = self.receive_from_legacy()
+                            
+                            if raw_data:
+                                # Parse and convert to ROS message
+                                ros_msg = self.parse_legacy_data(raw_data)
+                                
+                                if ros_msg:
+                                    self.legacy_data_pub.publish(ros_msg)
+                                    
+                                    # Process any queued commands
+                                    self.process_command_queue()
+                            
+                            time.sleep(0.01)  # 100 Hz
+                        
+                        except ConnectionError:
+                            self.get_logger().warn('Legacy connection lost, reconnecting...')
+                            self.disconnect_from_legacy()
+                            time.sleep(1.0)
+                        
+                        except Exception as e:
+                            self.get_logger().error(f'Error in legacy communication: {str(e)}')
+                            time.sleep(0.1)
+                
+                except Exception as e:
+                    self.get_logger().error(f'Legacy communication thread error: {str(e)}')
+                    time.sleep(2.0)
+        
+        self.comm_thread = threading.Thread(target=legacy_communication_worker)
+        self.comm_thread.daemon = True
+        self.comm_thread.start()
+    
+    def connect_to_legacy_system(self):
+        """Connect to legacy system"""
+        with self.connection_lock:
+            if self.socket_connection is not None:
+                return  # Already connected
+            
+            try:
+                self.socket_connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                self.socket_connection.settimeout(self.legacy_config['timeout'])
+                self.socket_connection.connect((
+                    self.legacy_config['host'], 
+                    self.legacy_config['port']
+                ))
+                
+                self.get_logger().info(f'Connected to legacy system at {self.legacy_config["host"]}:{self.legacy_config["port"]}')
+                
+                # Send initial handshake if needed
+                self.send_handshake()
+                
+            except Exception as e:
+                self.get_logger().error(f'Failed to connect to legacy system: {str(e)}')
+                if self.socket_connection:
+                    self.socket_connection.close()
+                    self.socket_connection = None
+    
+    def disconnect_from_legacy(self):
+        """Disconnect from legacy system"""
+        with self.connection_lock:
+            if self.socket_connection:
+                try:
+                    self.socket_connection.close()
+                except:
+                    pass
+                finally:
+                    self.socket_connection = None
+    
+    def is_connected(self) -> bool:
+        """Check if connected to legacy system"""
+        return self.socket_connection is not None
+    
+    def receive_from_legacy(self) -> Optional[bytes]:
+        """Receive data from legacy system"""
+        if not self.is_connected():
+            return None
+        
+        try:
+            if self.legacy_config['message_format'] == 'length_prefixed':
+                # Receive length-prefixed message
+                length_bytes = self.socket_connection.recv(4)  # 4-byte length prefix
+                if len(length_bytes) != 4:
+                    raise ConnectionError("Incomplete length header")
+                
+                length = struct.unpack('<I', length_bytes)[0]
+                data = self.socket_connection.recv(length)
+                
+                if len(data) != length:
+                    raise ConnectionError("Incomplete message")
+                
+                return data
+            
+            elif self.legacy_config['message_format'] == 'delimited':
+                # Receive line-delimited message
+                data = b''
+                while rclpy.ok():
+                    chunk = self.socket_connection.recv(1)
+                    if not chunk:
+                        raise ConnectionError("Connection closed")
+                    
+                    data += chunk
+                    if chunk == b'\n':
+                        break
+                
+                return data[:-1]  # Remove newline
+            
+            else:
+                # Default: receive fixed-size chunks
+                data = self.socket_connection.recv(1024)
+                return data if data else None
+        
+        except socket.timeout:
+            return None  # Timeout is acceptable
+        except Exception as e:
+            raise ConnectionError(f"Receive error: {str(e)}")
+    
+    def send_to_legacy(self, data: bytes) -> bool:
+        """Send data to legacy system"""
+        if not self.is_connected():
+            return False
+        
+        try:
+            self.socket_connection.sendall(data)
+            return True
+        except Exception as e:
+            self.get_logger().error(f'Send to legacy failed: {str(e)}')
+            return False
+    
+    def send_handshake(self):
+        """Send initial handshake to legacy system"""
+        # Example: Send a simple handshake message
+        handshake = "HELLO_ROS2_ADAPTER\n".encode('utf-8')
+        self.send_to_legacy(handshake)
+    
+    def legacy_command_callback(self, msg: String):
+        """Handle commands from ROS to be sent to legacy system"""
+        try:
+            # Convert ROS command to legacy format
+            legacy_cmd = self.convert_ros_command_to_legacy(msg.data)
+            
+            # Queue for sending
+            with self.connection_lock:
+                self.message_queue.append(legacy_cmd)
+            
+            self.get_logger().debug(f'Queued command to legacy system: {msg.data}')
+        
+        except Exception as e:
+            self.get_logger().error(f'Error processing ROS command: {str(e)}')
+    
+    def process_command_queue(self):
+        """Process queued commands to legacy system"""
+        with self.connection_lock:
+            if not self.message_queue:
+                return
+            
+            cmd = self.message_queue.pop(0)
+        
+        success = self.send_to_legacy(cmd)
+        if not success:
+            # Requeue failed command?
+            with self.connection_lock:
+                self.message_queue.insert(0, cmd)
+    
+    def parse_legacy_data(self, raw_data: bytes) -> Optional[String]:
+        """Parse legacy data and convert to ROS message"""
+        try:
+            # Determine message format and parse accordingly
+            if self.legacy_config['message_format'] == 'binary':
+                return self.parse_binary_format(raw_data)
+            elif self.legacy_config['message_format'] == 'xml_based':
+                return self.parse_xml_format(raw_data)
+            elif self.legacy_config['message_format'] == 'ascii_delimited':
+                return self.parse_ascii_format(raw_data)
+            else:
+                # Default: treat as string
+                parsed_data = raw_data.decode('utf-8', errors='ignore')
+                msg = String()
+                msg.data = f"LEGACY_DATA: {parsed_data}"
+                return msg
+        
+        except Exception as e:
+            self.get_logger().error(f'Error parsing legacy data: {str(e)}')
+            return None
+    
+    def parse_binary_format(self, raw_data: bytes) -> Optional[String]:
+        """Parse binary format legacy data"""
+        try:
+            # Example: Parse a simple binary format
+            # Assume: [Header(4 bytes)][ID(2 bytes)][Data(Variable)]
+            if len(raw_data) < 6:
+                return None
+            
+            header = raw_data[:4].decode('utf-8', errors='ignore')
+            msg_id = struct.unpack('<H', raw_data[4:6])[0]
+            data = raw_data[6:].decode('utf-8', errors='ignore')
+            
+            if header == 'ROB1':
+                msg = String()
+                msg.data = f"BINARY_MSG: ID={msg_id}, DATA={data}"
+                return msg
+        
+        except Exception as e:
+            self.get_logger().error(f'Binary format parsing error: {str(e)}')
         
         return None
     
-    async def process_requests(self):
-        """Process documentation requests asynchronously."""
-        while self.running:
-            try:
-                request = await asyncio.wait_for(self.request_queue.get(), timeout=1.0)
-                
-                # In a real implementation, this would make an MCP call to Context7
-                # For demonstration, we'll use mock data
-                response = await self._fetch_from_context7(request.topic)
-                
-                await self.response_queue.put(response)
-                
-            except asyncio.TimeoutError:
-                continue  # Keep processing
-            except Exception as e:
-                # Create error response
-                error_response = DocumentationResponse(
-                    success=False,
-                    topic=request.topic,
-                    content="",
-                    metadata={"error": str(e)},
-                    timestamp=time.time()
-                )
-                await self.response_queue.put(error_response)
-    
-    async def _fetch_from_context7(self, topic: str) -> DocumentationResponse:
-        """
-        Fetch documentation from Context7 server.
-        In a real implementation, this would connect to the Context7 MCP server.
-        """
-        # Mock implementation - in reality, this would make an MCP call
-        await asyncio.sleep(0.1)  # Simulate network delay
-        
-        mock_docs = {
-            "ros2.agent_integration": {
-                "content": """
-# ROS 2 Agent Integration Best Practices
-
-## Communication Patterns
-- Use asynchronous communication for non-critical data
-- Implement proper error handling and retry mechanisms
-- Consider message sizes and network bandwidth
-
-## Performance Optimization
-- Use appropriate QoS settings for your use case
-- Implement efficient message serialization/deserialization
-- Monitor resource usage and optimize accordingly
-
-## Security Considerations
-- Validate all incoming data from agents
-- Implement access control for sensitive operations
-- Use secure communication protocols when possible
-                """,
-                "metadata": {
-                    "source": "ros2_docs",
-                    "version": "humble",
-                    "last_updated": "2024-12-14"
-                }
-            },
-            "python_ai_ros_integration": {
-                "content": """
-# Python AI-ROS Integration Guidelines
-
-## Architecture Patterns
-- Implement clear separation between AI processing and ROS communication
-- Use appropriate threading models for performance
-- Consider real-time requirements for time-critical operations
-
-## Data Management
-- Efficient conversion between Python data structures and ROS messages
-- Implement proper memory management for large datasets
-- Use generators and iterators for memory-efficient processing
-
-## Performance Optimization
-- Minimize data copying between AI and ROS components
-- Use appropriate message buffers and queue sizes
-- Monitor and optimize inference performance
-                """,
-                "metadata": {
-                    "source": "ai_ros_docs",
-                    "version": "humble",
-                    "last_updated": "2024-12-14"
-                }
-            }
-        }
-        
-        doc_data = mock_docs.get(topic)
-        if doc_data:
-            return DocumentationResponse(
-                success=True,
-                topic=topic,
-                content=doc_data["content"],
-                metadata=doc_data["metadata"],
-                timestamp=time.time()
-            )
-        else:
-            return DocumentationResponse(
-                success=False,
-                topic=topic,
-                content="",
-                metadata={"error": f"No documentation found for {topic}"},
-                timestamp=time.time()
-            )
-
-class Context7EnhancedAgentNode(Node):
-    """
-    ROS Node with Context7-enhanced agent integration.
-    """
-    
-    def __init__(self):
-        super().__init__('context7_enhanced_agent_node')
-        
-        # Initialize Context7 documentation manager
-        self.doc_manager = Context7DocumentationManager()
-        
-        # Initialize async event loop
-        self.loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(self.loop)
-        
-        # Run the documentation manager initialization in the event loop
-        self.loop.run_until_complete(self.doc_manager.initialize())
-        
-        # ROS communication
-        self.qos_profile = 10
-        
-        # Publishers and subscribers
-        self.agent_status_pub = self.create_publisher(String, 'agent_status', self.qos_profile)
-        self.documentation_request_pub = self.create_publisher(String, 'documentation_requests', self.qos_profile)
-        
-        # Timer for periodic documentation checks
-        self.doc_check_timer = self.create_timer(10.0, self.check_documentation_needs)
-        
-        self.get_logger().info('Context7 Enhanced Agent Node initialized')
-    
-    def check_documentation_needs(self):
-        """Check if we need to request updated documentation."""
-        # Example: check if we need documentation for current operations
-        topics_to_check = [
-            "ros2.agent_integration",
-            "python_ai_ros_integration"
-        ]
-        
-        for topic in topics_to_check:
-            # Use threading to call async method from sync ROS timer
-            future = asyncio.run_coroutine_threadsafe(
-                self.doc_manager.get_documentation(topic), 
-                self.loop
-            )
-            
-            try:
-                response = future.result(timeout=5.0)  # 5 second timeout
-                if response and response.success:
-                    self.get_logger().info(f'Documentation retrieved for: {topic}')
-                    self.get_logger().debug(f'Content length: {len(response.content)} chars')
-                else:
-                    self.get_logger().warn(f'Failed to get documentation for: {topic}')
-            except asyncio.TimeoutError:
-                self.get_logger().error(f'Timeout getting documentation for: {topic}')
-            except Exception as e:
-                self.get_logger().error(f'Error getting documentation for {topic}: {e}')
-    
-    async def cleanup(self):
-        """Clean up async resources."""
-        await self.doc_manager.cleanup()
-
-def main(args=None):
-    rclpy.init(args=args)
-    node = Context7EnhancedAgentNode()
-    
-    try:
-        # Run ROS spin in a separate thread so we can handle async operations
-        spin_thread = threading.Thread(target=lambda: rclpy.spin(node))
-        spin_thread.start()
-        
-        # Wait for shutdown
-        spin_thread.join()
-        
-    except KeyboardInterrupt:
-        node.get_logger().info('Context7 enhanced agent interrupted')
-    finally:
-        # Clean up async resources
-        future = asyncio.run_coroutine_threadsafe(node.cleanup(), node.loop)
-        future.result(timeout=5.0)
-        node.loop.close()
-        
-        node.destroy_node()
-        rclpy.shutdown()
-
-if __name__ == '__main__':
-    main()
-```
-
-## Advanced Integration Patterns
-
-### Hierarchical Control Architecture
-
-Modern robotics systems often implement hierarchical control architectures where different levels of intelligence operate at different time scales and abstraction levels:
-
-```python
-import rclpy
-from rclpy.node import Node
-from rclpy.qos import QoSProfile
-from std_msgs.msg import String, Float64MultiArray
-from geometry_msgs.msg import Twist, Pose
-from sensor_msgs.msg import JointState, LaserScan
-import time
-import threading
-from queue import Queue, Empty
-import json
-import numpy as np
-from typing import Dict, Any, List
-
-class HierarchicalControlNode(Node):
-    """
-    Hierarchical control architecture with multiple levels of intelligence:
-    - High-level planning (seconds to minutes)
-    - Mid-level coordination (100s of milliseconds to seconds)  
-    - Low-level control (10s of milliseconds)
-    """
-    
-    def __init__(self):
-        super().__init__('hierarchical_control_node')
-        
-        # Define control hierarchy
-        self.control_levels = {
-            'high_level': {
-                'name': 'planning',
-                'frequency': 1.0,  # 1 Hz
-                'responsibilities': ['mission planning', 'path planning', 'goal setting']
-            },
-            'mid_level': {
-                'name': 'coordination', 
-                'frequency': 10.0,  # 10 Hz
-                'responsibilities': ['behavior coordination', 'task scheduling', 'resource allocation']
-            },
-            'low_level': {
-                'name': 'control',
-                'frequency': 100.0,  # 100 Hz
-                'responsibilities': ['motor control', 'sensor fusion', 'safety monitoring']
-            }
-        }
-        
-        # Initialize state for each level
-        self.level_states = {
-            'high_level': {
-                'current_goal': None,
-                'mission_plan': [],
-                'active': True
-            },
-            'mid_level': {
-                'current_task': None,
-                'subtasks': [],
-                'active': True
-            },
-            'low_level': {
-                'motor_commands': {},
-                'safety_status': 'normal',
-                'active': True
-            }
-        }
-        
-        # Communication interfaces for each level
-        self.initialize_communication_interfaces()
-        
-        # Performance metrics
-        self.metrics = {
-            'high_level_cycles': 0,
-            'mid_level_cycles': 0, 
-            'low_level_cycles': 0,
-            'high_level_time': [],
-            'mid_level_time': [],
-            'low_level_time': [],
-            'message_throughput': 0
-        }
-        
-        # Priority queues for cross-level communication
-        self.high_to_mid_queue = Queue()
-        self.mid_to_low_queue = Queue()
-        self.low_to_mid_queue = Queue()
-        self.mid_to_high_queue = Queue()
-        
-        # Start control loops
-        self.start_control_loops()
-        
-        self.get_logger().info('Hierarchical Control Node initialized')
-    
-    def initialize_communication_interfaces(self):
-        """Initialize ROS communication interfaces for each control level."""
-        qos_profile = QoSProfile(depth=10)
-        
-        # High-level interfaces
-        self.high_level_cmd_pub = self.create_publisher(
-            String, 'high_level/commands', qos_profile
-        )
-        self.high_level_status_pub = self.create_publisher(
-            String, 'high_level/status', qos_profile
-        )
-        self.high_level_sub = self.create_subscription(
-            String, 'high_level/goals', self.high_level_callback, qos_profile
-        )
-        
-        # Mid-level interfaces
-        self.mid_level_cmd_pub = self.create_publisher(
-            String, 'mid_level/commands', qos_profile
-        )
-        self.mid_level_status_pub = self.create_publisher(
-            String, 'mid_level/status', qos_profile
-        )
-        self.mid_level_sub = self.create_subscription(
-            String, 'mid_level/commands', self.mid_level_callback, qos_profile
-        )
-        
-        # Low-level interfaces
-        self.low_level_cmd_pub = self.create_publisher(
-            Twist, 'cmd_vel', qos_profile  # For mobile base
-        )
-        self.low_level_joint_cmd_pub = self.create_publisher(
-            JointState, 'joint_commands', qos_profile
-        )
-        self.low_level_status_pub = self.create_publisher(
-            String, 'low_level/status', qos_profile
-        )
-        
-        # Sensor interfaces (used by low/mid level)
-        self.laser_sub = self.create_subscription(
-            LaserScan, 'scan', self.laser_callback, qos_profile
-        )
-        self.joint_state_sub = self.create_subscription(
-            JointState, 'joint_states', self.joint_state_callback, qos_profile
-        )
-        
-        self.current_scan = None
-        self.current_joints = None
-    
-    def laser_callback(self, msg):
-        """Handle laser scan data (used by low/mid level)."""
-        self.current_scan = msg
-    
-    def joint_state_callback(self, msg):
-        """Handle joint state data (used by low/mid level)."""
-        self.current_joints = msg
-    
-    def start_control_loops(self):
-        """Start control loops for each hierarchy level."""
-        # High-level planning loop (1 Hz)
-        self.high_level_timer = self.create_timer(
-            1.0 / self.control_levels['high_level']['frequency'],
-            self.high_level_loop
-        )
-        
-        # Mid-level coordination loop (10 Hz)  
-        self.mid_level_timer = self.create_timer(
-            1.0 / self.control_levels['mid_level']['frequency'], 
-            self.mid_level_loop
-        )
-        
-        # Low-level control loop (100 Hz)
-        self.low_level_timer = self.create_timer(
-            1.0 / self.control_levels['low_level']['frequency'],
-            self.low_level_loop
-        )
-    
-    def high_level_loop(self):
-        """High-level planning loop."""
-        start_time = time.time()
-        
-        # Process commands from higher authority or external goals
-        self.process_high_level_input()
-        
-        # Execute high-level planning logic
-        self.execute_high_level_planning()
-        
-        # Check for messages from lower levels
-        self.process_mid_to_high_comm()
-        
-        # Update metrics
-        cycle_time = time.time() - start_time
-        self.metrics['high_level_time'].append(cycle_time)
-        self.metrics['high_level_cycles'] += 1
-        
-        # Publish status
-        self.publish_high_level_status()
-    
-    def mid_level_loop(self):
-        """Mid-level coordination loop."""
-        start_time = time.time()
-        
-        # Process high-level commands
-        self.process_mid_level_input()
-        
-        # Execute coordination logic
-        self.execute_mid_level_coordination()
-        
-        # Check cross-level communication
-        self.process_high_to_mid_comm()
-        self.process_low_to_mid_comm()
-        
-        # Update metrics
-        cycle_time = time.time() - start_time
-        self.metrics['mid_level_time'].append(cycle_time)
-        self.metrics['mid_level_cycles'] += 1
-        
-        # Publish status
-        self.publish_mid_level_status()
-    
-    def low_level_loop(self):
-        """Low-level control loop."""
-        start_time = time.time()
-        
-        # Process mid-level commands
-        self.process_low_level_input()
-        
-        # Execute control algorithms (time-critical)
-        self.execute_low_level_control()
-        
-        # Check for mid-level commands
-        self.process_mid_to_low_comm()
-        
-        # Update metrics
-        cycle_time = time.time() - start_time
-        self.metrics['low_level_time'].append(cycle_time)
-        self.metrics['low_level_cycles'] += 1
-        
-        # Publish status
-        self.publish_low_level_status()
-    
-    def process_high_level_input(self):
-        """Process high-level goals and commands."""
-        # In a real system, this would handle mission planning
-        # For demonstration, we'll set a simple goal periodically
-        if self.metrics['high_level_cycles'] % 30 == 0:  # Every 30 seconds
-            new_goal = {
-                'type': 'navigation',
-                'target': [5.0, 5.0, 0.0],
-                'priority': 1
-            }
-            self.level_states['high_level']['current_goal'] = new_goal
-    
-    def execute_high_level_planning(self):
-        """Execute high-level planning logic."""
-        goal = self.level_states['high_level']['current_goal']
-        if goal:
-            # Generate subtasks for mid-level execution
-            subtasks = self.generate_subtasks(goal)
-            self.level_states['high_level']['mission_plan'] = subtasks
-    
-    def generate_subtasks(self, goal: Dict) -> List[Dict]:
-        """Generate subtasks for a high-level goal."""
-        if goal['type'] == 'navigation':
-            # Simplified path planning - in reality would use A*, RRT, etc.
-            current_pos = [0.0, 0.0, 0.0]  # Would come from localization
-            target = goal['target']
-            
-            # Create path waypoints
-            path_waypoints = self.create_path(current_pos[:2], target[:2])
-            
-            subtasks = []
-            for i, waypoint in enumerate(path_waypoints):
-                subtask = {
-                    'id': f'nav_{i}',
-                    'type': 'navigate_to_pose',
-                    'target': [waypoint[0], waypoint[1], 0.0],
-                    'priority': goal['priority']
-                }
-                subtasks.append(subtask)
-            
-            return subtasks
-        
-        return []
-    
-    def create_path(self, start: List[float], target: List[float], num_waypoints: int = 10) -> List[List[float]]:
-        """Create a simple path between start and target."""
-        start_np = np.array(start)
-        target_np = np.array(target)
-        
-        path = []
-        for i in range(num_waypoints + 1):
-            alpha = i / num_waypoints
-            waypoint = start_np + alpha * (target_np - start_np)
-            path.append(waypoint.tolist())
-        
-        return path
-    
-    def process_mid_level_input(self):
-        """Process mid-level tasks."""
-        # Process current goal from high level
-        if self.level_states['high_level']['mission_plan']:
-            if not self.level_states['mid_level']['current_task']:
-                # Get next task from plan
-                if self.level_states['high_level']['mission_plan']:
-                    self.level_states['mid_level']['current_task'] = \
-                        self.level_states['high_level']['mission_plan'].pop(0)
-    
-    def execute_mid_level_coordination(self):
-        """Execute mid-level coordination logic."""
-        current_task = self.level_states['mid_level']['current_task']
-        if current_task:
-            # Check if task is complete
-            task_complete = self.check_task_completion(current_task)
-            
-            if task_complete:
-                self.level_states['mid_level']['current_task'] = None
-                # Send completion message to high level
-                completion_msg = String()
-                completion_msg.data = json.dumps({
-                    'type': 'task_complete',
-                    'task_id': current_task['id'],
-                    'status': 'success'
-                })
-                self.mid_to_high_queue.put(completion_msg)
-    
-    def check_task_completion(self, task: Dict) -> bool:
-        """Check if a task is complete."""
-        if task['type'] == 'navigate_to_pose':
-            # Simplified completion check - in reality would use localization
-            current_pos = [0.0, 0.0, 0.0]  # Would come from localization
-            target = task['target']
-            
-            distance = np.linalg.norm(np.array(current_pos[:2]) - np.array(target[:2]))
-            return distance < 0.2  # Consider complete within 0.2m
-        
-        return True
-    
-    def process_low_level_input(self):
-        """Process low-level control commands."""
-        current_task = self.level_states['mid_level']['current_task']
-        if current_task and current_task['type'] == 'navigate_to_pose':
-            # Generate velocity commands to reach target
-            self.generate_navigation_commands(current_task['target'])
-    
-    def generate_navigation_commands(self, target: List[float]):
-        """Generate low-level navigation commands."""
-        # Simplified navigation - in reality would use proper path following
-        current_pos = [0.0, 0.0, 0.0]  # Would come from localization
-        
-        direction = np.array(target[:2]) - np.array(current_pos[:2])
-        distance = np.linalg.norm(direction)
-        
-        if distance > 0.1:  # If not close to target
-            # Simple proportional control
-            vel_linear = min(0.3, distance * 0.5)  # Max 0.3 m/s
-            vel_angular = 0.0  # Simplified - would calculate heading error in reality
-            
-            cmd_msg = Twist()
-            cmd_msg.linear.x = vel_linear
-            cmd_msg.angular.z = vel_angular
-            
-            self.low_level_cmd_pub.publish(cmd_msg)
-        else:
-            # Stop when close to target
-            stop_msg = Twist()
-            self.low_level_cmd_pub.publish(stop_msg)
-    
-    def execute_low_level_control(self):
-        """Execute time-critical low-level control."""
-        # Safety checks
-        if self.current_scan:
-            # Check for obstacles
-            obstacle_detected = self.check_for_obstacles()
-            if obstacle_detected:
-                self.level_states['low_level']['safety_status'] = 'obstacle_detected'
-                # Emergency stop
-                stop_msg = Twist()
-                self.low_level_cmd_pub.publish(stop_msg)
-            else:
-                self.level_states['low_level']['safety_status'] = 'normal'
-    
-    def check_for_obstacles(self) -> bool:
-        """Check laser scan for obstacles."""
-        if self.current_scan:
-            ranges = [r for r in self.current_scan.ranges if 0 < r < 1.0]
-            return bool(ranges)  # Obstacle within 1m
-        
-        return False
-    
-    # Communication methods between levels
-    def process_high_to_mid_comm(self):
-        """Process messages from high level to mid level."""
-        while True:
-            try:
-                if not self.high_to_mid_queue.empty():
-                    msg = self.high_to_mid_queue.get_nowait()
-                    self.handle_high_to_mid_message(msg)
-            except Empty:
-                break
-    
-    def process_mid_to_low_comm(self):
-        """Process messages from mid level to low level."""
-        while True:
-            try:
-                if not self.mid_to_low_queue.empty():
-                    msg = self.mid_to_low_queue.get_nowait()
-                    self.handle_mid_to_low_message(msg)
-            except Empty:
-                break
-    
-    def process_low_to_mid_comm(self):
-        """Process messages from low level to mid level."""
-        while True:
-            try:
-                if not self.low_to_mid_queue.empty():
-                    msg = self.low_to_mid_queue.get_nowait()
-                    self.handle_low_to_mid_message(msg)
-            except Empty:
-                break
-    
-    def process_mid_to_high_comm(self):
-        """Process messages from mid level to high level."""
-        while True:
-            try:
-                if not self.mid_to_high_queue.empty():
-                    msg = self.mid_to_high_queue.get_nowait()
-                    self.handle_mid_to_high_message(msg)
-            except Empty:
-                break
-    
-    def handle_high_to_mid_message(self, msg: String):
-        """Handle message from high to mid level."""
-        # Implementation placeholder
-        pass
-    
-    def handle_mid_to_low_message(self, msg: String):
-        """Handle message from mid to low level."""
-        # Implementation placeholder
-        pass
-    
-    def handle_low_to_mid_message(self, msg: String):
-        """Handle message from low to mid level."""
-        # Implementation placeholder
-        pass
-    
-    def handle_mid_to_high_message(self, msg: String):
-        """Handle message from mid to high level."""
-        # Implementation placeholder
-        pass
-    
-    def high_level_callback(self, msg):
-        """Handle high-level commands from external sources."""
+    def parse_xml_format(self, raw_data: bytes) -> Optional[String]:
+        """Parse XML format legacy data"""
         try:
-            command_data = json.loads(msg.data)
-            self.level_states['high_level']['current_goal'] = command_data
-        except json.JSONDecodeError:
-            self.get_logger().error(f'Invalid high-level command: {msg.data}')
-    
-    def mid_level_callback(self, msg):
-        """Handle mid-level commands."""
-        try:
-            command_data = json.loads(msg.data)
-            # Process mid-level command
-            pass
-        except json.JSONDecodeError:
-            self.get_logger().error(f'Invalid mid-level command: {msg.data}')
-    
-    def publish_high_level_status(self):
-        """Publish high-level status."""
-        status_msg = String()
-        status_msg.data = json.dumps({
-            'level': 'high',
-            'active_goal': self.level_states['high_level']['current_goal'],
-            'plan_progress': len(self.level_states['high_level']['mission_plan']),
-            'timestamp': time.time()
-        })
-        self.high_level_status_pub.publish(status_msg)
-    
-    def publish_mid_level_status(self):
-        """Publish mid-level status."""
-        status_msg = String()
-        status_msg.data = json.dumps({
-            'level': 'mid',
-            'current_task': self.level_states['mid_level']['current_task'],
-            'subtasks_remaining': len(self.level_states['mid_level']['subtasks']),
-            'timestamp': time.time()
-        })
-        self.mid_level_status_pub.publish(status_msg)
-    
-    def publish_low_level_status(self):
-        """Publish low-level status."""
-        status_msg = String()
-        status_msg.data = json.dumps({
-            'level': 'low',
-            'safety_status': self.level_states['low_level']['safety_status'],
-            'active': True,
-            'timestamp': time.time()
-        })
-        self.low_level_status_pub.publish(status_msg)
-
-def main(args=None):
-    rclpy.init(args=args)
-    node = HierarchicalControlNode()
-    
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        node.get_logger().info('Hierarchical control node interrupted')
-    finally:
-        node.destroy_node()
-        rclpy.shutdown()
-
-if __name__ == '__main__':
-    main()
-```
-
-## Real-World Examples
-
-### Industrial Robot Integration
-
-In industrial applications, Python agents are often used for high-level task planning and optimization, while ROS controllers handle precise motion control:
-
-```python
-import rclpy
-from rclpy.node import Node
-from std_msgs.msg import String
-from sensor_msgs.msg import JointState
-from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
-from control_msgs.msg import JointTrajectoryControllerState
-from builtin_interfaces.msg import Duration
-import time
-import json
-from typing import Dict, Any, List
-import numpy as np
-
-class IndustrialRobotIntegrationNode(Node):
-    """
-    Industrial robot integration with Python agent for task planning
-    and ROS controllers for precise motion control.
-    """
-    
-    def __init__(self):
-        super().__init__('industrial_robot_integration_node')
-        
-        # Agent state for industrial applications
-        self.agent_state = {
-            'current_task': None,
-            'task_queue': [],
-            'robot_status': 'idle',
-            'production_metrics': {
-                'parts_completed': 0,
-                'cycle_time_avg': 0.0,
-                'quality_score': 100.0
-            },
-            'safety_zone': {
-                'enabled': True,
-                'protected_zones': []
-            }
-        }
-        
-        # Controller state
-        self.controller_state = {
-            'joint_positions': {},
-            'desired_trajectory': None,
-            'trajectory_progress': 0.0,
-            'safety_limits': {
-                'max_velocity': 1.0,
-                'max_acceleration': 2.0,
-                'collision_threshold': 0.1
-            }
-        }
-        
-        # ROS communication setup
-        qos_profile = 10
-        
-        # Publishers for different controller interfaces
-        self.joint_trajectory_pub = self.create_publisher(
-            JointTrajectory, 'joint_trajectory', qos_profile
-        )
-        self.task_status_pub = self.create_publisher(
-            String, 'task_status', qos_profile
-        )
-        
-        # Subscribers for feedback
-        self.joint_state_sub = self.create_subscription(
-            JointState, 'joint_states', self.joint_state_callback, qos_profile
-        )
-        self.controller_state_sub = self.create_subscription(
-            JointTrajectoryControllerState, 'controller_state', self.controller_state_callback, qos_profile
-        )
-        
-        # Industrial task interface
-        self.task_command_sub = self.create_subscription(
-            String, 'task_commands', self.task_command_callback, qos_profile
-        )
-        
-        # Safety system interface
-        self.safety_system_sub = self.create_subscription(
-            String, 'safety_system', self.safety_callback, qos_profile
-        )
-        
-        # Control loop timers
-        self.agent_timer = self.create_timer(0.5, self.agent_control_loop)  # 2 Hz for task planning
-        self.controller_timer = self.create_timer(0.01, self.controller_loop)  # 100 Hz for motion control
-        
-        self.get_logger().info('Industrial Robot Integration Node initialized')
-    
-    def joint_state_callback(self, msg):
-        """Handle joint state feedback."""
-        for i, name in enumerate(msg.name):
-            if i < len(msg.position):
-                self.controller_state['joint_positions'][name] = msg.position[i]
-    
-    def controller_state_callback(self, msg):
-        """Handle controller state feedback."""
-        # Update trajectory progress and other controller metrics
-        pass
-    
-    def task_command_callback(self, msg):
-        """Handle task commands from industrial system."""
-        try:
-            task_data = json.loads(msg.data)
-            self.agent_state['task_queue'].append(task_data)
-        except json.JSONDecodeError:
-            self.get_logger().error(f'Invalid task command: {msg.data}')
-    
-    def safety_callback(self, msg):
-        """Handle safety system events."""
-        try:
-            safety_data = json.loads(msg.data)
-            if safety_data.get('emergency_stop'):
-                self.emergency_stop()
-            elif safety_data.get('safety_reset'):
-                self.safety_reset()
-        except json.JSONDecodeError:
-            self.get_logger().error(f'Invalid safety message: {msg.data}')
-    
-    def agent_control_loop(self):
-        """High-level industrial task planning and management."""
-        # Check for new tasks
-        if self.agent_state['task_queue'] and not self.agent_state['current_task']:
-            self.agent_state['current_task'] = self.agent_state['task_queue'].pop(0)
-        
-        if self.agent_state['current_task']:
-            # Execute task planning
-            self.execute_task_planning()
-        
-        # Update production metrics
-        self.update_production_metrics()
-        
-        # Publish task status
-        self.publish_task_status()
-    
-    def execute_task_planning(self):
-        """Plan and execute industrial tasks."""
-        task = self.agent_state['current_task']
-        
-        if task['type'] == 'assembly':
-            # Generate assembly trajectory
-            trajectory = self.generate_assembly_trajectory(task)
-            self.execute_trajectory(trajectory)
-        
-        elif task['type'] == 'inspection':
-            # Generate inspection trajectory
-            trajectory = self.generate_inspection_trajectory(task)
-            self.execute_trajectory(trajectory)
-        
-        elif task['type'] == 'material_handling':
-            # Generate material handling trajectory
-            trajectory = self.generate_material_handling_trajectory(task)
-            self.execute_trajectory(trajectory)
-    
-    def generate_assembly_trajectory(self, task: Dict) -> JointTrajectory:
-        """Generate trajectory for assembly task."""
-        trajectory = JointTrajectory()
-        trajectory.joint_names = ['joint1', 'joint2', 'joint3', 'joint4', 'joint5', 'joint6']
-        
-        # Generate approach, assembly, and retreat movements
-        waypoints = [
-            # Pre-position
-            [0.0, -1.0, 0.0, -1.5, 0.0, 0.0],
-            # Approach position
-            [0.1, -1.1, 0.1, -1.4, 0.1, 0.0],
-            # Assembly position  
-            [0.15, -1.15, 0.15, -1.35, 0.15, 0.0],
-            # Post-assembly
-            [0.1, -1.1, 0.1, -1.4, 0.1, 0.0]
-        ]
-        
-        # Create trajectory points with timing
-        for i, waypoint in enumerate(waypoints):
-            point = JointTrajectoryPoint()
-            point.positions = waypoint
-            point.velocities = [0.0] * len(waypoint)  # Zero velocity at waypoints
-            point.time_from_start = Duration(sec=i+1, nanosec=0)  # 1 second per point
-            trajectory.points.append(point)
-        
-        return trajectory
-    
-    def generate_inspection_trajectory(self, task: Dict) -> JointTrajectory:
-        """Generate trajectory for inspection task."""
-        # For inspection, move through predefined inspection points
-        trajectory = JointTrajectory()
-        trajectory.joint_names = ['joint1', 'joint2', 'joint3', 'joint4', 'joint5', 'joint6']
-        
-        # Define inspection waypoints
-        inspection_points = task.get('inspection_points', [
-            [0.5, -0.5, 0.5, -1.0, 0.0, 0.0],
-            [0.6, -0.6, 0.4, -1.1, 0.1, 0.0],
-            [0.55, -0.55, 0.45, -1.05, 0.05, 0.0]
-        ])
-        
-        for i, point_pos in enumerate(inspection_points):
-            point = JointTrajectoryPoint()
-            point.positions = point_pos
-            point.velocities = [0.0] * len(point_pos)
-            point.time_from_start = Duration(sec=i+1, nanosec=0)
-            trajectory.points.append(point)
-        
-        return trajectory
-    
-    def generate_material_handling_trajectory(self, task: Dict) -> JointTrajectory:
-        """Generate trajectory for material handling task."""
-        trajectory = JointTrajectory()
-        trajectory.joint_names = ['joint1', 'joint2', 'joint3', 'joint4', 'joint5', 'joint6']
-        
-        # Define pickup and drop-off positions
-        pickup_pos = task.get('pickup_position', [0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
-        dropoff_pos = task.get('dropoff_position', [1.0, 1.0, 0.0, 0.0, 0.0, 0.0])
-        
-        # Create safe approach, pickup, transport, and dropoff trajectory
-        waypoints = [
-            # Pre-pickup approach
-            [pickup_pos[0], pickup_pos[1], pickup_pos[2] + 0.2, pickup_pos[3], pickup_pos[4], pickup_pos[5]],  # Safe height
-            # Pickup position
-            pickup_pos,
-            # Post-pickup (with load)
-            [pickup_pos[0], pickup_pos[1], pickup_pos[2] + 0.2, pickup_pos[3], pickup_pos[4], pickup_pos[5]],
-            # Transport to dropoff
-            [dropoff_pos[0], dropoff_pos[1], dropoff_pos[2] + 0.2, dropoff_pos[3], dropoff_pos[4], dropoff_pos[5]],
-            # Dropoff position
-            dropoff_pos,
-            # Post-dropoff
-            [dropoff_pos[0], dropoff_pos[1], dropoff_pos[2] + 0.2, dropoff_pos[3], dropoff_pos[4], dropoff_pos[5]]
-        ]
-        
-        for i, waypoint in enumerate(waypoints):
-            point = JointTrajectoryPoint()
-            point.positions = waypoint
-            point.velocities = [0.0] * len(waypoint)
-            point.time_from_start = Duration(sec=i+1, nanosec=0)
-            trajectory.points.append(point)
-        
-        return trajectory
-    
-    def execute_trajectory(self, trajectory: JointTrajectory):
-        """Execute a joint trajectory."""
-        # Add trajectory ID for tracking
-        trajectory.header.stamp = self.get_clock().now().to_msg()
-        
-        # Publish trajectory to controller
-        self.joint_trajectory_pub.publish(trajectory)
-        
-        # Update controller state
-        self.controller_state['desired_trajectory'] = trajectory
-        self.controller_state['trajectory_progress'] = 0.0
-    
-    def controller_loop(self):
-        """Low-level motion control loop."""
-        # Check trajectory execution status
-        if self.controller_state['desired_trajectory']:
-            self.monitor_trajectory_execution()
-        
-        # Safety monitoring
-        self.safety_monitoring()
-    
-    def monitor_trajectory_execution(self):
-        """Monitor trajectory execution progress."""
-        # In a real system, this would monitor actual vs desired joint positions
-        # For simulation, we'll just advance progress
-        self.controller_state['trajectory_progress'] += 0.01  # 1% per cycle at 100Hz
-        
-        if self.controller_state['trajectory_progress'] >= 1.0:
-            # Trajectory completed
-            self.trajectory_completed()
-    
-    def trajectory_completed(self):
-        """Handle trajectory completion."""
-        self.get_logger().info('Trajectory completed')
-        
-        # Mark current task as complete
-        if self.agent_state['current_task']:
-            self.agent_state['production_metrics']['parts_completed'] += 1
-            self.agent_state['current_task'] = None  # Move to next task on next cycle
-        
-        # Reset trajectory
-        self.controller_state['desired_trajectory'] = None
-        self.controller_state['trajectory_progress'] = 0.0
-    
-    def safety_monitoring(self):
-        """Monitor safety systems and limits."""
-        # Check joint limits and safety zones
-        for joint_name, position in self.controller_state['joint_positions'].items():
-            # Check if joint is within safe limits (simplified)
-            if abs(position) > 3.0:  # Example limit
-                self.get_logger().warn(f'Joint {joint_name} exceeds safety limit: {position}')
-                self.emergency_stop()
-                return
-    
-    def emergency_stop(self):
-        """Execute emergency stop."""
-        self.get_logger().fatal('EMERGENCY STOP ACTIVATED')
-        
-        # Stop all motion
-        stop_trajectory = JointTrajectory()
-        stop_trajectory.joint_names = ['joint1', 'joint2', 'joint3', 'joint4', 'joint5', 'joint6']
-        
-        stop_point = JointTrajectoryPoint()
-        stop_point.positions = [0.0] * 6  # Return to safe position
-        stop_point.velocities = [0.0] * 6
-        stop_point.time_from_start = Duration(sec=0, nanosec=100000000)  # 0.1 second
-        
-        stop_trajectory.points = [stop_point]
-        self.joint_trajectory_pub.publish(stop_trajectory)
-        
-        # Update states
-        self.agent_state['robot_status'] = 'emergency_stopped'
-        self.controller_state['desired_trajectory'] = None
-    
-    def safety_reset(self):
-        """Reset from emergency stop."""
-        self.get_logger().info('Safety reset')
-        self.agent_state['robot_status'] = 'idle'
-    
-    def update_production_metrics(self):
-        """Update production metrics."""
-        # Calculate average cycle time if we have completed tasks
-        if self.agent_state['production_metrics']['parts_completed'] > 0:
-            # In a real system, this would track actual cycle times
-            self.agent_state['production_metrics']['cycle_time_avg'] = 25.0  # Simplified
-    
-    def publish_task_status(self):
-        """Publish current task and system status."""
-        status_msg = String()
-        status_msg.data = json.dumps({
-            'current_task': self.agent_state['current_task'],
-            'robot_status': self.agent_state['robot_status'],
-            'production_metrics': self.agent_state['production_metrics'],
-            'timestamp': time.time()
-        })
-        self.task_status_pub.publish(status_msg)
-
-def main(args=None):
-    rclpy.init(args=args)
-    node = IndustrialRobotIntegrationNode()
-    
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        node.get_logger().info('Industrial robot integration interrupted')
-    finally:
-        node.destroy_node()
-        rclpy.shutdown()
-
-if __name__ == '__main__':
-    main()
-```
-
-### Service Robot Integration
-
-For service robots, Python agents often handle customer interaction, navigation planning, and multi-modal perception:
-
-```python
-import rclpy
-from rclpy.node import Node
-from std_msgs.msg import String, Int32
-from sensor_msgs.msg import Image, LaserScan
-from geometry_msgs.msg import Twist, PoseStamped
-from nav_msgs.msg import Odometry
-from builtin_interfaces.msg import Duration
-import time
-import json
-import numpy as np
-from typing import Dict, Any, List
-import asyncio
-
-class ServiceRobotIntegrationNode(Node):
-    """
-    Service robot integration with Python agent for customer interaction
-    and multi-modal perception with ROS controllers for navigation and manipulation.
-    """
-    
-    def __init__(self):
-        super().__init__('service_robot_integration_node')
-        
-        # Agent state for service applications
-        self.agent_state = {
-            'current_interaction': None,
-            'navigation_goals': [],
-            'customer_queue': [],
-            'service_status': 'idle',
-            'perception_data': {
-                'faces': [],
-                'objects': [],
-                'person_count': 0
-            },
-            'navigation_map': None,
-            'service_metrics': {
-                'interactions_completed': 0,
-                'navigation_success_rate': 0.0,
-                'customer_satisfaction': 0.0
-            }
-        }
-        
-        # Navigation controller state
-        self.nav_controller_state = {
-            'current_pose': np.array([0.0, 0.0, 0.0]),  # x, y, theta
-            'current_goal': None,
-            'path': [],
-            'navigation_active': False,
-            'obstacles': []
-        }
-        
-        # Communication setup
-        qos_profile = 10
-        
-        # Publishers
-        self.cmd_vel_pub = self.create_publisher(Twist, 'cmd_vel', qos_profile)
-        self.goal_pub = self.create_publisher(PoseStamped, 'move_base_simple/goal', qos_profile)
-        self.interaction_status_pub = self.create_publisher(String, 'interaction_status', qos_profile)
-        
-        # Subscribers
-        self.odom_sub = self.create_subscription(Odometry, 'odom', self.odom_callback, qos_profile)
-        self.scan_sub = self.create_subscription(LaserScan, 'scan', self.scan_callback, qos_profile)
-        self.camera_sub = self.create_subscription(Image, 'camera/image_raw', self.camera_callback, qos_profile)
-        
-        # Service interface
-        self.customer_call_sub = self.create_subscription(
-            String, 'customer_call', self.customer_call_callback, qos_profile
-        )
-        self.service_request_sub = self.create_subscription(
-            String, 'service_requests', self.service_request_callback, qos_profile
-        )
-        
-        # Control loops
-        self.interaction_timer = self.create_timer(0.5, self.interaction_control_loop)  # Customer interaction
-        self.navigation_timer = self.create_timer(0.1, self.navigation_control_loop)   # Navigation
-        self.perception_timer = self.create_timer(0.2, self.perception_processing_loop) # Perception
-        self.monitoring_timer = self.create_timer(1.0, self.system_monitoring_loop)    # System monitoring
-        
-        self.get_logger().info('Service Robot Integration Node initialized')
-    
-    def odom_callback(self, msg):
-        """Handle odometry for localization."""
-        self.nav_controller_state['current_pose'] = np.array([
-            msg.pose.pose.position.x,
-            msg.pose.pose.position.y,
-            2 * np.arctan2(msg.pose.pose.orientation.z, msg.pose.pose.orientation.w)  # Convert quaternion to yaw
-        ])
-    
-    def scan_callback(self, msg):
-        """Handle laser scan for obstacle detection."""
-        ranges = [r for r in msg.ranges if 0 < r < 5.0]
-        if ranges:
-            self.nav_controller_state['obstacles'] = ranges
-    
-    def camera_callback(self, msg):
-        """Handle camera image for perception."""
-        # In a real system, this would perform computer vision processing
-        # For simulation, we'll mock some perception results
-        self.agent_state['perception_data']['person_count'] = 2  # Mock detection
-        self.agent_state['perception_data']['faces'] = [
-            {'x': 0.5, 'y': 0.3, 'confidence': 0.9},
-            {'x': 0.7, 'y': 0.4, 'confidence': 0.85}
-        ]
-    
-    def customer_call_callback(self, msg):
-        """Handle customer calls/requests."""
-        try:
-            call_data = json.loads(msg.data)
-            customer_request = {
-                'id': call_data.get('customer_id', 'unknown'),
-                'request': call_data.get('request', ''),
-                'location': call_data.get('location', [0.0, 0.0]),
-                'priority': call_data.get('priority', 1),
-                'timestamp': time.time()
-            }
-            self.agent_state['customer_queue'].append(customer_request)
-        except json.JSONDecodeError:
-            self.get_logger().error(f'Invalid customer call: {msg.data}')
-    
-    def service_request_callback(self, msg):
-        """Handle service requests from other systems."""
-        try:
-            request_data = json.loads(msg.data)
-            # Process service request based on type
-            if request_data.get('type') == 'navigation':
-                self.add_navigation_goal(request_data['goal'])
-            elif request_data.get('type') == 'interaction':
-                self.start_customer_interaction(request_data)
-        except json.JSONDecodeError:
-            self.get_logger().error(f'Invalid service request: {msg.data}')
-    
-    def interaction_control_loop(self):
-        """Handle customer interactions and service management."""
-        # Check for new customer calls
-        if self.agent_state['customer_queue']:
-            # Sort by priority and time
-            self.agent_state['customer_queue'].sort(key=lambda x: (-x['priority'], x['timestamp']))
-            next_customer = self.agent_state['customer_queue'].pop(0)
+            xml_str = raw_data.decode('utf-8')
+            root = ET.fromstring(xml_str)
             
-            # Start interaction with customer
-            self.start_customer_interaction(next_customer)
-        
-        # Continue ongoing interactions
-        if self.agent_state['current_interaction']:
-            self.continue_interaction()
-        
-        # Update service status
-        self.publish_interaction_status()
-    
-    def start_customer_interaction(self, customer_request: Dict):
-        """Start a new customer interaction."""
-        self.agent_state['current_interaction'] = {
-            'customer_id': customer_request['id'],
-            'request': customer_request['request'],
-            'start_time': time.time(),
-            'phase': 'approach',
-            'conversation_history': []
-        }
-        
-        self.agent_state['service_status'] = 'interacting'
-        
-        # Navigate to customer if needed
-        customer_location = customer_request.get('location')
-        if customer_location:
-            self.navigate_to_customer(customer_location)
-    
-    def continue_interaction(self):
-        """Continue the current customer interaction."""
-        interaction = self.agent_state['current_interaction']
-        
-        if interaction['phase'] == 'approach':
-            # Check if we've reached the customer
-            if self.nav_controller_state['navigation_active'] == False:
-                interaction['phase'] = 'engagement'
-                interaction['conversation_history'].append({
-                    'speaker': 'robot',
-                    'message': 'Hello! How can I assist you today?',
-                    'timestamp': time.time()
-                })
-        
-        elif interaction['phase'] == 'engagement':
-            # Handle customer interaction - in reality would use NLP/Speech systems
-            if self.agent_state['perception_data']['person_count'] > 0:
-                # Acknowledge customer presence
-                interaction['conversation_history'].append({
-                    'speaker': 'robot',
-                    'message': 'I can see you. How can I help?',
-                    'timestamp': time.time()
-                })
-        
-        elif interaction['phase'] == 'fulfillment':
-            # Fulfill customer request
-            pass
-        
-        elif interaction['phase'] == 'conclusion':
-            # Conclude interaction
-            self.complete_interaction()
-    
-    def complete_interaction(self):
-        """Complete current customer interaction."""
-        interaction = self.agent_state['current_interaction']
-        
-        if interaction:
-            interaction_time = time.time() - interaction['start_time']
+            # Extract relevant information
+            message_type = root.findtext('MessageType', 'UNKNOWN')
+            message_data = root.findtext('Data', '')
             
-            # Update metrics
-            self.agent_state['service_metrics']['interactions_completed'] += 1
-            self.agent_state['service_metrics']['customer_satisfaction'] = 4.5  # Mock rating
-            
-            self.get_logger().info(f'Interaction completed with customer {interaction["customer_id"]} in {interaction_time:.1f}s')
-            
-            # Reset interaction state
-            self.agent_state['current_interaction'] = None
-            
-            # Return to idle status
-            self.agent_state['service_status'] = 'idle'
-    
-    def navigate_to_customer(self, location: List[float]):
-        """Navigate to customer location."""
-        goal_msg = PoseStamped()
-        goal_msg.header.stamp = self.get_clock().now().to_msg()
-        goal_msg.header.frame_id = 'map'
-        goal_msg.pose.position.x = location[0]
-        goal_msg.pose.position.y = location[1]
-        goal_msg.pose.position.z = 0.0
-        goal_msg.pose.orientation.w = 1.0  # No rotation
+            msg = String()
+            msg.data = f"XML_MSG: TYPE={message_type}, DATA={message_data}"
+            return msg
         
-        self.goal_pub.publish(goal_msg)
-        
-        self.nav_controller_state['current_goal'] = location
-        self.nav_controller_state['navigation_active'] = True
-    
-    def navigation_control_loop(self):
-        """Handle navigation and path planning."""
-        # Check if navigation is active and if we've reached the goal
-        if self.nav_controller_state['navigation_active'] and self.nav_controller_state['current_goal']:
-            current_pos = self.nav_controller_state['current_pose']
-            goal = self.nav_controller_state['current_goal']
-            
-            # Calculate distance to goal
-            distance = np.linalg.norm(current_pos[:2] - np.array(goal[:2]))
-            
-            if distance < 0.5:  # Within 0.5m of goal
-                self.nav_controller_state['navigation_active'] = False
-                self.nav_controller_state['current_goal'] = None
-                
-                # If this was for customer interaction, update interaction phase
-                if self.agent_state['current_interaction'] and self.agent_state['current_interaction']['phase'] == 'approach':
-                    self.agent_state['current_interaction']['phase'] = 'engagement'
-    
-    def perception_processing_loop(self):
-        """Process perception data for service applications."""
-        # Update customer detection count
-        if self.agent_state['perception_data']['person_count'] > 0:
-            # Adjust behavior based on perceived environment
-            pass
-    
-    def system_monitoring_loop(self):
-        """Monitor overall system status."""
-        # Update navigation success rate
-        if self.agent_state['service_metrics']['interactions_completed'] > 0:
-            self.agent_state['service_metrics']['navigation_success_rate'] = 0.95  # Mock value
-        
-        # Log system status periodically
-        self.get_logger().debug(f'Service status: {self.agent_state["service_status"]}, '
-                               f'Customers in queue: {len(self.agent_state["customer_queue"])}')
-    
-    def add_navigation_goal(self, goal: Dict[str, Any]):
-        """Add a navigation goal to the system."""
-        location = [goal['x'], goal['y'], goal.get('theta', 0.0)]
-        self.navigate_to_customer(location)
-    
-    def publish_interaction_status(self):
-        """Publish interaction and service status."""
-        status_msg = String()
-        status_msg.data = json.dumps({
-            'current_interaction': self.agent_state['current_interaction'],
-            'service_status': self.agent_state['service_status'],
-            'customer_queue_size': len(self.agent_state['customer_queue']),
-            'perception_data': self.agent_state['perception_data'],
-            'navigation_active': self.nav_controller_state['navigation_active'],
-            'metrics': self.agent_state['service_metrics'],
-            'timestamp': time.time()
-        })
-        self.interaction_status_pub.publish(status_msg)
-
-def main(args=None):
-    rclpy.init(args=args)
-    node = ServiceRobotIntegrationNode()
-    
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        node.get_logger().info('Service robot integration interrupted')
-    finally:
-        node.destroy_node()
-        rclpy.shutdown()
-
-if __name__ == '__main__':
-    main()
-```
-
-## Best Practices
-
-### Performance Optimization
-
-Optimizing the performance of Python agent-ROS controller bridges requires careful attention to several key areas:
-
-1. **Threading and Concurrency Management**: Separate time-critical control loops from computationally intensive AI processing
-2. **Memory Management**: Use object pooling and efficient data structures to minimize garbage collection impact
-3. **Communication Optimization**: Use appropriate QoS settings and message buffering strategies
-4. **Real-time Considerations**: Implement proper real-time scheduling where needed
-
-### Security Considerations
-
-Security is paramount in robotic systems, especially when bridging different execution environments:
-
-1. **Input Validation**: Always validate data received from AI agents before processing
-2. **Access Control**: Implement proper authorization for sensitive control commands
-3. **Data Encryption**: Use encrypted communication channels for sensitive data
-4. **Sandboxing**: Consider running AI components in sandboxed environments
-
-### Design Patterns
-
-The following design patterns are particularly useful for Python agent-ROS controller integration:
-
-1. **Observer Pattern**: For handling sensor data updates
-2. **Command Pattern**: For encapsulating control commands
-3. **State Pattern**: For managing different operational states
-4. **Strategy Pattern**: For selecting different control algorithms
-
-## Performance Optimization
-
-### Efficient Message Handling
-
-```python
-import rclpy
-from rclpy.node import Node
-from std_msgs.msg import String
-import time
-from collections import deque
-import threading
-
-class OptimizedAgentBridgeNode(Node):
-    """
-    Optimized bridge with efficient message handling and performance monitoring.
-    """
-    
-    def __init__(self):
-        super().__init__('optimized_agent_bridge_node')
-        
-        # Optimized message handling using deques for efficient appends/pops
-        self.incoming_messages = deque(maxlen=1000)
-        self.outgoing_messages = deque(maxlen=1000)
-        
-        # Message processing pool
-        self.processing_pool = deque(maxlen=10)
-        
-        # Performance metrics
-        self.metrics = {
-            'messages_processed': 0,
-            'avg_processing_time': deque(maxlen=100),
-            'message_queue_depth': deque(maxlen=100),
-            'processing_threads': 0
-        }
-        
-        qos_profile = 10
-        
-        # Publishers and subscribers
-        self.agent_pub = self.create_publisher(String, 'optimized_commands', qos_profile)
-        self.agent_sub = self.create_subscription(
-            String, 'optimized_responses', self.optimized_message_callback, qos_profile
-        )
-        
-        # Optimized processing timer
-        self.process_timer = self.create_timer(0.005, self.optimized_process_loop)  # 200 Hz
-        
-        # Performance monitoring timer
-        self.metrics_timer = self.create_timer(1.0, self.log_performance_metrics)
-        
-        self.get_logger().info('Optimized Agent Bridge Node initialized')
-        
-        # Start processing threads for heavy computation
-        self.start_processing_threads()
-    
-    def optimized_message_callback(self, msg):
-        """Optimized message callback to minimize processing time."""
-        # Add to processing queue immediately
-        self.incoming_messages.append({
-            'data': msg.data,
-            'timestamp': time.time(),
-            'source': 'agent'
-        })
-        
-        # Update metrics
-        self.metrics['message_queue_depth'].append(len(self.incoming_messages))
-    
-    def optimized_process_loop(self):
-        """Optimized processing loop with minimal overhead."""
-        start_time = time.time()
-        
-        # Process a limited number of messages per cycle to maintain timing
-        processed_count = 0
-        max_per_cycle = 10  # Limit to prevent blocking
-        
-        while self.incoming_messages and processed_count < max_per_cycle:
-            try:
-                msg = self.incoming_messages.popleft()
-                self.process_optimized_message(msg)
-                processed_count += 1
-            except IndexError:
-                break  # Queue is empty
-        
-        # Calculate and store processing time
-        processing_time = time.time() - start_time
-        self.metrics['avg_processing_time'].append(processing_time)
-        self.metrics['messages_processed'] += processed_count
-    
-    def process_optimized_message(self, msg):
-        """Process message with optimized algorithms."""
-        # In a real implementation, this would contain optimized processing
-        # For demonstration, we'll just acknowledge the message
-        response = {
-            'original_message': msg['data'],
-            'processed_at': msg['timestamp'],
-            'status': 'processed'
-        }
-        
-        response_msg = String()
-        response_msg.data = str(response)
-        self.agent_pub.publish(response_msg)
-    
-    def start_processing_threads(self):
-        """Start background processing threads for heavy computation."""
-        def processing_worker():
-            while rclpy.ok():
-                # Process heavy computations in background
-                time.sleep(0.01)  # Yield to other threads
-        
-        # Start worker threads (be conservative with thread count)
-        for i in range(1):  # Typically 1 processing thread is sufficient
-            thread = threading.Thread(target=processing_worker, daemon=True)
-            thread.start()
-    
-    def log_performance_metrics(self):
-        """Log performance metrics periodically."""
-        if self.metrics['avg_processing_time']:
-            avg_time = sum(self.metrics['avg_processing_time']) / len(self.metrics['avg_processing_time'])
-            self.get_logger().info(
-                f'Performance - Processed: {self.metrics["messages_processed"]}, '
-                f'Avg time: {avg_time*1000:.2f}ms, '
-                f'Queue depth: {len(self.incoming_messages)}'
-            )
-
-def main(args=None):
-    rclpy.init(args=args)
-    node = OptimizedAgentBridgeNode()
-    
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        node.get_logger().info('Optimized bridge interrupted')
-    finally:
-        node.destroy_node()
-        rclpy.shutdown()
-
-if __name__ == '__main__':
-    main()
-```
-
-## Security Considerations
-
-### Secure Communication Implementation
-
-```python
-import rclpy
-from rclpy.node import Node
-from std_msgs.msg import String
-import hashlib
-import hmac
-import time
-import json
-from typing import Dict, Any
-
-class SecureAgentControllerNode(Node):
-    """
-    Secure agent-controller bridge with authentication and validation.
-    """
-    
-    def __init__(self):
-        super().__init__('secure_agent_controller_node')
-        
-        # Security configuration
-        self.security_config = {
-            'shared_secret': 'your_shared_secret_here',  # Should be loaded from secure storage
-            'message_timeout': 30.0,  # 30 seconds
-            'max_message_size': 1024 * 10,  # 10KB maximum
-            'allowed_publishers': ['agent_node_1', 'agent_node_2']  # Whitelist
-        }
-        
-        # Security state
-        self.security_state = {
-            'message_counter': 0,
-            'last_message_time': time.time(),
-            'security_violations': 0
-        }
-        
-        qos_profile = 10
-        
-        # Secure publishers and subscribers
-        self.secure_command_pub = self.create_publisher(String, 'secure_commands', qos_profile)
-        self.secure_command_sub = self.create_subscription(
-            String, 'secure_agent_commands', self.secure_command_callback, qos_profile
-        )
-        
-        # Status publisher
-        self.security_status_pub = self.create_publisher(String, 'security_status', qos_profile)
-        
-        # Security monitoring timer
-        self.security_timer = self.create_timer(5.0, self.security_monitoring)
-        
-        self.get_logger().info('Secure Agent-Controller Node initialized')
-    
-    def secure_command_callback(self, msg):
-        """Handle incoming commands with security validation."""
-        try:
-            # Parse the message which should contain security metadata
-            message_data = json.loads(msg.data)
-            
-            # Validate message format
-            if not self.validate_message_format(message_data):
-                self.log_security_violation('Invalid message format')
-                return
-            
-            # Verify message integrity
-            if not self.verify_message_integrity(message_data):
-                self.log_security_violation('Message integrity check failed')
-                return
-            
-            # Check message freshness (prevent replay attacks)
-            if not self.check_message_freshness(message_data):
-                self.log_security_violation('Message too old (replay attack?)')
-                return
-            
-            # Validate message size
-            if len(msg.data) > self.security_config['max_message_size']:
-                self.log_security_violation('Message exceeds maximum size')
-                return
-            
-            # Process the validated command
-            self.process_validated_command(message_data)
-            
-        except json.JSONDecodeError:
-            self.log_security_violation('Invalid JSON in message')
+        except ET.ParseError as e:
+            self.get_logger().error(f'XML parsing error: {str(e)}')
         except Exception as e:
-            self.log_security_violation(f'Error processing secure message: {e}')
-    
-    def validate_message_format(self, message_data: Dict[str, Any]) -> bool:
-        """Validate the format of the incoming message."""
-        required_fields = ['content', 'signature', 'timestamp', 'sender_id']
-        for field in required_fields:
-            if field not in message_data:
-                return False
+            self.get_logger().error(f'XML format parsing error: {str(e)}')
         
-        # Additional validation can be added here
-        return True
+        return None
     
-    def verify_message_integrity(self, message_data: Dict[str, Any]) -> bool:
-        """Verify the integrity of the message using HMAC."""
+    def parse_ascii_format(self, raw_data: bytes) -> Optional[String]:
+        """Parse ASCII delimited format"""
         try:
-            # Extract message components
-            content = message_data['content']
-            timestamp = message_data['timestamp']
-            received_signature = message_data['signature']
-            
-            # Create the message to verify
-            message_to_verify = f"{content}{timestamp}{message_data.get('sender_id', '')}"
-            
-            # Calculate expected signature
-            expected_signature = hmac.new(
-                self.security_config['shared_secret'].encode(),
-                message_to_verify.encode(),
-                hashlib.sha256
-            ).hexdigest()
-            
-            # Compare signatures
-            return hmac.compare_digest(expected_signature, received_signature)
+            ascii_str = raw_data.decode('utf-8').strip()
+            msg = String()
+            msg.data = f"ASCII_MSG: {ascii_str}"
+            return msg
         
-        except Exception:
-            return False
+        except Exception as e:
+            self.get_logger().error(f'ASCII format parsing error: {str(e)}')
+        
+        return None
     
-    def check_message_freshness(self, message_data: Dict[str, Any]) -> bool:
-        """Check if the message is fresh (not too old)."""
-        try:
-            message_time = float(message_data['timestamp'])
-            current_time = time.time()
-            
-            # Check if message is within acceptable time window
-            return (current_time - message_time) <= self.security_config['message_timeout']
-        except (ValueError, KeyError):
-            return False
+    def convert_ros_command_to_legacy(self, ros_command: str) -> bytes:
+        """Convert ROS command string to legacy format bytes"""
+        # This is protocol-specific
+        if self.legacy_config['message_format'] == 'binary':
+            # Example binary command format
+            cmd_header = 'CMD'.encode('utf-8')
+            cmd_data = ros_command.encode('utf-8')
+            cmd_length = struct.pack('<H', len(cmd_data))
+            return cmd_header + cmd_length + cmd_data
+        
+        elif self.legacy_config['message_format'] == 'ascii_delimited':
+            # Example ASCII command with delimiter
+            return f"CMD:{ros_command}\n".encode('utf-8')
+        
+        else:
+            # Default: simple string with newline
+            return f"{ros_command}\n".encode('utf-8')
     
-    def process_validated_command(self, message_data: Dict[str, Any]):
-        """Process a command that has passed all security checks."""
-        content = message_data['content']
-        sender_id = message_data['sender_id']
-        
-        # Log the successful processing
-        self.get_logger().info(f'Processing secure command from {sender_id}')
-        
-        # In a real implementation, process the command content here
-        # For demonstration, we'll just acknowledge it
-        ack_message = {
-            'acknowledged': True,
-            'original_sender': sender_id,
-            'processed_at': time.time()
-        }
-        
-        ack_msg = String()
-        ack_msg.data = json.dumps(ack_message)
-        self.secure_command_pub.publish(ack_msg)
-    
-    def log_security_violation(self, violation_description: str):
-        """Log security violations."""
-        self.security_state['security_violations'] += 1
-        self.get_logger().error(f'SECURITY VIOLATION: {violation_description}')
-        
-        # Publish security status
-        status_msg = String()
-        status_msg.data = json.dumps({
-            'security_violations': self.security_state['security_violations'],
-            'violation_description': violation_description,
-            'timestamp': time.time()
-        })
-        self.security_status_pub.publish(status_msg)
-    
-    def security_monitoring(self):
-        """Monitor security metrics."""
-        # Could implement additional security checks here
-        # such as rate limiting, anomaly detection, etc.
-        pass
-    
-    def generate_secure_message(self, content: Any, sender_id: str) -> str:
-        """Generate a secure message with signature."""
-        message_data = {
-            'content': content,
-            'timestamp': time.time(),
-            'sender_id': sender_id
-        }
-        
-        # Create signature
-        message_str = f"{content}{message_data['timestamp']}{sender_id}"
-        signature = hmac.new(
-            self.security_config['shared_secret'].encode(),
-            message_str.encode(),
-            hashlib.sha256
-        ).hexdigest()
-        
-        message_data['signature'] = signature
-        
-        return json.dumps(message_data)
+    def monitor_connection(self):
+        """Monitor connection status"""
+        if self.is_connected():
+            status_msg = String()
+            status_msg.data = f"CONNECTED: {self.legacy_config['host']}:{self.legacy_config['port']}"
+            self.diag_pub.publish(status_msg)
+        else:
+            status_msg = String()
+            status_msg.data = "DISCONNECTED"
+            self.diag_pub.publish(status_msg)
 
-def main(args=None):
-    rclpy.init(args=args)
-    node = SecureAgentControllerNode()
+def main():
+    rclpy.init()
+    
+    adapter = LegacyProtocolAdapter()
     
     try:
-        rclpy.spin(node)
+        rclpy.spin(adapter)
     except KeyboardInterrupt:
-        node.get_logger().info('Secure agent-controller interrupted')
+        adapter.get_logger().info('Shutting down legacy adapter')
     finally:
-        node.destroy_node()
+        adapter.disconnect_from_legacy()
         rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
 ```
 
-## Future Developments
+## Conclusion
 
-### Emerging Trends in Agent-Controller Integration
+Advanced communication patterns and bridging techniques in ROS 2 enable sophisticated integration scenarios that were previously difficult or impossible. From simple ROS 1/ROS 2 bridges to complex multi-domain integrations with cloud services and legacy systems, these patterns provide the flexibility needed for modern robotic applications.
 
-The field of Python agent-ROS controller integration continues to evolve with emerging trends:
+The implementation of these patterns requires careful consideration of timing constraints, data integrity, security implications, and fault tolerance. Properly designed bridges can significantly extend the reach and capabilities of robotic systems, enabling new applications and use cases.
 
-1. **Edge AI Integration**: Running AI models directly on robot hardware
-2. **5G and Low-Latency Networks**: Ultra-low latency communication for real-time control
-3. **Digital Twin Technology**: Virtual replicas for enhanced planning and testing
-4. **Federated Learning**: Distributed machine learning across robotic fleets
-5. **Quantum Computing**: Potential future applications for optimization
+These advanced patterns form the foundation for building robust, scalable robotic systems that can operate effectively in complex, heterogeneous environments. As robotic systems continue to evolve, these bridging and communication patterns will become increasingly important for enabling seamless integration across different domains and platforms.
 
-### Advanced Integration Techniques
-
-As robotics systems become more sophisticated, new integration techniques are emerging:
-
-1. **Machine Learning Pipeline Integration**: Direct pipeline from sensor data to control
-2. **AutoML for Controller Tuning**: Automated optimization of controller parameters
-3. **Reinforcement Learning Integration**: Continuous learning and adaptation
-4. **Multi-Agent Systems**: Coordination between multiple intelligent agents
-
-## Summary
-
-The bridging of Python agents to ROS controllers represents a crucial integration point in modern robotic systems. This comprehensive guide has explored the architecture, implementation patterns, and best practices for creating robust, efficient, and secure bridges between high-level intelligent agents and low-level real-time controllers.
-
-The integration encompasses multiple architectural patterns from direct in-process integration to message-passing architectures with separate process isolation. Each approach offers different trade-offs in terms of performance, complexity, and maintainability, and the choice depends on the specific requirements of the robotic application.
-
-Context7 integration adds significant value by providing dynamic access to up-to-date documentation and best practices, enabling more maintainable and well-documented systems. This integration can enhance both development-time tooling and runtime decision-making capabilities.
-
-Performance optimization remains critical, particularly in time-sensitive applications where Python's garbage collection and dynamic nature can impact real-time execution. Techniques such as careful resource management, efficient data structures, and appropriate threading models help mitigate these challenges.
-
-Security considerations are paramount in robotic systems, where unauthorized access could lead to safety risks or operational disruptions. Implementing secure communication protocols, input validation, and access control mechanisms is essential for production systems.
-
-Real-world applications demonstrate the practical implementation of these concepts in diverse domains from industrial automation to service robotics. Each application domain presents unique challenges and requirements that must be carefully considered in the integration design.
-
-The future of agent-controller integration will likely see advances in AI/ML integration, with increasingly sophisticated agents capable of real-time learning and adaptation. Edge computing, 5G connectivity, and emerging AI technologies will continue to shape the evolution of these systems.
-
-Through careful application of the patterns and practices outlined in this guide, developers can create robust, performant, and maintainable bridges between Python agents and ROS controllers that enable sophisticated robotic capabilities while maintaining system reliability and safety.
+The next chapters will explore advanced topics including parameter management, launch configuration, and complex system architectures that build upon these communication patterns.

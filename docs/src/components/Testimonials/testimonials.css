@@ -1,0 +1,219 @@
+.homepage-testimonials {
+  padding: 4rem 1rem;
+  background-color: #f9fafb;
+  position: relative;
+}
+
+.homepage-testimonials::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top right, rgba(53, 120, 229, 0.05) 0%, transparent 70%);
+  z-index: 0;
+}
+
+.homepage-testimonials__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.homepage-testimonials__title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 3rem 0;
+  color: #1a1a1a;
+}
+
+.homepage-testimonials__single,
+.homepage-testimonials__carousel {
+  position: relative;
+}
+
+.homepage-testimonial-card {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 2.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eaecef;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.homepage-testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  font-size: 5rem;
+  font-family: Georgia, serif;
+  color: #e2e8f0;
+  line-height: 1;
+}
+
+.homepage-testimonial-card__quote {
+  margin-bottom: 1.5rem;
+}
+
+.homepage-testimonial-card__quote-text {
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: #4a5568;
+  position: relative;
+  z-index: 1;
+}
+
+.homepage-testimonial-card__author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.homepage-testimonial-card__avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.homepage-testimonial-card__author-info {
+  flex: 1;
+}
+
+.homepage-testimonial-card__author-name {
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.25rem;
+}
+
+.homepage-testimonial-card__author-role {
+  font-size: 0.875rem;
+  color: #718096;
+}
+
+/* Carousel specific styles */
+.homepage-testimonials__slide {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.5s ease-in-out;
+}
+
+.homepage-testimonials__slide--active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.homepage-testimonials__slide--inactive {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* Carousel controls */
+.homepage-testimonials__controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.homepage-testimonials__control {
+  pointer-events: auto;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  margin: 0 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.homepage-testimonials__control:hover {
+  background: #f7fafc;
+  transform: scale(1.1);
+}
+
+/* Carousel indicators */
+.homepage-testimonials__indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.homepage-testimonials__indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #cbd5e0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.homepage-testimonials__indicator--active {
+  background: #3578e5;
+  transform: scale(1.2);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .homepage-testimonials {
+    padding: 2rem 1rem;
+  }
+
+  .homepage-testimonials__title {
+    font-size: 1.5rem;
+  }
+
+  .homepage-testimonial-card {
+    padding: 1.5rem;
+  }
+
+  .homepage-testimonial-card__quote-text {
+    font-size: 1.125rem;
+  }
+
+  .homepage-testimonial-card__author {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .homepage-testimonials__controls {
+    display: none;
+  }
+
+  .homepage-testimonials__indicators {
+    margin-top: 1rem;
+  }
+}
+
+/* Accessibility improvements */
+.homepage-testimonial-card:focus-within {
+  outline: 2px solid #3578e5;
+  outline-offset: 2px;
+}
+
+.homepage-testimonials__control:focus,
+.homepage-testimonials__indicator:focus {
+  outline: 2px solid #3578e5;
+  outline-offset: 2px;
+}

@@ -1,0 +1,211 @@
+openapi: 3.0.0
+info:
+  title: Agent Retrieval API
+  description: API for the intelligent agent that retrieves and answers questions based on embeddings stored in Qdrant
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+    description: Development server
+paths:
+  /query:
+    post:
+      summary: Submit a query to the agent
+      description: Process a natural language query and return a relevant response based on book content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Successful response from the agent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentResponse'
+        '400':
+          description: Bad request - invalid query format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable entity - query validation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Check the health status of the agent service
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "healthy"
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2025-12-18T10:30:00Z"
+  /metrics:
+    get:
+      summary: Get service metrics
+      description: Retrieve performance and usage metrics
+      responses:
+        '200':
+          description: Metrics retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_queries:
+                    type: integer
+                    example: 150
+                  avg_response_time:
+                    type: number
+                    format: float
+                    example: 2.34
+                  success_rate:
+                    type: number
+                    format: float
+                    example: 0.98
+                  active_sessions:
+                    type: integer
+                    example: 5
+components:
+  schemas:
+    QueryRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: The user's natural language question
+          example: "What are the key concepts in Chapter 1?"
+          minLength: 1
+          maxLength: 1000
+        user_id:
+          type: string
+          description: Optional identifier for the requesting user
+          example: "user-12345"
+          pattern: "^[a-zA-Z0-9_-]+$"
+        metadata:
+          type: object
+          description: Additional contextual information for the query
+          example:
+            source: "dashboard"
+            priority: "high"
+        timestamp:
+          type: string
+          format: date-time
+          description: When the query was submitted
+          example: "2025-12-18T10:30:00Z"
+    AgentResponse:
+      type: object
+      required:
+        - response
+        - query_id
+        - retrieved_chunks
+        - confidence_score
+        - timestamp
+      properties:
+        response:
+          type: string
+          description: The agent's answer to the query
+          example: "The key concepts in Chapter 1 include..."
+        query_id:
+          type: string
+          description: Unique identifier for the original query
+          example: "query-67890"
+        retrieved_chunks:
+          type: array
+          items:
+            $ref: '#/components/schemas/RetrievedChunk'
+          description: List of content chunks used to generate the response
+        confidence_score:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Confidence level of the response
+          example: 0.92
+        timestamp:
+          type: string
+          format: date-time
+          description: When the response was generated
+          example: "2025-12-18T10:30:05Z"
+        sources:
+          type: array
+          items:
+            type: string
+          description: List of sources referenced in the response
+          example: ["source1", "source2"]
+    RetrievedChunk:
+      type: object
+      required:
+        - id
+        - content
+        - source_url
+        - similarity_score
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the retrieved content chunk
+          example: "chunk-abc123"
+        content:
+          type: string
+          description: The actual text content retrieved from the vector database
+          example: "The main concept discussed in this section is..."
+        source_url:
+          type: string
+          description: URL or identifier of the original source document
+          example: "https://example.com/book/chapter1"
+        similarity_score:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Semantic similarity score to the original query
+          example: 0.85
+        metadata:
+          type: object
+          description: Additional metadata associated with the chunk
+          example:
+            chapter: 1
+            section: "Introduction"
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - message
+        - timestamp
+      properties:
+        error:
+          type: string
+          description: Error type
+          example: "ValidationError"
+        message:
+          type: string
+          description: Human-readable error message
+          example: "Query must not be empty"
+        timestamp:
+          type: string
+          format: date-time
+          description: When the error occurred
+          example: "2025-12-18T10:30:00Z"

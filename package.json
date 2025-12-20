@@ -16,6 +16,8 @@
     "@docusaurus/preset-classic": "^3.9.2",
     "@modelcontextprotocol/inspector": "^0.17.5",
     "@modelcontextprotocol/sdk": "^1.24.3",
-    "@upstash/context7-mcp": "^1.0.31"
+    "@octokit/rest": "^22.0.1",
+    "@upstash/context7-mcp": "^1.0.31",
+    "axios": "^1.13.2"
   }
 }

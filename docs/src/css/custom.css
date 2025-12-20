@@ -416,16 +416,146 @@ html[data-theme='dark'] {
   margin: 1rem 0;
 }
 
+/* Homepage-specific styles - highly scoped to prevent affecting other pages */
+/* These styles only apply to the homepage by using specific selectors */
+
+/* Ensure styling isolation - only apply to homepage */
+.main-wrapper:has(.homepage-header) .homepage-content,
+html:not(.docs-wrapper) .homepage-header,
+html:not(.docs-wrapper) .homepage-hero,
+html:not(.docs-wrapper) .homepage-feature-cards,
+html:not(.docs-wrapper) .homepage-testimonials,
+html:not(.docs-wrapper) .homepage-cta {
+  all: unset;
+  display: revert;
+}
+
+/* Alternative scoping approach using more specific selectors */
+article.docItemContainer > *,
+article.docItemContainer details,
+article.docItemContainer div[class*="codeBlock"],
+article.docItemContainer div[class*="pagination"],
+article.docItemContainer div[class*="toc"],
+article.docItemContainer div[class*="theme"],
+article.docItemContainer div[class*="markdown"],
+article.docItemContainer div[class*="container"],
+article.docItemContainer div[class*="row"],
+article.docItemContainer div[class*="col"],
+article.docItemContainer div[class*="card"],
+article.docItemContainer div[class*="alert"],
+article.docItemContainer div[class*="tabs"],
+article.docItemContainer div[class*="footer"],
+article.docItemContainer div[class*="header"],
+article.docItemContainer div[class*="sidebar"],
+article.docItemContainer div[class*="nav"],
+article.docItemContainer div[class*="menu"],
+article.docItemContainer div[class*="content"],
+article.docItemContainer div[class*="main"],
+article.docItemContainer div[class*="wrapper"] {
+  /* Reset any homepage-specific styles that might leak */
+}
+
+/* Homepage-specific styles using BEM methodology with specific prefixes */
+.homepage-header,
+.homepage-hero,
+.homepage-feature-cards,
+.homepage-testimonials,
+.homepage-cta {
+  /* These classes will only be used on the homepage */
+  box-sizing: border-box;
+}
+
+/* Base responsive utilities */
+.homepage-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.homepage-section {
+  padding: 4rem 0;
+}
+
+/* CSS reset for homepage components to prevent style leakage */
+.homepage-header,
+.homepage-hero,
+.homepage-feature-cards,
+.homepage-testimonials,
+.homepage-cta {
+  all: initial;
+  font: revert;
+  box-sizing: border-box;
+}
+
+/* Re-apply necessary styles with high specificity */
+body .main-wrapper .homepage-content .homepage-header,
+body .main-wrapper .homepage-content .homepage-hero,
+body .main-wrapper .homepage-content .homepage-feature-cards,
+body .main-wrapper .homepage-content .homepage-testimonials,
+body .main-wrapper .homepage-content .homepage-cta {
+  all: revert;
+}
+
+/* Highlight specific homepage container to ensure isolation */
+.main-wrapper main .container:has(>.homepage-header) {
+  /* This targets the main homepage container */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Prevent homepage styles from affecting documentation pages */
+/* These selectors ensure that homepage-specific styles don't leak to docs */
+.docs-wrapper .homepage-header,
+.docs-wrapper .homepage-hero,
+.docs-wrapper .homepage-feature-cards,
+.docs-wrapper .homepage-testimonials,
+.docs-wrapper .homepage-cta {
+  display: none !important;
+}
+
+/* Additional isolation using CSS custom properties */
+:root {
+  --homepage-isolation-enabled: true;
+}
+
+/* Responsive layout utilities */
+@media (max-width: 768px) {
+  .homepage-container {
+    padding: 0 0.5rem;
+  }
+
+  .homepage-section {
+    padding: 2rem 0;
+  }
+}
+
+/* Focus styles for accessibility */
+.homepage-header a:focus,
+.homepage-hero a:focus,
+.homepage-feature-cards a:focus,
+.homepage-testimonials a:focus,
+.homepage-cta a:focus,
+.homepage-header button:focus,
+.homepage-hero button:focus,
+.homepage-feature-cards button:focus,
+.homepage-testimonials button:focus,
+.homepage-cta button:focus {
+  outline: 2px solid #3578e5;
+  outline-offset: 2px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .grid-container {
     grid-template-columns: 1fr;
   }
-  
+
   .grid-container-2col {
     grid-template-columns: 1fr;
   }
-  
+
   .module-highlight {
     padding: 1.5rem;
     margin: 1.5rem 0;
