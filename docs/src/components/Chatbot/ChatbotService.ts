@@ -2,7 +2,10 @@ import axios from 'axios';
 import { QueryRequest, QueryResponse } from './types';
 
 // API configuration constants
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000';
+// In Docusaurus, use hardcoded URL instead of process.env (not available in browser)
+const API_BASE_URL = typeof window !== 'undefined'
+  ? (window.__BACKEND_URL__ || 'http://localhost:8000')
+  : 'http://localhost:8000';
 const API_TIMEOUT = 30000; // 30 seconds
 
 // Create axios instance with default configuration

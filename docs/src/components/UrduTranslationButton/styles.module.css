@@ -1,0 +1,195 @@
+/**
+ * UrduTranslationButton Component Styles
+ */
+
+.translationContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.translateButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--ifm-color-primary, #2962ff);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  font-family: inherit;
+}
+
+.translateButton:hover:not(:disabled) {
+  background-color: var(--ifm-color-primary-dark, #1e4bc3);
+  transform: translateY(-1px);
+}
+
+.translateButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.translateButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.translateButton:focus-visible {
+  outline: 2px solid var(--ifm-color-primary, #2962ff);
+  outline-offset: 2px;
+}
+
+/* Original button variant (secondary color) */
+.originalButton {
+  background-color: var(--ifm-color-secondary, #6c757d);
+}
+
+.originalButton:hover:not(:disabled) {
+  background-color: var(--ifm-color-secondary-dark, #545b62);
+}
+
+/* Loading state */
+.loading {
+  position: relative;
+}
+
+.spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error message */
+.errorContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: #fef2f2;
+  border: 1px solid #ef4444;
+  border-radius: 4px;
+  color: #dc2626;
+  font-size: 0.875rem;
+}
+
+.errorIcon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.errorMessage {
+  flex-grow: 1;
+}
+
+.dismissButton {
+  padding: 0.25rem;
+  background: transparent;
+  border: none;
+  color: #dc2626;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.dismissButton:hover {
+  background-color: rgba(220, 38, 38, 0.1);
+}
+
+/* RTL indicator */
+.rtlIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background-color: rgba(41, 98, 255, 0.1);
+  color: var(--ifm-color-primary, #2962ff);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Login prompt */
+.loginPrompt {
+  color: var(--ifm-color-secondary-contrast-foreground, #666);
+  font-size: 0.875rem;
+}
+
+.loginLink {
+  color: var(--ifm-color-primary, #2962ff);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Translated content wrapper */
+.translatedContent {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
+  line-height: 2.2;
+  font-size: 1.1em;
+}
+
+.translatedContent pre,
+.translatedContent code {
+  direction: ltr;
+  text-align: left;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+}
+
+/* Screen reader only text */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .errorContainer {
+  background-color: #450a0a;
+  border-color: #b91c1c;
+  color: #fca5a5;
+}
+
+[data-theme='dark'] .dismissButton {
+  color: #fca5a5;
+}
+
+[data-theme='dark'] .rtlIndicator {
+  background-color: rgba(41, 98, 255, 0.2);
+}
+
+/* Metadata display */
+.metadata {
+  font-size: 0.75rem;
+  color: var(--ifm-color-secondary-contrast-foreground, #666);
+  margin-top: 0.25rem;
+}

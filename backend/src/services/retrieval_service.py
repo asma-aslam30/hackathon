@@ -2,6 +2,7 @@
 Retrieval service for the Agent Retrieval System.
 
 This module provides functionality for retrieving relevant content from the vector database.
+Uses Cohere for embedding generation to match stored embeddings.
 """
 from typing import Any, Dict, List, Optional
 from src.services.qdrant_service import QdrantService, QdrantDocument
@@ -9,7 +10,7 @@ from src.utils.logging_utils import app_logger
 from pydantic import BaseModel, Field
 from datetime import datetime
 import asyncio
-from openai import OpenAI
+import cohere
 from src.config.settings import get_settings
 
 
@@ -30,7 +31,7 @@ class RetrievalService:
         """Initialize the retrieval service."""
         self.qdrant_service = QdrantService()
         self.settings = get_settings()
-        self.openai_client: Optional[OpenAI] = None
+        self.cohere_client: Optional[cohere.Client] = None
         self.is_initialized = False
 
     async def initialize(self) -> bool:
@@ -48,8 +49,8 @@ class RetrievalService:
             if not qdrant_success:
                 raise RuntimeError("Failed to initialize Qdrant service")
 
-            # Initialize OpenAI client for embedding generation
-            self.openai_client = self.settings.get_openai_client()
+            # Initialize Cohere client for embedding generation
+            self.cohere_client = cohere.Client(self.settings.cohere_api_key)
 
             self.is_initialized = True
             app_logger.info("Retrieval service initialized successfully")
@@ -61,7 +62,7 @@ class RetrievalService:
 
     async def generate_embedding(self, text: str) -> List[float]:
         """
-        Generate an embedding for the given text using OpenAI.
+        Generate an embedding for the given text using Cohere.
 
         Args:
             text: Text to generate embedding for
@@ -69,16 +70,17 @@ class RetrievalService:
         Returns:
             List of floats representing the embedding vector
         """
-        if not self.openai_client:
-            raise RuntimeError("OpenAI client not initialized")
+        if not self.cohere_client:
+            raise RuntimeError("Cohere client not initialized")
 
         try:
-            response = self.openai_client.embeddings.create(
-                input=text,
-                model="text-embedding-ada-002"  # Using a common embedding model
+            response = self.cohere_client.embed(
+                texts=[text],
+                model="embed-english-v3.0",
+                input_type="search_query"  # Use search_query for queries
             )
 
-            embedding = response.data[0].embedding
+            embedding = response.embeddings[0]
             app_logger.debug(f"Generated embedding for text of length {len(text)}",
                             text_length=len(text), embedding_length=len(embedding))
             return embedding

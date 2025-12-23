@@ -1,0 +1,205 @@
+# API Contract: User Authentication & Background Collection
+
+## Authentication Endpoints
+
+### POST /api/auth/register
+**Description**: Register a new user account
+
+**Request**:
+```json
+{
+  "email": "user@example.com",
+  "password": "securePassword123",
+  "name": "John Doe"
+}
+```
+
+**Response (201 Created)**:
+```json
+{
+  "success": true,
+  "user": {
+    "id": "uuid-string",
+    "email": "user@example.com",
+    "name": "John Doe",
+    "created_at": "2025-12-20T10:30:00Z"
+  },
+  "session_token": "session-token-string"
+}
+```
+
+**Response (400 Bad Request)**:
+```json
+{
+  "success": false,
+  "error": "Validation error message",
+  "details": ["email already exists", "password too weak"]
+}
+```
+
+### POST /api/auth/login
+**Description**: Authenticate user and create session
+
+**Request**:
+```json
+{
+  "email": "user@example.com",
+  "password": "securePassword123"
+}
+```
+
+**Response (200 OK)**:
+```json
+{
+  "success": true,
+  "user": {
+    "id": "uuid-string",
+    "email": "user@example.com",
+    "name": "John Doe"
+  },
+  "session_token": "session-token-string"
+}
+```
+
+## Background Information Endpoints
+
+### GET /api/background/me
+**Description**: Get current user's background information
+
+**Headers**:
+- Authorization: Bearer {session_token}
+
+**Response (200 OK)**:
+```json
+{
+  "id": "uuid-string",
+  "user_id": "user-uuid-string",
+  "software_tools": ["Python", "React", "Docker"],
+  "hardware_setup": {
+    "os": "Linux",
+    "cpu": "Intel i7",
+    "ram": "16GB",
+    "gpu": "NVIDIA RTX 3080"
+  },
+  "programming_languages": ["Python", "JavaScript", "Go"],
+  "technical_preferences": {
+    "ide_preference": "VSCode",
+    "work_style": "remote",
+    "preferred_environment": "Linux"
+  },
+  "experience_level": "intermediate",
+  "primary_domain": "web",
+  "created_at": "2025-12-20T10:30:00Z",
+  "updated_at": "2025-12-20T10:30:00Z"
+}
+```
+
+### POST /api/background/me
+**Description**: Create or update user's background information
+
+**Headers**:
+- Authorization: Bearer {session_token}
+
+**Request**:
+```json
+{
+  "software_tools": ["Python", "React", "Docker"],
+  "hardware_setup": {
+    "os": "Linux",
+    "cpu": "Intel i7",
+    "ram": "16GB",
+    "gpu": "NVIDIA RTX 3080"
+  },
+  "programming_languages": ["Python", "JavaScript", "Go"],
+  "technical_preferences": {
+    "ide_preference": "VSCode",
+    "work_style": "remote",
+    "preferred_environment": "Linux"
+  },
+  "experience_level": "intermediate",
+  "primary_domain": "web"
+}
+```
+
+**Response (200 OK)**:
+```json
+{
+  "success": true,
+  "background": {
+    "id": "uuid-string",
+    "user_id": "user-uuid-string",
+    "software_tools": ["Python", "React", "Docker"],
+    "hardware_setup": {
+      "os": "Linux",
+      "cpu": "Intel i7",
+      "ram": "16GB",
+      "gpu": "NVIDIA RTX 3080"
+    },
+    "programming_languages": ["Python", "JavaScript", "Go"],
+    "technical_preferences": {
+      "ide_preference": "VSCode",
+      "work_style": "remote",
+      "preferred_environment": "Linux"
+    },
+    "experience_level": "intermediate",
+    "primary_domain": "web",
+    "created_at": "2025-12-20T10:30:00Z",
+    "updated_at": "2025-12-20T10:30:00Z"
+  }
+}
+```
+
+## Profile Endpoints
+
+### GET /api/profile/me
+**Description**: Get current user's profile information
+
+**Headers**:
+- Authorization: Bearer {session_token}
+
+**Response (200 OK)**:
+```json
+{
+  "id": "uuid-string",
+  "email": "user@example.com",
+  "name": "John Doe",
+  "avatar_url": "https://example.com/avatar.jpg",
+  "created_at": "2025-12-20T10:30:00Z",
+  "updated_at": "2025-12-20T10:30:00Z",
+  "last_login_at": "2025-12-20T10:30:00Z",
+  "is_active": true,
+  "email_verified": true
+}
+```
+
+### PUT /api/profile/me
+**Description**: Update current user's profile information
+
+**Headers**:
+- Authorization: Bearer {session_token}
+
+**Request**:
+```json
+{
+  "name": "John Doe Updated",
+  "avatar_url": "https://example.com/new-avatar.jpg"
+}
+```
+
+**Response (200 OK)**:
+```json
+{
+  "success": true,
+  "profile": {
+    "id": "uuid-string",
+    "email": "user@example.com",
+    "name": "John Doe Updated",
+    "avatar_url": "https://example.com/new-avatar.jpg",
+    "created_at": "2025-12-20T10:30:00Z",
+    "updated_at": "2025-12-20T11:00:00Z",
+    "last_login_at": "2025-12-20T10:30:00Z",
+    "is_active": true,
+    "email_verified": true
+  }
+}
+```

@@ -11,8 +11,11 @@ import sys
 from dotenv import load_dotenv
 from datetime import datetime
 from src.api.routers import query_router
+from src.api import translation as translation_router
+from src.api import auth as auth_router
 from src.utils.logging_utils import app_logger
 from src.config.settings import settings
+from src.config.database import async_engine, Base
 
 
 # Load environment variables
@@ -44,6 +47,13 @@ async def startup_event():
     """Initialize the agent when the application starts."""
     logger.info("Application starting up...")
 
+    # Create database tables
+    async with async_engine.begin() as conn:
+        # Import all models to ensure they're registered with Base
+        from src.models import user, translation, background, personalization, session
+        await conn.run_sync(Base.metadata.create_all)
+        logger.info("Database tables created/verified")
+
 
 @app.on_event("shutdown")
 async def shutdown_event():
@@ -53,6 +63,8 @@ async def shutdown_event():
 
 # Include API routes
 app.include_router(query_router.router, prefix="/api/v1", tags=["query"])
+app.include_router(translation_router.router, prefix="/api/v1/translation", tags=["translation"])
+app.include_router(auth_router.router, prefix="/api/v1/auth", tags=["auth"])
 
 
 @app.get("/")

@@ -6,6 +6,32 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Physical AI & Humanoid Robotics',
+
+  // Head tags for custom fonts
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preconnect',
+        href: 'https://fonts.googleapis.com',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossorigin: 'anonymous',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap',
+      },
+    },
+  ],
   tagline: 'Comprehensive Guide to Building Intelligent Physical Systems',
   favicon: 'https://www.shutterstock.com/image-vector/robotic-hand-manipulator-symbol-icon-600nw-2523988227.ico',
 
@@ -37,7 +63,20 @@ const config: Config = {
   },
 
   plugins: [
-    require.resolve('@easyops-cn/docusaurus-search-local'),
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        language: ['en'],
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+        docsRouteBasePath: '/docs',
+        blogRouteBasePath: '/blog',
+        // Disable keyboard shortcut to avoid the toLowerCase error
+        searchBarShortcut: false,
+        searchBarShortcutHint: false,
+      },
+    ],
   ],
   scripts: [
     {
@@ -108,8 +147,22 @@ const config: Config = {
         { to: '/chatbot', label: 'AI Chatbot', position: 'left' },
         { to: '/blog', label: 'Blog', position: 'left' },
         {
+          type: 'custom-translate',
+          position: 'right',
+        },
+        {
           href: 'https://github.com/asma-aslam30/hackathon',
           label: 'GitHub',
+          position: 'right',
+        },
+        {
+          to: '/login',
+          label: 'Login',
+          position: 'right',
+        },
+        {
+          to: '/signup',
+          label: 'Sign Up',
           position: 'right',
         },
       ],

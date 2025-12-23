@@ -220,6 +220,12 @@ See `.specify/memory/constitution.md` for code quality, testing, performance, se
 - N/A (using existing Qdrant vector database for retrieval) (001-backend-frontend-integration)
 - JavaScript/TypeScript, CSS, HTML + Docusaurus framework, React components, Node.js (005-docusaurus-landing-page-styling)
 - N/A (static site generation) (005-docusaurus-landing-page-styling)
+- Python 3.11 (backend) + JavaScript/TypeScript (frontend) + Better-Auth, Neon Postgres, React, Docusaurus (001-user-auth-background)
+- Neon Postgres database (001-user-auth-background)
+- Python 3.11, JavaScript/TypeScript for frontend components + FastAPI for backend API, React for frontend components, UserAuthAgent for profile retrieval (001-chapter-personalization)
+- Neon Postgres database (leveraging existing auth system), Redis for caching personalization rules (001-chapter-personalization)
+- Python 3.11+ (backend), JavaScript/TypeScript (frontend), React 18.2.0 + FastAPI 0.104.1, OpenAI 1.3.5, SQLAlchemy 2.0.23, Axios 1.13.2, Docusaurus 3.9.2 (001-urdu-translation)
+- PostgreSQL (Neon) via asyncpg for translation cache, existing user tables (001-urdu-translation)
 
 ## Recent Changes
 - 003-website-embedding-storage: Added Python 3.11+ + Cohere API client, Qdrant client, requests, beautifulsoup4, python-dotenv

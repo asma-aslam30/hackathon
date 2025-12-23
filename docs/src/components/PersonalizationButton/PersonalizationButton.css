@@ -1,0 +1,65 @@
+.personalization-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background-color: #4a6cf7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  margin: 10px 0;
+  margin-right: 10px;
+}
+
+.personalization-button:hover:not(:disabled) {
+  background-color: #3a5ce5;
+  transform: translateY(-1px);
+}
+
+.personalization-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.personalization-button.personalized {
+  background-color: #28a745;
+}
+
+.personalization-button.personalized:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.personalization-button.loading {
+  background-color: #6c757d;
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.personalized-content {
+  border-left: 3px solid #28a745;
+  padding-left: 15px;
+  background-color: #f8fff9;
+  border-radius: 4px;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}

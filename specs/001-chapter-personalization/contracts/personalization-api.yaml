@@ -1,0 +1,296 @@
+openapi: 3.0.0
+info:
+  title: Chapter Personalization API
+  description: API for personalizing chapter content based on user background
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000/api/v1
+    description: Local development server
+
+paths:
+  /personalization/chapter/{chapter_id}:
+    get:
+      summary: Get personalized chapter content
+      description: Retrieves a chapter with content adapted based on the user's background profile
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of the chapter to personalize
+        - name: force_refresh
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: false
+          description: Whether to bypass cache and regenerate personalization
+      responses:
+        '200':
+          description: Personalized chapter content
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chapter_id:
+                    type: string
+                    description: ID of the requested chapter
+                  personalized_content:
+                    type: string
+                    description: The personalized version of the chapter content
+                  personalization_metadata:
+                    type: object
+                    description: Information about what aspects of user profile were used
+                    properties:
+                      rules_applied:
+                        type: array
+                        items:
+                          type: string
+                        description: List of personalization rules applied
+                      profile_used:
+                        type: object
+                        description: Summary of user profile elements used
+                        properties:
+                          experience_level:
+                            type: string
+                          programming_languages:
+                            type: array
+                            items:
+                              type: string
+                          domain_expertise:
+                            type: array
+                            items:
+                              type: string
+                  original_content_available:
+                    type: boolean
+                    description: Whether original non-personalized content is available
+        '401':
+          description: Unauthorized - User not authenticated
+        '403':
+          description: Forbidden - User doesn't have access to this chapter
+        '404':
+          description: Chapter not found
+        '500':
+          description: Internal server error
+
+  /personalization/preferences:
+    get:
+      summary: Get user's personalization preferences
+      description: Retrieves the current personalization settings for the authenticated user
+      responses:
+        '200':
+          description: User's personalization preferences
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalizationPreferences'
+        '401':
+          description: Unauthorized - User not authenticated
+        '500':
+          description: Internal server error
+    put:
+      summary: Update user's personalization preferences
+      description: Updates the personalization settings for the authenticated user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonalizationPreferencesInput'
+      responses:
+        '200':
+          description: Updated personalization preferences
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalizationPreferences'
+        '400':
+          description: Invalid request body
+        '401':
+          description: Unauthorized - User not authenticated
+        '500':
+          description: Internal server error
+
+  /personalization/toggle:
+    post:
+      summary: Toggle personalization for a chapter
+      description: Enables or disables personalization for a specific chapter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - chapter_id
+                - enabled
+              properties:
+                chapter_id:
+                  type: string
+                  description: ID of the chapter
+                enabled:
+                  type: boolean
+                  description: Whether to enable or disable personalization
+      responses:
+        '200':
+          description: Personalization toggle status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chapter_id:
+                    type: string
+                  personalization_enabled:
+                    type: boolean
+        '401':
+          description: Unauthorized - User not authenticated
+        '500':
+          description: Internal server error
+
+  /personalization/attribution/{chapter_id}:
+    get:
+      summary: Get personalization attribution
+      description: Retrieves information about which aspects of user profile influenced personalization of a chapter
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of the chapter
+      responses:
+        '200':
+          description: Personalization attribution information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chapter_id:
+                    type: string
+                  personalization_factors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        factor:
+                          type: string
+                          description: The profile element used (e.g., programming_language, experience_level)
+                        weight:
+                          type: number
+                          description: How much this factor influenced the personalization
+                        description:
+                          type: string
+                          description: Human-readable description of the influence
+                  profile_elements_used:
+                    type: array
+                    items:
+                      type: string
+                    description: List of profile elements that were considered
+        '401':
+          description: Unauthorized - User not authenticated
+        '500':
+          description: Internal server error
+
+  /personalization/feedback:
+    post:
+      summary: Submit personalization feedback
+      description: Allows users to provide feedback on the effectiveness of personalization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - chapter_id
+                - feedback_type
+              properties:
+                chapter_id:
+                  type: string
+                  description: ID of the chapter
+                feedback_type:
+                  type: string
+                  enum: [positive, negative, neutral]
+                  description: Type of feedback
+                feedback_text:
+                  type: string
+                  description: Optional detailed feedback
+      responses:
+        '200':
+          description: Feedback submitted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Confirmation message
+        '401':
+          description: Unauthorized - User not authenticated
+        '400':
+          description: Invalid request body
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    PersonalizationPreferences:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        intensity:
+          type: string
+          enum: [low, medium, high]
+          description: How much personalization to apply
+        customization_types:
+          type: object
+          properties:
+            examples:
+              type: boolean
+              description: Whether to customize examples based on user background
+            complexity:
+              type: boolean
+              description: Whether to adjust content complexity
+            domain_focus:
+              type: boolean
+              description: Whether to focus content on user's domain expertise
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    PersonalizationPreferencesInput:
+      type: object
+      required:
+        - intensity
+        - customization_types
+      properties:
+        intensity:
+          type: string
+          enum: [low, medium, high]
+          description: How much personalization to apply
+        customization_types:
+          type: object
+          required: [examples, complexity, domain_focus]
+          properties:
+            examples:
+              type: boolean
+              description: Whether to customize examples based on user background
+            complexity:
+              type: boolean
+              description: Whether to adjust content complexity
+            domain_focus:
+              type: boolean
+              description: Whether to focus content on user's domain expertise

@@ -12,6 +12,10 @@ from functools import lru_cache
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
+    # Application info
+    app_name: str = os.getenv("APP_NAME", "User Authentication API")
+    app_version: str = os.getenv("APP_VERSION", "1.0.0")
+
     # AI Provider settings
     ai_provider: str = os.getenv("AI_PROVIDER", "openai")  # Can be 'openai' or 'gemini'
     openai_api_key: str = os.getenv("OPENAI_API_KEY", "")
@@ -26,6 +30,17 @@ class Settings(BaseSettings):
     qdrant_https: bool = os.getenv("QDRANT_HTTPS", "false").lower() == "true"
     qdrant_collection_name: str = os.getenv("QDRANT_COLLECTION_NAME", "rag_embeddings")
 
+    # Authentication settings
+    secret_key: str = os.getenv("SECRET_KEY", "your-secret-key-here")
+    algorithm: str = os.getenv("ALGORITHM", "HS256")
+    access_token_expire_minutes: int = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30"))
+    session_expire_days: int = int(os.getenv("SESSION_EXPIRE_DAYS", "7"))
+    better_auth_secret: str = os.getenv("BETTER_AUTH_SECRET", "")
+
+    # Database settings
+    database_url: str = os.getenv("DATABASE_URL", "postgresql+asyncpg://user:password@localhost/dbname")
+    neon_database_url: str = os.getenv("NEON_DATABASE_URL", "")
+
     # Application settings
     debug_mode: bool = os.getenv("DEBUG_MODE", "false").lower() == "true"
     log_level: str = os.getenv("LOG_LEVEL", "INFO")
@@ -35,11 +50,18 @@ class Settings(BaseSettings):
     # Server settings
     server_host: str = os.getenv("SERVER_HOST", "0.0.0.0")
     server_port: int = int(os.getenv("SERVER_PORT", "8000"))
+    frontend_url: str = os.getenv("FRONTEND_URL", "http://localhost:3000")
 
     # Additional settings for embedding generation
     source_content_path: str = os.getenv("SOURCE_CONTENT_PATH", "./test_data/original_content.json")
     cohere_api_key: str = os.getenv("COHERE_API_KEY", "")
     target_url: str = os.getenv("TARGET_URL", "https://example.com")
+
+    # Translation settings
+    translation_cache_ttl_hours: int = int(os.getenv("TRANSLATION_CACHE_TTL_HOURS", "24"))
+    translation_max_content_length: int = int(os.getenv("TRANSLATION_MAX_CONTENT_LENGTH", "100000"))
+    translation_rate_limit_per_minute: int = int(os.getenv("TRANSLATION_RATE_LIMIT_PER_MINUTE", "10"))
+    translation_provider: str = os.getenv("TRANSLATION_PROVIDER", "gemini")  # gemini or openai
 
     class Config:
         env_file = ".env"
@@ -110,18 +132,20 @@ def validate_settings(settings: Settings) -> list[str]:
 # Create a global settings instance
 settings = get_settings()
 
-# Validate settings at startup
+# Validate settings at startup (warnings only, don't fail)
 validation_errors = validate_settings(settings)
 if validation_errors:
-    raise ValueError(f"Configuration validation failed: {'; '.join(validation_errors)}")
+    import warnings
+    for error in validation_errors:
+        warnings.warn(f"Configuration warning: {error}")
 
 
 def get_openai_client():
     """Initialize and return OpenAI client with configured parameters."""
     from openai import OpenAI
 
-    params = settings.get_openai_client_params()
-    return OpenAI(**params)
+    # Simple initialization with just api_key (newer OpenAI SDK)
+    return OpenAI(api_key=settings.openai_api_key)
 
 
 def get_gemini_client():

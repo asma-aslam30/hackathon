@@ -1,0 +1,234 @@
+/**
+ * RTL (Right-to-Left) Stylesheet for Urdu Translation
+ *
+ * This stylesheet provides styles for displaying Urdu content with proper
+ * right-to-left text direction and Nastaliq script rendering.
+ */
+
+/* RTL container for Urdu content */
+.urdu-content {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Nafees Nastaleeq', serif;
+  line-height: 2.2;  /* Nastaliq requires extra line height */
+  font-size: 1.2em;  /* Slightly larger for readability */
+  unicode-bidi: embed;
+}
+
+/* Preserve LTR for code blocks within RTL content */
+.urdu-content pre,
+.urdu-content code {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: isolate;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+}
+
+/* Preserve LTR for inline code */
+.urdu-content code {
+  display: inline-block;
+  background-color: var(--ifm-code-background, #f6f8fa);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+
+/* Headings in Urdu */
+.urdu-content h1,
+.urdu-content h2,
+.urdu-content h3,
+.urdu-content h4,
+.urdu-content h5,
+.urdu-content h6 {
+  direction: rtl;
+  text-align: right;
+  font-weight: 600;
+  line-height: 2.4;
+}
+
+/* Lists in RTL */
+.urdu-content ul,
+.urdu-content ol {
+  direction: rtl;
+  text-align: right;
+  padding-right: 2em;
+  padding-left: 0;
+}
+
+.urdu-content li {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Tables in RTL */
+.urdu-content table {
+  direction: rtl;
+}
+
+.urdu-content th,
+.urdu-content td {
+  text-align: right;
+}
+
+/* Links in Urdu content */
+.urdu-content a {
+  direction: rtl;
+}
+
+/* Blockquotes */
+.urdu-content blockquote {
+  direction: rtl;
+  text-align: right;
+  border-right: 4px solid var(--ifm-color-primary, #2962ff);
+  border-left: none;
+  padding-right: 1em;
+  padding-left: 0;
+  margin-right: 0;
+}
+
+/* Images with RTL captions */
+.urdu-content figure {
+  direction: rtl;
+  text-align: right;
+}
+
+.urdu-content figcaption {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Translation button styles */
+.urdu-translation-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--ifm-color-primary, #2962ff);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.urdu-translation-button:hover {
+  background-color: var(--ifm-color-primary-dark, #1e4bc3);
+  transform: translateY(-1px);
+}
+
+.urdu-translation-button:active {
+  transform: translateY(0);
+}
+
+.urdu-translation-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.urdu-translation-button--loading {
+  position: relative;
+}
+
+.urdu-translation-button--loading::after {
+  content: '';
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid transparent;
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-left: 0.5rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Show Original button (Urdu text) */
+.urdu-translation-button--original {
+  background-color: var(--ifm-color-secondary, #6c757d);
+}
+
+.urdu-translation-button--original:hover {
+  background-color: var(--ifm-color-secondary-dark, #545b62);
+}
+
+/* Loading spinner */
+.urdu-loading-spinner {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-left-color: var(--ifm-color-primary, #2962ff);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Error message styling */
+.urdu-error-message {
+  background-color: #fef2f2;
+  border: 1px solid #ef4444;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  color: #dc2626;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.urdu-error-message--icon {
+  flex-shrink: 0;
+}
+
+/* RTL mode indicator */
+.urdu-rtl-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background-color: rgba(41, 98, 255, 0.1);
+  color: var(--ifm-color-primary, #2962ff);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Accessibility - Focus styles */
+.urdu-translation-button:focus-visible {
+  outline: 2px solid var(--ifm-color-primary, #2962ff);
+  outline-offset: 2px;
+}
+
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .urdu-content code {
+  background-color: var(--ifm-code-background, #1e1e1e);
+}
+
+[data-theme='dark'] .urdu-error-message {
+  background-color: #450a0a;
+  border-color: #b91c1c;
+  color: #fca5a5;
+}
+
+[data-theme='dark'] .urdu-rtl-indicator {
+  background-color: rgba(41, 98, 255, 0.2);
+}

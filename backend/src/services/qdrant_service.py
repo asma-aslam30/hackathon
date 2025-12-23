@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional
 from qdrant_client import QdrantClient
 from qdrant_client.http import models
 from qdrant_client.conversions import common_types
-from src.config.settings import get_settings
+from src.config.settings import get_settings, get_qdrant_client
 from src.utils.logging_utils import app_logger
 from pydantic import BaseModel, Field
 from datetime import datetime
@@ -47,7 +47,7 @@ class QdrantService:
                            host=self.settings.qdrant_host)
 
             # Initialize Qdrant client
-            self.client = self.settings.get_qdrant_client()
+            self.client = get_qdrant_client()
 
             # Check if collection exists
             collections = self.client.get_collections()

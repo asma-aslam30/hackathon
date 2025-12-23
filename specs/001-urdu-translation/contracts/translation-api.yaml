@@ -1,0 +1,339 @@
+openapi: 3.1.0
+info:
+  title: Urdu Translation API
+  description: API for translating chapter content to Urdu
+  version: 1.0.0
+  contact:
+    name: API Support
+servers:
+  - url: /api/v1
+    description: Main API server
+
+tags:
+  - name: Translation
+    description: Content translation operations
+
+paths:
+  /translation/translate-to-urdu:
+    post:
+      operationId: translateToUrdu
+      tags:
+        - Translation
+      summary: Translate content to Urdu
+      description: |
+        Translates HTML content from the source language to Urdu.
+        Requires authentication. Results are cached for 24 hours.
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TranslationRequest'
+            examples:
+              simple:
+                summary: Simple paragraph
+                value:
+                  content: "<p>Hello, world! Welcome to our documentation.</p>"
+                  chapter_id: "chapter-1-intro"
+                  source_language: "en"
+                  preserve_formatting: true
+              complex:
+                summary: Complex content with code
+                value:
+                  content: |
+                    <h2>Getting Started</h2>
+                    <p>Follow these steps:</p>
+                    <ol><li>Install the package</li><li>Configure settings</li></ol>
+                    <pre><code>pip install mypackage</code></pre>
+                  chapter_id: "chapter-2-setup"
+                  source_language: "en"
+                  preserve_formatting: true
+      responses:
+        '200':
+          description: Translation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranslationResponse'
+              examples:
+                success:
+                  summary: Successful translation
+                  value:
+                    success: true
+                    translated_content: "<p dir='rtl' lang='ur'>ہیلو، دنیا! ہماری دستاویزات میں خوش آمدید۔</p>"
+                    metadata:
+                      word_count: 6
+                      translation_time_ms: 1250
+                      source_language: "en"
+                      target_language: "ur"
+                      cached_at: null
+                    cache_hit: false
+                cached:
+                  summary: Cached translation
+                  value:
+                    success: true
+                    translated_content: "<p dir='rtl' lang='ur'>ہیلو، دنیا!</p>"
+                    metadata:
+                      word_count: 2
+                      translation_time_ms: 5
+                      source_language: "en"
+                      target_language: "ur"
+                      cached_at: "2025-12-20T10:30:00Z"
+                    cache_hit: true
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranslationError'
+              examples:
+                invalid_content:
+                  value:
+                    success: false
+                    error_code: "INVALID_CONTENT"
+                    error_message: "Content is empty or exceeds maximum length"
+                    retry_after: null
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranslationError'
+              examples:
+                unauthorized:
+                  value:
+                    success: false
+                    error_code: "UNAUTHORIZED"
+                    error_message: "Please log in to use translation"
+                    retry_after: null
+        '429':
+          description: Rate limited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranslationError'
+              examples:
+                rate_limited:
+                  value:
+                    success: false
+                    error_code: "RATE_LIMITED"
+                    error_message: "Translation service busy. Please try again."
+                    retry_after: 30
+        '500':
+          description: Translation service error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranslationError'
+              examples:
+                service_error:
+                  value:
+                    success: false
+                    error_code: "SERVICE_ERROR"
+                    error_message: "Translation service unavailable. Please try again later."
+                    retry_after: 60
+
+  /translation/status:
+    get:
+      operationId: getTranslationStatus
+      tags:
+        - Translation
+      summary: Get translation service status
+      description: Returns the current status of the translation service (health check)
+      responses:
+        '200':
+          description: Service status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceStatus'
+              examples:
+                healthy:
+                  value:
+                    status: "healthy"
+                    cache_entries: 150
+                    avg_translation_time_ms: 1200
+                    supported_languages:
+                      - code: "ur"
+                        name: "Urdu"
+                        direction: "rtl"
+
+  /translation/cache/clear:
+    delete:
+      operationId: clearTranslationCache
+      tags:
+        - Translation
+      summary: Clear user's translation cache
+      description: Clears all cached translations for the authenticated user
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Cache cleared
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  cleared_count:
+                    type: integer
+                    description: Number of cache entries cleared
+              examples:
+                cleared:
+                  value:
+                    success: true
+                    cleared_count: 5
+        '401':
+          description: Authentication required
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from /api/v1/auth/login
+
+  schemas:
+    TranslationRequest:
+      type: object
+      required:
+        - content
+      properties:
+        content:
+          type: string
+          minLength: 1
+          maxLength: 100000
+          description: HTML content to translate
+        chapter_id:
+          type: string
+          maxLength: 255
+          nullable: true
+          description: Optional chapter identifier for analytics
+        source_language:
+          type: string
+          pattern: '^[a-z]{2}$'
+          default: 'en'
+          description: ISO 639-1 source language code
+        preserve_formatting:
+          type: boolean
+          default: true
+          description: Whether to preserve HTML formatting
+
+    TranslationResponse:
+      type: object
+      required:
+        - success
+        - translated_content
+        - metadata
+        - cache_hit
+      properties:
+        success:
+          type: boolean
+          description: Whether translation succeeded
+        translated_content:
+          type: string
+          description: Urdu translated HTML content with RTL attributes
+        metadata:
+          $ref: '#/components/schemas/TranslationMetadata'
+        cache_hit:
+          type: boolean
+          description: Whether result was served from cache
+
+    TranslationMetadata:
+      type: object
+      required:
+        - word_count
+        - translation_time_ms
+        - source_language
+        - target_language
+      properties:
+        word_count:
+          type: integer
+          minimum: 1
+          description: Word count of original content
+        translation_time_ms:
+          type: integer
+          minimum: 0
+          description: Translation time in milliseconds
+        source_language:
+          type: string
+          description: Source language code
+        target_language:
+          type: string
+          default: 'ur'
+          description: Target language code (Urdu)
+        cached_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the translation was cached (null if fresh)
+
+    TranslationError:
+      type: object
+      required:
+        - success
+        - error_code
+        - error_message
+      properties:
+        success:
+          type: boolean
+          default: false
+        error_code:
+          type: string
+          enum:
+            - INVALID_CONTENT
+            - UNAUTHORIZED
+            - RATE_LIMITED
+            - SERVICE_ERROR
+            - CONTENT_TOO_LARGE
+            - UNSUPPORTED_LANGUAGE
+          description: Machine-readable error code
+        error_message:
+          type: string
+          description: Human-readable error message
+        retry_after:
+          type: integer
+          nullable: true
+          minimum: 0
+          description: Seconds to wait before retrying (for rate limits)
+
+    ServiceStatus:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum:
+            - healthy
+            - degraded
+            - unavailable
+          description: Current service health status
+        cache_entries:
+          type: integer
+          description: Number of cached translations
+        avg_translation_time_ms:
+          type: integer
+          description: Average translation time in milliseconds
+        supported_languages:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                description: ISO 639-1 language code
+              name:
+                type: string
+                description: Human-readable language name
+              direction:
+                type: string
+                enum:
+                  - ltr
+                  - rtl
+                description: Text direction
