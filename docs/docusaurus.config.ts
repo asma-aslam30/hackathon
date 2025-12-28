@@ -156,6 +156,11 @@ const config: Config = {
           position: 'right',
         },
         {
+          to: '/profile',
+          label: 'Profile',
+          position: 'right',
+        },
+        {
           to: '/login',
           label: 'Login',
           position: 'right',
