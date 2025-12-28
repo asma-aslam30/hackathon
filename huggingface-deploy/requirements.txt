@@ -1,7 +1,7 @@
 fastapi
 uvicorn[standard]
 python-dotenv
-pydantic
+pydantic[email]
 pydantic-settings
 httpx
 qdrant-client
@@ -9,3 +9,4 @@ google-generativeai
 requests
 numpy
 beautifulsoup4
+PyJWT
