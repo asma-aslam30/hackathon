@@ -50,7 +50,13 @@ app = FastAPI(
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.frontend_url, "http://localhost:3000", "http://localhost:3001"],  # Adjust as needed
+    allow_origins=[
+        settings.frontend_url,
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "https://asma-aslam30.github.io",  # GitHub Pages
+        "https://asma-aslam30.github.io/hackathon",  # GitHub Pages with path
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

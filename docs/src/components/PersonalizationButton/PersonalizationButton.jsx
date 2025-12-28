@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './PersonalizationButton.css';
+import API_CONFIG from '../../config/api';
 
-// In Docusaurus, use hardcoded URL instead of process.env (not available in browser)
-const getApiBaseUrl = () => {
-  if (typeof window !== 'undefined') {
-    return window.__BACKEND_URL__ || 'http://localhost:8000';
-  }
-  return 'http://localhost:8000';
-};
+const getApiBaseUrl = () => API_CONFIG.BACKEND_URL;
 
 /**
  * PersonalizationButton Component for Docusaurus

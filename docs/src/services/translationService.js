@@ -3,11 +3,9 @@
  *
  * This module provides client-side API calls for translating content to Urdu.
  */
+import API_CONFIG from '../config/api';
 
-// In Docusaurus, use hardcoded URL instead of process.env (not available in browser)
-const API_BASE_URL = typeof window !== 'undefined'
-  ? (window.__BACKEND_URL__ ? `${window.__BACKEND_URL__}/api/v1` : 'http://localhost:8000/api/v1')
-  : 'http://localhost:8000/api/v1';
+const API_BASE_URL = `${API_CONFIG.BACKEND_URL}/api/v1`;
 
 /**
  * Get the authentication token from localStorage

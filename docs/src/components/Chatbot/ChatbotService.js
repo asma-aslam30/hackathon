@@ -1,11 +1,9 @@
 import axios from 'axios';
+import API_CONFIG from '../../config/api';
 
 // API configuration constants
-// In Docusaurus, use hardcoded URL or siteConfig instead of process.env
-const API_BASE_URL = typeof window !== 'undefined'
-  ? (window.__BACKEND_URL__ || 'http://localhost:8000')
-  : 'http://localhost:8000';
-const API_TIMEOUT = 30000; // 30 seconds
+const API_BASE_URL = API_CONFIG.BACKEND_URL;
+const API_TIMEOUT = API_CONFIG.TIMEOUT;
 
 // Create axios instance with default configuration
 const apiClient = axios.create({
