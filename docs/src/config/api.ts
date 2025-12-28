@@ -5,9 +5,8 @@
  * Update BACKEND_URL when deploying to different environments.
  */
 
-// Backend API URL - Update this when you deploy your backend
-// For Hugging Face Spaces: https://YOUR-USERNAME-YOUR-SPACE-NAME.hf.space
-// For local development: http://localhost:8000
+// Backend API URL - Deployed on Hugging Face Spaces
+// Live URL: https://asma-aslam30-physical-ai-chatbot.hf.space
 const BACKEND_URL = 'https://asma-aslam30-physical-ai-chatbot.hf.space';
 
 // Fallback to localhost for development
