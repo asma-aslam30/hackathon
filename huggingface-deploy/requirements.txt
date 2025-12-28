@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+pydantic
+pydantic-settings
+httpx
+qdrant-client
+google-generativeai
+requests
+numpy
+beautifulsoup4
